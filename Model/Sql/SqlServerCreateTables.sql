@@ -145,7 +145,7 @@ CREATE TABLE SpecificProperty (
 CREATE TABLE Delivery (
 	deliveryId bigint IDENTITY(1,1) NOT NULL,
 	deliveyDate date NOT NULL,
-	deliveryPrice int NOT NULL,
+	deliveryPrice numeric(10,2) NOT NULL,
 	cardId bigint NOT NULL,
 	description varchar(50) NOT NULL,
 
@@ -156,7 +156,7 @@ CREATE TABLE Delivery (
 CREATE TABLE DeliveryLine (
 	deliveryLineId bigint IDENTITY(1,1) NOT NULL,
 	deliveryLineAmount int NOT NULL,
-	deliveryLinePrice int NOT NULL,
+	deliveryLinePrice numeric(10,2) NOT NULL,
 	deliveryId bigint NOT NULL,
 	productId bigint NOT NULL,
 
