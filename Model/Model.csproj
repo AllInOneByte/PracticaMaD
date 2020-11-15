@@ -104,6 +104,8 @@
     <Compile Include="SpecificProperty.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
+    <Compile Include="SpecificProperyDao\ISpecificPropertyDao.cs" />
+    <Compile Include="SpecificProperyDao\SpecificPropertyDaoEntityFramework.cs" />
     <Compile Include="Tag.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
