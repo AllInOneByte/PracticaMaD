@@ -1,7 +1,6 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using System;
-using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
 
@@ -11,7 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
     /// Specific Operations for UserProfile
     /// </summary>
     public class UserProfileDaoEntityFramework :
-        GenericDaoEntityFramework<UserProfile, Int64>, IUserProfileDao
+        GenericDaoEntityFramework<UserProfile, long>, IUserProfileDao
     {
         #region Public Constructors
 

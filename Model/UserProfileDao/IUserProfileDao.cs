@@ -4,7 +4,7 @@ using System;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
 {
-    public interface IUserProfileDao : IGenericDao<UserProfile,Int64>
+    public interface IUserProfileDao : IGenericDao<UserProfile, long>
     {
         /// <summary>
         /// Finds a UserProfile by loginName
@@ -12,6 +12,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
         /// <param name="loginName">loginName</param>
         /// <returns>The UserProfile</returns>
         /// <exception cref="InstanceNotFoundException"/>
-        UserProfile FindByLoginName(String loginName);
+        UserProfile FindByLoginName(string loginName);
     }
 }

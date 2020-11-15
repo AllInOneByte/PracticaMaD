@@ -1,20 +1,20 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
 using System;
 
-namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
+namespace Es.Udc.DotNet.PracticaMaD.Model.CategoryDao
 {
     /// <summary>
-    /// Specific Operations for CreditCard
+    /// Specific Operations for Category
     /// </summary>
-    public class CreditCardDaoEntityFramework :
-        GenericDaoEntityFramework<CreditCard, long>, ICreditCardDao
+    public class CategoryDaoEntityFramework :
+        GenericDaoEntityFramework<CreditCard, long>, ICategoryDao
     {
         #region Public Constructors
 
         /// <summary>
         /// Public Constructor
         /// </summary>
-        public CreditCardDaoEntityFramework()
+        public CategoryDaoEntityFramework()
         {
         }
 
