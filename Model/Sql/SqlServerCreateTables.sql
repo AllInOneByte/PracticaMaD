@@ -19,6 +19,14 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Category]') 
 DROP TABLE [Category]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Delivery]') AND type in ('U'))
+DROP TABLE [Delivery]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[DeliveryLine]') AND type in ('U'))
+DROP TABLE [DeliveryLine]
+GO
+
 /*
  * Create tables.
  * UserProfile table is created. Indexes required for the 
@@ -74,6 +82,29 @@ CREATE TABLE Product (
 	CONSTRAINT [PK_Product] PRIMARY KEY (productId),
 	CONSTRAINT [FK_ProductCategory] FOREIGN KEY (categoryId) REFERENCES Category(categoryId),
 	CONSTRAINT [UniqueKey_ProductName] UNIQUE (productName)
+)
+
+CREATE TABLE Delivery (
+	deliveryId bigint IDENTITY(1,1) NOT NULL,
+	deliveyDate date NOT NULL,
+	deliveryPrice int NOT NULL,
+	cardId bigint NOT NULL,
+	productId bigint NOT NULL,
+
+	CONSTRAINT [PK_Delivery] PRIMARY KEY (deliveryId),
+	CONSTRAINT [FK_DeliveryCard] FOREIGN KEY (cardId) REFERENCES CreditCard(cardId),
+	CONSTRAINT [FK_DeliveryProduct] FOREIGN KEY (productId) REFERENCES Product(productId),
+	
+)
+
+CREATE TABLE DeliveryLine (
+	deliveryLineId bigint IDENTITY(1,1) NOT NULL,
+	deliveryLineAmount int NOT NULL,
+	deliveryId bigint NOT NULL,
+
+	CONSTRAINT [PK_DeliveryLine] PRIMARY KEY (deliveryLineId),
+	CONSTRAINT [FK_DeliveryId] FOREIGN KEY (deliveryId) REFERENCES Delivery(deliveryId),
+
 )
 
 CREATE NONCLUSTERED INDEX [IX_UserProfileIndexByLoginName]
