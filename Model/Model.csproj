@@ -56,6 +56,8 @@
     <Compile Include="Category.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
+    <Compile Include="DeliveryDao\DeliveryDaoEntityFramework.cs" />
+    <Compile Include="DeliveryDao\IDeliveryDao.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Comment.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
@@ -63,6 +65,8 @@
     <Compile Include="CreditCard.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
+    <Compile Include="CategoryDao\CategoryDaoEntityFramework.cs" />
+    <Compile Include="CategoryDao\ICategoryDao.cs" />
     <Compile Include="CreditCardDao\CreditCardDaoEntityFramework.cs" />
     <Compile Include="CreditCardDao\ICreditCardDao.cs" />
     <Compile Include="Delivery.cs">
@@ -71,6 +75,8 @@
     <Compile Include="DeliveryLine.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
+    <Compile Include="DeliveryLineDao\DeliveryDaoEntityFramework.cs" />
+    <Compile Include="DeliveryLineDao\IDeliveryDao.cs" />
     <Compile Include="Labeled.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
