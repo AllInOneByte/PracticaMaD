@@ -1,7 +1,0 @@
-C:\Users\sara\source\repos\PracticaMaD\Model\bin\Debug\Model.dll
-C:\Users\sara\source\repos\PracticaMaD\Model\bin\Debug\Model.pdb
-C:\Users\sara\source\repos\PracticaMaD\Model\bin\Debug\ModelUtil.dll
-C:\Users\sara\source\repos\PracticaMaD\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
-C:\Users\sara\source\repos\PracticaMaD\Model\obj\Debug\Model.csproj.CopyComplete
-C:\Users\sara\source\repos\PracticaMaD\Model\obj\Debug\Model.dll
-C:\Users\sara\source\repos\PracticaMaD\Model\obj\Debug\Model.pdb
