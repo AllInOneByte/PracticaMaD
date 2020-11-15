@@ -3,6 +3,30 @@ USE [practicamad]
 
 
 /* ********** Drop Table UserProfile if already exists *********** */
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[DeliveryLine]') AND type in ('U'))
+DROP TABLE [DeliveryLine]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Labeled]') AND type in ('U'))
+DROP TABLE [Labeled]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Comment]') AND type in ('U'))
+DROP TABLE [Comment]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Delivery]') AND type in ('U'))
+DROP TABLE [Delivery]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[SpecificProperty]') AND type in ('U'))
+DROP TABLE [SpecificProperty]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Product]') AND type in ('U'))
+DROP TABLE [Product]
+GO
+
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[CreditCard]') AND type in ('U'))
 DROP TABLE [CreditCard]
 GO
@@ -11,20 +35,12 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[UserProfile]
 DROP TABLE [UserProfile]
 GO
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Product]') AND type in ('U'))
-DROP TABLE [Product]
-GO
-
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Category]') AND type in ('U'))
 DROP TABLE [Category]
 GO
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Delivery]') AND type in ('U'))
-DROP TABLE [Delivery]
-GO
-
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[DeliveryLine]') AND type in ('U'))
-DROP TABLE [DeliveryLine]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Tag]') AND type in ('U'))
+DROP TABLE [Tag]
 GO
 
 /*
@@ -44,9 +60,19 @@ CREATE TABLE UserProfile (
 	email varchar(60) NOT NULL,
 	language varchar(2) NOT NULL,
 	country varchar(2) NOT NULL,
+	role tinyint NOT NULL,
+	address varchar(50) NOT NULL,
 
 	CONSTRAINT [PK_UserProfile] PRIMARY KEY (usrId),
 	CONSTRAINT [UniqueKey_Login] UNIQUE (loginName)
+)
+
+CREATE TABLE Tag (
+	tagId bigint IDENTITY(1,1) NOT NULL,
+	tagName varchar(15) NOT NULL,
+
+	CONSTRAINT [PK_Tag] PRIMARY KEY (tagId),
+	CONSTRAINT [UniqueKey_Name] UNIQUE (tagName)
 )
 
 CREATE TABLE CreditCard (
@@ -84,33 +110,65 @@ CREATE TABLE Product (
 	CONSTRAINT [UniqueKey_ProductName] UNIQUE (productName)
 )
 
+CREATE TABLE Comment (
+	commentId bigint IDENTITY(1,1) NOT NULL,
+	comment varchar(500) NOT NULL,
+	commentDate date NOT NULL,
+	userId bigint NOT NULL,
+	productId bigint NOT NULL,
+
+	CONSTRAINT [PK_Comment] PRIMARY KEY (commentId),
+	CONSTRAINT [FK_UserComment] FOREIGN KEY (userId) REFERENCES UserProfile(usrId),
+	CONSTRAINT [FK_ProductComment] FOREIGN KEY (productId) REFERENCES Product(productId)
+)
+
+CREATE TABLE Labeled (
+	labeledId bigint IDENTITY(1,1) NOT NULL,
+	tagId bigint NOT NULL,
+	commentId bigint NOT NULL,
+
+	CONSTRAINT [PK_Labeled] PRIMARY KEY (labeledId),
+	CONSTRAINT [FK_TagLabeled] FOREIGN KEY (tagId) REFERENCES Tag(tagId),
+	CONSTRAINT [FK_CommentLabeled] FOREIGN KEY (commentId) REFERENCES Comment(commentId)
+)
+
+CREATE TABLE SpecificProperty (
+	propertyId bigint IDENTITY(1,1) NOT NULL,
+	propertyName varchar(50) NOT NULL,
+	propertyValue varchar(50) NOT NULL,
+	productId bigint NOT NULL,
+
+	CONSTRAINT [PK_SpecificProperty] PRIMARY KEY (propertyId),
+	CONSTRAINT [FK_ProductDelivery] FOREIGN KEY (productId) REFERENCES Product(productId)
+)
+
 CREATE TABLE Delivery (
 	deliveryId bigint IDENTITY(1,1) NOT NULL,
 	deliveyDate date NOT NULL,
 	deliveryPrice int NOT NULL,
 	cardId bigint NOT NULL,
-	productId bigint NOT NULL,
+	description varchar(50) NOT NULL,
 
 	CONSTRAINT [PK_Delivery] PRIMARY KEY (deliveryId),
-	CONSTRAINT [FK_DeliveryCard] FOREIGN KEY (cardId) REFERENCES CreditCard(cardId),
-	CONSTRAINT [FK_DeliveryProduct] FOREIGN KEY (productId) REFERENCES Product(productId),
-	
+	CONSTRAINT [FK_DeliveryCard] FOREIGN KEY (cardId) REFERENCES CreditCard(cardId)
 )
 
 CREATE TABLE DeliveryLine (
 	deliveryLineId bigint IDENTITY(1,1) NOT NULL,
 	deliveryLineAmount int NOT NULL,
+	deliveryLinePrice int NOT NULL,
 	deliveryId bigint NOT NULL,
+	productId bigint NOT NULL,
 
 	CONSTRAINT [PK_DeliveryLine] PRIMARY KEY (deliveryLineId),
 	CONSTRAINT [FK_DeliveryId] FOREIGN KEY (deliveryId) REFERENCES Delivery(deliveryId),
-
+	CONSTRAINT [FK_DeliveryProduct] FOREIGN KEY (productId) REFERENCES Product(productId)
 )
 
 CREATE NONCLUSTERED INDEX [IX_UserProfileIndexByLoginName]
 ON [UserProfile] ([loginName] ASC)
 
-PRINT N'Tables UserProfile, CreditCard, Category and Product created.'
+PRINT N'Tables UserProfile, CreditCard, Category, Product, SpecificProperty, Delivery and DeliveryLine created.'
 GO
 
 GO
