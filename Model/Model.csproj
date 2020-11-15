@@ -109,6 +109,8 @@
     <Compile Include="Tag.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
+    <Compile Include="TagDao\ITagDao.cs" />
+    <Compile Include="TagDao\TagDaoEntityFramework.cs" />
     <Compile Include="UserProfile.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
