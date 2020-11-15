@@ -1,19 +1,19 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
 
-namespace Es.Udc.DotNet.PracticaMaD.Model.CategoryDao
+namespace Es.Udc.DotNet.PracticaMaD.Model.DeliveryDao
 {
     /// <summary>
-    /// Specific Operations for Category
+    /// Specific Operations for Delivery
     /// </summary>
-    public class CategoryDaoEntityFramework :
-        GenericDaoEntityFramework<Category, long>, ICategoryDao
+    public class DeliveryDaoEntityFramework :
+        GenericDaoEntityFramework<Delivery, long>, IDeliveryDao
     {
         #region Public Constructors
 
         /// <summary>
         /// Public Constructor
         /// </summary>
-        public CategoryDaoEntityFramework()
+        public DeliveryDaoEntityFramework()
         {
         }
 
