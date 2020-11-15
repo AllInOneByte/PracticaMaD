@@ -80,9 +80,8 @@
     <Compile Include="Labeled.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="LabeledDao\LabeledDaoEntityFramework.cs" />
+    <Compile Include="LabeledDao\ILabeledDao.cs" />
     <Compile Include="PracticaMaD.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -115,7 +114,6 @@
     <Compile Include="UserProfileDao\UserProfileDaoEntityFramework.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="obj\Debug\TempPE\PracticaMaD.cs.dll" />
     <Content Include="PracticaMaD.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>PracticaMaD.Context.cs</LastGenOutput>
@@ -129,9 +127,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Debug\Model.csproj.CoreCompileInputs.cache" />
-    <None Include="obj\Debug\Model.csprojAssemblyReference.cache" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -146,8 +141,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Debug\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
