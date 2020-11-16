@@ -59,6 +59,8 @@
     <Compile Include="Comment.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
+    <Compile Include="CommentDao\CommentDaoEntityFramework.cs" />
+    <Compile Include="CommentDao\ICommentDao.cs" />
     <Compile Include="CreditCard.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
