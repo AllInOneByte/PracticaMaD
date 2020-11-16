@@ -146,11 +146,14 @@ CREATE TABLE Delivery (
 	deliveryId bigint IDENTITY(1,1) NOT NULL,
 	deliveyDate date NOT NULL,
 	deliveryPrice numeric(10,2) NOT NULL,
+	deliveryAddress varchar(50) NOT NULL,
+	userId bigint NOT NULL,
 	cardId bigint NOT NULL,
 	description varchar(50) NOT NULL,
 
 	CONSTRAINT [PK_Delivery] PRIMARY KEY (deliveryId),
-	CONSTRAINT [FK_DeliveryCard] FOREIGN KEY (cardId) REFERENCES CreditCard(cardId)
+	CONSTRAINT [FK_DeliveryCard] FOREIGN KEY (cardId) REFERENCES CreditCard(cardId),
+	CONSTRAINT [FK_DelliveryUser] FOREIGN KEY (userId) REFERENCES UserProfile(usrId) 
 )
 
 CREATE TABLE DeliveryLine (

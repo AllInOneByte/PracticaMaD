@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Es.UDC.DotNet.PracticaMaD.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Es.UDC.DotNet.PracticaMaDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="categoryId" />
@@ -41,6 +41,8 @@
           <Property Name="deliveryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="deliveyDate" Type="date" Nullable="false" />
           <Property Name="deliveryPrice" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="deliveryAddress" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
           <Property Name="cardId" Type="bigint" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -152,6 +154,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DelliveryUser">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="usrId" />
+            </Principal>
+            <Dependent Role="Delivery">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductCategory">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -251,6 +265,10 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="DeliveryLine" EntitySet="DeliveryLine" />
           </AssociationSet>
+          <AssociationSet Name="FK_DelliveryUser" Association="Self.FK_DelliveryUser">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Delivery" EntitySet="Delivery" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductCategory" Association="Self.FK_ProductCategory">
             <End Role="Category" EntitySet="Category" />
             <End Role="Product" EntitySet="Product" />
@@ -280,7 +298,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Es.UDC.DotNet.PracticaMaD.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Es.UDC.DotNet.PracticaMaDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="categoryId" />
@@ -323,10 +341,13 @@
           <Property Name="deliveryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="deliveyDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="deliveryPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="deliveryAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
           <Property Name="cardId" Type="Int64" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CreditCard" Relationship="Self.FK_DeliveryCard" FromRole="Delivery" ToRole="CreditCard" />
           <NavigationProperty Name="DeliveryLines" Relationship="Self.FK_DeliveryId" FromRole="Delivery" ToRole="DeliveryLine" />
+          <NavigationProperty Name="UserProfile" Relationship="Self.FK_DelliveryUser" FromRole="Delivery" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="DeliveryLine">
           <Key>
@@ -399,6 +420,7 @@
           <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_UserComment" FromRole="UserProfile" ToRole="Comment" />
           <NavigationProperty Name="CreditCards" Relationship="Self.FK_UserCard" FromRole="UserProfile" ToRole="CreditCard" />
+          <NavigationProperty Name="Deliveries" Relationship="Self.FK_DelliveryUser" FromRole="UserProfile" ToRole="Delivery" />
         </EntityType>
         <Association Name="FK_ProductCategory">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
@@ -484,6 +506,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DelliveryUser">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="usrId" />
+            </Principal>
+            <Dependent Role="Delivery">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DeliveryProduct">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="DeliveryLine" Type="Self.DeliveryLine" Multiplicity="*" />
@@ -559,6 +593,10 @@
             <End Role="Delivery" EntitySet="Deliveries" />
             <End Role="DeliveryLine" EntitySet="DeliveryLines" />
           </AssociationSet>
+          <AssociationSet Name="FK_DelliveryUser" Association="Self.FK_DelliveryUser">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Delivery" EntitySet="Deliveries" />
+          </AssociationSet>
           <AssociationSet Name="FK_DeliveryProduct" Association="Self.FK_DeliveryProduct">
             <End Role="Product" EntitySet="Products" />
             <End Role="DeliveryLine" EntitySet="DeliveryLines" />
@@ -579,7 +617,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EsUDCDotNetPracticaMaDModelStoreContainer" CdmEntityContainer="practicamadEntities">
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaD.Model.Category">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="categoryId" ColumnName="categoryId" />
                 <ScalarProperty Name="categoryName" ColumnName="categoryName" />
@@ -587,7 +625,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaD.Model.Comment">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
                 <ScalarProperty Name="commentId" ColumnName="commentId" />
                 <ScalarProperty Name="comment1" ColumnName="comment" />
@@ -598,7 +636,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CreditCards">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaD.Model.CreditCard">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.CreditCard">
               <MappingFragment StoreEntitySet="CreditCard">
                 <ScalarProperty Name="cardId" ColumnName="cardId" />
                 <ScalarProperty Name="cardType" ColumnName="cardType" />
@@ -611,18 +649,20 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Deliveries">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaD.Model.Delivery">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Delivery">
               <MappingFragment StoreEntitySet="Delivery">
                 <ScalarProperty Name="deliveryId" ColumnName="deliveryId" />
                 <ScalarProperty Name="deliveyDate" ColumnName="deliveyDate" />
                 <ScalarProperty Name="deliveryPrice" ColumnName="deliveryPrice" />
+                <ScalarProperty Name="deliveryAddress" ColumnName="deliveryAddress" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="cardId" ColumnName="cardId" />
                 <ScalarProperty Name="description" ColumnName="description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DeliveryLines">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaD.Model.DeliveryLine">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.DeliveryLine">
               <MappingFragment StoreEntitySet="DeliveryLine">
                 <ScalarProperty Name="deliveryLineId" ColumnName="deliveryLineId" />
                 <ScalarProperty Name="deliveryLineAmount" ColumnName="deliveryLineAmount" />
@@ -633,7 +673,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Labeleds">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaD.Model.Labeled">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Labeled">
               <MappingFragment StoreEntitySet="Labeled">
                 <ScalarProperty Name="labeledId" ColumnName="labeledId" />
                 <ScalarProperty Name="tagId" ColumnName="tagId" />
@@ -642,7 +682,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaD.Model.Product">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="productId" ColumnName="productId" />
                 <ScalarProperty Name="productName" ColumnName="productName" />
@@ -654,7 +694,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SpecificProperties">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaD.Model.SpecificProperty">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.SpecificProperty">
               <MappingFragment StoreEntitySet="SpecificProperty">
                 <ScalarProperty Name="propertyId" ColumnName="propertyId" />
                 <ScalarProperty Name="propertyName" ColumnName="propertyName" />
@@ -664,7 +704,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tags">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaD.Model.Tag">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Tag">
               <MappingFragment StoreEntitySet="Tag">
                 <ScalarProperty Name="tagId" ColumnName="tagId" />
                 <ScalarProperty Name="tagName" ColumnName="tagName" />
@@ -672,7 +712,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserProfiles">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaD.Model.UserProfile">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.UserProfile">
               <MappingFragment StoreEntitySet="UserProfile">
                 <ScalarProperty Name="usrId" ColumnName="usrId" />
                 <ScalarProperty Name="loginName" ColumnName="loginName" />

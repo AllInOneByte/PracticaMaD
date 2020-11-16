@@ -19,6 +19,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         {
             this.Comments = new HashSet<Comment>();
             this.CreditCards = new HashSet<CreditCard>();
+            this.Deliveries = new HashSet<Delivery>();
         }
     
         public long usrId { get; set; }
@@ -36,5 +37,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual ICollection<Comment> Comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CreditCard> CreditCards { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Delivery> Deliveries { get; set; }
     }
 }
