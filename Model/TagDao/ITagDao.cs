@@ -8,6 +8,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
         /// <summary>
         /// Finds all Tags
         /// <returns>List of Tags</returns>
-        List<Product> FindAll();
+        List<Tag> FindAll();
     }
 }
