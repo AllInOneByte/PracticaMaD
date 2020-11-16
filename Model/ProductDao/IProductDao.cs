@@ -13,5 +13,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         /// <returns>List of Product</returns>
         /// <exception cref="InstanceNotFoundException"/>
         List<Product> FindByKeywordsAndCategory(string keyWords, long categoryId);
+
+        /// <summary>
+        /// Finds all Products
+        /// <returns>List of Products</returns>
+        List<Product> FindAll();
     }
 }
