@@ -56,27 +56,27 @@
     <Compile Include="Category.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
-    <Compile Include="DeliveryDao\DeliveryDaoEntityFramework.cs" />
-    <Compile Include="DeliveryDao\IDeliveryDao.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Comment.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
     <Compile Include="CreditCard.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Delivery.cs">
+      <DependentUpon>PracticaMaD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryDao\DeliveryDaoEntityFramework.cs" />
+    <Compile Include="DeliveryDao\IDeliveryDao.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="CategoryDao\CategoryDaoEntityFramework.cs" />
     <Compile Include="CategoryDao\ICategoryDao.cs" />
     <Compile Include="CreditCardDao\CreditCardDaoEntityFramework.cs" />
     <Compile Include="CreditCardDao\ICreditCardDao.cs" />
-    <Compile Include="Delivery.cs">
-      <DependentUpon>PracticaMaD.tt</DependentUpon>
-    </Compile>
     <Compile Include="DeliveryLine.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
-    <Compile Include="DeliveryLineDao\DeliveryDaoEntityFramework.cs" />
-    <Compile Include="DeliveryLineDao\IDeliveryDao.cs" />
+    <Compile Include="DeliveryLineDao\DeliveryLineDaoEntityFramework.cs" />
+    <Compile Include="DeliveryLineDao\IDeliveryLineDao.cs" />
     <Compile Include="Labeled.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
@@ -122,10 +122,12 @@
   <ItemGroup>
     <Content Include="PracticaMaD.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PracticaMaD.Model.edmx</DependentUpon>
       <LastGenOutput>PracticaMaD.Context.cs</LastGenOutput>
     </Content>
     <Content Include="PracticaMaD.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PracticaMaD.Model.edmx</DependentUpon>
       <LastGenOutput>PracticaMaD.cs</LastGenOutput>
     </Content>
     <Content Include="Sql\SqlServerCreateDatabase.sql" />
