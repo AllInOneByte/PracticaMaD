@@ -147,6 +147,7 @@ CREATE TABLE Delivery (
 	deliveyDate date NOT NULL,
 	deliveryPrice numeric(10,2) NOT NULL,
 	cardId bigint NOT NULL,
+    userId bigint NOT NULL,
 	description varchar(50) NOT NULL,
 
 	CONSTRAINT [PK_Delivery] PRIMARY KEY (deliveryId),
