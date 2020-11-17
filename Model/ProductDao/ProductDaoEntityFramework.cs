@@ -41,7 +41,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             {
                 var result =
                     (from p in products
-                     where p.productName == keyWords
+                     where p.productName.ToLower().Contains(keyWords.ToLower())
                      select p);
 
                 product = result.ToList();
@@ -50,7 +50,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             else {
                 var result =
                     (from p in products
-                     where ((p.productName == keyWords) && (p.categoryId == categoryId))
+                     where (p.productName.ToLower().Contains(keyWords.ToLower()) && (p.categoryId == categoryId))
                      select p);
 
                 product = result.ToList();
