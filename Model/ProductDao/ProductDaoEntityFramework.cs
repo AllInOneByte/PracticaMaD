@@ -83,5 +83,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
             return result.ToList();
         }
+
+        #endregion  IUserProfileDao Members. Specific Operations
     }
 }
