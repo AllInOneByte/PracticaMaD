@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.Transactions;
+using Ninject;
+using System;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
     interface IUserService
     {
-        SqlMethods.Like(c.FullName, "%"+FirstName+"%,"+LastName)
-            c.FullName.Contains(FirstName)
         [Inject]
        IUserProfileDao UserProfileDao { set; }
 
@@ -72,5 +75,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
     /// <param name="loginName"> User loginName. </param>
     /// <returns> Boolean to indicate if the loginName exists </returns>
     bool UserExists(string loginName);
+
+    /// <summary>
+    /// update the data of a creditCard 
+    /// </summary>
+    /// <param creditCardId="creditCardId">creditCardId</param>
+    /// <param creditCardDetails="creditCardDetails">creditCardDetails</param>
+    /// <returns> void </returns>
+    /// <exception cref="InstanceNotFoundException"/>
+    void UpdateCreditCard(long creditCardId, CreditCardDetails creditCardDetails);
+    /// <summary>
+    /// Add a Credit Card
+    /// </summary>
+    /// <param creditCardId="creditCardId">creditCardId</param>
+    /// <param creditCardDetails="creditCardDetails">creditCardDetails</param>
+    /// <returns> void </returns>
+    void AddCreditCard(long creditCardId, CreditCardDetails creditCardDetails);
+    /// <summary>
+    /// update de default creditCard
+    /// </summary>
+    /// <param creditCardId="creditCardId">creditCardId</param>
+    ///  <param userId="userId">userId</param>
+    /// <returns> void </returns>
+    void AssignDefaultCard(long creditCardId, long userId);
+    /// <summary>
+    /// Find all creditCards of a user
+    /// </summary>
+    /// <param userId="userId">userId</param>
+    /// <returns>A list of CreditCards</returns>
+    List<CreditCard> FindAllCreditCardsDetails(long userID);
 }
 }

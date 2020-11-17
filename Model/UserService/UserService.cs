@@ -8,5 +8,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
     class UserService
     {
+
     }
 }
