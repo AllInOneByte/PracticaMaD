@@ -37,7 +37,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             #region Option 1: Using Linq.
 
             DbSet<Product> products = Context.Set<Product>();
-            if (categoryId == 0)
+            if (categoryId <= 0)
             {
                 var result =
                     (from p in products
