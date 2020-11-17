@@ -1,4 +1,8 @@
+using System.Collections.Generic;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Dao;
+using System.Data.Entity;
+using System.Linq;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 {
@@ -18,5 +22,66 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         }
 
         #endregion Public Constructors
+
+        #region IUserProfileDao Members. Specific Operations
+        /// <summary>
+        /// Finds a Product by Key words or Category
+        /// </summary>
+        /// <param keyWords="keyWords">keyWords</param>
+        /// <param categoryId="categoryId">categoryId</param>
+        /// <returns>List of Product</returns>
+        /// <exception cref="InstanceNotFoundException"/>
+        List<Product> IProductDao.FindByKeywordsAndCategory(string keyWords, long categoryId) {
+            List<Product> product = null;
+
+            #region Option 1: Using Linq.
+
+            DbSet<Product> products = Context.Set<Product>();
+            if (categoryId == 0)
+            {
+                var result =
+                    (from p in products
+                     where p.productName == keyWords
+                     select p);
+
+                product = result.ToList();
+
+            }
+            else {
+                var result =
+                    (from p in products
+                     where ((p.productName == keyWords) && (p.categoryId == categoryId))
+                     select p);
+
+                product = result.ToList();
+
+            }
+            #endregion Option 1: Using Linq.
+
+            if (product == null)
+                throw new InstanceNotFoundException(keyWords,
+                    typeof(Product).FullName);
+
+            return product;
+
+        }
+
+        /// <summary>
+        /// Finds all Products
+        /// <returns>List of Products</returns>
+        List<Product> IProductDao.FindAll() {
+
+            #region Option 1: Using Linq.
+
+            DbSet<Product> products = Context.Set<Product>();
+
+            var result =
+                (from p in products
+                 select p);
+
+            #endregion Option 1: Using Linq.
+
+            return result.ToList();
+        }
     }
 }
