@@ -53,10 +53,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         ProductLinkDetails FindProduct(long productId);
 
         /// <summary>
-        /// Checks if the specified ID corresponds to a valid user.
+        /// Add a new comment.
         /// </summary>
-        /// <param name="userId"> User ID. </param>
-        /// <returns> Boolean to indicate if the ID exists </returns>
-        bool UserExists(long userId);
+        /// <param name="productId"> The product's id. </param>
+        /// <param name="userId"> The user's id. </param>
+        /// <param name="commentBody"> The comment's body. </param>
+        /// <param name="productDetails"> The podruct details. </param>
+        void AddComment(long productId, long userId, string commentBody);
+
+        /// <summary>
+        /// Delete the comment.
+        /// </summary>
+        /// <param name="commentId"> The comment's id. </param>
+        /// <exception cref="InstanceNotFoundException"/>
+        void DeleteComment(long commentId);
+
+        /// <summary>
+        /// Updates the comment.
+        /// </summary>
+        /// <param name="commentId"> The comment's id. </param>
+        /// <param name="commentBody"> The comment's body. </param>
+        /// <exception cref="InstanceNotFoundException"/>
+        void UpdateComment(long commentId, string commentBody);
+
+        /// <summary>
+        /// Find all comments of a product
+        /// </summary>
+        /// <param name="productId">The product's ID</param>
+        /// <returns>A list of Comments</returns>
+        List<CommentDetails> FindAllProductComments(long productId);
     }
 }

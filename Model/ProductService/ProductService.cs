@@ -80,10 +80,54 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             return new ProductLinkDetails(p.productId, p.productName, p.Category.categoryName, p.productDate,
                 p.productPrice, p.productQuantity, specificName, specificValue);
         }
-        
+
         #endregion Product Members
 
         #region Comment Members
+
+        /// <exception cref="InstanceNotFoundException"/>
+        public void AddComment(long productId, long userId, string commentBody)
+        {
+            CommentDao comment = new Comment();
+
+            comment.comment1 = commentBody;
+            comment.commentDate = System.DateTime.Now;
+            comment.userId = userId;
+            comment.productId = productId;
+
+            CommentDao.Create(comment);
+
+            return comment.commentId;
+        }
+
+        /// <exception cref="InstanceNotFoundException"/>
+        public void DeleteComment(long commentId)
+        {
+            CommentDao.Remove(commentId);
+        }
+
+        /// <exception cref="InstanceNotFoundException"/>
+        public void UpdateComment(long commentId, string commentBody)
+        {
+            Comment c = CommentDao.Find(commentId);
+
+            comment.comment1 = commentBody;
+
+            CommentDao.Update(comment);
+        }
+
+        public List<CommentDetails> FindAllProductComments(long productId)
+        {
+            List<CommentDetails> details = new List<CommentDetails>();
+            List<Comment> comments = CommentDao.FindByProductIdOrderByDeliveryDate(productId);
+
+            foreach (var c in comments)
+            {
+                details.Add(new CommentDetails(c.commentId, c.comment1, c.commentDate, c.userId));
+            }
+
+            return details;
+        }
 
         #endregion Comment Members
 
