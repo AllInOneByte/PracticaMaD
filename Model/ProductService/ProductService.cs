@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
-using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
+﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Ninject;
-using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
@@ -139,7 +138,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
                 TagDao.FindByName(tagName);
 
                 throw new DuplicateInstanceException(tagName,
-                    typeof(Tag).tagName);
+                    typeof(Tag).FullName);
             }
             catch (InstanceNotFoundException)
             {

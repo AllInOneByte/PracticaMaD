@@ -1,9 +1,8 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
-using System;
-using System.Data.Common;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 {
@@ -52,7 +51,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
         /// <param name="tagName"></param>
         /// <returns></returns>
         /// <exception cref="InstanceNotFoundException"></exception>
-        public FindByName(string tagName)
+        public Tag FindByName(string tagName)
         {
             Tag tag = null;
 
@@ -71,7 +70,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 
             if (tag == null)
                 throw new InstanceNotFoundException(tagName,
-                    typeof(Tag).tagName);
+                    typeof(Tag).FullName);
 
             return tag;
         }
