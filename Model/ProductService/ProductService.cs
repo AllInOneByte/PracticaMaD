@@ -6,6 +6,7 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Ninject;
 using System;
+using System.Linq;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
@@ -70,7 +71,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             List<string> specificName = new List<string>();
             List<string> specificValue = new List<string>();
 
-            foreach (var s in p.SpecificProperties.toList())
+            foreach (var s in p.SpecificProperties.ToList())
             {
                 specificName.Add(s.propertyName);
                 specificValue.Add(s.propertyValue);
