@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
-    class CommentDetails
+    public class CommentDetails
     {
 
         #region Properties Region
@@ -21,12 +21,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         #endregion
 
-        public CommentDetails(long commentId, string commentBody, System.DataTime commentDate, long userId)
+        public CommentDetails(long commentId, string commentBody, DateTime commentDate, long userId)
         {
             this.CommentId = commentId;
             this.CommentBody = commentBody;
             this.CommentDate = commentDate;
             this.UserId = userId;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var details = obj as CommentDetails;
+            return details != null &&
+                   CommentId == details.CommentId &&
+                   CommentBody == details.CommentBody &&
+                   CommentDate == details.CommentDate &&
+                   UserId == details.UserId;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 2029225270;
+            hashCode = hashCode * -1521134295 + CommentId.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CommentBody);
+            hashCode = hashCode * -1521134295 + CommentDate.GetHashCode();
+            hashCode = hashCode * -1521134295 + UserId.GetHashCode();
+            return hashCode;
         }
     }
 }

@@ -88,7 +88,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <exception cref="InstanceNotFoundException"/>
         public void AddComment(long productId, long userId, string commentBody)
         {
-            CommentDao comment = new Comment();
+            Comment comment = new Comment();
 
             comment.comment1 = commentBody;
             comment.commentDate = System.DateTime.Now;
@@ -96,8 +96,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             comment.productId = productId;
 
             CommentDao.Create(comment);
-
-            return comment.commentId;
         }
 
         /// <exception cref="InstanceNotFoundException"/>
@@ -111,9 +109,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         {
             Comment c = CommentDao.Find(commentId);
 
-            comment.comment1 = commentBody;
+            c.comment1 = commentBody;
 
-            CommentDao.Update(comment);
+            CommentDao.Update(c);
         }
 
         public List<CommentDetails> FindAllProductComments(long productId)
