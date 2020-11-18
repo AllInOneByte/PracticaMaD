@@ -4,6 +4,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DeliveryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DeliveryLineDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Ninject;
 using System;
 using System.Collections.Generic;
 
@@ -11,9 +12,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 {
     public class ShoppingService : IShoppingService
     {
+        [Inject]
         public IUserProfileDao UserProfileDao { private get; set; }
+
+        [Inject]
         public ICreditCardDao CreditCardDao { private get; set; }
+
+        [Inject]
         public IDeliveryDao DeliveryDao { private get; set; }
+
+        [Inject]
         public IDeliveryLineDao DeliveryLineDao { private get; set; }
 
         #region IShoppingService members

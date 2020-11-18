@@ -1,25 +1,24 @@
-﻿using System.Collections.Generic;
-using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
-using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
+﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Ninject;
-using System;
+using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
-    interface IProductService
+    public interface IProductService
     {
         
         [Inject]
-        IProductDao productDao { set; }
+        IProductDao ProductDao { set; }
 
         [Inject]
-        ICommentDao commentDao { set; }
+        ICommentDao CommentDao { set; }
 
         [Inject]
-        ITagDao tagDao { set; }
+        ITagDao TagDao { set; }
 
         /// <summary>
         /// Updates the product details.
@@ -29,7 +28,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="productDetails"> The podruct details. </param>
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        void UpdateProductDetails(long productId, ProductLinkDetails productDetails);
+        void UpdateProductDetails(long productId, ProductUpdateDetails productDetails);
 
         /// <summary>
         /// Find all products

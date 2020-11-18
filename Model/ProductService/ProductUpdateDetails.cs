@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
-    class ProductUpdateDetails
+    public class ProductUpdateDetails
     {
         #region Properties Region
 
-        public String ProductName { get; private set; }
+        public string ProductName { get; private set; }
 
         public decimal ProductPrice { get; private set; }
 
@@ -24,12 +20,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// </summary>
         /// <param name="productName">The products's name.</param>
         /// <param name="productPrice">The product's price.</param>
-        /// <param name="remaningQuantity">The product's remaning quantity.</param>
-        public ProductsLinkDetails(string productName, decimal productPrice, int remaningQuantity)
+        /// <param name="productQuantity">The product's remaning quantity.</param>
+        public ProductUpdateDetails(string productName, decimal productPrice, int productQuantity)
         {
             this.ProductName = productName;
             this.ProductPrice = productPrice;
-            this.RemaningQuantity = remaningQuantity;
+            this.ProductQuantity = productQuantity;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var details = obj as ProductUpdateDetails;
+            return details != null &&
+                   ProductName == details.ProductName &&
+                   ProductPrice == details.ProductPrice &&
+                   ProductQuantity == details.ProductQuantity;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 64093865;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ProductName);
+            hashCode = hashCode * -1521134295 + ProductPrice.GetHashCode();
+            hashCode = hashCode * -1521134295 + ProductQuantity.GetHashCode();
+            return hashCode;
         }
     }
 }

@@ -12,13 +12,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
     public class ProductService : IProductService
     {
         [Inject]
-        IProductDao productDao { private get; set; }
+        public IProductDao ProductDao { private get; set; }
 
         [Inject]
-        ICommentDao comment { private get; set; }
+        public ICommentDao CommentDao { private get; set; }
 
         [Inject]
-        ITagDao tagDao { private get; set; }
+        public ITagDao TagDao { private get; set; }
 
         #region IProductService Members
 
@@ -26,21 +26,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        void UpdateProductDetails(long productId, ProductUpdateDetails productDetails)
+        public void UpdateProductDetails(long productId, ProductUpdateDetails productDetails)
         {
-            Product product = productDao.Find(productId);
+            Product product = ProductDao.Find(productId);
 
             product.productName = productDetails.ProductName;
             product.productPrice = productDetails.ProductPrice;
             product.productQuantity = productDetails.ProductQuantity;
 
-            productDao.Update(product);
+            ProductDao.Update(product);
         }
 
-        List<ProductsDetails> FindAllProducts()
+        public List<ProductDetails> FindAllProducts()
         {
-            List<ProductsDetails> productsDetails = new List<ProductDetails>();
-            List<Product> products = productDao.FindAll();
+            List<ProductDetails> productsDetails = new List<ProductDetails>();
+            List<Product> products = ProductDao.FindAll();
 
             foreach (var p in products)
             {
@@ -50,10 +50,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             return productsDetails;
         }
 
-        List<ProductsDetails> FindAllProductsByKeyword(string keyword, long categoryId)
+        public List<ProductDetails> FindAllProductsByKeyword(string keyword, long categoryId)
         {
-            List<ProductsDetails> productsDetails = new List<ProductDetails>();
-            List<Product> products = productDao.FindByKeywordsAndCategory(keyword, categoryId);
+            List<ProductDetails> productsDetails = new List<ProductDetails>();
+            List<Product> products = ProductDao.FindByKeywordsAndCategory(keyword, categoryId);
 
             foreach (var p in products)
             {
@@ -64,14 +64,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         }
 
         /// <exception cref="InstanceNotFoundException"/>
-        ProductLinkDetails FindProduct(long productId)
+        public ProductLinkDetails FindProduct(long productId)
         {
-            Product product = productDao.Find(productId);
+            Product p = ProductDao.Find(productId);
 
             return new ProductLinkDetails(p.productId, p.productName, p.Category.categoryName, p.productDate,
                 p.productPrice, p.productQuantity, p.SpecificProperties.propertyName, p.SpecificProperties.propertyValue);
         }
-
+        
         #endregion Product Members
 
         #region Comment Members

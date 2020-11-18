@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
-    class ProductDetails
+    public class ProductDetails
     {
         
         #region Properties Region
@@ -30,7 +30,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="productDate">The product's date.</param>
         /// <param name="productPrice">The product's price.</param>
         public ProductDetails(long productId, string productName, 
-                                    string categoryName, System.Data productDate, decimal productPrice)
+                                    string categoryName, DateTime productDate, decimal productPrice)
         {
             this.ProductId = productId;
             this.ProductName = productName;
