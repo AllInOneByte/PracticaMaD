@@ -3,6 +3,7 @@ using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
+using Es.Udc.DotNet.PracticaMaD.Model.LabeledDao;
 using Ninject;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
     {
         [Inject]
         public IProductDao ProductDao { private get; set; }
+
+        [Inject]
+        public ILabeledDao LabeledDao { private get; set; }
 
         [Inject]
         public ICommentDao CommentDao { private get; set; }
@@ -85,16 +89,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         #region Comment Members
 
         /// <exception cref="InstanceNotFoundException"/>
-        public void AddComment(long productId, long userId, string commentBody)
+        public void AddComment(long productId, long userId, CommentUpdate details)
         {
             Comment comment = new Comment();
 
-            comment.comment1 = commentBody;
+            comment.comment1 = details.commentBody;
             comment.commentDate = System.DateTime.Now;
             comment.userId = userId;
             comment.productId = productId;
 
             CommentDao.Create(comment);
+
+            foreach (var tagId in details.TagIds)
+            {
+                LabeledDao.Create(tagId, comment.commentId);
+            }   
+
         }
 
         /// <exception cref="InstanceNotFoundException"/>
@@ -111,6 +121,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             c.comment1 = commentBody;
 
             CommentDao.Update(c);
+
+            foreach (var tagId in details.TagIds)
+            {
+                LabeledDao.Create(tagId, c.commentId);
+            }
+
         }
 
         public List<CommentDetails> FindAllProductComments(long productId)
@@ -120,7 +136,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
             foreach (var c in comments)
             {
-                details.Add(new CommentDetails(c.commentId, c.comment1, c.commentDate, c.userId));
+                List<string> tagNames = new List<string>();
+                foreach (var l in c.Labeleds.toList())
+                {
+                    tagNames.Add(l.Tag.tagName);
+                }
+                details.Add(new CommentDetails(c.commentId, c.comment1, c.commentDate, c.userId, tagNames));
             }
 
             return details;

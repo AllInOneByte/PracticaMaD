@@ -3,6 +3,7 @@ using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
+using Es.Udc.DotNet.PracticaMaD.Model.LabeledDao;
 using Ninject;
 using System.Collections.Generic;
 
@@ -13,6 +14,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         
         [Inject]
         IProductDao ProductDao { set; }
+
+        [Inject]
+        ILabeledDao LabeledDao { set; }
 
         [Inject]
         ICommentDao CommentDao { set; }
