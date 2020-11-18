@@ -67,9 +67,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         public ProductLinkDetails FindProduct(long productId)
         {
             Product p = ProductDao.Find(productId);
+            List<string> specificName = new List<string>();
+            List<string> specificValue = new List<string>();
+
+            foreach (var s in p.SpecificProperties.toList())
+            {
+                specificName.Add(s.propertyName);
+                specificValue.Add(s.propertyValue);
+            }
 
             return new ProductLinkDetails(p.productId, p.productName, p.Category.categoryName, p.productDate,
-                p.productPrice, p.productQuantity, p.SpecificProperties.propertyName, p.SpecificProperties.propertyValue);
+                p.productPrice, p.productQuantity, specificName, specificValue);
         }
         
         #endregion Product Members
