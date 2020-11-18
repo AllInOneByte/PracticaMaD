@@ -39,5 +39,26 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             this.ProductPrice = productPrice;
         }
 
+        public override bool Equals(object obj)
+        {
+            var details = obj as ProductsDetails;
+            return details != null &&
+                   ProductId == details.ProductId &&
+                   ProductName == details.ProductName &&
+                   CategoryName == details.CategoryName &&
+                   ProductDate == details.ProductDate &&
+                   ProductPrice == details.ProductPrice;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -885774565;
+            hashCode = hashCode * -1521134295 + ProductId.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ProductName);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CategoryName);
+            hashCode = hashCode * -1521134295 + ProductDate.GetHashCode();
+            hashCode = hashCode * -1521134295 + ProductPrice.GetHashCode();
+            return hashCode;
+        }
     }
 }
