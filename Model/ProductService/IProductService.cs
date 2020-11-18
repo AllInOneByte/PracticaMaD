@@ -28,15 +28,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="productId"> The product id. </param>
         /// <param name="productDetails"> The podruct details. </param>
         /// <exception cref="InstanceNotFoundException"/>
-        /// <exception cref="PermisionException"/>
         [Transactional]
-        void UpdateProductDetails(long productId, ProductDetails productDetails);
+        void UpdateProductDetails(long productId, ProductLinkDetails productDetails);
 
         /// <summary>
         /// Find all products
         /// </summary>
         /// <returns>A list of Products</returns>
-        List<ProductsDetails> FindAllProducts();
+        List<ProductDetails> FindAllProducts();
 
         /// <summary>
         /// Find all creditCards that meet the search conditions
@@ -44,14 +43,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="keyword">The keyword</param>
         /// <optional param name="categoryId">The category ID</param>
         /// <returns>A list of Products</returns>
-        List<ProductsDetails> FindAllProductsByKeyword(string keyword, long categoryId);
+        List<ProductDetails> FindAllProductsByKeyword(string keyword, long categoryId);
 
         /// <summary>
         /// Find a product
         /// </summary>
         /// <param productId="productId">productId</param>
         /// <returns>The product to look for</returns>
-        ProductDetails FindProduct(long productId);
+        /// <exception cref="InstanceNotFoundException"/>
+        ProductLinkDetails FindProduct(long productId);
 
         /// <summary>
         /// Checks if the specified ID corresponds to a valid user.

@@ -114,9 +114,10 @@
     <Compile Include="ProductDao\IProductDao.cs" />
     <Compile Include="ProductDao\ProductDaoEntityFramework.cs" />
     <Compile Include="ProductService\IProductService.cs" />
-    <Compile Include="ProductService\ProductDeatils.cs" />
-    <Compile Include="ProductService\ProductsDetails.cs" />
+    <Compile Include="ProductService\ProductLinkDetails.cs" />
+    <Compile Include="ProductService\ProductDetails.cs" />
     <Compile Include="ProductService\ProductService.cs" />
+    <Compile Include="ProductService\ProductUpdateDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpecificProperty.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>

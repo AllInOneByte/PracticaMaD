@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
-    class ProductsDetails
+    class ProductDetails
     {
         
         #region Properties Region
@@ -21,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         #endregion
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProductsDetails"/>
+        /// Initializes a new instance of the <see cref="ProductDetails"/>
         /// class.
         /// </summary>
         /// <param name="productId">The product's ID.</param>
@@ -29,7 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="categoryName">The product's category name.</param>
         /// <param name="productDate">The product's date.</param>
         /// <param name="productPrice">The product's price.</param>
-        public ProductsDetails(long productId, string productName, 
+        public ProductDetails(long productId, string productName, 
                                     string categoryName, System.Data productDate, decimal productPrice)
         {
             this.ProductId = productId;
@@ -41,7 +41,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         public override bool Equals(object obj)
         {
-            var details = obj as ProductsDetails;
+            var details = obj as ProductDetails;
             return details != null &&
                    ProductId == details.ProductId &&
                    ProductName == details.ProductName &&
@@ -60,5 +60,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             hashCode = hashCode * -1521134295 + ProductPrice.GetHashCode();
             return hashCode;
         }
+
     }
 }
