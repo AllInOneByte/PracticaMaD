@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
-    class CommentUpdate
+    public class CommentUpdate
     {
 
         #region Properties Region

@@ -114,6 +114,7 @@
     <Compile Include="ProductDao\IProductDao.cs" />
     <Compile Include="ProductDao\ProductDaoEntityFramework.cs" />
     <Compile Include="ProductService\CommentDetails.cs" />
+    <Compile Include="ProductService\CommentUpdate.cs" />
     <Compile Include="ProductService\IProductService.cs" />
     <Compile Include="ProductService\ProductLinkDetails.cs" />
     <Compile Include="ProductService\ProductDetails.cs" />

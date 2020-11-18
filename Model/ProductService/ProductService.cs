@@ -1,9 +1,9 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.LabeledDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
-using Es.Udc.DotNet.PracticaMaD.Model.LabeledDao;
 using Ninject;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,18 +91,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <exception cref="InstanceNotFoundException"/>
         public void AddComment(long productId, long userId, CommentUpdate details)
         {
-            Comment comment = new Comment();
-
-            comment.comment1 = details.commentBody;
-            comment.commentDate = System.DateTime.Now;
-            comment.userId = userId;
-            comment.productId = productId;
+            Comment comment = new Comment
+            {
+                comment1 = details.CommentBody,
+                commentDate = System.DateTime.Now,
+                userId = userId,
+                productId = productId
+            };
 
             CommentDao.Create(comment);
 
             foreach (var tagId in details.TagIds)
             {
-                LabeledDao.Create(tagId, comment.commentId);
+                Labeled labeled = new Labeled
+                {
+                    tagId = tagId,
+                    commentId = comment.commentId
+                };
+
+                LabeledDao.Create(labeled);
             }   
 
         }
@@ -114,17 +121,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         }
 
         /// <exception cref="InstanceNotFoundException"/>
-        public void UpdateComment(long commentId, string commentBody)
+        public void UpdateComment(long commentId, CommentUpdate details)
         {
             Comment c = CommentDao.Find(commentId);
 
-            c.comment1 = commentBody;
+            c.comment1 = details.CommentBody;
 
             CommentDao.Update(c);
 
             foreach (var tagId in details.TagIds)
             {
-                LabeledDao.Create(tagId, c.commentId);
+                Labeled labeled = new Labeled
+                {
+                    tagId = tagId,
+                    commentId = commentId
+                };
+
+                LabeledDao.Create(labeled);
             }
 
         }
@@ -137,7 +150,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             foreach (var c in comments)
             {
                 List<string> tagNames = new List<string>();
-                foreach (var l in c.Labeleds.toList())
+                foreach (var l in c.Labeleds.ToList())
                 {
                     tagNames.Add(l.Tag.tagName);
                 }

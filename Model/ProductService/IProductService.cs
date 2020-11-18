@@ -1,9 +1,9 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.LabeledDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
-using Es.Udc.DotNet.PracticaMaD.Model.LabeledDao;
 using Ninject;
 using System.Collections.Generic;
 
@@ -63,7 +63,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="userId"> The user's id. </param>
         /// <param name="commentBody"> The comment's body. </param>
         /// <param name="productDetails"> The podruct details. </param>
-        void AddComment(long productId, long userId, string commentBody);
+        void AddComment(long productId, long userId, CommentUpdate details);
 
         /// <summary>
         /// Delete the comment.
@@ -78,7 +78,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="commentId"> The comment's id. </param>
         /// <param name="commentBody"> The comment's body. </param>
         /// <exception cref="InstanceNotFoundException"/>
-        void UpdateComment(long commentId, string commentBody);
+        void UpdateComment(long commentId, CommentUpdate details);
 
         /// <summary>
         /// Find all comments of a product

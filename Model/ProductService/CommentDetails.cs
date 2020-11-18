@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
@@ -41,5 +38,26 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             this.TagNames = tagNames;
         }
 
+        public override bool Equals(object obj)
+        {
+            var details = obj as CommentDetails;
+            return details != null &&
+                   CommentId == details.CommentId &&
+                   CommentBody == details.CommentBody &&
+                   CommentDate == details.CommentDate &&
+                   UserId == details.UserId &&
+                   EqualityComparer<List<string>>.Default.Equals(TagNames, details.TagNames);
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 463174743;
+            hashCode = hashCode * -1521134295 + CommentId.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CommentBody);
+            hashCode = hashCode * -1521134295 + CommentDate.GetHashCode();
+            hashCode = hashCode * -1521134295 + UserId.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<string>>.Default.GetHashCode(TagNames);
+            return hashCode;
+        }
     }
 }
