@@ -9,5 +9,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
         /// Finds all Tags
         /// <returns>List of Tags</returns>
         List<Tag> FindAll();
+
+        /// <summary>
+        /// Finds a tag by his name
+        /// </summary>
+        /// <param name="tagName"></param>
+        /// <returns></returns>
+        /// <exception cref="InstanceNotFoundException"></exception>
+        Tag FindByName(string tagName);
     }
 }

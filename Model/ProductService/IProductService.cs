@@ -83,4 +83,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <returns>A list of Comments</returns>
         List<CommentDetails> FindAllProductComments(long productId);
     }
+
+    /// <summary>
+    /// Add a new tag.
+    /// </summary>
+    /// <param name="tagName"> The tag's name. </param>
+    /// <exception cref="DuplicateInstanceException"/>
+    void addTag(string tagName);
+
+    /// <summary>
+    /// Find all tags
+    /// </summary>
+    /// <returns>A list of Tags</returns>
+    List<Tag> FindAllTags();
 }

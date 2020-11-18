@@ -131,8 +131,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         #region Tag Members
 
-        #endregion Tag Members
+        /// <exception cref="DuplicateInstanceException"/>
+        public void addTag(string tagName)
+        {
+            try
+            {
+                TagDao.FindByName(tagName);
 
-        #endregion IProductService Members
-    }
+                throw new DuplicateInstanceException(tagName,
+                    typeof(Tag).tagName);
+            }
+            catch (InstanceNotFoundException)
+            {
+                Tag tag = new Tag();
+
+                tag.tagName = tagName;
+
+                TagDao.Create(tag);
+            }
+        }
+
+        public List<Tag> FindAllTags()
+            {
+                return TagDao.FindAll();
+            }
+
+            #endregion Tag Members
+
+            #endregion IProductService Members
+        }
 }

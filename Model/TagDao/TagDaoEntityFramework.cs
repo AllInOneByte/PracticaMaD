@@ -46,6 +46,36 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
             return tags;
         }
 
+        /// <summary>
+        /// Finds a tag by his name
+        /// </summary>
+        /// <param name="tagName"></param>
+        /// <returns></returns>
+        /// <exception cref="InstanceNotFoundException"></exception>
+        public FindByName(string tagName)
+        {
+            Tag tag = null;
+
+            #region Option 1: Using Linq.
+
+            DbSet<Tag> tags = Context.Set<Tag>();
+
+            var result =
+                (from t in tags
+                 where t.tagName == tagName
+                 select t);
+
+            tag = result.FirstOrDefault();
+
+            #endregion Option 1: Using Linq.
+
+            if (tag == null)
+                throw new InstanceNotFoundException(tagName,
+                    typeof(Tag).tagName);
+
+            return tag;
+        }
+
         #endregion ITagDaoMembers
     }
 }
