@@ -80,7 +80,7 @@ CREATE TABLE CreditCard (
 	cardType varchar(10) NOT NULL,
 	cardNumber int NOT NULL,
 	verificationCode int NOT NULL,
-	expirationDaye date NOT NULL,
+	expirationDate date NOT NULL,
 	defaultCard tinyint NOT NULL,
 	userId bigint NOT NULL,
 
