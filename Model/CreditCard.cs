@@ -22,7 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     
         public long cardId { get; set; }
         public string cardType { get; set; }
-        public int cardNumber { get; set; }
+        public long cardNumber { get; set; }
         public int verificationCode { get; set; }
         public System.DateTime expirationDate { get; set; }
         public byte defaultCard { get; set; }

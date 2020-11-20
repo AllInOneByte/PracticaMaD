@@ -78,7 +78,7 @@ CREATE TABLE Tag (
 CREATE TABLE CreditCard (
 	cardId bigint IDENTITY(1,1) NOT NULL,
 	cardType varchar(10) NOT NULL,
-	cardNumber int NOT NULL,
+	cardNumber bigint NOT NULL,
 	verificationCode int NOT NULL,
 	expirationDate date NOT NULL,
 	defaultCard tinyint NOT NULL,

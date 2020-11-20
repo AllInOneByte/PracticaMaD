@@ -28,7 +28,7 @@
           </Key>
           <Property Name="cardId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="cardType" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="cardNumber" Type="int" Nullable="false" />
+          <Property Name="cardNumber" Type="bigint" Nullable="false" />
           <Property Name="verificationCode" Type="int" Nullable="false" />
           <Property Name="expirationDate" Type="date" Nullable="false" />
           <Property Name="defaultCard" Type="tinyint" Nullable="false" />
@@ -326,7 +326,7 @@
           </Key>
           <Property Name="cardId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="cardType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="cardNumber" Type="Int32" Nullable="false" />
+          <Property Name="cardNumber" Type="Int64" Nullable="false" />
           <Property Name="verificationCode" Type="Int32" Nullable="false" />
           <Property Name="expirationDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="defaultCard" Type="Byte" Nullable="false" />
@@ -554,7 +554,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="practicamadEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Comments" EntityType="Self.Comment" />
           <EntitySet Name="CreditCards" EntityType="Self.CreditCard" />
@@ -615,7 +615,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EsUDCDotNetPracticaMaDModelStoreContainer" CdmEntityContainer="practicamadEntities">
+        <EntityContainerMapping StorageEntityContainer="EsUDCDotNetPracticaMaDModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Category">
               <MappingFragment StoreEntitySet="Category">
