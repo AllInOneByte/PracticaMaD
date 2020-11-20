@@ -103,10 +103,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
-    <Compile Include="PracticaMaD.Model.Designer.cs">
+    <Compile Include="PracticaMaD.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PracticaMaD.Model.edmx</DependentUpon>
+      <DependentUpon>PracticaMaD.edmx</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
@@ -150,12 +150,12 @@
   <ItemGroup>
     <Content Include="PracticaMaD.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PracticaMaD.Model.edmx</DependentUpon>
+      <DependentUpon>PracticaMaD.edmx</DependentUpon>
       <LastGenOutput>PracticaMaD.Context.cs</LastGenOutput>
     </Content>
     <Content Include="PracticaMaD.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PracticaMaD.Model.edmx</DependentUpon>
+      <DependentUpon>PracticaMaD.edmx</DependentUpon>
       <LastGenOutput>PracticaMaD.cs</LastGenOutput>
     </Content>
     <Content Include="Sql\SqlServerCreateDatabase.sql" />
@@ -164,12 +164,12 @@
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="PracticaMaD.Model.edmx">
+    <EntityDeploy Include="PracticaMaD.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PracticaMaD.Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>PracticaMaD.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="PracticaMaD.Model.edmx.diagram">
-      <DependentUpon>PracticaMaD.Model.edmx</DependentUpon>
+    <None Include="PracticaMaD.edmx.diagram">
+      <DependentUpon>PracticaMaD.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
