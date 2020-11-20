@@ -13,8 +13,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
     {
         [Inject]
         IUserProfileDao UserProfileDao { set; }
+
+        [Inject]
         ICreditCardDao CreditCardDao { set; }
+
+        [Inject]
         IDeliveryDao DeliveryDao { set; }
+
+        [Inject]
         IDeliveryLineDao DeliveryLineDao { set; }
 
         /// <summary>
