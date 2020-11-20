@@ -24,8 +24,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
     /// <param name="newClearPassword"> The new clear password. </param>
     /// <exception cref="IncorrectPasswordException"/>
     /// <exception cref="InstanceNotFoundException"/>
-    void ChangePassword(long userProfileId, String oldClearPassword,
-        String newClearPassword);
+    void ChangePassword(long userProfileId, string oldClearPassword,
+        string newClearPassword);
 
     /// <summary>
     /// Finds the user profile details.
@@ -45,7 +45,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
     /// <exception cref="InstanceNotFoundException"/>
     /// <exception cref="IncorrectPasswordException"/>
     [Transactional]
-    LoginResult Login(String loginName, String password,
+    LoginResult Login(string loginName, string password,
         Boolean passwordIsEncrypted);
 
     /// <summary>
@@ -56,7 +56,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
     /// <param name="userProfileDetails"> The user profile details. </param>
     /// <exception cref="DuplicateInstanceException"/>
     [Transactional]
-    long RegisterUser(String loginName, String clearPassword,
+    long RegisterUser(string loginName, string clearPassword,
         UserProfileDetails userProfileDetails);
 
     /// <summary>
@@ -106,3 +106,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
     List<CreditCard> FindAllCreditCardsDetails(long userID);
 }
 }
+
+
+
+
+
