@@ -17,19 +17,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CreditCard()
         {
-            this.Deliveries = new HashSet<Delivery>();
+            this.Delivery = new HashSet<Delivery>();
         }
     
         public long cardId { get; set; }
         public string cardType { get; set; }
         public int cardNumber { get; set; }
         public int verificationCode { get; set; }
-        public System.DateTime expirationDaye { get; set; }
+        public System.DateTime expirationDate { get; set; }
         public byte defaultCard { get; set; }
         public long userId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Delivery> Deliveries { get; set; }
+        public virtual ICollection<Delivery> Delivery { get; set; }
         public virtual UserProfile UserProfile { get; set; }
     }
 }

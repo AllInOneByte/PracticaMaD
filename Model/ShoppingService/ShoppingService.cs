@@ -39,7 +39,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                     cardId = shoppingCart.CardId,
                     userId = shoppingCart.UserId,
                     deliveryAddress = shoppingCart.DeliveryAddress,
-                    deliveyDate = shoppingCart.DeliveryDate,
+                    deliveryDate = shoppingCart.DeliveryDate,
                     deliveryPrice = shoppingCart.DeliveryPrice,
                     description = shoppingCart.Description
                 };
@@ -79,7 +79,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
             foreach (Delivery delivery in deliveries)
             {
-                ShoppingCart shoppingCart = new ShoppingCart(delivery.deliveyDate,
+                ShoppingCart shoppingCart = new ShoppingCart(delivery.deliveryDate,
                     delivery.deliveryPrice, delivery.deliveryAddress,
                     delivery.description, delivery.userId, delivery.cardId);
 

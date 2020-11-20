@@ -73,9 +73,10 @@
                 "verificationCode = " + VerificationCode + " | " +
                 "expirationDate = " + ExpirationDate + " | " +
                 "defaultCard = " + DefaultCard + " |" +
-                "userId = "`+ userId + " ]";
+                "userId = " + userId + " ]";
 
             return strCreditCardDetails;
         }
+    }
 }
   

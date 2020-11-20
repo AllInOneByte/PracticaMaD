@@ -77,10 +77,11 @@
                     "email = " + Email + " | " +
                     "language = " + Language + " | " +
                     "country = " + Country + " |" +
-                    "address = "`+ Address + " ]";
+                    "address = " + Address + " ]";
 
 
                 return strUserProfileDetails;
             }
         }
+    }
 }

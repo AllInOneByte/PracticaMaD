@@ -25,15 +25,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<CreditCard> CreditCards { get; set; }
-        public virtual DbSet<Delivery> Deliveries { get; set; }
-        public virtual DbSet<DeliveryLine> DeliveryLines { get; set; }
-        public virtual DbSet<Labeled> Labeleds { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<SpecificProperty> SpecificProperties { get; set; }
-        public virtual DbSet<Tag> Tags { get; set; }
-        public virtual DbSet<UserProfile> UserProfiles { get; set; }
+        public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<Comment> Comment { get; set; }
+        public virtual DbSet<CreditCard> CreditCard { get; set; }
+        public virtual DbSet<Delivery> Delivery { get; set; }
+        public virtual DbSet<DeliveryLine> DeliveryLine { get; set; }
+        public virtual DbSet<Labeled> Labeled { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<SpecificProperty> SpecificProperty { get; set; }
+        public virtual DbSet<Tag> Tag { get; set; }
+        public virtual DbSet<UserProfile> UserProfile { get; set; }
     }
 }

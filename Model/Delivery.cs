@@ -17,20 +17,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Delivery()
         {
-            this.DeliveryLines = new HashSet<DeliveryLine>();
+            this.DeliveryLine = new HashSet<DeliveryLine>();
         }
     
         public long deliveryId { get; set; }
-        public System.DateTime deliveyDate { get; set; }
+        public System.DateTime deliveryDate { get; set; }
         public decimal deliveryPrice { get; set; }
         public string deliveryAddress { get; set; }
-        public long userId { get; set; }
         public long cardId { get; set; }
+        public long userId { get; set; }
         public string description { get; set; }
     
         public virtual CreditCard CreditCard { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DeliveryLine> DeliveryLines { get; set; }
+        public virtual ICollection<DeliveryLine> DeliveryLine { get; set; }
         public virtual UserProfile UserProfile { get; set; }
     }
 }

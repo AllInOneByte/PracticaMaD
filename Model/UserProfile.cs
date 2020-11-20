@@ -17,9 +17,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public UserProfile()
         {
-            this.Comments = new HashSet<Comment>();
-            this.CreditCards = new HashSet<CreditCard>();
-            this.Deliveries = new HashSet<Delivery>();
+            this.Comment = new HashSet<Comment>();
+            this.CreditCard = new HashSet<CreditCard>();
+            this.Delivery = new HashSet<Delivery>();
         }
     
         public long usrId { get; set; }
@@ -34,10 +34,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public string address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CreditCard> CreditCards { get; set; }
+        public virtual ICollection<CreditCard> CreditCard { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Delivery> Deliveries { get; set; }
+        public virtual ICollection<Delivery> Delivery { get; set; }
     }
 }
