@@ -305,7 +305,7 @@
           </Key>
           <Property Name="categoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="categoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_ProductCategory" FromRole="Category" ToRole="Product" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_ProductCategory" FromRole="Category" ToRole="Product" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -316,7 +316,7 @@
           <Property Name="commentDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="userId" Type="Int64" Nullable="false" />
           <Property Name="productId" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Labeled" Relationship="Self.FK_CommentLabeled" FromRole="Comment" ToRole="Labeled" />
+          <NavigationProperty Name="Labeleds" Relationship="Self.FK_CommentLabeled" FromRole="Comment" ToRole="Labeled" />
           <NavigationProperty Name="Product" Relationship="Self.FK_ProductComment" FromRole="Comment" ToRole="Product" />
           <NavigationProperty Name="UserProfile" Relationship="Self.FK_UserComment" FromRole="Comment" ToRole="UserProfile" />
         </EntityType>
@@ -331,7 +331,7 @@
           <Property Name="expirationDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="defaultCard" Type="Byte" Nullable="false" />
           <Property Name="userId" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Delivery" Relationship="Self.FK_DeliveryCard" FromRole="CreditCard" ToRole="Delivery" />
+          <NavigationProperty Name="Deliveries" Relationship="Self.FK_DeliveryCard" FromRole="CreditCard" ToRole="Delivery" />
           <NavigationProperty Name="UserProfile" Relationship="Self.FK_UserCard" FromRole="CreditCard" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="Delivery">
@@ -346,7 +346,7 @@
           <Property Name="userId" Type="Int64" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CreditCard" Relationship="Self.FK_DeliveryCard" FromRole="Delivery" ToRole="CreditCard" />
-          <NavigationProperty Name="DeliveryLine" Relationship="Self.FK_DeliveryId" FromRole="Delivery" ToRole="DeliveryLine" />
+          <NavigationProperty Name="DeliveryLines" Relationship="Self.FK_DeliveryId" FromRole="Delivery" ToRole="DeliveryLine" />
           <NavigationProperty Name="UserProfile" Relationship="Self.FK_DelliveryUser" FromRole="Delivery" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="DeliveryLine">
@@ -382,9 +382,9 @@
           <Property Name="productQuantity" Type="Int32" Nullable="false" />
           <Property Name="categoryId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="Self.FK_ProductCategory" FromRole="Product" ToRole="Category" />
-          <NavigationProperty Name="Comment" Relationship="Self.FK_ProductComment" FromRole="Product" ToRole="Comment" />
-          <NavigationProperty Name="DeliveryLine" Relationship="Self.FK_DeliveryProduct" FromRole="Product" ToRole="DeliveryLine" />
-          <NavigationProperty Name="SpecificProperty" Relationship="Self.FK_ProductDelivery" FromRole="Product" ToRole="SpecificProperty" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_ProductComment" FromRole="Product" ToRole="Comment" />
+          <NavigationProperty Name="DeliveryLines" Relationship="Self.FK_DeliveryProduct" FromRole="Product" ToRole="DeliveryLine" />
+          <NavigationProperty Name="SpecificProperties" Relationship="Self.FK_ProductDelivery" FromRole="Product" ToRole="SpecificProperty" />
         </EntityType>
         <EntityType Name="SpecificProperty">
           <Key>
@@ -402,7 +402,7 @@
           </Key>
           <Property Name="tagId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tagName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Labeled" Relationship="Self.FK_TagLabeled" FromRole="Tag" ToRole="Labeled" />
+          <NavigationProperty Name="Labeleds" Relationship="Self.FK_TagLabeled" FromRole="Tag" ToRole="Labeled" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -418,9 +418,9 @@
           <Property Name="country" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="role" Type="Byte" Nullable="false" />
           <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Comment" Relationship="Self.FK_UserComment" FromRole="UserProfile" ToRole="Comment" />
-          <NavigationProperty Name="CreditCard" Relationship="Self.FK_UserCard" FromRole="UserProfile" ToRole="CreditCard" />
-          <NavigationProperty Name="Delivery" Relationship="Self.FK_DelliveryUser" FromRole="UserProfile" ToRole="Delivery" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_UserComment" FromRole="UserProfile" ToRole="Comment" />
+          <NavigationProperty Name="CreditCards" Relationship="Self.FK_UserCard" FromRole="UserProfile" ToRole="CreditCard" />
+          <NavigationProperty Name="Deliveries" Relationship="Self.FK_DelliveryUser" FromRole="UserProfile" ToRole="Delivery" />
         </EntityType>
         <Association Name="FK_ProductCategory">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
@@ -555,59 +555,59 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="practicamadEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Category" EntityType="Self.Category" />
-          <EntitySet Name="Comment" EntityType="Self.Comment" />
-          <EntitySet Name="CreditCard" EntityType="Self.CreditCard" />
-          <EntitySet Name="Delivery" EntityType="Self.Delivery" />
-          <EntitySet Name="DeliveryLine" EntityType="Self.DeliveryLine" />
-          <EntitySet Name="Labeled" EntityType="Self.Labeled" />
-          <EntitySet Name="Product" EntityType="Self.Product" />
-          <EntitySet Name="SpecificProperty" EntityType="Self.SpecificProperty" />
-          <EntitySet Name="Tag" EntityType="Self.Tag" />
-          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="CreditCards" EntityType="Self.CreditCard" />
+          <EntitySet Name="Deliveries" EntityType="Self.Delivery" />
+          <EntitySet Name="DeliveryLines" EntityType="Self.DeliveryLine" />
+          <EntitySet Name="Labeleds" EntityType="Self.Labeled" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="SpecificProperties" EntityType="Self.SpecificProperty" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
+          <EntitySet Name="UserProfiles" EntityType="Self.UserProfile" />
           <AssociationSet Name="FK_ProductCategory" Association="Self.FK_ProductCategory">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Product" EntitySet="Product" />
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
           </AssociationSet>
           <AssociationSet Name="FK_CommentLabeled" Association="Self.FK_CommentLabeled">
-            <End Role="Comment" EntitySet="Comment" />
-            <End Role="Labeled" EntitySet="Labeled" />
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="Labeled" EntitySet="Labeleds" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductComment" Association="Self.FK_ProductComment">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="Comment" EntitySet="Comment" />
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Comment" EntitySet="Comments" />
           </AssociationSet>
           <AssociationSet Name="FK_UserComment" Association="Self.FK_UserComment">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="Comment" EntitySet="Comment" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Comment" EntitySet="Comments" />
           </AssociationSet>
           <AssociationSet Name="FK_DeliveryCard" Association="Self.FK_DeliveryCard">
-            <End Role="CreditCard" EntitySet="CreditCard" />
-            <End Role="Delivery" EntitySet="Delivery" />
+            <End Role="CreditCard" EntitySet="CreditCards" />
+            <End Role="Delivery" EntitySet="Deliveries" />
           </AssociationSet>
           <AssociationSet Name="FK_UserCard" Association="Self.FK_UserCard">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="CreditCard" EntitySet="CreditCard" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="CreditCard" EntitySet="CreditCards" />
           </AssociationSet>
           <AssociationSet Name="FK_DeliveryId" Association="Self.FK_DeliveryId">
-            <End Role="Delivery" EntitySet="Delivery" />
-            <End Role="DeliveryLine" EntitySet="DeliveryLine" />
+            <End Role="Delivery" EntitySet="Deliveries" />
+            <End Role="DeliveryLine" EntitySet="DeliveryLines" />
           </AssociationSet>
           <AssociationSet Name="FK_DelliveryUser" Association="Self.FK_DelliveryUser">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="Delivery" EntitySet="Delivery" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Delivery" EntitySet="Deliveries" />
           </AssociationSet>
           <AssociationSet Name="FK_DeliveryProduct" Association="Self.FK_DeliveryProduct">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="DeliveryLine" EntitySet="DeliveryLine" />
+            <End Role="Product" EntitySet="Products" />
+            <End Role="DeliveryLine" EntitySet="DeliveryLines" />
           </AssociationSet>
           <AssociationSet Name="FK_TagLabeled" Association="Self.FK_TagLabeled">
-            <End Role="Tag" EntitySet="Tag" />
-            <End Role="Labeled" EntitySet="Labeled" />
+            <End Role="Tag" EntitySet="Tags" />
+            <End Role="Labeled" EntitySet="Labeleds" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductDelivery" Association="Self.FK_ProductDelivery">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="SpecificProperty" EntitySet="SpecificProperty" />
+            <End Role="Product" EntitySet="Products" />
+            <End Role="SpecificProperty" EntitySet="SpecificProperties" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -616,7 +616,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EsUDCDotNetPracticaMaDModelStoreContainer" CdmEntityContainer="practicamadEntities">
-          <EntitySetMapping Name="Category">
+          <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="categoryId" ColumnName="categoryId" />
@@ -624,7 +624,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Comment">
+          <EntitySetMapping Name="Comments">
             <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
                 <ScalarProperty Name="commentId" ColumnName="commentId" />
@@ -635,7 +635,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CreditCard">
+          <EntitySetMapping Name="CreditCards">
             <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.CreditCard">
               <MappingFragment StoreEntitySet="CreditCard">
                 <ScalarProperty Name="cardId" ColumnName="cardId" />
@@ -648,7 +648,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Delivery">
+          <EntitySetMapping Name="Deliveries">
             <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Delivery">
               <MappingFragment StoreEntitySet="Delivery">
                 <ScalarProperty Name="deliveryId" ColumnName="deliveryId" />
@@ -661,7 +661,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DeliveryLine">
+          <EntitySetMapping Name="DeliveryLines">
             <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.DeliveryLine">
               <MappingFragment StoreEntitySet="DeliveryLine">
                 <ScalarProperty Name="deliveryLineId" ColumnName="deliveryLineId" />
@@ -672,7 +672,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Labeled">
+          <EntitySetMapping Name="Labeleds">
             <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Labeled">
               <MappingFragment StoreEntitySet="Labeled">
                 <ScalarProperty Name="labeledId" ColumnName="labeledId" />
@@ -681,7 +681,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Product">
+          <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="productId" ColumnName="productId" />
@@ -693,7 +693,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SpecificProperty">
+          <EntitySetMapping Name="SpecificProperties">
             <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.SpecificProperty">
               <MappingFragment StoreEntitySet="SpecificProperty">
                 <ScalarProperty Name="propertyId" ColumnName="propertyId" />
@@ -703,7 +703,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tag">
+          <EntitySetMapping Name="Tags">
             <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Tag">
               <MappingFragment StoreEntitySet="Tag">
                 <ScalarProperty Name="tagId" ColumnName="tagId" />
@@ -711,7 +711,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserProfile">
+          <EntitySetMapping Name="UserProfiles">
             <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.UserProfile">
               <MappingFragment StoreEntitySet="UserProfile">
                 <ScalarProperty Name="usrId" ColumnName="usrId" />
@@ -741,7 +741,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
