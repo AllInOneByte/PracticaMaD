@@ -140,12 +140,6 @@
     </Compile>
     <Compile Include="UserProfileDao\IUserProfileDao.cs" />
     <Compile Include="UserProfileDao\UserProfileDaoEntityFramework.cs" />
-    <Compile Include="UserService\CreditCardDetails.cs" />
-    <Compile Include="UserService\IUserService.cs" />
-    <Compile Include="UserService\LoginResult.cs" />
-    <Compile Include="UserService\UserProfileDetails.cs" />
-    <Compile Include="UserService\UserService.cs" />
-    <Compile Include="UserService\Util\PasswordEncrypter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="PracticaMaD.Context.tt">
@@ -175,9 +169,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserService\Exceptions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
