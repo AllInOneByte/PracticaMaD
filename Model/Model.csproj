@@ -76,7 +76,6 @@
     </Compile>
     <Compile Include="DeliveryDao\DeliveryDaoEntityFramework.cs" />
     <Compile Include="DeliveryDao\IDeliveryDao.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="CommentDao\CommentDaoEntityFramework.cs" />
     <Compile Include="CommentDao\ICommentDao.cs" />
     <Compile Include="CategoryDao\CategoryDaoEntityFramework.cs" />
@@ -156,7 +155,9 @@
     <Content Include="Sql\SqlServerCreateTables.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <EntityDeploy Include="PracticaMaD.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

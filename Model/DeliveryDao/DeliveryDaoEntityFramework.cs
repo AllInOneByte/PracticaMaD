@@ -24,12 +24,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DeliveryDao
 
         #region IDeliveryDao Members. Specific Operations
         /// <summary>
-        /// Finds a List of Deliverys by userId
+        /// Finds a List of Deliveries by userId
         /// </summary>
         /// <param userId="userId">userId</param>
         /// <returns>List of Deliverys</returns>
         /// <exception cref="InstanceNotFoundException"/>
-        List<Delivery> IDeliveryDao.FindByUserId(long userId)
+        public List<Delivery> FindByUserId(long userId)
         {
             List<Delivery> delivery = null;
 

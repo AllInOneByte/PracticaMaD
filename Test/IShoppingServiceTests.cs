@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
+namespace Es.Udc.DotNet.PracticaMaD.Test
 {
     [TestClass()]
-    public class ShoppingServiceTests
+    public class IShoppingServiceTests
     {
         [TestMethod()]
         public void CreateDeliveryTest()

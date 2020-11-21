@@ -31,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         /// <param categoryId="categoryId">categoryId</param>
         /// <returns>List of Product</returns>
         /// <exception cref="InstanceNotFoundException"/>
-        List<Product> IProductDao.FindByKeywordsAndCategory(string keyWords, long categoryId) {
+        public List<Product> FindByKeywordsAndCategory(string keyWords, long categoryId) {
             List<Product> product = null;
 
             #region Option 1: Using Linq.
@@ -69,7 +69,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         /// <summary>
         /// Finds all Products
         /// <returns>List of Products</returns>
-        List<Product> IProductDao.FindAll() {
+        public List<Product> FindAll() {
 
             #region Option 1: Using Linq.
 
