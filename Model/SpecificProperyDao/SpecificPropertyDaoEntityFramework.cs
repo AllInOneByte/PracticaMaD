@@ -1,6 +1,6 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
 
-namespace Es.Udc.DotNet.PracticaMaD.Model.SpecificProperty
+namespace Es.Udc.DotNet.PracticaMaD.Model.SpecificPropertyDao
 {
     /// <summary>
     /// Specific Operations for SpecificProperty

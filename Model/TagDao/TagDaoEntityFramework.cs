@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 {
-    class TagDaoEntityFramework :
+    public class TagDaoEntityFramework :
          GenericDaoEntityFramework<Tag, long>, ITagDao
     {
         #region Public Constructors
