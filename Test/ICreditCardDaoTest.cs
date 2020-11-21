@@ -1,5 +1,6 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using System;
@@ -11,12 +12,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
     [TestClass]
     public class ICreditCardDaoTest
     {
+        #region Variables
+
         private static IKernel kernel;
         private static ICreditCardDao creditCardDao;
+        private static IUserProfileDao userProfileDao;
         private static List<CreditCard> creditCards;
+        private static UserProfile user;
 
         // Variables used in several tests are initialized here
         private const long CARD_NUMBER = 5231962446920945;
+        private const int VER_CODE = 555;
+        private const string TYPE = "débito";
 
         private TransactionScope transaction;
 
@@ -26,6 +33,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         ///</summary>
         public TestContext TestContext { get; set; }
 
+        #endregion Variables
+
         #region Additional test attributes
 
         //Use ClassInitialize to run code before running the first test in the class
@@ -34,6 +43,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             kernel = TestManager.ConfigureNInjectKernel();
             creditCardDao = kernel.Get<ICreditCardDao>();
+            userProfileDao = kernel.Get<IUserProfileDao>();
         }
 
         //Use ClassCleanup to run code after all tests in a class have run
@@ -49,16 +59,54 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             transaction = new TransactionScope();
 
+            UserProfile newUser = new UserProfile
+            {
+                loginName = "loginNameTest",
+                enPassword = "password",
+                firstName = "name",
+                lastName = "lastName",
+                email = "user@udc.es",
+                language = "es",
+                country = "ES",
+                role = 0,
+                address = "addressTest"
+            };
+
+            userProfileDao.Create(newUser);
+            user = newUser;
+
             CreditCard defaultCreditCard = new CreditCard
             {
-                cardNumber = CARD_NUMBER, // hay que hacer que acepte long en vez de int
-                cardType = "plastic????", // no idea what this is
+                cardNumber = CARD_NUMBER,
+                cardType = TYPE,
                 expirationDate = DateTime.Now.AddMonths(1),
-                userId = 1,
-                verificationCode = 1 // no idea what is this either, gotta ask
+                userId = user.usrId,
+                verificationCode = VER_CODE,
+                defaultCard = 1
             };
-            // pendiente de guardar en bd y crear el resto de tarjetas
-            creditCards.Add(defaultCreditCard);
+
+            creditCardDao.Create(defaultCreditCard);
+
+            creditCards = new List<CreditCard>
+            {
+                defaultCreditCard
+            };
+
+            for (int i = 1; i < 6; i++)
+            {
+                CreditCard temp = new CreditCard
+                {
+                    cardNumber = CARD_NUMBER + i,
+                    cardType = TYPE,
+                    expirationDate = DateTime.Now.AddMonths(1),
+                    userId = user.usrId,
+                    verificationCode = VER_CODE,
+                    defaultCard = 0
+                };
+
+                creditCardDao.Create(temp);
+                creditCards.Add(temp);
+            }
         }
 
         //Use TestCleanup to run code after each test has run
@@ -71,11 +119,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         #endregion Additional test attributes
 
         [TestMethod()]
-        public void DAO_FindByUserId()
+        public void DAO_FindByUserIdTest()
         {
             try
             {
-                //TODO
+                List<CreditCard> retrieved = creditCardDao.FindByUserId(user.usrId);
+
+                Assert.AreEqual(creditCards.Count, retrieved.Count);
+
+                for (int i = 0; i < creditCards.Count; i++)
+                {
+                    Assert.AreEqual(creditCards[i], retrieved[i]);
+                }
             }
             catch (Exception e)
             {
@@ -84,11 +139,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         }
 
         [TestMethod()]
-        public void DAO_FindDefaultUserIdCard()
+        public void DAO_FindDefaultUserIdCardTest()
         {
             try
             {
-                //TODO
+                CreditCard defaultFound = creditCardDao.FindDefaultUserIdCard(user.usrId);
+
+                Assert.AreEqual(creditCards[0], defaultFound);
             }
             catch (Exception e)
             {
