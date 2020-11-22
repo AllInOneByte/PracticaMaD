@@ -47,8 +47,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         private static IUserProfileDao userDao;
         private static ILabeledDao labeledDao;
 
-        private TransactionScope transactionScope;
-
         /// <summary>
         /// Gets or sets the test context which provides information about and functionality for the
         /// current test run.

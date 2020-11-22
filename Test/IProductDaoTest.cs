@@ -18,8 +18,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         private static IKernel kernel;
         private static IProductDao productDao;
         private static ICategoryDao categoryDao;
-        private static Product product;
-        private static Category category;
+        private Product product;
+        private Category category;
 
         // Variables used in several tests are initialized here
         private const String categoryName = "categoryTest";

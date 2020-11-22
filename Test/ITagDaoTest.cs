@@ -14,7 +14,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
         private static IKernel kernel;
         private static ITagDao tagDao;
-        private static Tag tag;
+        private Tag tag;
 
         // Variables used in several tests are initialized here
         private const String TagName = "tagTest";
@@ -86,33 +86,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             for (int i = 0; i < numberTags; i++)
             {
+                tag = new Tag();
                 tag.tagName = TagName+i;
                 tagDao.Create(tag);
                 createdTags.Add(tag);
             }
 
-            int count = 4;
-            int startIndex = 0;
-
-            List<Tag> listTags;
-            List<Tag> totalRetrievedTags = new List<Tag>(numberTags);
-
-            /* Get the accounts in blocks of "count" size */
-            do
-            {
-                listTags = tagDao.FindAll();
-
-                totalRetrievedTags.AddRange(listTags);
-
-                Assert.IsTrue(listTags.Count <= count);
-
-                startIndex += count;
-            } while (startIndex < numberTags);
-
-            // Check the total number of account retrieved
+            List<Tag> totalRetrievedTags = tagDao.FindAll();
+            
             Assert.AreEqual(numberTags, totalRetrievedTags.Count);
-
-            // are the accounts retrieved the same than the originals?
+            
             for (int i = 0; i < numberTags; i++)
             {
                 Assert.AreEqual(totalRetrievedTags[i], createdTags[i]);
@@ -127,6 +110,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             try
             {
+                tag = new Tag();
                 tag.tagName = TagName;
                 tagDao.Create(tag);
 
