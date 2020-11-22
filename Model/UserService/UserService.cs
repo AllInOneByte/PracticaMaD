@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.ModelUtil.Transactions;
+using Ninject;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
@@ -13,7 +17,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         private object creditCard;
 
         [Inject]
-        public IUserService UserProfileDao { private get; set; }
+        public IUserProfileDao UserProfileDao { private get; set; }
+
+        [Inject]
+
+        public ICreditCardDao creditcardDao { private get; set; }
         /// <summary>
         /// Changes the password.
         /// </summary>
@@ -36,7 +44,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             userProfile.enPassword =
             PasswordEncrypter.Crypt(newClearPassword);
 
-            UserProfileDao.UpdateUserProfileDetails(userProfile);
+            UserProfileDao.Update(userProfile);
 
         }
         /// <summary>
@@ -132,6 +140,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
                 return userProfile.usrId;
             }
+        }
 
             /// <summary>
             /// Updates the user profile details.
@@ -200,78 +209,71 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 CreditCardDao.update(creditCard);
 
             }
-            /// <summary>
-            /// Add a Credit Card
-            /// </summary>
-            /// <param creditCardId="creditCardId">creditCardId</param>
-            /// <param creditCardDetails="creditCardDetails">creditCardDetails</param>
-            /// <returns> void </returns>
-            public void AddCreditCard(long creditCardId, CreditCardDetails creditCardDetails) {
-                try
-                {
-                    CreditCard creditCard = CreditCardDao.Find(CreditCard);
+        /// <summary>
+        /// Add a Credit Card
+        /// </summary>
+        /// <param creditCardId="creditCardId">creditCardId</param>
+        /// <param creditCardDetails="creditCardDetails">creditCardDetails</param>
+        /// <returns> void </returns>
+        public void AddCreditCard(long creditCardId, CreditCardDetails creditCardDetails) {
+            CreditCard creditCard = new CreditCard();
+             try
+            {
+                creditCard = CreditCardDao.Find(creditCardId);
 
-                    throw new DuplicateInstanceException(creditCardDetails.cardNumber,
-                        typeof(CreditCard).FullName);
-                }
-                catch (InstanceNotFoundException)
-                {
+                throw new DuplicateInstanceException(creditCardDetails.cardNumber,
+                    typeof(CreditCard).FullName);
+            }
+            catch (InstanceNotFoundException)
+            {
 
-                    creditCard.cardType = creditCardDetails.cardType;
-                    creditCard.cardNumber = creditCardDetails.cardNumber;
-                    creditCard.verificationCode = creditCardDetails.verificationCode;
-                    creditCard.expirationDate = creditCardDetails.ExpirationDate;
-                    creditCard.defaultCard = creditCardDetails.DefaultCard;
-                    creditCard.userId = creditCardDetails.userId;
-                    CreditCardDao.Create(CreditCard);
-                }
-                /// <summary>
-                /// update de default creditCard
-                /// </summary>
-                /// <param creditCardId="creditCardId">creditCardId</param>
-                ///  <param userId="userId">userId</param>
-                /// <returns> void </returns>
-                public void AssignDefaultCard(long creditCardId, long userId) {
-                    try
-                    {
-                        UserProfileDao.Find(userId);
-
-                        throw new InstanceNotFoundException(userId,
-                            typeof(userProfileDao).FullName);
-                    } catch (InstanceNotFoundException)
-                    { try {
-
-                            creditCard = CreditCardDao.Find(creditCardId);
-
-                            throw new InstanceNotFoundException(creditCardId,
-                                typeof(creditCardDao).FullName);
-
-                        } catch (InstanceNotFoundException)
-
-                        CreditCardDao.FindDefaultUserIdCard(userId);
-                        //no se como marcalo
-                        creditCard.defaultCard = ;
-                        creditCard.userId = creditCardDetails.userId;
-                        CreditCardDao.Update(CreditCard);
-                        }
-
-                    }
-                }
-                /// <summary>
-                /// Find all creditCards of a user
-                /// </summary>
-                /// <param userId="userId">userId</param>
-                /// <returns>A list of CreditCards</returns>
-                public List<CreditCard> FindAllCreditCardsDetails(long userID) {
-                    ICreditCardDao creditcardDao;
-                    List<CreditCard> creditsCards = creditcardDao.FindByUserId(userID);
-
-                    return creditsCards;
-                }
-
-
+                creditCard.cardType = creditCardDetails.CardType;
+                creditCard.cardNumber = creditCardDetails.cardNumber;
+                creditCard.verificationCode = creditCardDetails.VerificationCode;
+                creditCard.expirationDate = creditCardDetails.ExpirationDate;
+                creditCard.defaultCard = creditCardDetails.DefaultCard;
+                creditCard.userId = creditCardDetails.userId;
+                creditCardDao.Create(creditCard);
             }
         }
+        /// <summary>
+        /// update de default creditCard
+        /// </summary>
+        /// <param creditCardId="creditCardId">creditCardId</param>
+        ///  <param userId="userId">userId</param>
+        /// <returns> void </returns>
+        public void AssignDefaultCard(long creditCardId, long userId) {
+            try { 
+                creditCard = CreditCardDao.Find(creditCardId);
+
+                throw new InstanceNotFoundException(creditCardId,
+                     typeof(creditCard).FullName);
+
+                } catch (InstanceNotFoundException)
+                try { 
+                CreditCard creditCard2 = CreditCardDao.FindDefaultUserIdCard(userId);
+                creditCard2.defaultCard = 0;
+                CreditCardDao.Update(creditCard2);
+                        
+                } catch (InstanceNotFoundException)
+                creditCard.defaultCard = 1;
+                CreditCardDao.Update(CreditCard);
+            }
+
+        }
+        
+        /// <summary>
+        /// Find all creditCards of a user
+        /// </summary>
+        /// <param userId="userId">userId</param>
+        /// <returns>A list of CreditCards</returns>
+        public List<CreditCard> FindAllCreditCardsDetails(long userID) {
+                   
+        List<CreditCard> creditsCards = creditcardDao.FindByUserId(userID);
+
+        return creditsCards;
+        }
+        
     }
 }
    

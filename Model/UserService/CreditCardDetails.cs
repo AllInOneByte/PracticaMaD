@@ -13,7 +13,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         public int VerificationCode { get; private set; }
 
-        public date ExpirationDate { get; private set; }
+        public System.Datetime ExpirationDate { get; private set; }
 
         public int DefaultCard { get; private set; }
 
@@ -31,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <param name="DefaultCard">The user's default card.</param>
         /// <param name="userId">The user's kid</param>
         public CreditCardDetails(String cardType, int cardNumber,
-            int verificationCode, date expirationDate, int defaultCard, long userId)
+            int verificationCode, System.Datetime expirationDate, int defaultCard, long userId)
         {
             this.CardType = cardType;
             this.cardNumber = cardNumber;
