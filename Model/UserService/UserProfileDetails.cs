@@ -1,13 +1,44 @@
-﻿namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
+﻿using System;
+
+namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
     public class UserProfileDetails
     {
+        #region Properties Region
+        
+        public string firstName { get; private set; }
+
+        public string lastName { get; private set; }
+
+        public string email { get; private set; }
+
+        public string language { get; private set; }
+
+        public string country { get; private set; }
+
+        public byte role { get; private set; }
+
+        public string address { get; private set; }
+
+        #endregion
+        public UserProfileDetails(string firstName, string lastName, string email, string language, string country, byte role, string address)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+            this.language = language;
+            this.country = country;
+            this.role = role;
+            this.address = address;
+        }
+
         /// <summary>
         /// VO Class which contains the user details
         /// </summary>
         [Serializable()]
         public class UserProfileDetails
         {
+            private object role;
             #region Properties Region
 
             public String FirstName { get; private set; }
@@ -32,14 +63,16 @@
             /// <param name="email">The user's email.</param>
             /// <param name="language">The language.</param>
             /// <param name="country">The country.</param>
+            /// <param name="role">The user's role</param>"
             /// <param name="address">The user's address</param>
             public UserProfileDetails(String firstName, String lastName,
-                String email, String language, String country, string address)
+                String email, String language, String country, int role, string address)
             {
                 this.FirstName = firstName;
                 this.Lastname = lastName;
                 this.Email = email;
                 this.Language = language;
+                this.role = role;
                 this.Country = country;
             }
 
@@ -53,6 +86,7 @@
                       && (this.Email == target.Email)
                       && (this.Language == target.Language)
                       && (this.Country == target.Country)
+                      && (this.role == target.role)
                       && (this.Address == target.Address);
             }
 
@@ -77,6 +111,7 @@
                     "email = " + Email + " | " +
                     "language = " + Language + " | " +
                     "country = " + Country + " |" +
+                    "role = " + role + "|" +
                     "address = " + Address + " ]";
 
 

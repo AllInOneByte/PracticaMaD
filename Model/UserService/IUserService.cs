@@ -97,6 +97,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
     /// <param creditCardId="creditCardId">creditCardId</param>
     ///  <param userId="userId">userId</param>
     /// <returns> void </returns>
+    /// <exception cref="InstanceNotFoundException"/>
     void AssignDefaultCard(long creditCardId, long userId);
     /// <summary>
     /// Find all creditCards of a user

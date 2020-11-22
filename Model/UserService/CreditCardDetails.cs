@@ -1,4 +1,6 @@
-﻿namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
+﻿using System;
+
+namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
     public class CreditCardDetails
     {
@@ -44,11 +46,11 @@
 
             CreditCardDetails target = (CreditCardDetails)obj;
 
-            return (this.CardType == cardType)
+            return (this.CardType == CardType)
                 && (this.cardNumber == cardNumber)
-                && (this.VerificationCode == verificationCode)
-                && (this.ExpirationDate == expirationDate)
-                && (this.DefaultCard == defaultCard)
+                && (this.VerificationCode == VerificationCode)
+                && (this.ExpirationDate == ExpirationDate)
+                && (this.DefaultCard == DefaultCard)
                 && (this.userId == userId);
         }
 

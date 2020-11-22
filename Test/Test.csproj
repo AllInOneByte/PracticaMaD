@@ -72,6 +72,7 @@
     <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IUserServiceTest.cs" />
     <Compile Include="ICommentDaoTest.cs" />
     <Compile Include="IProductDaoTest.cs" />
     <Compile Include="IShoppingServiceTests.cs" />
