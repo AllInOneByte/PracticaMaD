@@ -3,6 +3,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
@@ -10,8 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Transactions;
 
+
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {
+    [TestClass()]
     public class IUserServiceTest
         {
             // Variables used in several tests are initialized here
@@ -26,11 +29,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             private const byte role = 1;
             private const string address = "n10c3";
             private const long NON_EXISTENT_USER_ID = -1;
-            private static IKernel kernel;
+
+            private const string cardType = "credito";
+            private const long cardNumber = 12345677;
+            private const int verificationCode = 123;
+            private System.DateTime expirationDate = System.DateTime.Now;
+            private const byte defaultCard = 0;
+
+        private static IKernel kernel;
             private static IUserService userService;
             private static IUserProfileDao userProfileDao;
-
-            private TransactionScope transaction;
+            private static ICreditCardDao creditCardDao;
 
             /// <summary>
             /// Gets or sets the test context which provides information about and functionality for the
@@ -65,8 +74,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                     Assert.AreEqual(role, userProfile.role);
                     Assert.AreEqual(address, userProfile.address);
 
-                // transaction.Complete() is not called, so Rollback is executed.
-            }
+                }
             }
 
             /// <summary>
@@ -86,7 +94,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                     userService.RegisterUser(loginName, clearPassword,
                         new UserProfileDetails(firstName, lastName, email, language, country, role, address));
 
-                    // transaction.Complete() is not called, so Rollback is executed.
                 }
             }
 
@@ -100,7 +107,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 {
                     // Register user
                     var userId = userService.RegisterUser(loginName, clearPassword,
-                        new UserProfileDetails(firstName, lastName, email, language, country, role));
+                        new UserProfileDetails(firstName, lastName, email, language, country, role, address));
 
                     var expected = new LoginResult(userId, firstName,
                         PasswordEncrypter.Crypt(clearPassword), language, country, role);
@@ -112,8 +119,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
                     // Check data
                     Assert.AreEqual(expected, actual);
-
-                    // transaction.Complete() is not called, so Rollback is executed.
                 }
             }
 
@@ -127,7 +132,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 {
                     // Register user
                     var userId = userService.RegisterUser(loginName, clearPassword,
-                        new UserProfileDetails(firstName, lastName, email, language, country, role));
+                        new UserProfileDetails(firstName, lastName, email, language, country, role, address));
 
                     var expected = new LoginResult(userId, firstName,
                         PasswordEncrypter.Crypt(clearPassword), language, country, role);
@@ -140,7 +145,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                     // Check data
                     Assert.AreEqual(expected, obtained);
 
-                    // transaction.Complete() is not called, so Rollback is executed.
                 }
             }
 
@@ -155,13 +159,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 {
                     // Register user
                     var userId = userService.RegisterUser(loginName, clearPassword,
-                        new UserProfileDetails(firstName, lastName, email, language, country, role));
+                        new UserProfileDetails(firstName, lastName, email, language, country, role, address));
 
                     // Login with incorrect (clear) password
                     var actual =
                         userService.Login(loginName, clearPassword + "X", false);
 
-                    // transaction.Complete() is not called, so Rollback is executed.
                 }
             }
 
@@ -186,7 +189,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 using (var scope = new TransactionScope())
                 {
                     var expected =
-                        new UserProfileDetails(firstName, lastName, email, language, country, role);
+                        new UserProfileDetails(firstName, lastName, email, language, country, role, address);
 
                     var userId =
                         userService.RegisterUser(loginName, clearPassword, expected);
@@ -197,7 +200,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                     // Check data
                     Assert.AreEqual(expected, obtained);
 
-                    // transaction.Complete() is not called, so Rollback is executed.
                 }
             }
 
@@ -221,11 +223,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 {
                     // Register user and update profile details
                     var userId = userService.RegisterUser(loginName, clearPassword,
-                        new UserProfileDetails(firstName, lastName, email, language, country, role));
+                        new UserProfileDetails(firstName, lastName, email, language, country, role, address));
 
                     var expected =
                         new UserProfileDetails(firstName + "X", lastName + "X",
-                            email + "X", "XX", "XX");
+                            email + "X", "XX", "XX", 0, "XX");
 
                     userService.UpdateUserProfileDetails(userId, expected);
 
@@ -235,7 +237,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                     // Check changes
                     Assert.AreEqual(expected, obtained);
 
-                    // transaction.Complete() is not called, so Rollback is executed.
                 }
             }
 
@@ -249,9 +250,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 using (var scope = new TransactionScope())
                 {
                     userService.UpdateUserProfileDetails(NON_EXISTENT_USER_ID,
-                        new UserProfileDetails(firstName, lastName, email, language, country, role));
-
-                    // transaction.Complete() is not called, so Rollback is executed.
+                        new UserProfileDetails(firstName, lastName, email, language, country, role, address));
                 }
             }
 
@@ -265,7 +264,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 {
                     // Register user
                     var userId = userService.RegisterUser(loginName, clearPassword,
-                        new UserProfileDetails(firstName, lastName, email, language, country, role));
+                        new UserProfileDetails(firstName, lastName, email, language, country, role, address));
 
                     // Change password
                     var newClearPassword = clearPassword + "X";
@@ -274,8 +273,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                     // Try to login with the new password. If the login is correct, then the password
                     // was successfully changed.
                     userService.Login(loginName, newClearPassword, false);
-
-                    // transaction.Complete() is not called, so Rollback is executed.
                 }
             }
 
@@ -290,13 +287,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 {
                     // Register user
                     var userId = userService.RegisterUser(loginName, clearPassword,
-                        new UserProfileDetails(firstName, lastName, email, language, country, role));
+                        new UserProfileDetails(firstName, lastName, email, language, country, role, address));
 
                     // Change password
                     var newClearPassword = clearPassword + "X";
                     userService.ChangePassword(userId, clearPassword + "Y", newClearPassword);
-
-                    // transaction.Complete() is not called, so Rollback is executed.
+                
                 }
             }
 
@@ -321,13 +317,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 {
                     // Register user
                     userService.RegisterUser(loginName, clearPassword,
-                        new UserProfileDetails(firstName, lastName, email, language, country, role));
+                        new UserProfileDetails(firstName, lastName, email, language, country, role, address));
 
                     bool userExists = userService.UserExists(loginName);
 
                     Assert.IsTrue(userExists);
-
-                    // transaction.Complete() is not called, so Rollback is executed.
                 }
             }
 
@@ -344,21 +338,193 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                     bool userExists = userService.UserExists(invalidLoginName);
 
                     Assert.IsFalse(userExists);
-
-                    // transaction.Complete() is not called, so Rollback is executed.
                 }
             }
 
-            #region Additional test attributes
+        /// <summary>
+        /// A test to AddCreditCard
+        /// </summary>
+        [TestMethod]
+        public void AddCreditCardTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                var user = new UserProfile
+                {
+                    loginName = loginName,
+                    enPassword = clearPassword,
+                    firstName = firstName,
+                    lastName = lastName,
+                    email = email,
+                    language = language,
+                    country = country,
+                    role = 1,
+                    address = address
+                };
+                userProfileDao.Create(user);
 
-            //Use ClassInitialize to run code before running the first test in the class
-            [ClassInitialize]
+                var creditCardId = userService.AddCreditCard(new CreditCardDetails(cardType, cardNumber, verificationCode, expirationDate, defaultCard, user.usrId));
+
+                var creditCard = creditCardDao.Find(creditCardId);
+
+                // Check data
+                Assert.AreEqual(cardType, creditCard.cardType);
+                Assert.AreEqual(cardNumber, creditCard.cardNumber);
+                Assert.AreEqual(defaultCard, creditCard.defaultCard);
+                Assert.AreEqual(expirationDate.Date, creditCard.expirationDate.Date);
+                Assert.AreEqual(verificationCode, creditCard.verificationCode);
+                Assert.AreEqual(user.usrId, creditCard.userId);
+            }
+        }
+
+                /// <summary>
+                /// A test to UpdateCreditCard
+                /// </summary>
+        [TestMethod]
+        public void UpdateCreditCardTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                var user = new UserProfile
+                {
+                    loginName = loginName,
+                    enPassword = clearPassword,
+                    firstName = firstName,
+                    lastName = lastName,
+                    email = email,
+                    language = language,
+                    country = country,
+                    role = 1,
+                    address = address
+                };
+                userProfileDao.Create(user);
+
+                var creditCardId = userService.AddCreditCard(new CreditCardDetails(cardType, cardNumber, verificationCode, expirationDate, defaultCard, user.usrId));
+
+                var creditCard = creditCardDao.Find(creditCardId);
+
+                // Check data
+                Assert.AreEqual(cardType, creditCard.cardType);
+                Assert.AreEqual(cardNumber, creditCard.cardNumber);
+                Assert.AreEqual(defaultCard, creditCard.defaultCard);
+                Assert.AreEqual(expirationDate.Date, creditCard.expirationDate.Date);
+                Assert.AreEqual(verificationCode, creditCard.verificationCode);
+                Assert.AreEqual(user.usrId, creditCard.userId);
+
+                userService.UpdateCreditCard(creditCardId,
+                    new CreditCardDetails("debito", cardNumber, verificationCode, expirationDate, defaultCard, user.usrId));
+
+                creditCard = creditCardDao.Find(creditCardId);
+
+                // Check data
+                Assert.AreEqual("debito", creditCard.cardType);
+                Assert.AreEqual(cardNumber, creditCard.cardNumber);
+                Assert.AreEqual(defaultCard, creditCard.defaultCard);
+                Assert.AreEqual(expirationDate.Date, creditCard.expirationDate.Date);
+                Assert.AreEqual(verificationCode, creditCard.verificationCode);
+                Assert.AreEqual(user.usrId, creditCard.userId);
+            }
+        }
+
+        /// <summary>
+        /// A test to AssignDefaultCard
+        /// </summary>
+        [TestMethod]
+        public void AssignDefaultCardTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                var user = new UserProfile
+                {
+                    loginName = loginName,
+                    enPassword = clearPassword,
+                    firstName = firstName,
+                    lastName = lastName,
+                    email = email,
+                    language = language,
+                    country = country,
+                    role = 1,
+                    address = address
+                };
+                userProfileDao.Create(user);
+
+                var creditCardId1 = userService.AddCreditCard(new CreditCardDetails(cardType, cardNumber, verificationCode, expirationDate, defaultCard, user.usrId));
+                var creditCardId2 = userService.AddCreditCard(new CreditCardDetails(cardType, 12345678, verificationCode, expirationDate, 1, user.usrId));
+
+                var creditCard1 = creditCardDao.Find(creditCardId1);
+                var creditCard2 = creditCardDao.Find(creditCardId2);
+
+                Assert.AreEqual(0, creditCard1.defaultCard);
+                Assert.AreEqual(1, creditCard2.defaultCard);
+
+                userService.AssignDefaultCard(creditCardId1, user.usrId);
+
+                creditCard1 = creditCardDao.Find(creditCardId1);
+                creditCard2 = creditCardDao.Find(creditCardId2);
+
+                Assert.AreEqual(1, creditCard1.defaultCard);
+                Assert.AreEqual(0, creditCard2.defaultCard);
+            }
+        }
+
+        /// <summary>
+        /// A test to FindAllCreditCardsDetails
+        /// </summary>
+        [TestMethod]
+        public void FindAllCreditCardsDetailsTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                var user = new UserProfile
+                {
+                    loginName = loginName,
+                    enPassword = clearPassword,
+                    firstName = firstName,
+                    lastName = lastName,
+                    email = email,
+                    language = language,
+                    country = country,
+                    role = 1,
+                    address = address
+                };
+                userProfileDao.Create(user);
+
+                int numberCard = 3;
+                List<CreditCard> cards = new List<CreditCard>(numberCard);
+
+                for (int i = 0; i < numberCard; i++)
+                {
+                    var creditCardId = userService.AddCreditCard(new CreditCardDetails(cardType, cardNumber+i, verificationCode, expirationDate, defaultCard, user.usrId));
+                    cards.Add(creditCardDao.Find(creditCardId));
+                }
+
+                List<CreditCard> retriveFoundCards = userService.FindAllCreditCardsDetails(user.usrId);
+
+                // Check data
+                Assert.AreEqual(numberCard, retriveFoundCards.Count);
+                for (int i = 0; i < numberCard; i++)
+                {
+                    Assert.AreEqual(cards[i].cardType, retriveFoundCards[i].cardType);
+                    Assert.AreEqual(cards[i].cardNumber, retriveFoundCards[i].cardNumber);
+                    Assert.AreEqual(cards[i].defaultCard, retriveFoundCards[i].defaultCard);
+                    Assert.AreEqual(cards[i].expirationDate.Date, retriveFoundCards[i].expirationDate.Date);
+                    Assert.AreEqual(cards[i].verificationCode, retriveFoundCards[i].verificationCode);
+                }
+            }
+        }
+
+
+        #region Additional test attributes
+
+        //Use ClassInitialize to run code before running the first test in the class
+        [ClassInitialize]
             public static void MyClassInitialize(TestContext testContext)
             {
                 kernel = TestManager.ConfigureNInjectKernel();
 
                 userProfileDao = kernel.Get<IUserProfileDao>();
                 userService = kernel.Get<IUserService>();
+                creditCardDao = kernel.Get<ICreditCardDao>();
             }
 
             //Use ClassCleanup to run code after all tests in a class have run
@@ -381,7 +547,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             }
 
             #endregion Additional test attributes
-        }
     }
-}
 }

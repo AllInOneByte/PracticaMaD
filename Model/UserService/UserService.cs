@@ -15,13 +15,11 @@ using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
     public class UserService : IUserService {
-        private object creditCard;
 
         [Inject]
         public IUserProfileDao UserProfileDao { private get; set; }
 
         [Inject]
-
         public ICreditCardDao creditCardDao { private get; set; }
         /// <summary>
         /// Changes the password.
@@ -177,7 +175,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 {
                     UserProfile userProfile = UserProfileDao.FindByLoginName(loginName);
                 }
-                catch (InstanceNotFoundException e)
+                catch (InstanceNotFoundException)
                 {
                     return false;
                 }
@@ -201,7 +199,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 creditCard.cardNumber = creditCardDetails.cardNumber;
                 creditCard.verificationCode = creditCardDetails.VerificationCode;
                 creditCard.expirationDate = creditCardDetails.ExpirationDate;
-                creditCard.defaultCard = creditCardDetails.DefaultCard;
                 creditCard.userId = creditCardDetails.userId;
                 creditCardDao.Update(creditCard);
 
@@ -212,26 +209,26 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <param creditCardId="creditCardId">creditCardId</param>
         /// <param creditCardDetails="creditCardDetails">creditCardDetails</param>
         /// <returns> void </returns>
-        public void AddCreditCard(long creditCardId, CreditCardDetails creditCardDetails) {
+        public long AddCreditCard(CreditCardDetails creditCardDetails) {
             CreditCard creditCard = new CreditCard();
-             try
-            {
-                creditCard = creditCardDao.Find(creditCardId);
 
-                throw new DuplicateInstanceException(creditCardDetails.cardNumber,
+            foreach (var c in creditCardDao.FindByUserId(creditCardDetails.userId))
+            {
+                if(c.cardNumber == creditCardDetails.cardNumber)
+                {
+                    throw new DuplicateInstanceException(creditCardDetails.cardNumber,
                     typeof(CreditCard).FullName);
+                }
             }
-            catch (InstanceNotFoundException)
-            {
-
-                creditCard.cardType = creditCardDetails.CardType;
-                creditCard.cardNumber = creditCardDetails.cardNumber;
-                creditCard.verificationCode = creditCardDetails.VerificationCode;
-                creditCard.expirationDate = creditCardDetails.ExpirationDate;
-                creditCard.defaultCard = creditCardDetails.DefaultCard;
-                creditCard.userId = creditCardDetails.userId;
-                creditCardDao.Create(creditCard);
-            }
+            creditCard.cardType = creditCardDetails.CardType;
+            creditCard.cardNumber = creditCardDetails.cardNumber;
+            creditCard.verificationCode = creditCardDetails.VerificationCode;
+            creditCard.expirationDate = creditCardDetails.ExpirationDate;
+            creditCard.defaultCard = creditCardDetails.DefaultCard;
+            creditCard.userId = creditCardDetails.userId;
+            creditCardDao.Create(creditCard);
+         
+            return creditCard.cardId;
         }
         /// <summary>
         /// update de default creditCard

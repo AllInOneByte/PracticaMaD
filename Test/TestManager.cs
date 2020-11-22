@@ -6,8 +6,11 @@ using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.SpecificPropertyDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.DeliveryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.DeliveryLineDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LabeledDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Ninject;
 using System.Configuration;
 using System.Data.Entity;
@@ -34,6 +37,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             kernel.Bind<ISpecificPropertyDao>().
                 To<SpecificPropertyDaoEntityFramework>();
+
+            kernel.Bind<IDeliveryDao>().
+                To<DeliveryDaoEntityFramework>();
+
+            kernel.Bind<IDeliveryLineDao>().
+                To<DeliveryLineDaoEntityFramework>();
 
             kernel.Bind<ITagDao>().
                 To<TagDaoEntityFramework>();

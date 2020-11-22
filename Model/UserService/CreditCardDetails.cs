@@ -9,7 +9,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         public String CardType { get; private set; }
 
-        public int cardNumber { get; private set; }
+        public long cardNumber { get; private set; }
 
         public int VerificationCode { get; private set; }
 
@@ -30,7 +30,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <param name="ExpirationDate">The card's ExpirationDate.</param>
         /// <param name="DefaultCard">The user's default card.</param>
         /// <param name="userId">The user's kid</param>
-        public CreditCardDetails(String cardType, int cardNumber,
+        public CreditCardDetails(String cardType, long cardNumber,
             int verificationCode, System.DateTime expirationDate, byte defaultCard, long userId)
         {
             this.CardType = cardType;

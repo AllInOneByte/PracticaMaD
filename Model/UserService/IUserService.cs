@@ -7,7 +7,6 @@ using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Ninject;
-using System;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
@@ -90,7 +89,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
     /// <param creditCardId="creditCardId">creditCardId</param>
     /// <param creditCardDetails="creditCardDetails">creditCardDetails</param>
     /// <returns> void </returns>
-    void AddCreditCard(long creditCardId, CreditCardDetails creditCardDetails);
+    long AddCreditCard(CreditCardDetails creditCardDetails);
     /// <summary>
     /// update de default creditCard
     /// </summary>

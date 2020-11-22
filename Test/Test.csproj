@@ -72,7 +72,6 @@
     <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IUserServiceTest.cs" />
     <Compile Include="ICommentDaoTest.cs" />
     <Compile Include="IProductDaoTest.cs" />
     <Compile Include="IShoppingServiceTests.cs" />
@@ -81,6 +80,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IProductServiceTest.cs" />
     <Compile Include="ICreditCardDaoTest.cs" />
+    <Compile Include="IUserServiceTest.cs" />
+    <Compile Include="IUserProfileDaoTest.cs" />
+    <Compile Include="IDeliveryDaoTest.cs" />
+    <Compile Include="IDeliveryLineTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
