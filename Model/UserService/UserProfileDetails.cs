@@ -32,54 +32,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             this.address = address;
         }
 
-        /// <summary>
-        /// VO Class which contains the user details
-        /// </summary>
-        [Serializable()]
-        public class UserProfileDetails
-        {
-            private object role;
-            #region Properties Region
-
-            public String FirstName { get; private set; }
-
-            public String Lastname { get; private set; }
-
-            public String Email { get; private set; }
-
-            public string Language { get; private set; }
-
-            public string Country { get; private set; }
-
-            public string Address { get; private set; }
-            #endregion
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="UserProfileDetails"/>
-            /// class.
-            /// </summary>
-            /// <param name="firstName">The user's first name.</param>
-            /// <param name="lastName">The user's last name.</param>
-            /// <param name="email">The user's email.</param>
-            /// <param name="language">The language.</param>
-            /// <param name="country">The country.</param>
-            /// <param name="role">The user's role</param>"
-            /// <param name="address">The user's address</param>
-            public UserProfileDetails(String firstName, String lastName,
-                String email, String language, String country, int role, string address)
-            {
-                this.FirstName = firstName;
-                this.Lastname = lastName;
-                this.Email = email;
-                this.Language = language;
-                this.role = role;
-                this.Country = country;
-            }
-
-            public override bool Equals(object obj)
-            {
-
-                UserProfileDetails target = (UserProfileDetails)obj;
+        public override bool Equals(object obj)
+        { 
+           UserProfileDetails target = (UserProfileDetails)obj;
 
                 return (this.FirstName == target.FirstName)
                       && (this.Lastname == target.Lastname)
@@ -88,7 +43,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                       && (this.Country == target.Country)
                       && (this.role == target.role)
                       && (this.Address == target.Address);
-            }
+        }
 
             // The GetHashCode method is used in hashing algorithms and data 
             // structures such as a hash table. In order to ensure that it works 
