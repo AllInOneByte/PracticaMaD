@@ -9,6 +9,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Ninject;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
@@ -100,7 +101,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             }
 
             return new LoginResult(userProfile.usrId, userProfile.firstName,
-                storedPassword, userProfile.language, userProfile.country);
+                storedPassword, userProfile.language, userProfile.country, userProfile.role, userProfile.address);
         }
 
         /// <summary>
@@ -153,13 +154,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 UserProfileDetails userProfileDetails)
             {
 
-                String encryptedPassword = PasswordEncrypter.Crypt(clearPassword);
-
                 UserProfile userProfile =
                       UserProfileDao.Find(userProfileId);
 
-                userProfile.loginName = loginName;
-                userProfile.enPassword = encryptedPassword;
                 userProfile.firstName = userProfileDetails.firstName;
                 userProfile.lastName = userProfileDetails.lastName;
                 userProfile.email = userProfileDetails.email;
@@ -219,7 +216,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             CreditCard creditCard = new CreditCard();
              try
             {
-                creditCard = CreditCardDao.Find(creditCardId);
+                creditCard = creditCardDao.Find(creditCardId);
 
                 throw new DuplicateInstanceException(creditCardDetails.cardNumber,
                     typeof(CreditCard).FullName);
@@ -243,7 +240,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         ///  <param userId="userId">userId</param>
         /// <returns> void </returns>
         public void AssignDefaultCard(long creditCardId, long userId) {
-            CreditCard creditcard = new CreditCard();
+            CreditCard creditCard = new CreditCard();
             try {
                 creditCard = creditCardDao.Find(creditCardId);
 
@@ -257,11 +254,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                     creditCard2.defaultCard = 0;
                     creditCardDao.Update(creditCard2);
                     creditCard.defaultCard = 1;
-                    creditCardDao.Update(CreditCard);
+                    creditCardDao.Update(creditCard);
 
                 }
-                catch (InstanceNotFoundException)
-                } 
+                catch (InstanceNotFoundException) {
+                    creditCard.defaultCard = 1;
+                    creditCardDao.Update(creditCard);
+                }
+             
             }
 
         }
