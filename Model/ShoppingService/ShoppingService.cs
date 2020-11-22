@@ -81,9 +81,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             {
                 ShoppingCart shoppingCart = new ShoppingCart(delivery.deliveryDate,
                     delivery.deliveryPrice, delivery.deliveryAddress,
-                    delivery.description, delivery.userId, delivery.cardId);
-
-                shoppingCart.DeliveryId = delivery.deliveryId;
+                    delivery.description, delivery.userId, delivery.cardId)
+                {
+                    DeliveryId = delivery.deliveryId
+                };
 
                 shoppingCarts.Add(shoppingCart);
             }
@@ -100,7 +101,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
             foreach (DeliveryLine line in lines)
             {
-                details.Add(new ShoppingCartDetails(line.deliveryLineAmount, line.deliveryLinePrice, line.deliveryId, line.productId));
+                ShoppingCartDetails shoppingCartDetails = new ShoppingCartDetails(
+                    line.deliveryLineAmount, line.deliveryLinePrice, line.productId)
+                {
+                    DeliveryId = line.deliveryId
+                };
+
+                details.Add(shoppingCartDetails);
             }
 
             return details;

@@ -14,7 +14,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         public decimal DeliveryLinePrice { get; private set; }
 
-        public long DeliveryId { get; private set; }
+        public long DeliveryId { get; set; }
 
         public long ProductId { get; private set; }
         
@@ -28,11 +28,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// <param name="deliveryId"> The delivery id. </param>
         /// <param name="productId"> The product id. </param>
         public ShoppingCartDetails(int deliveryLineAmount, 
-            decimal deliveryLinePrice, long deliveryId, long productId)
+            decimal deliveryLinePrice, long productId)
         {
             DeliveryLineAmount = deliveryLineAmount;
             DeliveryLinePrice = deliveryLinePrice;
-            DeliveryId = deliveryId;
             ProductId = productId;
         }
 

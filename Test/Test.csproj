@@ -74,7 +74,7 @@
   <ItemGroup>
     <Compile Include="ICommentDaoTest.cs" />
     <Compile Include="IProductDaoTest.cs" />
-    <Compile Include="IShoppingServiceTests.cs" />
+    <Compile Include="IShoppingServiceTest.cs" />
     <Compile Include="ITagDaoTest.cs" />
     <Compile Include="TestManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
