@@ -33,7 +33,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         private const int productQuantity = 10;
 
         private const string commentBody = "comment1";
-        private Comment comment;
 
         private const string tagName1 = "tag1";
         private const string tagName2 = "tag2";
