@@ -89,7 +89,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         #region Comment Members
 
         /// <exception cref="InstanceNotFoundException"/>
-        public void AddComment(long productId, long userId, CommentUpdate details)
+        public long AddComment(long productId, long userId, CommentUpdate details)
         {
             Comment comment = new Comment
             {
@@ -110,14 +110,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
                 };
 
                 LabeledDao.Create(labeled);
-            }   
+            }
 
+            return comment.commentId;
         }
 
         /// <exception cref="InstanceNotFoundException"/>
         public void DeleteComment(long commentId)
         {
-            CommentDao.Remove(commentId);
+            var comment = CommentDao.Find(commentId);
+            foreach (var l in comment.Labeleds.ToList())
+            {
+                LabeledDao.Remove(l.labeledId);
+            }
+            CommentDao.Remove(comment.commentId);
         }
 
         /// <exception cref="InstanceNotFoundException"/>
@@ -165,8 +171,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         #region Tag Members
 
         /// <exception cref="DuplicateInstanceException"/>
-        public void addTag(string tagName)
+        public long addTag(string tagName)
         {
+            Tag tag = new Tag();
             try
             {
                 TagDao.FindByName(tagName);
@@ -176,12 +183,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             }
             catch (InstanceNotFoundException)
             {
-                Tag tag = new Tag();
-
                 tag.tagName = tagName;
 
                 TagDao.Create(tag);
             }
+            return tag.tagId;
         }
 
         public List<Tag> FindAllTags()

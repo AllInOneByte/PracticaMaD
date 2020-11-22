@@ -33,6 +33,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         private const int productQuantity = 10;
 
         private const string commentBody = "comment1";
+        private Comment comment;
 
         private const string tagName1 = "tag1";
         private const string tagName2 = "tag2";
@@ -47,7 +48,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         private static IUserProfileDao userDao;
         private static ILabeledDao labeledDao;
 
-        private TransactionScope transaction;
+        private TransactionScope transactionScope;
 
         /// <summary>
         /// Gets or sets the test context which provides information about and functionality for the
@@ -190,7 +191,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 var category = createCategory(categoryName);
                 List<Product> productList = new List<Product>();
                 productList.Add(createProduct(productName, productPrice, productDate, productQuantity, category.categoryId));
-                productList.Add(createProduct("pro2", 9, System.DateTime.Now, 10, category.categoryId));
+                createProduct("pro2", 9, System.DateTime.Now, 10, category.categoryId);
                 productList.Add(createProduct("product3", 8, System.DateTime.Now, 13, category.categoryId));
 
                 var productDetailsList = productService.FindAllProductsByKeyword("product", -1);
@@ -221,10 +222,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
                 List<Product> productList = new List<Product>();
                 productList.Add(createProduct(productName, productPrice, productDate, productQuantity, category1.categoryId));
-                productList.Add(createProduct("pro2", 9, System.DateTime.Now, 10, category1.categoryId));
-                productList.Add(createProduct("product3", 8, System.DateTime.Now, 13, category2.categoryId));
+                createProduct("pro2", 9, System.DateTime.Now, 10, category1.categoryId);
+                createProduct("product3", 8, System.DateTime.Now, 13, category2.categoryId);
 
-                var productDetailsList = productService.FindAllProductsByKeyword("product", 1);
+                var productDetailsList = productService.FindAllProductsByKeyword("product", category1.categoryId);
 
                 // Check data
                 Assert.AreEqual(productList.Count, productDetailsList.Count);
@@ -305,15 +306,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 tagIds.Add(createTag(tagName2).tagId);
 
                 var update = new CommentUpdate(commentBody, tagIds);
-                productService.AddComment(product.productId, user.usrId, update);
+                var commentId = productService.AddComment(product.productId, user.usrId, update);
 
-                var findComment = commentDao.Find(1);
+                var findComment = commentDao.Find(commentId);
 
                 // Check data
                 Assert.AreEqual(product.productId, findComment.productId);
                 Assert.AreEqual(user.usrId, findComment.userId);
                 Assert.AreEqual(commentBody, findComment.comment1);
-                Assert.AreEqual(System.DateTime.Now, findComment.commentDate);
+                Assert.AreEqual(System.DateTime.Now.Date, findComment.commentDate.Date);
                 Assert.AreEqual(2, findComment.Labeleds.Count);
 
                 int i = 0;
@@ -342,17 +343,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 tagIds.Add(createTag(tagName2).tagId);
 
                 var update = new CommentUpdate(commentBody, tagIds);
-                productService.AddComment(product.productId, user.usrId, update);
+                var commentId = productService.AddComment(product.productId, user.usrId, update);
 
-                var findComment = commentDao.Find(1);
+                var findComment = commentDao.Find(commentId);
                 var labeleds = new List<long>();
                 foreach (var l in findComment.Labeleds)
                 {
                     labeleds.Add(l.labeledId);
                 }
 
-                productService.DeleteComment(1);
-                commentDao.Find(1);
+                productService.DeleteComment(commentId);
+                commentDao.Find(commentId);
 
                 foreach (var l in labeleds)
                 {
@@ -377,33 +378,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 tagIds.Add(createTag(tagName1).tagId);
                 tagIds.Add(createTag(tagName2).tagId);
 
-                var update = new CommentUpdate(commentBody, tagIds);
-                productService.AddComment(product.productId, user.usrId, update);
+                var update = new CommentUpdate(commentBody, new List<long>());
+                var commentId = productService.AddComment(product.productId, user.usrId, update);
 
-                var findComment = commentDao.Find(1);
+                var findComment = commentDao.Find(commentId);
 
                 // Check data
                 Assert.AreEqual(product.productId, findComment.productId);
                 Assert.AreEqual(user.usrId, findComment.userId);
                 Assert.AreEqual(commentBody, findComment.comment1);
-                Assert.AreEqual(System.DateTime.Now, findComment.commentDate);
+                Assert.AreEqual(System.DateTime.Now.Date, findComment.commentDate.Date);
+                Assert.AreEqual(0, findComment.Labeleds.Count);
+
+                update = new CommentUpdate("commentTest2",tagIds);
+                productService.UpdateComment(commentId, update);
+                findComment = commentDao.Find(commentId);
+
+                // Check data
+                Assert.AreEqual(update.CommentBody, findComment.comment1);
                 Assert.AreEqual(2, findComment.Labeleds.Count);
 
                 int i = 0;
-                foreach (var l in findComment.Labeleds)
-                {
-                    Assert.AreEqual(tagIds[i], l.tagId);
-                    i++;
-                }
-
-                productService.UpdateComment(1, update);
-                findComment = commentDao.Find(1);
-
-                // Check data
-                Assert.AreEqual(commentBody, findComment.comment1);
-                Assert.AreEqual(3, findComment.Labeleds.Count);
-
-                i = 0;
                 foreach (var l in findComment.Labeleds)
                 {
                     Assert.AreEqual(tagIds[i], l.tagId);
@@ -421,7 +416,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             using (var scope = new TransactionScope())
             {
                 var category = createCategory(categoryName);
-                var product = createProduct(productName, productPrice, productDate, productQuantity, category.categoryId);
+                var product = createProduct("anotherProductNameTest", productPrice, productDate, productQuantity, category.categoryId);
                 var user = createUser();
 
                 List<long> tagIds1 = new List<long>();
@@ -435,22 +430,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 var update1 = new CommentUpdate(commentsBody[0], tagIds1);
                 var update2 = new CommentUpdate(commentsBody[1], tagIds2);
 
-                productService.AddComment(product.productId, user.usrId, update1);
-                productService.AddComment(product.productId, user.usrId, update2);
+                List<long> commentsIds = new List<long>();
+                commentsIds.Add(productService.AddComment(product.productId, user.usrId, update1));
+                commentsIds.Add(productService.AddComment(product.productId, user.usrId, update2));
 
                 var listComments = productService.FindAllProductComments(product.productId);
 
                 // Check data
-                Assert.AreEqual(2, listComments.Count);
+                Assert.AreEqual(commentsIds.Count, listComments.Count);
                 for (int i = 0; i < listComments.Count; i++)
                 {
-                    Assert.AreEqual((i+1), listComments[i].CommentId);
+                    Assert.AreEqual(commentsIds[i], listComments[i].CommentId);
                     Assert.AreEqual(user.usrId, listComments[i].UserId);
                     Assert.AreEqual(commentsBody[i], listComments[i].CommentBody);
-                    Assert.AreEqual(System.DateTime.Now, listComments[i].CommentDate);
+                    Assert.AreEqual(System.DateTime.Now.Date, listComments[i].CommentDate.Date);
                 }
                 Assert.AreEqual(tagName1, listComments[0].TagNames[0]);
-                Assert.AreEqual(tagName2, listComments[1].TagNames[1]);
+                Assert.AreEqual(tagName2, listComments[1].TagNames[0]);
             }
         }
 
@@ -460,12 +456,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         [TestMethod]
         public void AddTagTest()
         {
-            productService.addTag(tagName1);
+            using (var scope = new TransactionScope())
+            {
+               var tagId = productService.addTag(tagName1);
 
-            var tag = tagDao.Find(1);
+                var tag = tagDao.Find(tagId);
 
-            // Check data
-            Assert.AreEqual(tagName1, tag.tagName);
+                // Check data
+                Assert.AreEqual(tagName1, tag.tagName);
+            }
         }
 
         /// <summary>
@@ -474,18 +473,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         [TestMethod]
         public void FindAllTagsTest()
         {
-            List<Tag> tagList = new List<Tag>();
-            tagList.Add(createTag(tagName1));
-            tagList.Add(createTag(tagName2));
-
-            var tagFoundList = productService.FindAllTags();
-
-            // Check data
-            Assert.AreEqual(tagList.Count, tagFoundList.Count);
-            for (int i = 0; i < tagList.Count; i++)
+            using (var scope = new TransactionScope())
             {
-                Assert.AreEqual(tagList[i].tagId, tagFoundList[i].tagId);
-                Assert.AreEqual(tagList[i].tagName, tagFoundList[i].tagName);
+                List<Tag> tagList = new List<Tag>();
+                tagList.Add(createTag(tagName1));
+                tagList.Add(createTag(tagName2));
+
+                var tagFoundList = productService.FindAllTags();
+
+                // Check data
+                Assert.AreEqual(tagList.Count, tagFoundList.Count);
+                for (int i = 0; i < tagList.Count; i++)
+                {
+                    Assert.AreEqual(tagList[i].tagId, tagFoundList[i].tagId);
+                    Assert.AreEqual(tagList[i].tagName, tagFoundList[i].tagName);
+                }            
             }
         }
 

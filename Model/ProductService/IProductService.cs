@@ -63,7 +63,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="userId"> The user's id. </param>
         /// <param name="commentBody"> The comment's body. </param>
         /// <param name="productDetails"> The podruct details. </param>
-        void AddComment(long productId, long userId, CommentUpdate details);
+        long AddComment(long productId, long userId, CommentUpdate details);
 
         /// <summary>
         /// Delete the comment.
@@ -92,7 +92,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// </summary>
         /// <param name="tagName"> The tag's name. </param>
         /// <exception cref="DuplicateInstanceException"/>
-        void addTag(string tagName);
+        long addTag(string tagName);
 
         /// <summary>
         /// Find all tags
