@@ -36,13 +36,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         { 
            UserProfileDetails target = (UserProfileDetails)obj;
 
-                return (this.FirstName == target.FirstName)
-                      && (this.Lastname == target.Lastname)
-                      && (this.Email == target.Email)
-                      && (this.Language == target.Language)
-                      && (this.Country == target.Country)
+                return (this.firstName == target.firstName)
+                      && (this.lastName == target.lastName)
+                      && (this.email == target.email)
+                      && (this.language == target.language)
+                      && (this.country == target.country)
                       && (this.role == target.role)
-                      && (this.Address == target.Address);
+                      && (this.address == target.address);
         }
 
             // The GetHashCode method is used in hashing algorithms and data 
@@ -50,7 +50,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             // properly, we suppose that the FirstName does not change.        
             public override int GetHashCode()
             {
-                return this.FirstName.GetHashCode();
+                return this.firstName.GetHashCode();
             }
 
             /// <summary>
@@ -61,17 +61,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 String strUserProfileDetails;
 
                 strUserProfileDetails =
-                    "[ firstName = " + FirstName + " | " +
-                    "lastName = " + Lastname + " | " +
-                    "email = " + Email + " | " +
-                    "language = " + Language + " | " +
-                    "country = " + Country + " |" +
+                    "[ firstName = " + firstName + " | " +
+                    "lastName = " + lastName + " | " +
+                    "email = " + email + " | " +
+                    "language = " + language + " | " +
+                    "country = " + country + " |" +
                     "role = " + role + "|" +
-                    "address = " + Address + " ]";
+                    "address = " + address + " ]";
 
 
                 return strUserProfileDetails;
             }
-        }
     }
 }

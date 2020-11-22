@@ -56,6 +56,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             kernel.Bind<IShoppingService>().
                 To<ShoppingService>();
 
+            kernel.Bind<IUserService>().
+                To<UserService>();
+
             string connectionString = ConfigurationManager.ConnectionStrings["practicamadEntities"].ConnectionString;
 
             kernel.Bind<DbContext>().
