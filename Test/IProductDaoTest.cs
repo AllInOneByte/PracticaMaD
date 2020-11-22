@@ -20,6 +20,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         private static ICategoryDao categoryDao;
         private Product product;
         private Category category;
+        private Category category2;
 
         // Variables used in several tests are initialized here
         private const String categoryName = "categoryTest";
@@ -74,6 +75,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         public void MyTestInitialize()
         {
             transaction = new TransactionScope();
+
+            category = new Category();
+            category.categoryName = categoryName;
+
+            category2 = new Category();
+            category2.categoryName = "Category2";
+
+            categoryDao.Create(category);
+            categoryDao.Create(category2);
         }
 
         //Use TestCleanup to run code after each test has run
@@ -91,64 +101,42 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         [TestMethod]
         public void DAO_FindByKeywordsAndCategoryTest_WithCategory()
         {
-            category = new Category();
-            category.categoryName = categoryName;
+            int numberFoundProducts = 1;
+            int numberProducts = 2;
+            List<Product> createdProducts = new List<Product>();
 
-            categoryDao.Create(category);
-
-            Category category2 = new Category();
-            category2.categoryName = "Category2";
-
-            categoryDao.Create(category2);
-
-            int numberProducts = 1;
-            List<Product> createProducts = new List<Product>();
-            product = new Product();
-            for (int i = 0; i < 2; i++)
-            {
-                product.categoryId = category.categoryId;
-                product.productName = "name" + i;
-                product.productPrice = productPrice;
-                product.productQuantity = productQuantity;
-                product.productDate = productDate;
-                productDao.Create(product);
-                createProducts.Add(product);
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                product.categoryId = category2.categoryId;
-                product.productName = "name" + i;
-                product.productPrice = productPrice;
-                product.productQuantity = productQuantity;
-                product.productDate = productDate;
-                productDao.Create(product);
-                createProducts.Add(product);
-            }
-
-            int count = 1;
-            int startIndex = 0;
-
-            List<Product> listProduct;
-            List<Product> totalRetrievedProducts = new List<Product>(numberProducts);
-
-            do
-            {
-                listProduct = productDao.FindByKeywordsAndCategory("1", category.categoryId);
-
-                totalRetrievedProducts.AddRange(listProduct);
-
-                Assert.IsTrue(listProduct.Count <= count);
-
-                startIndex += count;
-            } while (startIndex < numberProducts);
-
-            // Check the total number of account retrieved
-            Assert.AreEqual(1, totalRetrievedProducts.Count);
-
-            // are the accounts retrieved the same than the originals?
             for (int i = 0; i < numberProducts; i++)
             {
-                Assert.AreEqual(totalRetrievedProducts[i], createProducts[i]);
+                product = new Product();
+                product.productName = productName + i;
+                product.productPrice = productPrice;
+                product.productDate = productDate;
+                product.productQuantity = productQuantity;
+                product.categoryId = category.categoryId;
+
+                productDao.Create(product);
+                if (i == 1)
+                {
+                    createdProducts.Add(product);
+                }
+
+                product = new Product();
+                product.productName = "name" + i;
+                product.productPrice = productPrice;
+                product.productDate = productDate;
+                product.productQuantity = productQuantity;
+                product.categoryId = category2.categoryId;
+
+                productDao.Create(product);
+            }
+
+            List<Product> totalRetrievedProducts = productDao.FindByKeywordsAndCategory("1",category.categoryId);
+
+            Assert.AreEqual(numberFoundProducts, totalRetrievedProducts.Count);
+
+            for (int i = 0; i < numberFoundProducts; i++)
+            {
+                Assert.AreEqual(totalRetrievedProducts[i], createdProducts[i]);
             }
         }
 
@@ -158,64 +146,45 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         [TestMethod]
         public void DAO_FindByKeywordsAndCategoryTest_WithinCategory()
         {
-            category = new Category();
-            category.categoryName = categoryName;
-
-            categoryDao.Create(category);
-
-            Category category2 = new Category();
-            category2.categoryName = "Category2";
-
-            categoryDao.Create(category2);
-
             int numberProducts = 2;
-            List<Product> createProducts = new List<Product>();
-            product = new Product();
-            for (int i = 0; i < 2; i++)
-            {
-                product.categoryId = category.categoryId;
-                product.productName = "name" + i;
-                product.productPrice = productPrice;
-                product.productQuantity = productQuantity;
-                product.productDate = productDate;
-                productDao.Create(product);
-                createProducts.Add(product);
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                product.categoryId = category2.categoryId;
-                product.productName = "name" + i;
-                product.productPrice = productPrice;
-                product.productQuantity = productQuantity;
-                product.productDate = productDate;
-                productDao.Create(product);
-                createProducts.Add(product);
-            }
+            List<Product> createdProducts = new List<Product>();
 
-            int count = 2;
-            int startIndex = 0;
-
-            List<Product> listProduct;
-            List<Product> totalRetrievedProducts = new List<Product>(numberProducts);
-
-            do
-            {
-                listProduct = productDao.FindByKeywordsAndCategory("1", -1);
-
-                totalRetrievedProducts.AddRange(listProduct);
-
-                Assert.IsTrue(listProduct.Count <= count);
-
-                startIndex += count;
-            } while (startIndex < numberProducts);
-
-            // Check the total number of account retrieved
-            Assert.AreEqual(1, totalRetrievedProducts.Count);
-
-            // are the accounts retrieved the same than the originals?
             for (int i = 0; i < numberProducts; i++)
             {
-                Assert.AreEqual(totalRetrievedProducts[i], createProducts[i]);
+                product = new Product();
+                product.productName = productName + i;
+                product.productPrice = productPrice;
+                product.productDate = productDate;
+                product.productQuantity = productQuantity;
+                product.categoryId = category.categoryId;
+
+                productDao.Create(product);
+                if (i == 1)
+                {
+                    createdProducts.Add(product);
+                }
+
+                product = new Product();
+                product.productName = "name" + i;
+                product.productPrice = productPrice;
+                product.productDate = productDate;
+                product.productQuantity = productQuantity;
+                product.categoryId = category2.categoryId;
+
+                productDao.Create(product);
+                if (i == 1)
+                {
+                    createdProducts.Add(product);
+                }
+            }
+
+            List<Product> totalRetrievedProducts = productDao.FindByKeywordsAndCategory("1", -1);
+
+            Assert.AreEqual(numberProducts, totalRetrievedProducts.Count);
+
+            for (int i = 0; i < numberProducts; i++)
+            {
+                Assert.AreEqual(totalRetrievedProducts[i], createdProducts[i]);
             }
         }
 
@@ -225,48 +194,26 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         [TestMethod]
         public void DAO_FindAll()
         {
-            int numberProducts = 11;
-
+            int numberProducts = 8;
             List<Product> createdProducts = new List<Product>(numberProducts);
 
-            category = new Category();
-            category.categoryName = categoryName;
-
-            categoryDao.Create(category);
-
-            for (int i = 0; i < numberProducts; i++)
+            for(int i = 0; i < numberProducts; i++)
             {
-                product.categoryId = category.categoryId;
-                product.productName = productName;
+                product = new Product();
+                product.productName = productName + i;
                 product.productPrice = productPrice;
-                product.productQuantity = productQuantity;
                 product.productDate = productDate;
+                product.productQuantity = productQuantity;
+                product.categoryId = category.categoryId;
+
                 productDao.Create(product);
                 createdProducts.Add(product);
             }
 
-            int count = 10;
-            int startIndex = 0;
+            List<Product> totalRetrievedProducts = productDao.FindAll();
 
-            List<Product> listProducts;
-            List<Product> totalRetrievedProducts = new List<Product>(numberProducts);
-
-            /* Get the accounts in blocks of "count" size */
-            do
-            {
-                listProducts = productDao.FindAll();
-
-                totalRetrievedProducts.AddRange(listProducts);
-
-                Assert.IsTrue(listProducts.Count <= count);
-
-                startIndex += count;
-            } while (startIndex < numberProducts);
-
-            // Check the total number of account retrieved
             Assert.AreEqual(numberProducts, totalRetrievedProducts.Count);
-
-            // are the accounts retrieved the same than the originals?
+            
             for (int i = 0; i < numberProducts; i++)
             {
                 Assert.AreEqual(totalRetrievedProducts[i], createdProducts[i]);
