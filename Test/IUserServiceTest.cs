@@ -1,7 +1,8 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
-using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
@@ -22,7 +23,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             private const string email = "user@udc.es";
             private const string language = "es";
             private const string country = "ES";
-            private const int role = "1";
+            private const byte role = 1;
             private const string address = "n10c3";
             private const long NON_EXISTENT_USER_ID = -1;
             private static IKernel kernel;
@@ -99,10 +100,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 {
                     // Register user
                     var userId = userService.RegisterUser(loginName, clearPassword,
-                        new UserProfileDetails(firstName, lastName, email, language, country, role, address));
+                        new UserProfileDetails(firstName, lastName, email, language, country, role));
 
                     var expected = new LoginResult(userId, firstName,
-                        PasswordEncrypter.Crypt(clearPassword), language, country, role, address);
+                        PasswordEncrypter.Crypt(clearPassword), language, country, role);
 
                     // Login with clear password
                     var actual =
@@ -126,10 +127,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 {
                     // Register user
                     var userId = userService.RegisterUser(loginName, clearPassword,
-                        new UserProfileDetails(firstName, lastName, email, language, country, role, address));
+                        new UserProfileDetails(firstName, lastName, email, language, country, role));
 
                     var expected = new LoginResult(userId, firstName,
-                        PasswordEncrypter.Crypt(clearPassword), language, country, role, address);
+                        PasswordEncrypter.Crypt(clearPassword), language, country, role);
 
                     // Login with encrypted password
                     var obtained =
@@ -154,7 +155,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 {
                     // Register user
                     var userId = userService.RegisterUser(loginName, clearPassword,
-                        new UserProfileDetails(firstName, lastName, email, language, country, role, address));
+                        new UserProfileDetails(firstName, lastName, email, language, country, role));
 
                     // Login with incorrect (clear) password
                     var actual =
@@ -185,7 +186,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 using (var scope = new TransactionScope())
                 {
                     var expected =
-                        new UserProfileDetails(firstName, lastName, email, language, country, role, address);
+                        new UserProfileDetails(firstName, lastName, email, language, country, role);
 
                     var userId =
                         userService.RegisterUser(loginName, clearPassword, expected);
@@ -220,7 +221,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 {
                     // Register user and update profile details
                     var userId = userService.RegisterUser(loginName, clearPassword,
-                        new UserProfileDetails(firstName, lastName, email, language, country, role, address));
+                        new UserProfileDetails(firstName, lastName, email, language, country, role));
 
                     var expected =
                         new UserProfileDetails(firstName + "X", lastName + "X",
@@ -248,7 +249,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 using (var scope = new TransactionScope())
                 {
                     userService.UpdateUserProfileDetails(NON_EXISTENT_USER_ID,
-                        new UserProfileDetails(firstName, lastName, email, language, country, role, address));
+                        new UserProfileDetails(firstName, lastName, email, language, country, role));
 
                     // transaction.Complete() is not called, so Rollback is executed.
                 }
@@ -264,7 +265,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 {
                     // Register user
                     var userId = userService.RegisterUser(loginName, clearPassword,
-                        new UserProfileDetails(firstName, lastName, email, language, country, role, address));
+                        new UserProfileDetails(firstName, lastName, email, language, country, role));
 
                     // Change password
                     var newClearPassword = clearPassword + "X";
@@ -289,7 +290,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 {
                     // Register user
                     var userId = userService.RegisterUser(loginName, clearPassword,
-                        new UserProfileDetails(firstName, lastName, email, language, country, role, address));
+                        new UserProfileDetails(firstName, lastName, email, language, country, role));
 
                     // Change password
                     var newClearPassword = clearPassword + "X";
@@ -320,7 +321,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 {
                     // Register user
                     userService.RegisterUser(loginName, clearPassword,
-                        new UserProfileDetails(firstName, lastName, email, language, country, role, address));
+                        new UserProfileDetails(firstName, lastName, email, language, country, role));
 
                     bool userExists = userService.UserExists(loginName);
 

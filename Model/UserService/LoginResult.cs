@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Es.Udc.DotNet.MiniPortal.Model.UserService
+namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
     /// <summary>
     /// A Custom VO which keeps the results for a login action.

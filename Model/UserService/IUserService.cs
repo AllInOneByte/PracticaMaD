@@ -7,11 +7,11 @@ using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Ninject;
-usingSystem;
+using System;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
-    interface IUserService
+    public interface IUserService
     {
         [Inject]
        IUserProfileDao UserProfileDao { set; }

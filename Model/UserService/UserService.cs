@@ -14,7 +14,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
-    class UserService : IUserService {
+    public class UserService : IUserService {
         private object creditCard;
 
         [Inject]
