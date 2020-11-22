@@ -13,9 +13,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         public int VerificationCode { get; private set; }
 
-        public System.Datetime ExpirationDate { get; private set; }
+        public System.DateTime ExpirationDate { get; private set; }
 
-        public int DefaultCard { get; private set; }
+        public byte DefaultCard { get; private set; }
 
         public long userId { get; private set; }
         #endregion
@@ -31,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <param name="DefaultCard">The user's default card.</param>
         /// <param name="userId">The user's kid</param>
         public CreditCardDetails(String cardType, int cardNumber,
-            int verificationCode, System.Datetime expirationDate, int defaultCard, long userId)
+            int verificationCode, System.DateTime expirationDate, byte defaultCard, long userId)
         {
             this.CardType = cardType;
             this.cardNumber = cardNumber;
