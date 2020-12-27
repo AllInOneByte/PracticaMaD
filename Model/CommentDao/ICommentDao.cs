@@ -11,6 +11,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
         /// <param name="productId">productId</param>
         /// <returns>List of Comment</returns>
         /// <exception cref="InstanceNotFoundException"/>
-        List<Comment> FindByProductIdOrderByDeliveryDate(long productId, int startIndex, int count);
+        List<Comment> FindByProductIdOrderByDeliveryDate(long productId, int startIndex = 0, int count = 20);
     }
 }

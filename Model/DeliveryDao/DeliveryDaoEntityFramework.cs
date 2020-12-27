@@ -29,7 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DeliveryDao
         /// <param userId="userId">userId</param>
         /// <returns>List of Deliverys</returns>
         /// <exception cref="InstanceNotFoundException"/>
-        public List<Delivery> FindByUserId(long userId, int startIndex, int count)
+        public List<Delivery> FindByUserId(long userId, int startIndex = 0, int count = 20)
         {
             List<Delivery> delivery = null;
 
