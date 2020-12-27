@@ -72,9 +72,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        public List<ShoppingCart> GetAllDeliveries(long userId)
+        public List<ShoppingCart> GetAllDeliveries(long userId, int startIndex, int count)
         {
-            List<Delivery> deliveries = DeliveryDao.FindByUserId(userId);
+            List<Delivery> deliveries = DeliveryDao.FindByUserId(userId, startIndex, count);
             List<ShoppingCart> shoppingCarts = new List<ShoppingCart>();
 
             foreach (Delivery delivery in deliveries)
@@ -94,9 +94,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        public List<ShoppingCartDetails> GetDeliveryDetails(long deliveryId)
+        public List<ShoppingCartDetails> GetDeliveryDetails(long deliveryId, int startIndex, int count)
         {
-            List<DeliveryLine> lines = DeliveryLineDao.FindByDeliveryId(deliveryId);
+            List<DeliveryLine> lines = DeliveryLineDao.FindByDeliveryId(deliveryId, startIndex, count);
             List<ShoppingCartDetails> details = new List<ShoppingCartDetails>();
 
             foreach (DeliveryLine line in lines)

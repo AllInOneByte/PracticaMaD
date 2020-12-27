@@ -42,7 +42,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// <returns> A list with all the deliveries from the user </returns>
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        List<ShoppingCart> GetAllDeliveries(long userId);
+        List<ShoppingCart> GetAllDeliveries(long userId, int startIndex, int count);
 
         /// <summary>
         /// Gets the details of a specific delivery.
@@ -51,6 +51,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// <returns> The details of the delivery </returns>
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        List<ShoppingCartDetails> GetDeliveryDetails(long deliveryId);
+        List<ShoppingCartDetails> GetDeliveryDetails(long deliveryId, int startIndex, int count);
     }
 }

@@ -8,7 +8,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
         /// <summary>
         /// Finds all Tags
         /// <returns>List of Tags</returns>
-        List<Tag> FindAll();
+        List<Tag> FindAll(int startIndex, int count);
 
         /// <summary>
         /// Finds a tag by his name
