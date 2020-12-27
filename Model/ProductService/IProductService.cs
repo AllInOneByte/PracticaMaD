@@ -46,7 +46,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="keyword">The keyword</param>
         /// <optional param name="categoryId">The category ID</param>
         /// <returns>A list of Products</returns>
-        List<ProductDetails> FindAllProductsByKeyword(string keyword, long categoryId, int startIndex = 0, int count = 20);
+        List<ProductDetails> FindAllProductsByKeyword(string keyword, long categoryId = -1, int startIndex = 0, int count = 20);
 
         /// <summary>
         /// Find a product

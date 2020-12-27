@@ -54,7 +54,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             return productsDetails;
         }
 
-        public List<ProductDetails> FindAllProductsByKeyword(string keyword, long categoryId, int startIndex = 0, int count = 20)
+        public List<ProductDetails> FindAllProductsByKeyword(string keyword, long categoryId = -1, int startIndex = 0, int count = 20)
         {
             List<ProductDetails> productsDetails = new List<ProductDetails>();
             List<Product> products = ProductDao.FindByKeywordsAndCategory(keyword, categoryId, startIndex, count);
