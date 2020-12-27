@@ -38,7 +38,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// Find all products
         /// </summary>
         /// <returns>A list of Products</returns>
-        List<ProductDetails> FindAllProducts();
+        List<ProductDetails> FindAllProducts(int startIndex, int count);
 
         /// <summary>
         /// Find all creditCards that meet the search conditions
@@ -46,7 +46,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="keyword">The keyword</param>
         /// <optional param name="categoryId">The category ID</param>
         /// <returns>A list of Products</returns>
-        List<ProductDetails> FindAllProductsByKeyword(string keyword, long categoryId);
+        List<ProductDetails> FindAllProductsByKeyword(string keyword, long categoryId, int startIndex, int count);
 
         /// <summary>
         /// Find a product
@@ -85,7 +85,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// </summary>
         /// <param name="productId">The product's ID</param>
         /// <returns>A list of Comments</returns>
-        List<CommentDetails> FindAllProductComments(long productId);
+        List<CommentDetails> FindAllProductComments(long productId, int startIndex, int count);
 
         /// <summary>
         /// Add a new tag.
@@ -98,6 +98,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// Find all tags
         /// </summary>
         /// <returns>A list of Tags</returns>
-        List<Tag> FindAllTags();
+        List<Tag> FindAllTags(int startIndex, int count);
     }
 }

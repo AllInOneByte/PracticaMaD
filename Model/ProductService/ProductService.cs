@@ -41,10 +41,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             ProductDao.Update(product);
         }
 
-        public List<ProductDetails> FindAllProducts()
+        public List<ProductDetails> FindAllProducts(int startIndex, int count)
         {
             List<ProductDetails> productsDetails = new List<ProductDetails>();
-            List<Product> products = ProductDao.FindAll();
+            List<Product> products = ProductDao.FindAll(startIndex, count);
 
             foreach (var p in products)
             {
@@ -54,10 +54,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             return productsDetails;
         }
 
-        public List<ProductDetails> FindAllProductsByKeyword(string keyword, long categoryId)
+        public List<ProductDetails> FindAllProductsByKeyword(string keyword, long categoryId, int startIndex, int count)
         {
             List<ProductDetails> productsDetails = new List<ProductDetails>();
-            List<Product> products = ProductDao.FindByKeywordsAndCategory(keyword, categoryId);
+            List<Product> products = ProductDao.FindByKeywordsAndCategory(keyword, categoryId, startIndex, count);
 
             foreach (var p in products)
             {
@@ -148,10 +148,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         }
 
-        public List<CommentDetails> FindAllProductComments(long productId)
+        public List<CommentDetails> FindAllProductComments(long productId, int startIndex, int count)
         {
             List<CommentDetails> details = new List<CommentDetails>();
-            List<Comment> comments = CommentDao.FindByProductIdOrderByDeliveryDate(productId);
+            List<Comment> comments = CommentDao.FindByProductIdOrderByDeliveryDate(productId, startIndex, count);
 
             foreach (var c in comments)
             {
@@ -190,9 +190,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             return tag.tagId;
         }
 
-        public List<Tag> FindAllTags()
+        public List<Tag> FindAllTags(int startIndex, int count)
             {
-                return TagDao.FindAll();
+                return TagDao.FindAll(startIndex, count);
             }
 
             #endregion Tag Members
