@@ -26,7 +26,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
         /// Finds all the tags
         /// </summary>
         /// <returns></returns>
-        public List<Tag> FindAll(int startIndex, int count)
+        public List<Tag> FindAll(int startIndex = 0, int count = 20)
         {
             List<Tag> tags = new List<Tag>();
 

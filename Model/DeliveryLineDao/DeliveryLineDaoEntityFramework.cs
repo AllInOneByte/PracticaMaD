@@ -25,7 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DeliveryLineDao
 
         #region IDeliveryLineDao Members. Specific Operations
 
-        public List<DeliveryLine> FindByDeliveryId(long deliveryId, int startIndex, int count)
+        public List<DeliveryLine> FindByDeliveryId(long deliveryId, int startIndex = 0, int count = 20)
         {
             List<DeliveryLine> deliveryLines = null;
 

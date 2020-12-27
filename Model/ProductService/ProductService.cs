@@ -41,7 +41,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             ProductDao.Update(product);
         }
 
-        public List<ProductDetails> FindAllProducts(int startIndex, int count)
+        public List<ProductDetails> FindAllProducts(int startIndex = 0, int count = 20)
         {
             List<ProductDetails> productsDetails = new List<ProductDetails>();
             List<Product> products = ProductDao.FindAll(startIndex, count);
@@ -54,7 +54,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             return productsDetails;
         }
 
-        public List<ProductDetails> FindAllProductsByKeyword(string keyword, long categoryId, int startIndex, int count)
+        public List<ProductDetails> FindAllProductsByKeyword(string keyword, long categoryId = -1, int startIndex = 0, int count = 20)
         {
             List<ProductDetails> productsDetails = new List<ProductDetails>();
             List<Product> products = ProductDao.FindByKeywordsAndCategory(keyword, categoryId, startIndex, count);
@@ -148,7 +148,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         }
 
-        public List<CommentDetails> FindAllProductComments(long productId, int startIndex, int count)
+        public List<CommentDetails> FindAllProductComments(long productId, int startIndex = 0, int count = 20)
         {
             List<CommentDetails> details = new List<CommentDetails>();
             List<Comment> comments = CommentDao.FindByProductIdOrderByDeliveryDate(productId, startIndex, count);
@@ -190,7 +190,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             return tag.tagId;
         }
 
-        public List<Tag> FindAllTags(int startIndex, int count)
+        public List<Tag> FindAllTags(int startIndex = 0, int count = 20)
             {
                 return TagDao.FindAll(startIndex, count);
             }

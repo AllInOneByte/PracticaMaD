@@ -12,7 +12,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         /// <param categoryId="categoryId">categoryId</param>
         /// <returns>List of Product</returns>
         /// <exception cref="InstanceNotFoundException"/>
-        List<Product> FindByKeywordsAndCategory(string keyWords, long categoryId, int startIndex, int count);
+        List<Product> FindByKeywordsAndCategory(string keyWords, long categoryId = -1, int startIndex = 0, int count = 20);
 
         /// <summary>
         /// Finds all Products

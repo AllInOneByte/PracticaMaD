@@ -31,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         /// <param categoryId="categoryId">categoryId</param>
         /// <returns>List of Product</returns>
         /// <exception cref="InstanceNotFoundException"/>
-        public List<Product> FindByKeywordsAndCategory(string keyWords, long categoryId, int startIndex, int count) {
+        public List<Product> FindByKeywordsAndCategory(string keyWords, long categoryId = -1, int startIndex = 0, int count = 20) {
             List<Product> product = null;
 
             #region Option 1: Using Linq.
