@@ -7,8 +7,8 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[DeliveryLine
 DROP TABLE [DeliveryLine]
 GO
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Labeled]') AND type in ('U'))
-DROP TABLE [Labeled]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[CommentTag]') AND type in ('U'))
+DROP TABLE [CommentTag]
 GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Comment]') AND type in ('U'))
@@ -122,15 +122,13 @@ CREATE TABLE Comment (
 	CONSTRAINT [FK_ProductComment] FOREIGN KEY (productId) REFERENCES Product(productId)
 )
 
-CREATE TABLE Labeled (
-	labeledId bigint IDENTITY(1,1) NOT NULL,
-	tagId bigint NOT NULL,
-	commentId bigint NOT NULL,
-
-	CONSTRAINT [PK_Labeled] PRIMARY KEY (labeledId),
-	CONSTRAINT [FK_TagLabeled] FOREIGN KEY (tagId) REFERENCES Tag(tagId),
-	CONSTRAINT [FK_CommentLabeled] FOREIGN KEY (commentId) REFERENCES Comment(commentId)
-)
+CREATE TABLE [CommentTag] (
+    [commentId] bigint NOT NULL,
+    [tagId] bigint NOT NULL,
+    CONSTRAINT [PK_CommentTag] PRIMARY KEY ([commentId], [tagId]),
+    CONSTRAINT [FK_CommentTag_commentId] FOREIGN KEY ([commentId]) REFERENCES [Comment] ([commentId]) ON DELETE CASCADE,
+    CONSTRAINT [FK_CommentTag_TagId] FOREIGN KEY ([tagId]) REFERENCES [Tag] ([tagId]) ON DELETE CASCADE
+);
 
 CREATE TABLE SpecificProperty (
 	propertyId bigint IDENTITY(1,1) NOT NULL,
