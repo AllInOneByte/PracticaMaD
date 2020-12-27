@@ -17,7 +17,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Comment()
         {
-            this.Labeleds = new HashSet<Labeled>();
+            this.Tags = new HashSet<Tag>();
         }
     
         public long commentId { get; set; }
@@ -26,9 +26,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public long userId { get; set; }
         public long productId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Labeled> Labeleds { get; set; }
         public virtual Product Product { get; set; }
         public virtual UserProfile UserProfile { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }

@@ -13,10 +13,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class practicamadEntities : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public practicamadEntities()
+            : base("name=practicamadEntities")
         {
         }
     
@@ -30,7 +30,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual DbSet<CreditCard> CreditCards { get; set; }
         public virtual DbSet<Delivery> Deliveries { get; set; }
         public virtual DbSet<DeliveryLine> DeliveryLines { get; set; }
-        public virtual DbSet<Labeled> Labeleds { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<SpecificProperty> SpecificProperties { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }

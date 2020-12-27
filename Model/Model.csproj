@@ -87,9 +87,6 @@
     </Compile>
     <Compile Include="DeliveryLineDao\DeliveryLineDaoEntityFramework.cs" />
     <Compile Include="DeliveryLineDao\IDeliveryLineDao.cs" />
-    <Compile Include="Labeled.cs">
-      <DependentUpon>PracticaMaD.tt</DependentUpon>
-    </Compile>
     <Compile Include="LabeledDao\LabeledDaoEntityFramework.cs" />
     <Compile Include="LabeledDao\ILabeledDao.cs" />
     <Compile Include="PracticaMaD.Context.cs">
@@ -102,10 +99,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
-    <Compile Include="PracticaMaD.Designer.cs">
+    <Compile Include="PracticaMaD.Model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PracticaMaD.edmx</DependentUpon>
+      <DependentUpon>PracticaMaD.Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
@@ -150,12 +147,12 @@
   <ItemGroup>
     <Content Include="PracticaMaD.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PracticaMaD.edmx</DependentUpon>
+      <DependentUpon>PracticaMaD.Model.edmx</DependentUpon>
       <LastGenOutput>PracticaMaD.Context.cs</LastGenOutput>
     </Content>
     <Content Include="PracticaMaD.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PracticaMaD.edmx</DependentUpon>
+      <DependentUpon>PracticaMaD.Model.edmx</DependentUpon>
       <LastGenOutput>PracticaMaD.cs</LastGenOutput>
     </Content>
     <Content Include="Sql\SqlServerCreateDatabase.sql" />
@@ -166,12 +163,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <EntityDeploy Include="PracticaMaD.edmx">
+    <EntityDeploy Include="PracticaMaD.Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PracticaMaD.Designer.cs</LastGenOutput>
+      <LastGenOutput>PracticaMaD.Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="PracticaMaD.edmx.diagram">
-      <DependentUpon>PracticaMaD.edmx</DependentUpon>
+    <None Include="PracticaMaD.Model.edmx.diagram">
+      <DependentUpon>PracticaMaD.Model.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
