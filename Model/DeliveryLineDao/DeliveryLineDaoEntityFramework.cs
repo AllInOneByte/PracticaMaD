@@ -25,7 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DeliveryLineDao
 
         #region IDeliveryLineDao Members. Specific Operations
 
-        public List<DeliveryLine> FindByDeliveryId(long deliveryId)
+        public List<DeliveryLine> FindByDeliveryId(long deliveryId, int startIndex, int count)
         {
             List<DeliveryLine> deliveryLines = null;
 
@@ -36,7 +36,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DeliveryLineDao
             var result =
                 (from d in deliveryLinesFound
                  where d.deliveryId == deliveryId
-                 select d);
+                 select d).Skip(startIndex).Take(count);
 
             deliveryLines = result.ToList();
 
