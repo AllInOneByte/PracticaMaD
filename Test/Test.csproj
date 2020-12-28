@@ -76,6 +76,7 @@
     <Compile Include="ICreditCardDaoTest.cs" />
     <Compile Include="IDeliveryDaoTest.cs" />
     <Compile Include="IDeliveryLineTest.cs" />
+    <Compile Include="IProductDaoTest.cs" />
     <Compile Include="IProductServiceTest.cs" />
     <Compile Include="IShoppingServiceTest.cs" />
     <Compile Include="ITagDaoTest.cs" />
