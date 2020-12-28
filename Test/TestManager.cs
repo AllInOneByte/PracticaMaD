@@ -8,7 +8,6 @@ using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DeliveryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DeliveryLineDao;
-using Es.Udc.DotNet.PracticaMaD.Model.LabeledDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Ninject;
@@ -52,9 +51,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             kernel.Bind<IUserProfileDao>().
                 To<UserProfileDaoEntityFramework>();
-
-            kernel.Bind<ILabeledDao>().
-                To<LabeledDaoEntityFramework>();
 
             kernel.Bind<IProductService>().
                 To<ProductService>();

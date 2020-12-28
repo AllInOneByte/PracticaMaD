@@ -73,17 +73,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ICommentDaoTest.cs" />
-    <Compile Include="IProductDaoTest.cs" />
-    <Compile Include="IShoppingServiceTest.cs" />
-    <Compile Include="ITagDaoTest.cs" />
-    <Compile Include="TestManager.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IProductServiceTest.cs" />
     <Compile Include="ICreditCardDaoTest.cs" />
-    <Compile Include="IUserServiceTest.cs" />
-    <Compile Include="IUserProfileDaoTest.cs" />
     <Compile Include="IDeliveryDaoTest.cs" />
     <Compile Include="IDeliveryLineTest.cs" />
+    <Compile Include="IProductServiceTest.cs" />
+    <Compile Include="IShoppingServiceTest.cs" />
+    <Compile Include="ITagDaoTest.cs" />
+    <Compile Include="IUserProfileDaoTest.cs" />
+    <Compile Include="TestManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IUserServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
