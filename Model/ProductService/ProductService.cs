@@ -1,7 +1,6 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
-using Es.Udc.DotNet.PracticaMaD.Model.LabeledDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Ninject;
@@ -16,9 +15,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         public IProductDao ProductDao { private get; set; }
 
         [Inject]
-        public ILabeledDao LabeledDao { private get; set; }
-
-        [Inject]
         public ICommentDao CommentDao { private get; set; }
 
         [Inject]
@@ -30,13 +26,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        public void UpdateProductDetails(long productId, ProductUpdateDetails productDetails)
+        public void UpdateProductDetails(long productId, string productName, decimal productPrice, int productQuantity)
         {
             Product product = ProductDao.Find(productId);
 
-            product.productName = productDetails.ProductName;
-            product.productPrice = productDetails.ProductPrice;
-            product.productQuantity = productDetails.ProductQuantity;
+            product.productName = productName;
+            product.productPrice = productPrice;
+            product.productQuantity = productQuantity;
 
             ProductDao.Update(product);
         }
@@ -89,11 +85,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         #region Comment Members
 
         /// <exception cref="InstanceNotFoundException"/>
-        public long AddComment(long productId, long userId, CommentUpdate details)
+        public long AddComment(long productId, long userId, string commentBody)
         {
             Comment comment = new Comment
             {
-                comment1 = details.CommentBody,
+                comment1 = commentBody,
                 commentDate = System.DateTime.Now,
                 userId = userId,
                 productId = productId
@@ -101,16 +97,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
             CommentDao.Create(comment);
 
-            foreach (var tagId in details.TagIds)
-            {
-                Labeled labeled = new Labeled
-                {
-                    tagId = tagId,
-                    commentId = comment.commentId
-                };
+            return comment.commentId;
+        }
 
-                LabeledDao.Create(labeled);
+        public long AddComment(long productId, long userId, string commentBody, List<long> tags)
+        {
+            Comment comment = new Comment
+            {
+                comment1 = commentBody,
+                commentDate = System.DateTime.Now,
+                userId = userId,
+                productId = productId
+            };
+
+            List<Tag> tagList = new List<Tag>();
+            foreach (var tagId in tags)
+            {
+                tagList.Add(TagDao.Find(tagId));
             }
+            comment.Tags = tagList;
+
+            CommentDao.Create(comment);
 
             return comment.commentId;
         }
@@ -119,33 +126,49 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         public void DeleteComment(long commentId)
         {
             var comment = CommentDao.Find(commentId);
-            foreach (var l in comment.Labeleds.ToList())
-            {
-                LabeledDao.Remove(l.labeledId);
-            }
             CommentDao.Remove(comment.commentId);
         }
 
         /// <exception cref="InstanceNotFoundException"/>
-        public void UpdateComment(long commentId, CommentUpdate details)
+        public void UpdateComment(long commentId, string commentBody)
         {
-            Comment c = CommentDao.Find(commentId);
+            Comment comment = CommentDao.Find(commentId);
 
-            c.comment1 = details.CommentBody;
+            comment.comment1 = commentBody;
 
-            CommentDao.Update(c);
+            CommentDao.Update(comment);
+        }
 
-            foreach (var tagId in details.TagIds)
+        /// <exception cref="InstanceNotFoundException"/>
+        public void UpdateComment(long commentId, string commentBody, List<long> newTags)
+        {
+            Comment comment = CommentDao.Find(commentId);
+
+            comment.comment1 = commentBody;
+            foreach (var tagId in newTags)
             {
-                Labeled labeled = new Labeled
-                {
-                    tagId = tagId,
-                    commentId = commentId
-                };
-
-                LabeledDao.Create(labeled);
+                comment.Tags.Add(TagDao.Find(tagId));
             }
 
+            CommentDao.Update(comment);
+        }
+
+        /// <exception cref="InstanceNotFoundException"/>
+        public void UpdateComment(long commentId, string commentBody, List<long> newTags, List<long> removeTags)
+        {
+            Comment comment = CommentDao.Find(commentId);
+
+            comment.comment1 = commentBody;
+            foreach (var tagId in newTags)
+            {
+                comment.Tags.Add(TagDao.Find(tagId));
+            }
+            foreach (var tagId in removeTags)
+            {
+                comment.Tags.Remove(TagDao.Find(tagId));
+            }
+
+            CommentDao.Update(comment);
         }
 
         public List<CommentDetails> FindAllProductComments(long productId, int startIndex, int count)
@@ -156,9 +179,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             foreach (var c in comments)
             {
                 List<string> tagNames = new List<string>();
-                foreach (var l in c.Labeleds.ToList())
+                foreach (var tag in c.Tags.ToList())
                 {
-                    tagNames.Add(l.Tag.tagName);
+                    tagNames.Add(tag.tagName);
                 }
                 details.Add(new CommentDetails(c.commentId, c.comment1, c.commentDate, c.userId, tagNames));
             }

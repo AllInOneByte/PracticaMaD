@@ -1,7 +1,6 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
-using Es.Udc.DotNet.PracticaMaD.Model.LabeledDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Ninject;
@@ -16,9 +15,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         IProductDao ProductDao { set; }
 
         [Inject]
-        ILabeledDao LabeledDao { set; }
-
-        [Inject]
         ICommentDao CommentDao { set; }
 
         [Inject]
@@ -29,10 +25,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// </summary>
         /// <param name="userId"> The user id. </param>
         /// <param name="productId"> The product id. </param>
-        /// <param name="productDetails"> The podruct details. </param>
+        /// <param name="productName"> The product name. </param>
+        /// <param name="productPrice"> The product price. </param>
+        /// <param name="productQuantity"> The product quantitys. </param>
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        void UpdateProductDetails(long productId, ProductUpdateDetails productDetails);
+        void UpdateProductDetails(long productId, string productName, decimal productPrice, int productQuantity);
 
         /// <summary>
         /// Find all products
@@ -62,8 +60,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="productId"> The product's id. </param>
         /// <param name="userId"> The user's id. </param>
         /// <param name="commentBody"> The comment's body. </param>
-        /// <param name="productDetails"> The podruct details. </param>
-        long AddComment(long productId, long userId, CommentUpdate details);
+        long AddComment(long productId, long userId, string commentBody);
+
+        /// <summary>
+        /// Add a new comment.
+        /// </summary>
+        /// <param name="productId"> The product's id. </param>
+        /// <param name="userId"> The user's id. </param>
+        /// <param name="commentBody"> The comment's body. </param>
+        /// <param name="tags"> The comment's btags. </param>
+        long AddComment(long productId, long userId, string commentBody, List<long> tags);
 
         /// <summary>
         /// Delete the comment.
@@ -78,8 +84,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="commentId"> The comment's id. </param>
         /// <param name="commentBody"> The comment's body. </param>
         /// <exception cref="InstanceNotFoundException"/>
-        void UpdateComment(long commentId, CommentUpdate details);
+        void UpdateComment(long commentId, string commentBody);
 
+        /// <summary>
+        /// Updates the comment.
+        /// </summary>
+        /// <param name="commentId"> The comment's id. </param>
+        /// <param name="commentBody"> The comment's body. </param>
+        /// <param name="newTags"> The comment's new tags. </param>
+        /// <exception cref="InstanceNotFoundException"/>
+        void UpdateComment(long commentId, string commentBody, List<long> newTags);
+
+        /// <summary>
+        /// Updates the comment.
+        /// </summary>
+        /// <param name="commentId"> The comment's id. </param>
+        /// <param name="commentBody"> The comment's body. </param>
+        /// <param name="newTags"> The comment's new tags. </param>
+        /// <param name="removeTags"> The remove tags of the commennt. </param>
+        /// <exception cref="InstanceNotFoundException"/>
+        void UpdateComment(long commentId, string commentBody, List<long> newTags, List<long> removeTags);
+        
         /// <summary>
         /// Find all comments of a product
         /// </summary>
