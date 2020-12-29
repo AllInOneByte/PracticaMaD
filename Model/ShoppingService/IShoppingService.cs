@@ -26,12 +26,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// <summary>
         /// Creates a new delivery object in the database.
         /// </summary>
-        /// <param name="delivery"> The delivery data. </param>
+        /// <param name="deliveryPrice"> The total price of the delivery. </param>
+        /// <param name="cardId"> The credit card ID. </param>
+        /// <param name="userId"> The user ID. </param>
+        /// <param name="description"> The description of the purchase. </param>
         /// <param name="deliveryLines"> The delivery lines. </param>
+        /// <param name="deliveryAddress"> The address to which the delivery will be sent, the user's address by default. </param>
         /// <returns> The created delivery. </returns>
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        Delivery CreateDelivery(Delivery delivery, List<DeliveryLine> deliveryLines);
+        Delivery CreateDelivery(decimal deliveryPrice, long cardId, long userId, string description,
+            List<DeliveryLine> deliveryLines, string deliveryAddress = null);
 
         /// <summary>
         /// Retrieves all the deliveries of the user.

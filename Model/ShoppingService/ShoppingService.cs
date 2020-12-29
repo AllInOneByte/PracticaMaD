@@ -28,12 +28,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        public Delivery CreateDelivery(Delivery delivery,
-            List<DeliveryLine> deliveryLines)
+        public Delivery CreateDelivery(decimal deliveryPrice, long cardId, long userId, string description,
+            List<DeliveryLine> deliveryLines, string deliveryAddress = null)
         {
-            if (CreditCardDao.FindByUserId(delivery.userId)
-                .Contains(CreditCardDao.Find(delivery.cardId)))
+            if (CreditCardDao.FindByUserId(userId)
+                .Contains(CreditCardDao.Find(cardId)))
             {
+                Delivery delivery = new Delivery
+                {
+                    deliveryDate = DateTime.Now,
+                    deliveryPrice = deliveryPrice,
+                    deliveryAddress = deliveryAddress ?? UserProfileDao.Find(userId).address,
+                    cardId = cardId,
+                    userId = userId
+                };
+
                 DeliveryDao.Create(delivery);
 
                 foreach (DeliveryLine item in deliveryLines)
