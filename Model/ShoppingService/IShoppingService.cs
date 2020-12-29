@@ -24,33 +24,35 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         IDeliveryLineDao DeliveryLineDao { set; }
 
         /// <summary>
-        /// Creates a new delivery object from the shopping cart.
+        /// Creates a new delivery object in the database.
         /// </summary>
-        /// <param name="shoppingCart"> The shopping cart data. </param>
-        /// <param name="userId"> The user profile id. </param>
-        /// <param name="cardId"> The credit card id. </param>
-        /// <returns> The created delivery </returns>
+        /// <param name="delivery"> The delivery data. </param>
+        /// <param name="deliveryLines"> The delivery lines. </param>
+        /// <returns> The created delivery. </returns>
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        ShoppingCart CreateDelivery(ShoppingCart shoppingCart,
-            List<ShoppingCartDetails> shoppingCartDetails);
+        Delivery CreateDelivery(Delivery delivery, List<DeliveryLine> deliveryLines);
 
         /// <summary>
         /// Retrieves all the deliveries of the user.
         /// </summary>
         /// <param name="userId"> The user profile id. </param>
-        /// <returns> A list with all the deliveries from the user </returns>
+        /// <param name="startIndex"> The index at which the deliveries list must start. </param>
+        /// <param name="count"> The maximum number of deliveries that must return the function. </param>
+        /// <returns> A list with all the deliveries from the user. </returns>
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        List<ShoppingCart> GetAllDeliveries(long userId, int startIndex = 0, int count = 20);
+        List<Delivery> GetAllDeliveries(long userId, int startIndex = 0, int count = 20);
 
         /// <summary>
         /// Gets the details of a specific delivery.
         /// </summary>
         /// <param name="deliveryId"> The delivery id. </param>
-        /// <returns> The details of the delivery </returns>
+        /// <param name = "startIndex" > The index at which the delivery lines list must start. </param>
+        /// <param name="count"> The maximum number of delivery lines that must return the function. </param>
+        /// <returns> The details of the delivery. </returns>
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        List<ShoppingCartDetails> GetDeliveryDetails(long deliveryId, int startIndex = 0, int count = 20);
+        List<DeliveryLine> GetDeliveryDetails(long deliveryId, int startIndex = 0, int count = 20);
     }
 }
