@@ -5,7 +5,6 @@ using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Ninject;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
@@ -37,47 +36,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             ProductDao.Update(product);
         }
 
-        public List<ProductDetails> FindAllProducts(int startIndex = 0, int count = 20)
+        public List<Product> FindAllProducts(int startIndex = 0, int count = 20)
         {
-            List<ProductDetails> productsDetails = new List<ProductDetails>();
             List<Product> products = ProductDao.FindAll(startIndex, count);
 
-            foreach (var p in products)
-            {
-                productsDetails.Add(new ProductDetails(p.productId, p.productName, p.Category.categoryName, p.productDate, p.productPrice));
-            }
-
-            return productsDetails;
+            return products;
         }
 
-        public List<ProductDetails> FindAllProductsByKeyword(string keyword, long categoryId = -1, int startIndex = 0, int count = 20)
+        public List<Product> FindAllProductsByKeyword(string keyword, long categoryId = -1, int startIndex = 0, int count = 20)
         {
-            List<ProductDetails> productsDetails = new List<ProductDetails>();
             List<Product> products = ProductDao.FindByKeywordsAndCategory(keyword, categoryId, startIndex, count);
 
-            foreach (var p in products)
-            {
-                productsDetails.Add(new ProductDetails(p.productId, p.productName, p.Category.categoryName, p.productDate, p.productPrice));
-            }
-
-            return productsDetails;
+            return products;
         }
 
         /// <exception cref="InstanceNotFoundException"/>
-        public ProductLinkDetails FindProduct(long productId)
+        public Product FindProduct(long productId)
         {
-            Product p = ProductDao.Find(productId);
-            List<string> specificName = new List<string>();
-            List<string> specificValue = new List<string>();
-
-            foreach (var s in p.SpecificProperties.ToList())
-            {
-                specificName.Add(s.propertyName);
-                specificValue.Add(s.propertyValue);
-            }
-
-            return new ProductLinkDetails(p.productId, p.productName, p.Category.categoryName, p.productDate,
-                p.productPrice, p.productQuantity, specificName, specificValue);
+            return ProductDao.Find(productId);
         }
 
         #endregion Product Members
@@ -171,22 +147,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             CommentDao.Update(comment);
         }
 
-        public List<CommentDetails> FindAllProductComments(long productId, int startIndex = 0, int count = 20)
+        public List<Comment> FindAllProductComments(long productId, int startIndex = 0, int count = 20)
         {
-            List<CommentDetails> details = new List<CommentDetails>();
-            List<Comment> comments = CommentDao.FindByProductIdOrderByDeliveryDate(productId, startIndex, count);
-
-            foreach (var c in comments)
-            {
-                List<string> tagNames = new List<string>();
-                foreach (var tag in c.Tags.ToList())
-                {
-                    tagNames.Add(tag.tagName);
-                }
-                details.Add(new CommentDetails(c.commentId, c.comment1, c.commentDate, c.userId, tagNames));
-            }
-
-            return details;
+            return CommentDao.FindByProductIdOrderByDeliveryDate(productId, startIndex, count);
         }
 
         #endregion Comment Members
@@ -214,12 +177,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         }
 
         public List<Tag> FindAllTags(int startIndex = 0, int count = 20)
-            {
-                return TagDao.FindAll(startIndex, count);
-            }
-
-            #endregion Tag Members
-
-            #endregion IProductService Members
+        {
+            return TagDao.FindAll(startIndex, count);
         }
+
+        #endregion Tag Members
+
+        #endregion IProductService Members
+    }
 }

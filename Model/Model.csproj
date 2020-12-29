@@ -107,21 +107,16 @@
     </Compile>
     <Compile Include="ProductDao\IProductDao.cs" />
     <Compile Include="ProductDao\ProductDaoEntityFramework.cs" />
-    <Compile Include="ProductService\CommentDetails.cs" />
     <Compile Include="ProductService\IProductService.cs" />
-    <Compile Include="ProductService\ProductLinkDetails.cs" />
-    <Compile Include="ProductService\ProductDetails.cs" />
     <Compile Include="ProductService\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingService\IShoppingService.cs" />
-    <Compile Include="ShoppingService\ShoppingCart.cs" />
-    <Compile Include="ShoppingService\ShoppingCartDetails.cs" />
     <Compile Include="ShoppingService\ShoppingService.cs" />
     <Compile Include="SpecificProperty.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
-    <Compile Include="SpecificProperyDao\ISpecificPropertyDao.cs" />
-    <Compile Include="SpecificProperyDao\SpecificPropertyDaoEntityFramework.cs" />
+    <Compile Include="SpecificPropertyDao\ISpecificPropertyDao.cs" />
+    <Compile Include="SpecificPropertyDao\SpecificPropertyDaoEntityFramework.cs" />
     <Compile Include="Tag.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>

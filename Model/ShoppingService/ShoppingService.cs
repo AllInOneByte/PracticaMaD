@@ -28,41 +28,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        public ShoppingCart CreateDelivery(ShoppingCart shoppingCart,
-            List<ShoppingCartDetails> shoppingCartDetails)
+        public Delivery CreateDelivery(Delivery delivery,
+            List<DeliveryLine> deliveryLines)
         {
-            if (CreditCardDao.FindByUserId(shoppingCart.UserId)
-                .Contains(CreditCardDao.Find(shoppingCart.CardId)))
+            if (CreditCardDao.FindByUserId(delivery.userId)
+                .Contains(CreditCardDao.Find(delivery.cardId)))
             {
-                Delivery delivery = new Delivery
-                {
-                    cardId = shoppingCart.CardId,
-                    userId = shoppingCart.UserId,
-                    deliveryAddress = shoppingCart.DeliveryAddress,
-                    deliveryDate = shoppingCart.DeliveryDate,
-                    deliveryPrice = shoppingCart.DeliveryPrice,
-                    description = shoppingCart.Description
-                };
-
                 DeliveryDao.Create(delivery);
 
-                foreach (ShoppingCartDetails item in shoppingCartDetails)
+                foreach (DeliveryLine item in deliveryLines)
                 {
-                    DeliveryLine line = new DeliveryLine
-                    {
-                        deliveryLineAmount = item.DeliveryLineAmount,
-                        deliveryLinePrice = item.DeliveryLinePrice,
-                        productId = item.ProductId,
-                        deliveryId = delivery.deliveryId
-                    };
+                    item.deliveryId = delivery.deliveryId;
 
-                    DeliveryLineDao.Create(line);
+                    DeliveryLineDao.Create(item);
                 }
 
-                shoppingCart.DeliveryId = delivery.deliveryId;
-
-                return shoppingCart;
-                
+                return delivery;
             }
             else
             {
@@ -72,45 +53,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        public List<ShoppingCart> GetAllDeliveries(long userId, int startIndex = 0, int count = 20)
+        public List<Delivery> GetAllDeliveries(long userId, int startIndex = 0, int count = 20)
         {
-            List<Delivery> deliveries = DeliveryDao.FindByUserId(userId, startIndex, count);
-            List<ShoppingCart> shoppingCarts = new List<ShoppingCart>();
-
-            foreach (Delivery delivery in deliveries)
-            {
-                ShoppingCart shoppingCart = new ShoppingCart(delivery.deliveryDate,
-                    delivery.deliveryPrice, delivery.deliveryAddress,
-                    delivery.description, delivery.userId, delivery.cardId)
-                {
-                    DeliveryId = delivery.deliveryId
-                };
-
-                shoppingCarts.Add(shoppingCart);
-            }
-
-            return shoppingCarts;
+            return DeliveryDao.FindByUserId(userId, startIndex, count);
         }
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        public List<ShoppingCartDetails> GetDeliveryDetails(long deliveryId, int startIndex = 0, int count = 20)
+        public List<DeliveryLine> GetDeliveryDetails(long deliveryId, int startIndex = 0, int count = 20)
         {
-            List<DeliveryLine> lines = DeliveryLineDao.FindByDeliveryId(deliveryId, startIndex, count);
-            List<ShoppingCartDetails> details = new List<ShoppingCartDetails>();
-
-            foreach (DeliveryLine line in lines)
-            {
-                ShoppingCartDetails shoppingCartDetails = new ShoppingCartDetails(
-                    line.deliveryLineAmount, line.deliveryLinePrice, line.productId)
-                {
-                    DeliveryId = line.deliveryId
-                };
-
-                details.Add(shoppingCartDetails);
-            }
-
-            return details;
+            return DeliveryLineDao.FindByDeliveryId(deliveryId, startIndex, count);
         }
 
         #endregion IShoppingService members

@@ -23,36 +23,39 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <summary>
         /// Updates the product details.
         /// </summary>
-        /// <param name="userId"> The user id. </param>
-        /// <param name="productId"> The product id. </param>
-        /// <param name="productName"> The product name. </param>
-        /// <param name="productPrice"> The product price. </param>
-        /// <param name="productQuantity"> The product quantitys. </param>
+        /// <param name="productId"> The product's id. </param>
+        /// <param name="productName"> The product's name. </param>
+        /// <param name="productPrice"> The product's price. </param>
+        /// <param name="productQuantity"> The product's quantity. </param>
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
         void UpdateProductDetails(long productId, string productName, decimal productPrice, int productQuantity);
 
         /// <summary>
-        /// Find all products
+        /// Find all products.
         /// </summary>
-        /// <returns>A list of Products</returns>
-        List<ProductDetails> FindAllProducts(int startIndex, int count);
+        /// <param name="startIndex"> The index at which the products list must start. </param>
+        /// <param name="count"> The maximum number of products that must return the function. </param>
+        /// <returns> A list of products. </returns>
+        List<Product> FindAllProducts(int startIndex, int count);
 
         /// <summary>
-        /// Find all creditCards that meet the search conditions
+        /// Find all creditCards that meet the search conditions.
         /// </summary>
-        /// <param name="keyword">The keyword</param>
-        /// <optional param name="categoryId">The category ID</param>
-        /// <returns>A list of Products</returns>
-        List<ProductDetails> FindAllProductsByKeyword(string keyword, long categoryId = -1, int startIndex = 0, int count = 20);
+        /// <param name="keyword"> The keyword that must be contained within the name of the product </param>
+        /// <param name="categoryId"> The category ID. </param>
+        /// <param name="startIndex"> The index at which the products list must start </param>
+        /// <param name="count"> The maximum number of products that must return the function. </param>
+        /// <returns> A list of products. </returns>
+        List<Product> FindAllProductsByKeyword(string keyword, long categoryId = -1, int startIndex = 0, int count = 20);
 
         /// <summary>
-        /// Find a product
+        /// Find a product.
         /// </summary>
-        /// <param productId="productId">productId</param>
-        /// <returns>The product to look for</returns>
+        /// <param productId="productId"> The ID of the product to be found. </param>
+        /// <returns> The found product. </returns>
         /// <exception cref="InstanceNotFoundException"/>
-        ProductLinkDetails FindProduct(long productId);
+        Product FindProduct(long productId);
 
         /// <summary>
         /// Add a new comment.
@@ -68,7 +71,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="productId"> The product's id. </param>
         /// <param name="userId"> The user's id. </param>
         /// <param name="commentBody"> The comment's body. </param>
-        /// <param name="tags"> The comment's btags. </param>
+        /// <param name="tags"> The comment's tags. </param>
         long AddComment(long productId, long userId, string commentBody, List<long> tags);
 
         /// <summary>
@@ -79,7 +82,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         void DeleteComment(long commentId);
 
         /// <summary>
-        /// Updates the comment.
+        /// Update the comment.
         /// </summary>
         /// <param name="commentId"> The comment's id. </param>
         /// <param name="commentBody"> The comment's body. </param>
@@ -87,7 +90,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         void UpdateComment(long commentId, string commentBody);
 
         /// <summary>
-        /// Updates the comment.
+        /// Update the comment.
         /// </summary>
         /// <param name="commentId"> The comment's id. </param>
         /// <param name="commentBody"> The comment's body. </param>
@@ -96,7 +99,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         void UpdateComment(long commentId, string commentBody, List<long> newTags);
 
         /// <summary>
-        /// Updates the comment.
+        /// Update the comment.
         /// </summary>
         /// <param name="commentId"> The comment's id. </param>
         /// <param name="commentBody"> The comment's body. </param>
@@ -104,13 +107,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="removeTags"> The remove tags of the commennt. </param>
         /// <exception cref="InstanceNotFoundException"/>
         void UpdateComment(long commentId, string commentBody, List<long> newTags, List<long> removeTags);
-        
+
         /// <summary>
-        /// Find all comments of a product
+        /// Find all comments of a product.
         /// </summary>
-        /// <param name="productId">The product's ID</param>
-        /// <returns>A list of Comments</returns>
-        List<CommentDetails> FindAllProductComments(long productId, int startIndex = 0, int count = 20);
+        /// <param name="productId"> The product's ID </param>
+        /// <param name="startIndex"> The index at which the comments list must start </param>
+        /// <param name="count"> The maximum number of comments that must return the function. </param>
+        /// <returns> A list of comments. </returns>
+        List<Comment> FindAllProductComments(long productId, int startIndex = 0, int count = 20);
 
         /// <summary>
         /// Add a new tag.
@@ -120,9 +125,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         long addTag(string tagName);
 
         /// <summary>
-        /// Find all tags
+        /// Find all tags.
         /// </summary>
-        /// <returns>A list of Tags</returns>
+        /// <param name="startIndex"> The index at which the tags list must start </param>
+        /// <param name="count"> The maximum number of tags that must return the function. </param>
+        /// <returns> A list of tags. </returns>
         List<Tag> FindAllTags(int startIndex = 0, int count = 20);
     }
 }
