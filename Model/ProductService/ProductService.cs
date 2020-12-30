@@ -36,18 +36,26 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             ProductDao.Update(product);
         }
 
-        public List<Product> FindAllProducts(int startIndex = 0, int count = 20)
+        public ProductBlock FindAllProducts(int startIndex = 0, int count = 20)
         {
-            List<Product> products = ProductDao.FindAll(startIndex, count);
+            List<Product> products = ProductDao.FindAll(startIndex, count + 1);
 
-            return products;
+            bool existMoreProducts = (products.Count == count + 1);
+
+            if (existMoreProducts) products.RemoveAt(count);
+
+            return new ProductBlock(products, existMoreProducts);
         }
 
-        public List<Product> FindAllProductsByKeyword(string keyword, long categoryId = -1, int startIndex = 0, int count = 20)
+        public ProductBlock FindAllProductsByKeyword(string keyword, long categoryId = -1, int startIndex = 0, int count = 20)
         {
-            List<Product> products = ProductDao.FindByKeywordsAndCategory(keyword, categoryId, startIndex, count);
+            List<Product> products = ProductDao.FindByKeywordsAndCategory(keyword, categoryId, startIndex, count + 1);
 
-            return products;
+            bool existMoreProducts = (products.Count == count + 1);
+
+            if (existMoreProducts) products.RemoveAt(count);
+
+            return new ProductBlock(products, existMoreProducts);
         }
 
         /// <exception cref="InstanceNotFoundException"/>
@@ -147,9 +155,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             CommentDao.Update(comment);
         }
 
-        public List<Comment> FindAllProductComments(long productId, int startIndex = 0, int count = 20)
+        public CommentBlock FindAllProductComments(long productId, int startIndex = 0, int count = 20)
         {
-            return CommentDao.FindByProductIdOrderByDeliveryDate(productId, startIndex, count);
+            List<Comment> comments = CommentDao.FindByProductIdOrderByDeliveryDate(productId, startIndex, count + 1);
+
+            bool existMoreComments = (comments.Count == count + 1);
+
+            if (existMoreComments) comments.RemoveAt(count);
+
+            return new CommentBlock(comments, existMoreComments);
         }
 
         #endregion Comment Members
@@ -176,9 +190,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             return tag.tagId;
         }
 
-        public List<Tag> FindAllTags(int startIndex = 0, int count = 20)
+        public TagBlock FindAllTags(int startIndex = 0, int count = 20)
         {
-            return TagDao.FindAll(startIndex, count);
+            List<Tag> tags = TagDao.FindAll(startIndex, count + 1);
+
+            bool existMoreTags = (tags.Count == count + 1);
+
+            if (existMoreTags) tags.RemoveAt(count);
+
+            return new TagBlock(tags, existMoreTags);
         }
 
         #endregion Tag Members

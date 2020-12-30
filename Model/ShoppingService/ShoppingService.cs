@@ -62,16 +62,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        public List<Delivery> GetAllDeliveries(long userId, int startIndex = 0, int count = 20)
+        public DeliveryBlock GetAllDeliveries(long userId, int startIndex = 0, int count = 20)
         {
-            return DeliveryDao.FindByUserId(userId, startIndex, count);
+            List<Delivery> deliveries = DeliveryDao.FindByUserId(userId, startIndex, count + 1);
+
+            bool existMoreDeliveries = (deliveries.Count == count + 1);
+
+            if (existMoreDeliveries) deliveries.RemoveAt(count);
+
+            return new DeliveryBlock(deliveries, existMoreDeliveries);
         }
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        public List<DeliveryLine> GetDeliveryDetails(long deliveryId, int startIndex = 0, int count = 20)
+        public DeliveryLineBlock GetDeliveryDetails(long deliveryId, int startIndex = 0, int count = 20)
         {
-            return DeliveryLineDao.FindByDeliveryId(deliveryId, startIndex, count);
+            List<DeliveryLine> deliveryLines = DeliveryLineDao.FindByDeliveryId(deliveryId, startIndex, count + 1);
+
+            bool existMoreDeliveryLines = (deliveryLines.Count == count + 1);
+
+            if (existMoreDeliveryLines) deliveryLines.RemoveAt(count);
+
+            return new DeliveryLineBlock(deliveryLines, existMoreDeliveryLines);
         }
 
         #endregion IShoppingService members
