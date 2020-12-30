@@ -107,8 +107,11 @@
     </Compile>
     <Compile Include="ProductDao\IProductDao.cs" />
     <Compile Include="ProductDao\ProductDaoEntityFramework.cs" />
+    <Compile Include="ProductService\CommentBlock.cs" />
     <Compile Include="ProductService\IProductService.cs" />
+    <Compile Include="ProductService\ProductBlock.cs" />
     <Compile Include="ProductService\ProductService.cs" />
+    <Compile Include="ProductService\TagBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingService\IShoppingService.cs" />
     <Compile Include="ShoppingService\ShoppingService.cs" />

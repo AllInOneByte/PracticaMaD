@@ -10,7 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
     public interface IProductService
     {
-        
+
         [Inject]
         IProductDao ProductDao { set; }
 
@@ -37,7 +37,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="startIndex"> The index at which the products list must start. </param>
         /// <param name="count"> The maximum number of products that must return the function. </param>
         /// <returns> A list of products. </returns>
-        List<Product> FindAllProducts(int startIndex, int count);
+        ProductBlock FindAllProducts(int startIndex, int count);
 
         /// <summary>
         /// Find all creditCards that meet the search conditions.
@@ -47,7 +47,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="startIndex"> The index at which the products list must start </param>
         /// <param name="count"> The maximum number of products that must return the function. </param>
         /// <returns> A list of products. </returns>
-        List<Product> FindAllProductsByKeyword(string keyword, long categoryId = -1, int startIndex = 0, int count = 20);
+        ProductBlock FindAllProductsByKeyword(string keyword, long categoryId = -1, int startIndex = 0, int count = 20);
 
         /// <summary>
         /// Find a product.
@@ -115,7 +115,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="startIndex"> The index at which the comments list must start </param>
         /// <param name="count"> The maximum number of comments that must return the function. </param>
         /// <returns> A list of comments. </returns>
-        List<Comment> FindAllProductComments(long productId, int startIndex = 0, int count = 20);
+        CommentBlock FindAllProductComments(long productId, int startIndex = 0, int count = 20);
 
         /// <summary>
         /// Add a new tag.
@@ -130,6 +130,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="startIndex"> The index at which the tags list must start </param>
         /// <param name="count"> The maximum number of tags that must return the function. </param>
         /// <returns> A list of tags. </returns>
-        List<Tag> FindAllTags(int startIndex = 0, int count = 20);
+        TagBlock FindAllTags(int startIndex = 0, int count = 20);
     }
 }
