@@ -1,5 +1,4 @@
 ﻿using System;
-using Es.Udc.DotNet.ModelUtil.Log;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions
 {
@@ -16,17 +15,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions
         /// <see cref="IncorrectPasswordException"/> class.
         /// </summary>
         /// <param name="loginName"><c>loginName</c> that causes the error.</param>
-        public IncorrectPasswordException(String loginName)
+        public IncorrectPasswordException(string loginName)
             : base("Incorrect password exception => loginName = " + loginName)
         {
-            this.LoginName = loginName;
+            LoginName = loginName;
         }
 
         /// <summary>
         /// Stores the User login name of the exception
         /// </summary>
         /// <value>The name of the login.</value>
-        public String LoginName { get; private set; }
+        public string LoginName { get; private set; }
 
     }
 }
