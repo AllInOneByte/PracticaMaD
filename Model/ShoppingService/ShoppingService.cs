@@ -113,6 +113,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             return details;
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
+        [Transactional]
+
+        public ShoppingCart UpdateShoppingCartDetails(ShoppingCart shoppingCart) { 
+        
+            if ((CreditCardDao.Find(shoppingCart.CardId) != null) {
+
+                ShoppingCart shoppingCart = shoppingCart.Update(shoppingCart);
+
+            }
+
+            return shoppingCart;
+        
+        }
+
+
+        /// <exception cref="InstanceNotFoundException"/>
+        [Transactional]
+        public void DeleteShoppingCartDetails(ShoppingCart shoppingCart)
+        {
+            if ((CreditCardDao.Find(shoppingCart.CardId) != null) {
+
+                shoppingCart.Delete(shoppingCart);
+
+            }
+
+        }
         #endregion IShoppingService members
     }
 }
