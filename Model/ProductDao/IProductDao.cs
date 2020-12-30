@@ -17,6 +17,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         /// <summary>
         /// Finds all Products
         /// <returns>List of Products</returns>
-        List<Product> FindAll(int startIndex, int count);
+        List<Product> FindAll(int startIndex = 0, int count = 20);
     }
 }
