@@ -63,16 +63,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Category.cs">
-      <DependentUpon>PracticaMaD.tt</DependentUpon>
+      <DependentUpon>PracticaMad.tt</DependentUpon>
     </Compile>
     <Compile Include="Comment.cs">
-      <DependentUpon>PracticaMaD.tt</DependentUpon>
+      <DependentUpon>PracticaMad.tt</DependentUpon>
     </Compile>
     <Compile Include="CreditCard.cs">
-      <DependentUpon>PracticaMaD.tt</DependentUpon>
+      <DependentUpon>PracticaMad.tt</DependentUpon>
     </Compile>
     <Compile Include="Delivery.cs">
-      <DependentUpon>PracticaMaD.tt</DependentUpon>
+      <DependentUpon>PracticaMad.tt</DependentUpon>
     </Compile>
     <Compile Include="DeliveryDao\DeliveryDaoEntityFramework.cs" />
     <Compile Include="DeliveryDao\IDeliveryDao.cs" />
@@ -83,27 +83,27 @@
     <Compile Include="CreditCardDao\CreditCardDaoEntityFramework.cs" />
     <Compile Include="CreditCardDao\ICreditCardDao.cs" />
     <Compile Include="DeliveryLine.cs">
-      <DependentUpon>PracticaMaD.tt</DependentUpon>
+      <DependentUpon>PracticaMad.tt</DependentUpon>
     </Compile>
     <Compile Include="DeliveryLineDao\DeliveryLineDaoEntityFramework.cs" />
     <Compile Include="DeliveryLineDao\IDeliveryLineDao.cs" />
-    <Compile Include="PracticaMaD.Context.cs">
+    <Compile Include="PracticaMad.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PracticaMaD.Context.tt</DependentUpon>
+      <DependentUpon>PracticaMad.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="PracticaMaD.cs">
+    <Compile Include="PracticaMad.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PracticaMaD.tt</DependentUpon>
+      <DependentUpon>PracticaMad.tt</DependentUpon>
     </Compile>
-    <Compile Include="PracticaMaD.Model.Designer.cs">
+    <Compile Include="PracticaMad.Model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PracticaMaD.Model.edmx</DependentUpon>
+      <DependentUpon>PracticaMad.Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
-      <DependentUpon>PracticaMaD.tt</DependentUpon>
+      <DependentUpon>PracticaMad.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductDao\IProductDao.cs" />
     <Compile Include="ProductDao\ProductDaoEntityFramework.cs" />
@@ -113,17 +113,17 @@
     <Compile Include="ShoppingService\IShoppingService.cs" />
     <Compile Include="ShoppingService\ShoppingService.cs" />
     <Compile Include="SpecificProperty.cs">
-      <DependentUpon>PracticaMaD.tt</DependentUpon>
+      <DependentUpon>PracticaMad.tt</DependentUpon>
     </Compile>
     <Compile Include="SpecificPropertyDao\ISpecificPropertyDao.cs" />
     <Compile Include="SpecificPropertyDao\SpecificPropertyDaoEntityFramework.cs" />
     <Compile Include="Tag.cs">
-      <DependentUpon>PracticaMaD.tt</DependentUpon>
+      <DependentUpon>PracticaMad.tt</DependentUpon>
     </Compile>
     <Compile Include="TagDao\ITagDao.cs" />
     <Compile Include="TagDao\TagDaoEntityFramework.cs" />
     <Compile Include="UserProfile.cs">
-      <DependentUpon>PracticaMaD.tt</DependentUpon>
+      <DependentUpon>PracticaMad.tt</DependentUpon>
     </Compile>
     <Compile Include="UserProfileDao\IUserProfileDao.cs" />
     <Compile Include="UserProfileDao\UserProfileDaoEntityFramework.cs" />
@@ -136,15 +136,15 @@
     <Compile Include="UserService\Util\PasswordEncrypter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PracticaMaD.Context.tt">
+    <Content Include="PracticaMad.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PracticaMaD.Model.edmx</DependentUpon>
-      <LastGenOutput>PracticaMaD.Context.cs</LastGenOutput>
+      <DependentUpon>PracticaMad.Model.edmx</DependentUpon>
+      <LastGenOutput>PracticaMad.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="PracticaMaD.tt">
+    <Content Include="PracticaMad.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PracticaMaD.Model.edmx</DependentUpon>
-      <LastGenOutput>PracticaMaD.cs</LastGenOutput>
+      <DependentUpon>PracticaMad.Model.edmx</DependentUpon>
+      <LastGenOutput>PracticaMad.cs</LastGenOutput>
     </Content>
     <Content Include="Sql\SqlServerCreateDatabase.sql" />
     <Content Include="Sql\SqlServerCreateTables.sql" />
@@ -154,12 +154,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <EntityDeploy Include="PracticaMaD.Model.edmx">
+    <EntityDeploy Include="PracticaMad.Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PracticaMaD.Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>PracticaMad.Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="PracticaMaD.Model.edmx.diagram">
-      <DependentUpon>PracticaMaD.Model.edmx</DependentUpon>
+    <None Include="PracticaMad.Model.edmx.diagram">
+      <DependentUpon>PracticaMad.Model.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

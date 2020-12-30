@@ -107,7 +107,8 @@ CREATE TABLE Product (
 	
 	CONSTRAINT [PK_Product] PRIMARY KEY (productId),
 	CONSTRAINT [FK_ProductCategory] FOREIGN KEY (categoryId) REFERENCES Category(categoryId),
-	CONSTRAINT [UniqueKey_ProductName] UNIQUE (productName)
+	CONSTRAINT [UniqueKey_ProductName] UNIQUE (productName),
+	CONSTRAINT [ProductQuantity] CHECK (([productQuantity]>=(0)))
 )
 
 CREATE TABLE Comment (

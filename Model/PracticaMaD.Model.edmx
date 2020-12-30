@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Es.UDC.DotNet.PracticaMaDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Es.UDC.DotNet.PracticaMad.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="categoryId" />
@@ -242,7 +242,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EsUDCDotNetPracticaMaDModelStoreContainer">
+        <EntityContainer Name="EsUDCDotNetPracticaMadModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommentTag" EntityType="Self.CommentTag" Schema="dbo" store:Type="Tables" />
@@ -302,7 +302,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Es.UDC.DotNet.PracticaMaDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Es.UDC.DotNet.PracticaMad.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="categoryId" />
@@ -584,9 +584,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EsUDCDotNetPracticaMaDModelStoreContainer" CdmEntityContainer="practicamadEntities">
+        <EntityContainerMapping StorageEntityContainer="EsUDCDotNetPracticaMadModelStoreContainer" CdmEntityContainer="practicamadEntities">
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Category">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMad.Model.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="categoryId" ColumnName="categoryId" />
                 <ScalarProperty Name="categoryName" ColumnName="categoryName" />
@@ -594,7 +594,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Comment">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMad.Model.Comment">
               <MappingFragment StoreEntitySet="Comment">
                 <ScalarProperty Name="commentId" ColumnName="commentId" />
                 <ScalarProperty Name="comment1" ColumnName="comment" />
@@ -605,7 +605,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CreditCards">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.CreditCard">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMad.Model.CreditCard">
               <MappingFragment StoreEntitySet="CreditCard">
                 <ScalarProperty Name="cardId" ColumnName="cardId" />
                 <ScalarProperty Name="cardType" ColumnName="cardType" />
@@ -618,7 +618,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Deliveries">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Delivery">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMad.Model.Delivery">
               <MappingFragment StoreEntitySet="Delivery">
                 <ScalarProperty Name="deliveryId" ColumnName="deliveryId" />
                 <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
@@ -631,7 +631,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DeliveryLines">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.DeliveryLine">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMad.Model.DeliveryLine">
               <MappingFragment StoreEntitySet="DeliveryLine">
                 <ScalarProperty Name="deliveryLineId" ColumnName="deliveryLineId" />
                 <ScalarProperty Name="deliveryLineAmount" ColumnName="deliveryLineAmount" />
@@ -642,7 +642,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Product">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMad.Model.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="productId" ColumnName="productId" />
                 <ScalarProperty Name="productName" ColumnName="productName" />
@@ -654,7 +654,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SpecificProperties">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.SpecificProperty">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMad.Model.SpecificProperty">
               <MappingFragment StoreEntitySet="SpecificProperty">
                 <ScalarProperty Name="propertyId" ColumnName="propertyId" />
                 <ScalarProperty Name="propertyName" ColumnName="propertyName" />
@@ -664,7 +664,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tags">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.Tag">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMad.Model.Tag">
               <MappingFragment StoreEntitySet="Tag">
                 <ScalarProperty Name="tagId" ColumnName="tagId" />
                 <ScalarProperty Name="tagName" ColumnName="tagName" />
@@ -672,7 +672,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserProfiles">
-            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMaDModel.UserProfile">
+            <EntityTypeMapping TypeName="Es.UDC.DotNet.PracticaMad.Model.UserProfile">
               <MappingFragment StoreEntitySet="UserProfile">
                 <ScalarProperty Name="usrId" ColumnName="usrId" />
                 <ScalarProperty Name="loginName" ColumnName="loginName" />
@@ -687,7 +687,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="CommentTag" TypeName="Es.UDC.DotNet.PracticaMaDModel.CommentTag" StoreEntitySet="CommentTag">
+          <AssociationSetMapping Name="CommentTag" TypeName="Es.UDC.DotNet.PracticaMad.Model.CommentTag" StoreEntitySet="CommentTag">
             <EndProperty Name="Comment">
               <ScalarProperty Name="commentId" ColumnName="commentId" />
             </EndProperty>
