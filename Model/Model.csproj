@@ -108,6 +108,7 @@
     <Compile Include="ProductDao\IProductDao.cs" />
     <Compile Include="ProductDao\ProductDaoEntityFramework.cs" />
     <Compile Include="ProductService\CommentBlock.cs" />
+    <Compile Include="ProductService\Exceptions\NegativeStockException.cs" />
     <Compile Include="ProductService\IProductService.cs" />
     <Compile Include="ProductService\ProductBlock.cs" />
     <Compile Include="ProductService\ProductService.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingService\DeliveryBlock.cs" />
     <Compile Include="ShoppingService\DeliveryLineBlock.cs" />
+    <Compile Include="ShoppingService\Exceptions\UnmatchingUserAndCardException.cs" />
     <Compile Include="ShoppingService\IShoppingService.cs" />
     <Compile Include="ShoppingService\ShoppingService.cs" />
     <Compile Include="SpecificProperty.cs">

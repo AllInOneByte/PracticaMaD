@@ -2,9 +2,9 @@
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Ninject;
-using System;
 using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
@@ -25,12 +25,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         #region Product Members
 
         /// <exception cref="InstanceNotFoundException"/>
+        /// <exception cref="NegativeStockException"/>
         [Transactional]
         public void DecreaseProductStock(long productId, int quantity)
         {
             Product product = ProductDao.Find(productId);
 
-            if (product.productQuantity < quantity) throw new Exception();
+            if (product.productQuantity < quantity)
+                throw new NegativeStockException(productId, product.productQuantity, quantity);
 
             product.productQuantity = product.productQuantity - quantity;
 
@@ -39,7 +41,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        public void UpdateProductDetails(long productId, string productName, decimal productPrice, int productQuantity)
+        public void UpdateProductDetails(long productId, string productName, 
+            decimal productPrice, int productQuantity)
         {
             Product product = ProductDao.Find(productId);
 
@@ -61,9 +64,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             return new ProductBlock(products, existMoreProducts);
         }
 
-        public ProductBlock FindAllProductsByKeyword(string keyword, long categoryId = -1, int startIndex = 0, int count = 20)
+        public ProductBlock FindAllProductsByKeyword(string keyword, long categoryId = -1, 
+            int startIndex = 0, int count = 20)
         {
-            List<Product> products = ProductDao.FindByKeywordsAndCategory(keyword, categoryId, startIndex, count + 1);
+            List<Product> products = ProductDao.FindByKeywordsAndCategory(keyword, categoryId, 
+                startIndex, count + 1);
 
             bool existMoreProducts = (products.Count == count + 1);
 
