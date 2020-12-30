@@ -3,6 +3,7 @@ using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DeliveryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DeliveryLineDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Ninject;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// <param name="deliveryAddress"> The address to which the delivery will be sent, the user's address by default. </param>
         /// <returns> The created delivery. </returns>
         /// <exception cref="InstanceNotFoundException"/>
+        /// <exception cref="UnmatchingUserAndCardException"/>
         [Transactional]
         Delivery CreateDelivery(decimal deliveryPrice, long cardId, long userId, string description,
             List<DeliveryLine> deliveryLines, string deliveryAddress = null);

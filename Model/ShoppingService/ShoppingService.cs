@@ -3,6 +3,7 @@ using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DeliveryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DeliveryLineDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Ninject;
 using System;
@@ -27,6 +28,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         #region IShoppingService members
 
         /// <exception cref="InstanceNotFoundException"/>
+        /// <exception cref="UnmatchingUserAndCardException"/>
         [Transactional]
         public Delivery CreateDelivery(decimal deliveryPrice, long cardId, long userId, string description,
             List<DeliveryLine> deliveryLines, string deliveryAddress = null)
@@ -56,7 +58,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             }
             else
             {
-                throw new Exception(); /// TODO: make a custom exception like UnmatchingUserAndCardException 
+                throw new UnmatchingUserAndCardException(userId, cardId);
             }
         }
 

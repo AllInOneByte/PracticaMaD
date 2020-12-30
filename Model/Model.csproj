@@ -116,7 +116,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingService\DeliveryBlock.cs" />
     <Compile Include="ShoppingService\DeliveryLineBlock.cs" />
-    <Compile Include="ShoppingService\Excceptions\UnmatchingUserAndCardException.cs" />
+    <Compile Include="ShoppingService\Exceptions\UnmatchingUserAndCardException.cs" />
     <Compile Include="ShoppingService\IShoppingService.cs" />
     <Compile Include="ShoppingService\ShoppingService.cs" />
     <Compile Include="SpecificProperty.cs">
