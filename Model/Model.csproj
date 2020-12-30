@@ -114,6 +114,7 @@
     <Compile Include="ProductService\TagBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingService\DeliveryBlock.cs" />
+    <Compile Include="ShoppingService\DeliveryLineBlock.cs" />
     <Compile Include="ShoppingService\IShoppingService.cs" />
     <Compile Include="ShoppingService\ShoppingService.cs" />
     <Compile Include="SpecificProperty.cs">
