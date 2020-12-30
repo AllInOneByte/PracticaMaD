@@ -4,6 +4,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Ninject;
+using System;
 using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
@@ -22,6 +23,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         #region IProductService Members
 
         #region Product Members
+
+        /// <exception cref="InstanceNotFoundException"/>
+        [Transactional]
+        public void DecreaseProductStock(long productId, int quantity)
+        {
+            Product product = ProductDao.Find(productId);
+
+            if (product.productQuantity < quantity) throw new Exception();
+
+            product.productQuantity = product.productQuantity - quantity;
+
+            ProductDao.Update(product);
+        }
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]

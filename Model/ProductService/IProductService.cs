@@ -21,7 +21,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         ITagDao TagDao { set; }
 
         /// <summary>
-        /// Updates the product details.
+        /// Decrease the product's quantity.
+        /// </summary>
+        /// <param name="productId"> The product's id. </param>
+        /// <param name="quantity"> The product's quantity to be extracted from stock. </param>
+        /// <exception cref="InstanceNotFoundException"/>
+        [Transactional]
+        void DecreaseProductStock(long productId, int quantity);
+
+        /// <summary>
+        /// Update the product details.
         /// </summary>
         /// <param name="productId"> The product's id. </param>
         /// <param name="productName"> The product's name. </param>
