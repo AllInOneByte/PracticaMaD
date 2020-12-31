@@ -36,6 +36,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 
             var result =
                     (from t in dbTags
+                     orderby t.tagName ascending
                      select t).Skip(startIndex).Take(count);
 
             tags = result.ToList<Tag>();

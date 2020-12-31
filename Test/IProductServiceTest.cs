@@ -332,9 +332,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                     productQuantity, category.categoryId);
                 var user = createUser();
 
-                List<long> tagIds = new List<long>();
-                tagIds.Add(createTag(tagName1).tagId);
-                tagIds.Add(createTag(tagName2).tagId);
+                List<long> tagIds = new List<long>
+                {
+                    createTag(tagName1).tagId,
+                    createTag(tagName2).tagId
+                };
 
                 var commentId = productService.AddComment(product.productId, user.usrId, commentBody, tagIds);
 
@@ -348,6 +350,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 Assert.AreEqual(2, findComment.Tags.Count);
 
                 int i = 0;
+
                 foreach (var l in findComment.Tags)
                 {
                     Assert.AreEqual(tagIds[i], l.tagId);

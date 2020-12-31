@@ -193,20 +193,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             for (int i = 0; i < numberDeliveryLines; i++)
             {
-                deliveryLine = new DeliveryLine();
-                deliveryLine.deliveryLineAmount = deliveryLineAmount;
-                deliveryLine.deliveryLinePrice = deliveryLinePrice;
-                deliveryLine.deliveryId = delivery.deliveryId;
-                deliveryLine.productId = product.productId;
+                deliveryLine = new DeliveryLine
+                {
+                    deliveryLineAmount = deliveryLineAmount,
+                    deliveryLinePrice = deliveryLinePrice,
+                    deliveryId = delivery.deliveryId,
+                    productId = product.productId
+                };
 
                 deliveryLineDao.Create(deliveryLine);
                 createdDeliveryLines.Add(deliveryLine);
 
-                deliveryLine = new DeliveryLine();
-                deliveryLine.deliveryLineAmount = deliveryLineAmount;
-                deliveryLine.deliveryLinePrice = deliveryLinePrice;
-                deliveryLine.deliveryId = delivery2.deliveryId;
-                deliveryLine.productId = product.productId;
+                deliveryLine = new DeliveryLine
+                {
+                    deliveryLineAmount = deliveryLineAmount,
+                    deliveryLinePrice = deliveryLinePrice,
+                    deliveryId = delivery2.deliveryId,
+                    productId = product.productId
+                };
 
                 deliveryLineDao.Create(deliveryLine);
             }

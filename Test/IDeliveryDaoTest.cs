@@ -145,25 +145,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             for (int i = 0; i < numberDeliverys; i++)
             {
-                delivery = new Delivery();
-                delivery.deliveryAddress = address;
-                delivery.deliveryDate = deliveryDate;
-                delivery.deliveryPrice = deliveryPrice;
-                delivery.description = description + i;
-                delivery.userId = userProfile.usrId;
-                delivery.cardId = creditCard.cardId;
+                delivery = new Delivery
+                {
+                    deliveryAddress = address,
+                    deliveryDate = deliveryDate,
+                    deliveryPrice = deliveryPrice,
+                    description = description + i,
+                    userId = userProfile.usrId,
+                    cardId = creditCard.cardId
+                };
 
                 deliveryDao.Create(delivery);
                 createdDeliverys.Add(delivery);
             }
 
-            delivery = new Delivery();
-            delivery.deliveryAddress = address;
-            delivery.deliveryDate = deliveryDate;
-            delivery.deliveryPrice = deliveryPrice;
-            delivery.description = description;
-            delivery.userId = userProfile2.usrId;
-            delivery.cardId = creditCard.cardId;
+            delivery = new Delivery
+            {
+                deliveryAddress = address,
+                deliveryDate = deliveryDate,
+                deliveryPrice = deliveryPrice,
+                description = description,
+                userId = userProfile2.usrId,
+                cardId = creditCard.cardId
+            };
 
             deliveryDao.Create(delivery);
 

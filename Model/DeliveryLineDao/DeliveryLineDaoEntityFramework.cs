@@ -36,6 +36,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DeliveryLineDao
             var result =
                 (from d in deliveryLinesFound
                  where d.deliveryId == deliveryId
+                 orderby d.deliveryLineId ascending
                  select d).Skip(startIndex).Take(count);
 
             deliveryLines = result.ToList();

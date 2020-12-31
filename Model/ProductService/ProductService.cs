@@ -114,6 +114,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             };
 
             List<Tag> tagList = new List<Tag>();
+
             foreach (var tagId in tags)
             {
                 tagList.Add(TagDao.Find(tagId));

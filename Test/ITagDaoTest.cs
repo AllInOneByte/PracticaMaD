@@ -86,8 +86,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             for (int i = 0; i < numberTags; i++)
             {
-                tag = new Tag();
-                tag.tagName = TagName+i;
+                tag = new Tag
+                {
+                    tagName = TagName + i
+                };
                 tagDao.Create(tag);
                 createdTags.Add(tag);
             }
