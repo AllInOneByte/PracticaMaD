@@ -48,7 +48,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="startIndex"> The index at which the products list must start. </param>
         /// <param name="count"> The maximum number of products that must return the function. </param>
         /// <returns> A list of products. </returns>
-        ProductBlock FindAllProducts(int startIndex, int count);
+        ProductBlock FindAllProducts(int startIndex = 0, int count = 20);
 
         /// <summary>
         /// Find all creditCards that meet the search conditions.

@@ -31,17 +31,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         /// <param categoryId="categoryId">categoryId</param>
         /// <returns>List of Product</returns>
         /// <exception cref="InstanceNotFoundException"/>
-        public List<Product> FindByKeywordsAndCategory(string keyWords, long categoryId = -1, int startIndex = 0, int count = 20) {
+        public List<Product> FindByKeywordsAndCategory(string keyWords, long categoryId = -1,
+            int startIndex = 0, int count = 20) {
             List<Product> product = null;
 
             #region Option 1: Using Linq.
 
             DbSet<Product> products = Context.Set<Product>();
+
             if (categoryId <= 0)
             {
                 var result =
                     (from p in products
                      where p.productName.ToLower().Contains(keyWords.ToLower())
+                     orderby p.productName ascending
                      select p).Skip(startIndex).Take(count);
 
                 product = result.ToList();
@@ -51,11 +54,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
                 var result =
                     (from p in products
                      where (p.productName.ToLower().Contains(keyWords.ToLower()) && (p.categoryId == categoryId))
+                     orderby p.productName ascending
                      select p).Skip(startIndex).Take(count);
 
                 product = result.ToList();
 
             }
+
             #endregion Option 1: Using Linq.
 
             if (product == null)
@@ -77,6 +82,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
             var result =
                 (from p in products
+                 orderby p.productName ascending
                  select p).Skip(startIndex).Take(count);
 
             #endregion Option 1: Using Linq.

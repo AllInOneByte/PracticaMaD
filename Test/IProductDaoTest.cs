@@ -6,6 +6,7 @@ using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Transactions;
+using System.Linq;
 
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {
@@ -151,40 +152,48 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             for (int i = 0; i < numberProducts; i++)
             {
-                product = new Product();
-                product.productName = productName + i;
-                product.productPrice = productPrice;
-                product.productDate = productDate;
-                product.productQuantity = productQuantity;
-                product.categoryId = category.categoryId;
+                product = new Product
+                {
+                    productName = productName + i,
+                    productPrice = productPrice,
+                    productDate = productDate,
+                    productQuantity = productQuantity,
+                    categoryId = category.categoryId
+                };
 
                 productDao.Create(product);
+
                 if (i == 1)
                 {
                     createdProducts.Add(product);
                 }
 
-                product = new Product();
-                product.productName = "name" + i;
-                product.productPrice = productPrice;
-                product.productDate = productDate;
-                product.productQuantity = productQuantity;
-                product.categoryId = category2.categoryId;
+                product = new Product
+                {
+                    productName = "name" + i,
+                    productPrice = productPrice,
+                    productDate = productDate,
+                    productQuantity = productQuantity,
+                    categoryId = category2.categoryId
+                };
 
                 productDao.Create(product);
+
                 if (i == 1)
                 {
                     createdProducts.Add(product);
                 }
             }
 
+            List<Product> sortedProducts = createdProducts.OrderBy(p => p.productName).ToList();
+
             List<Product> totalRetrievedProducts = productDao.FindByKeywordsAndCategory("1", -1);
 
-            Assert.AreEqual(numberProducts, totalRetrievedProducts.Count);
+            Assert.AreEqual(sortedProducts.Count, totalRetrievedProducts.Count);
 
             for (int i = 0; i < numberProducts; i++)
             {
-                Assert.AreEqual(totalRetrievedProducts[i], createdProducts[i]);
+                Assert.AreEqual(totalRetrievedProducts[i], sortedProducts[i]);
             }
         }
 
@@ -197,14 +206,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             int numberProducts = 8;
             List<Product> createdProducts = new List<Product>(numberProducts);
 
-            for(int i = 0; i < numberProducts; i++)
+            for (int i = 0; i < numberProducts; i++)
             {
-                product = new Product();
-                product.productName = productName + i;
-                product.productPrice = productPrice;
-                product.productDate = productDate;
-                product.productQuantity = productQuantity;
-                product.categoryId = category.categoryId;
+                product = new Product
+                {
+                    productName = productName + i,
+                    productPrice = productPrice,
+                    productDate = productDate,
+                    productQuantity = productQuantity,
+                    categoryId = category.categoryId
+                };
 
                 productDao.Create(product);
                 createdProducts.Add(product);

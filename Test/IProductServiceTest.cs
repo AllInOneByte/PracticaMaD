@@ -1,17 +1,18 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
-using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
-using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.SpecificPropertyDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
-using Es.Udc.DotNet.PracticaMaD.Model;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Transactions;
+
 /// <summary>
 /// This is a test class for IProductServiceTest and is intended to contain all IProductServiceTest
 /// Unit Tests
@@ -59,7 +60,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             {
                 categoryName = categoryName
             };
-           
+
             categoryDao.Create(category);
 
             return category;
@@ -67,7 +68,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         private Product createProduct(string productName, decimal productPrice, System.DateTime productDate,
                 int productQuantity, long categoryId)
         {
- 
+
             var product = new Product();
             product.productName = productName;
             product.productPrice = productPrice;
@@ -109,7 +110,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             return tag;
         }
-        
+
         /// <summary>
         /// A test for UpdateProduct
         /// </summary>
@@ -119,7 +120,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             using (var scope = new TransactionScope())
             {
                 var category = createCategory(categoryName);
-                var product = createProduct(productName, productPrice, productDate, productQuantity, category.categoryId);
+                var product = createProduct(productName, productPrice, productDate,
+                    productQuantity, category.categoryId);
                 var productFind = productDao.Find(product.productId);
 
                 // Check data
@@ -155,21 +157,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             {
                 var category = createCategory(categoryName);
                 List<Product> productList = new List<Product>();
-                productList.Add(createProduct(productName, productPrice, productDate, productQuantity, category.categoryId));
+                productList.Add(createProduct(productName, productPrice, productDate,
+                    productQuantity, category.categoryId));
                 productList.Add(createProduct("product2", 9, System.DateTime.Now, 10, category.categoryId));
                 productList.Add(createProduct("product3", 8, System.DateTime.Now, 13, category.categoryId));
 
                 var productDetailsList = productService.FindAllProducts();
 
                 // Check data
-                Assert.AreEqual(productList.Count, productDetailsList.Count);
+                Assert.AreEqual(productList.Count, productDetailsList.Products.Count);
+
                 for (int i = 0; i < productList.Count; i++)
                 {
-                    Assert.AreEqual(productList[i].productId, productDetailsList[i].ProductId);
-                    Assert.AreEqual(productList[i].productName, productDetailsList[i].ProductName);
-                    Assert.AreEqual(productList[i].Category.categoryName, productDetailsList[i].CategoryName);
-                    Assert.AreEqual(productList[i].productDate, productDetailsList[i].ProductDate);
-                    Assert.AreEqual(productList[i].productPrice, productDetailsList[i].ProductPrice);
+                    Assert.AreEqual(productList[i].productId, productDetailsList.Products[i].productId);
+                    Assert.AreEqual(productList[i].productName, productDetailsList.Products[i].productName);
+                    Assert.AreEqual(productList[i].Category.categoryName,
+                        productDetailsList.Products[i].Category.categoryName);
+                    Assert.AreEqual(productList[i].productDate, productDetailsList.Products[i].productDate);
+                    Assert.AreEqual(productList[i].productPrice, productDetailsList.Products[i].productPrice);
                 }
             }
         }
@@ -184,21 +189,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             {
                 var category = createCategory(categoryName);
                 List<Product> productList = new List<Product>();
-                productList.Add(createProduct(productName, productPrice, productDate, productQuantity, category.categoryId));
+                productList.Add(createProduct(productName, productPrice, productDate, productQuantity,
+                    category.categoryId));
                 createProduct("pro2", 9, System.DateTime.Now, 10, category.categoryId);
                 productList.Add(createProduct("product3", 8, System.DateTime.Now, 13, category.categoryId));
 
                 var productDetailsList = productService.FindAllProductsByKeyword("product", -1);
 
                 // Check data
-                Assert.AreEqual(productList.Count, productDetailsList.Count);
+                Assert.AreEqual(productList.Count, productDetailsList.Products.Count);
+
                 for (int i = 0; i < productList.Count; i++)
                 {
-                    Assert.AreEqual(productList[i].productId, productDetailsList[i].ProductId);
-                    Assert.AreEqual(productList[i].productName, productDetailsList[i].ProductName);
-                    Assert.AreEqual(productList[i].Category.categoryName, productDetailsList[i].CategoryName);
-                    Assert.AreEqual(productList[i].productDate, productDetailsList[i].ProductDate);
-                    Assert.AreEqual(productList[i].productPrice, productDetailsList[i].ProductPrice);
+                    Assert.AreEqual(productList[i].productId, productDetailsList.Products[i].productId);
+                    Assert.AreEqual(productList[i].productName, productDetailsList.Products[i].productName);
+                    Assert.AreEqual(productList[i].Category.categoryName,
+                        productDetailsList.Products[i].Category.categoryName);
+                    Assert.AreEqual(productList[i].productDate, productDetailsList.Products[i].productDate);
+                    Assert.AreEqual(productList[i].productPrice, productDetailsList.Products[i].productPrice);
                 }
             }
         }
@@ -215,21 +223,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 var category2 = createCategory("category2");
 
                 List<Product> productList = new List<Product>();
-                productList.Add(createProduct(productName, productPrice, productDate, productQuantity, category1.categoryId));
+                productList.Add(createProduct(productName, productPrice, productDate,
+                    productQuantity, category1.categoryId));
                 createProduct("pro2", 9, System.DateTime.Now, 10, category1.categoryId);
                 createProduct("product3", 8, System.DateTime.Now, 13, category2.categoryId);
 
                 var productDetailsList = productService.FindAllProductsByKeyword("product", category1.categoryId);
 
                 // Check data
-                Assert.AreEqual(productList.Count, productDetailsList.Count);
+                Assert.AreEqual(productList.Count, productDetailsList.Products.Count);
                 for (int i = 0; i < productList.Count; i++)
                 {
-                    Assert.AreEqual(productList[i].productId, productDetailsList[i].ProductId);
-                    Assert.AreEqual(productList[i].productName, productDetailsList[i].ProductName);
-                    Assert.AreEqual(productList[i].Category.categoryName, productDetailsList[i].CategoryName);
-                    Assert.AreEqual(productList[i].productDate, productDetailsList[i].ProductDate);
-                    Assert.AreEqual(productList[i].productPrice, productDetailsList[i].ProductPrice);
+                    Assert.AreEqual(productList[i].productId, productDetailsList.Products[i].productId);
+                    Assert.AreEqual(productList[i].productName, productDetailsList.Products[i].productName);
+                    Assert.AreEqual(productList[i].Category.categoryName,
+                        productDetailsList.Products[i].Category.categoryName);
+                    Assert.AreEqual(productList[i].productDate, productDetailsList.Products[i].productDate);
+                    Assert.AreEqual(productList[i].productPrice, productDetailsList.Products[i].productPrice);
                 }
             }
         }
@@ -243,7 +253,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             using (var scope = new TransactionScope())
             {
                 var category = createCategory(categoryName);
-                var product = createProduct(productName, productPrice, productDate, productQuantity, category.categoryId);
+                var product = createProduct(productName, productPrice, productDate,
+                    productQuantity, category.categoryId);
 
                 List<SpecificProperty> properties = new List<SpecificProperty>();
                 SpecificProperty property1 = new SpecificProperty
@@ -260,24 +271,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 };
 
                 specificPropertyDao.Create(property1);
-                properties.Add(property1);
                 specificPropertyDao.Create(property2);
-                properties.Add(property2);
 
-                var details = productService.FindProduct(product.productId);
+                Product details = productService.FindProduct(product.productId);
 
                 // Check data
-                Assert.AreEqual(product.productName, details.ProductName);
-                Assert.AreEqual(product.Category.categoryName, details.CategoryName);
-                Assert.AreEqual(product.productPrice, details.ProductPrice);
-                Assert.AreEqual(product.productDate, details.ProductDate);
-                Assert.AreEqual(product.productQuantity, details.RemainingQuantity);
-                Assert.AreEqual(2, details.SpecificName.Count);
-                Assert.AreEqual(2, details.SpecificValue.Count);
+                Assert.AreEqual(product.productName, details.productName);
+                Assert.AreEqual(product.Category.categoryName, details.Category.categoryName);
+                Assert.AreEqual(product.productPrice, details.productPrice);
+                Assert.AreEqual(product.productDate, details.productDate);
+                Assert.AreEqual(product.productQuantity, details.productQuantity);
+                Assert.AreEqual(2, details.SpecificProperties.Count);
+
                 for (int i = 0; i < properties.Count; i++)
                 {
-                    Assert.AreEqual(properties[i].propertyName, details.SpecificName[i]);
-                    Assert.AreEqual(properties[i].propertyValue, details.SpecificValue[i]);
+                    Assert.AreEqual(properties[i].propertyName,
+                        details.SpecificProperties.ToList()[i].propertyName);
+                    Assert.AreEqual(properties[i].propertyValue,
+                        details.SpecificProperties.ToList()[i].propertyValue);
                 }
             }
 
@@ -292,7 +303,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             using (var scope = new TransactionScope())
             {
                 var category = createCategory(categoryName);
-                var product = createProduct(productName, productPrice, productDate, productQuantity, category.categoryId);
+                var product = createProduct(productName, productPrice, productDate,
+                    productQuantity, category.categoryId);
                 var user = createUser();
 
                 var commentId = productService.AddComment(product.productId, user.usrId, commentBody);
@@ -316,13 +328,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             using (var scope = new TransactionScope())
             {
                 var category = createCategory(categoryName);
-                var product = createProduct(productName, productPrice, productDate, productQuantity, category.categoryId);
+                var product = createProduct(productName, productPrice, productDate,
+                    productQuantity, category.categoryId);
                 var user = createUser();
 
-                List<long> tagIds = new List<long>();
-                tagIds.Add(createTag(tagName1).tagId);
-                tagIds.Add(createTag(tagName2).tagId);
-                
+                List<long> tagIds = new List<long>
+                {
+                    createTag(tagName1).tagId,
+                    createTag(tagName2).tagId
+                };
+
                 var commentId = productService.AddComment(product.productId, user.usrId, commentBody, tagIds);
 
                 var findComment = commentDao.Find(commentId);
@@ -335,6 +350,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 Assert.AreEqual(2, findComment.Tags.Count);
 
                 int i = 0;
+
                 foreach (var l in findComment.Tags)
                 {
                     Assert.AreEqual(tagIds[i], l.tagId);
@@ -352,11 +368,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             using (var scope = new TransactionScope())
             {
                 var category = createCategory(categoryName);
-                var product = createProduct(productName, productPrice, productDate, productQuantity, category.categoryId);
+                var product = createProduct(productName, productPrice, productDate,
+                    productQuantity, category.categoryId);
                 var user = createUser();
 
                 var commentId = productService.AddComment(product.productId, user.usrId, commentBody);
-                
+
                 var findComment = commentDao.Find(commentId);
                 Assert.AreEqual(commentBody, findComment.comment1);
 
@@ -374,14 +391,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             using (var scope = new TransactionScope())
             {
                 var category = createCategory(categoryName);
-                var product = createProduct(productName, productPrice, productDate, productQuantity, category.categoryId);
+                var product = createProduct(productName, productPrice, productDate,
+                    productQuantity, category.categoryId);
                 var user = createUser();
 
                 List<long> tagIds = new List<long>();
                 tagIds.Add(createTag(tagName1).tagId);
                 tagIds.Add(createTag(tagName2).tagId);
 
-                var commentId = productService.AddComment(product.productId, user.usrId, commentBody, new List<long>());
+                var commentId = productService.AddComment(product.productId, user.usrId,
+                    commentBody, new List<long>());
 
                 var findComment = commentDao.Find(commentId);
 
@@ -416,7 +435,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             using (var scope = new TransactionScope())
             {
                 var category = createCategory(categoryName);
-                var product = createProduct(productName, productPrice, productDate, productQuantity, category.categoryId);
+                var product = createProduct(productName, productPrice, productDate,
+                    productQuantity, category.categoryId);
                 var user = createUser();
 
                 List<long> newTagIds = new List<long>();
@@ -425,7 +445,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 List<long> removeTagIds = new List<long>();
                 removeTagIds.Add(createTag(tagName2).tagId);
 
-                var commentId = productService.AddComment(product.productId, user.usrId, commentBody, removeTagIds);
+                var commentId = productService.AddComment(product.productId, user.usrId,
+                    commentBody, removeTagIds);
 
                 var findComment = commentDao.Find(commentId);
 
@@ -467,7 +488,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             using (var scope = new TransactionScope())
             {
                 var category = createCategory(categoryName);
-                var product = createProduct("anotherProductNameTest", productPrice, productDate, productQuantity, category.categoryId);
+                var product = createProduct("anotherProductNameTest", productPrice,
+                    productDate, productQuantity, category.categoryId);
                 var user = createUser();
 
                 List<long> tagIds1 = new List<long>();
@@ -483,19 +505,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 commentsIds.Add(productService.AddComment(product.productId, user.usrId, commentsBody[0], tagIds1));
                 commentsIds.Add(productService.AddComment(product.productId, user.usrId, commentsBody[1], tagIds2));
 
-                var listComments = productService.FindAllProductComments(product.productId);
+                CommentBlock listComments = productService.FindAllProductComments(product.productId);
 
                 // Check data
-                Assert.AreEqual(commentsIds.Count, listComments.Count);
-                for (int i = 0; i < listComments.Count; i++)
+                Assert.AreEqual(commentsIds.Count, listComments.Comments.Count);
+
+                for (int i = 0; i < listComments.Comments.Count; i++)
                 {
-                    Assert.AreEqual(commentsIds[i], listComments[i].CommentId);
-                    Assert.AreEqual(user.usrId, listComments[i].UserId);
-                    Assert.AreEqual(commentsBody[i], listComments[i].CommentBody);
-                    Assert.AreEqual(System.DateTime.Now.Date, listComments[i].CommentDate.Date);
+                    Assert.AreEqual(commentsIds[i], listComments.Comments[i].commentId);
+                    Assert.AreEqual(user.usrId, listComments.Comments[i].userId);
+                    Assert.AreEqual(commentsBody[i], listComments.Comments[i].comment1);
+                    Assert.AreEqual(System.DateTime.Now.Date, listComments.Comments[i].commentDate.Date);
                 }
-                Assert.AreEqual(tagName1, listComments[0].TagNames[0]);
-                Assert.AreEqual(tagName2, listComments[1].TagNames[0]);
+
+                Assert.AreEqual(tagName1, listComments.Comments[0].Tags.ToList()[0].tagName);
+                Assert.AreEqual(tagName2, listComments.Comments[1].Tags.ToList()[0].tagName);
             }
         }
 
@@ -507,7 +531,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             using (var scope = new TransactionScope())
             {
-               var tagId = productService.addTag(tagName1);
+                var tagId = productService.addTag(tagName1);
 
                 var tag = tagDao.Find(tagId);
 
@@ -528,15 +552,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 tagList.Add(createTag(tagName1));
                 tagList.Add(createTag(tagName2));
 
-                var tagFoundList = productService.FindAllTags();
+                TagBlock tagFoundList = productService.FindAllTags();
 
                 // Check data
-                Assert.AreEqual(tagList.Count, tagFoundList.Count);
+                Assert.AreEqual(tagList.Count, tagFoundList.Tags.Count);
+
                 for (int i = 0; i < tagList.Count; i++)
                 {
-                    Assert.AreEqual(tagList[i].tagId, tagFoundList[i].tagId);
-                    Assert.AreEqual(tagList[i].tagName, tagFoundList[i].tagName);
-                }            
+                    Assert.AreEqual(tagList[i].tagId, tagFoundList.Tags[i].tagId);
+                    Assert.AreEqual(tagList[i].tagName, tagFoundList.Tags[i].tagName);
+                }
+
+                Assert.IsFalse(tagFoundList.ExistMoreTags);
             }
         }
 

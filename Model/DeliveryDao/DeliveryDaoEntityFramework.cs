@@ -40,6 +40,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DeliveryDao
             var result =
                 (from d in deliveryFound
                  where d.userId == userId
+                 orderby d.deliveryDate descending
                  select d).Skip(startIndex).Take(count);
 
             delivery = result.ToList();
