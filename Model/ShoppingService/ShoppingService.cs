@@ -42,7 +42,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                     deliveryPrice = deliveryPrice,
                     deliveryAddress = deliveryAddress ?? UserProfileDao.Find(userId).address,
                     cardId = cardId,
-                    userId = userId
+                    userId = userId,
+                    description = description
                 };
 
                 DeliveryDao.Create(delivery);

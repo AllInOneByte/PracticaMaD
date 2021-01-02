@@ -515,7 +515,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                     Assert.AreEqual(commentsIds[i], listComments.Comments[i].commentId);
                     Assert.AreEqual(user.usrId, listComments.Comments[i].userId);
                     Assert.AreEqual(commentsBody[i], listComments.Comments[i].comment1);
-                    Assert.AreEqual(System.DateTime.Now, listComments.Comments[i].commentDate);
+                    Assert.AreEqual(System.DateTime.Now.Date, listComments.Comments[i].commentDate.Date);
                 }
 
                 Assert.AreEqual(tagName1, listComments.Comments[0].Tags.ToList()[0].tagName);
