@@ -567,6 +567,37 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             }
         }
 
+        [TestMethod]
+        public void FindAllCategoriesTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                int numberCategories = 5;
+
+                List<Category> categories = new List<Category>();
+
+                for (int i = 0; i < numberCategories; i++)
+                {
+                    Category cat = new Category
+                    {
+                        categoryName = "CategoryTest" + i
+                    };
+
+                    categoryDao.Create(cat);
+                    categories.Add(cat);
+                }
+
+                List<Category> foundCategories = productService.FindAllCategories();
+
+                Assert.AreEqual(numberCategories, foundCategories.Count);
+
+                for (int i = 0; i < numberCategories; i++)
+                {
+                    Assert.AreEqual(categories[i], foundCategories[i]);
+                }
+            }
+        }
+
         #region Additional test attributes
 
         //Use ClassInitialize to run code before running the first test in the class
