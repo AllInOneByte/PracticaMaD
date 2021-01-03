@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.MPracticaMaD.Web.Pages.User {
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
     
     
     public partial class Register {

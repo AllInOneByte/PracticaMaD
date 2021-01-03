@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.MiniPortal.Web.Pages {
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages {
     
     
     public partial class MainPage {
