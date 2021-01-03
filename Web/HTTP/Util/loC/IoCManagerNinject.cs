@@ -27,7 +27,7 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
 
             /* DbContext */
             string connectionString =
-                ConfigurationManager.ConnectionStrings["MiniPortalEntities"].ConnectionString;
+                ConfigurationManager.ConnectionStrings["practicamadEntities"].ConnectionString;
 
             kernel.Bind<DbContext>().
                 ToSelf().

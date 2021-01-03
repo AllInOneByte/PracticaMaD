@@ -1,9 +1,9 @@
-﻿using Es.Udc.DotNet.MiniPortal.Model.UserService;
-using Es.Udc.DotNet.MiniPortal.Web.HTTP.Session;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using System;
 
-namespace Es.Udc.DotNet.MiniPortal.Web.Pages
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 {
     public partial class UserExists : SpecificCulturePage
     {
