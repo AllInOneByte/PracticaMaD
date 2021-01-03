@@ -1,5 +1,6 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService.Exceptions;
@@ -20,6 +21,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         [Inject]
         ITagDao TagDao { set; }
+
+        [Inject]
+        ICategoryDao CategoryDao { set; }
 
         /// <summary>
         /// Decrease the product's quantity.
@@ -58,7 +62,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="startIndex"> The index at which the products list must start </param>
         /// <param name="count"> The maximum number of products that must return the function. </param>
         /// <returns> A list of products. </returns>
-        ProductBlock FindAllProductsByKeyword(string keyword, long categoryId = -1, 
+        ProductBlock FindAllProductsByKeyword(string keyword, long categoryId = -1,
             int startIndex = 0, int count = 20);
 
         /// <summary>
