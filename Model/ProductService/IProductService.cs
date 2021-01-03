@@ -143,5 +143,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="count"> The maximum number of tags that must return the function. </param>
         /// <returns> A list of tags. </returns>
         TagBlock FindAllTags(int startIndex = 0, int count = 20);
+
+        /// <summary>
+        /// Find all categories.
+        /// </summary>
+        /// <returns> A list of categories. </returns>
+        List<Category> FindAllCategories();
     }
 }

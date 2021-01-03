@@ -1,5 +1,6 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService.Exceptions;
@@ -19,6 +20,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         [Inject]
         public ITagDao TagDao { private get; set; }
+
+        [Inject]
+        public ICategoryDao CategoryDao { private get; set; }
 
         #region IProductService Members
 
@@ -41,7 +45,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        public void UpdateProductDetails(long productId, string productName, 
+        public void UpdateProductDetails(long productId, string productName,
             decimal productPrice, int productQuantity)
         {
             Product product = ProductDao.Find(productId);
@@ -64,10 +68,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             return new ProductBlock(products, existMoreProducts);
         }
 
-        public ProductBlock FindAllProductsByKeyword(string keyword, long categoryId = -1, 
+        public ProductBlock FindAllProductsByKeyword(string keyword, long categoryId = -1,
             int startIndex = 0, int count = 20)
         {
-            List<Product> products = ProductDao.FindByKeywordsAndCategory(keyword, categoryId, 
+            List<Product> products = ProductDao.FindByKeywordsAndCategory(keyword, categoryId,
                 startIndex, count + 1);
 
             bool existMoreProducts = (products.Count == count + 1);
@@ -219,6 +223,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             if (existMoreTags) tags.RemoveAt(count);
 
             return new TagBlock(tags, existMoreTags);
+        }
+
+        #endregion Tag Members
+
+        #region Tag Members
+
+        public List<Category> FindAllCategories()
+        {
+            return CategoryDao.FindAll();
         }
 
         #endregion Tag Members
