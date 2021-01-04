@@ -83,6 +83,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
     /// <returns> void </returns>
     /// <exception cref="InstanceNotFoundException"/>
     void UpdateCreditCard(long creditCardId, CreditCardDetails creditCardDetails);
+
     /// <summary>
     /// Add a Credit Card
     /// </summary>
@@ -90,6 +91,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
     /// <param creditCardDetails="creditCardDetails">creditCardDetails</param>
     /// <returns> void </returns>
     long AddCreditCard(CreditCardDetails creditCardDetails);
+
     /// <summary>
     /// update de default creditCard
     /// </summary>
@@ -98,13 +100,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
     /// <returns> void </returns>
     /// <exception cref="InstanceNotFoundException"/>
     void AssignDefaultCard(long creditCardId, long userId);
+
     /// <summary>
     /// Find all creditCards of a user
     /// </summary>
     /// <param userId="userId">userId</param>
     /// <returns>A list of CreditCards</returns>
     List<CreditCard> FindAllCreditCardsDetails(long userID);
-}
+
+        /// <summary>
+        /// Find a creditCards
+        /// </summary>
+        /// <param cardId="cardId">cardId</param>
+        /// <returns>CreditCards</returns>
+        /// <exception cref="InstanceNotFoundException"/>
+        CreditCard FindCreditCardsDetails(long cardID);
+
+    }
 }
 
 

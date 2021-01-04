@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.MPracticaMaD.Web.Pages.User {
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
     
     
     public partial class Register {
@@ -301,13 +301,13 @@ namespace Es.Udc.DotNet.MPracticaMaD.Web.Pages.User {
         protected global::System.Web.UI.WebControls.Localize lclCreditNumber;
         
         /// <summary>
-        /// Control txtCreditCard.
+        /// Control txtCreditNumber.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCreditCard;
+        protected global::System.Web.UI.WebControls.TextBox txtCreditNumber;
         
         /// <summary>
         /// Control RequiredCreditNumberValidator1.
@@ -326,6 +326,24 @@ namespace Es.Udc.DotNet.MPracticaMaD.Web.Pages.User {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularCreditNumberValidator1;
+        
+        /// <summary>
+        /// Control lclCreditType.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Localize lclCreditType;
+        
+        /// <summary>
+        /// Control comboCreditType.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList comboCreditType;
         
         /// <summary>
         /// Control lclVerificationCode.
@@ -373,13 +391,13 @@ namespace Es.Udc.DotNet.MPracticaMaD.Web.Pages.User {
         protected global::System.Web.UI.WebControls.Localize lclExpirationDate;
         
         /// <summary>
-        /// Control TextBox3.
+        /// Control txtExpirationDate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox txtExpirationDate;
         
         /// <summary>
         /// Control RequiredExpirationDateValidator1.
