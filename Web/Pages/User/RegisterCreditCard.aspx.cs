@@ -34,14 +34,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 try
                 {
                     SessionManager.RegisterCreditCard(Context, comboCreditType.SelectedValue,
-                        txtCreditNumber.Text, txtVerificationCode.Text, txtExpirationDate.Text);
+                        txtCreditNumber.Text, txtVerificationCode.Text, checkDefault.Checked, txtExpirationDate.Text);
 
                     Response.Redirect(Response.
                         ApplyAppPathModifier("~/Pages/User/ListCreditCards.aspx"));
                 }
                 catch (DuplicateInstanceException)
                 {
-                    
+                    lblNumberError.Visible = true;
                 }
             }
         }

@@ -281,7 +281,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <param cardId="cardId">cardId</param>
         /// <returns>CreditCard</returns>
         /// <exception cref="InstanceNotFoundException"/>
-        CreditCard FindCreditCardsDetails(long cardID)
+        public CreditCard FindCreditCardsDetails(long cardID)
         {
             return creditCardDao.Find(cardID);
         }

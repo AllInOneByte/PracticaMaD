@@ -25,7 +25,9 @@
                         <asp:RegularExpressionValidator ID="RegularCreditNumberValidator1"
                             ControlToValidate="lclCreditNumber" runat="server"
                             ErrorMessage="Only Numbers allowed"
-                            ValidationExpression="\d+"></asp:RegularExpressionValidator></span>
+                            ValidationExpression="\d+"></asp:RegularExpressionValidator>
+                         <asp:Label ID="lblNumberError" runat="server" ForeColor="Red" Style="position: relative"
+                            Visible="False" meta:resourcekey="lblNumberError"></asp:Label></span>
             </div>
             <div class="field">
                 <span class="label">
@@ -62,8 +64,14 @@
                             Display="Dynamic" ValidationExpression="\d+\d+/\d+\d+/\d+\d+\d+\d+"
                             meta:resourcekey="revExpirationDatel"></asp:RegularExpressionValidator></span>
             </div>
+            <div class="field">
+                <span class="label">
+                    <asp:Localize ID="lclCheckDefault" runat="server" meta:resourcekey="lclCheckDefault" /></span><span
+                        class="entry">
+                    <asp:CheckBox ID="checkDefault" runat="server" AutoPostBack="false"/></span>
+            </div>
             <div class="button">
-                <asp:Button ID="btnRegisterCreditCard" runat="server" OnClick="BtnRegisterCreditCardClick" meta:resourcekey="btnRegister" />
+                <asp:Button ID="btnRegisterCreditCard" runat="server" OnClick="BtnRegisterCreditCardClick" meta:resourcekey="btnRegisterCreditCard" />
             </div>
         </form>
     </div>

@@ -243,7 +243,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\RegisterCreditCard.resx" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{2c94938e-df08-4114-8452-08bdbcc5794e}</Project>
@@ -339,6 +341,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\PracticaMaD.Master.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\RegisterCreditCard.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\RegisterCreditCard.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\UpdateCreditCard.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\UpdateCreditCard.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\UpdateCreditCard.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\ListCreditCards.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\ListCreditCards.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\ListCreditCards.es.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

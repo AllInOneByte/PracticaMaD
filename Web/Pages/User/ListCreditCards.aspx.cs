@@ -28,13 +28,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
                 HyperLink number;
 
+                CheckBox checkDefault;
+            
                 foreach (CreditCard card in cards)
                 {
                     row = new TableRow();
 
                     numberCell = new TableCell();
                     number = new HyperLink();
-                    number.ID = card.cardId.ToString();
+                    number.ID = "cardId";
                     number.Text = card.cardNumber.ToString();
                     number.NavigateUrl = "~/Pages/User/UpdateCreditCard.aspx?card=" + card.cardId.ToString();
                     numberCell.Controls.Add(number);
@@ -53,16 +55,51 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                     row.Cells.Add(verification);
 
                     fav = new TableCell();
+                    checkDefault = new CheckBox();
+                    checkDefault.ID = "ChkSelect";
+                    checkDefault.CheckedChanged += new EventHandler(this.Check_Change);
                     if (card.defaultCard == 1)
                     {
-                        fav.Text = "Default";
+                        checkDefault.Checked = true;
+                    } else
+                    {
+                        checkDefault.Checked = false;
                     }
+                    fav.Controls.Add(checkDefault);
                     row.Cells.Add(fav);
 
                     lclTableCreditCards.Rows.Add(row);
                 }
+
                 
             }
+            
+        }
+
+        protected void Check_Change(Object sender, EventArgs e)
+        {
+
+            CheckBox activeCheckBox = sender as CheckBox;
+
+            foreach (TableRow rw in lclTableCreditCards.Rows)
+            {
+                CheckBox chkBx = (CheckBox)rw.FindControl("ChkSelect");
+                if (chkBx != activeCheckBox)
+                {
+                    chkBx.Checked = false;
+                }
+                else
+                {
+                    HyperLink cardId = (HyperLink)rw.FindControl("cardId");
+                    long number = Convert.ToInt64(cardId.Text);
+                    long id = Convert.ToInt64(cardId.NavigateUrl.Trim('=')[1]);
+
+                    SessionManager.AssignDefaultCardToUser(Context, id, number);
+
+                    chkBx.Checked = true;
+                }
+            }
+
         }
     }
 }

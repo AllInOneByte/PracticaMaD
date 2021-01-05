@@ -101,12 +101,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
     /// <exception cref="InstanceNotFoundException"/>
     void AssignDefaultCard(long creditCardId, long userId);
 
-    /// <summary>
-    /// Find all creditCards of a user
-    /// </summary>
-    /// <param userId="userId">userId</param>
-    /// <returns>A list of CreditCards</returns>
-    List<CreditCard> FindAllCreditCardsDetails(long userID);
+        /// <summary>
+        /// Find all creditCards of a user
+        /// </summary>
+        /// <param userId="userId">userId</param>
+        /// <returns>A list of CreditCards</returns>
+        /// <exception cref="InstanceNotFoundException"/>
+        List<CreditCard> FindAllCreditCardsDetails(long userID);
 
         /// <summary>
         /// Find a creditCards

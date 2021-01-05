@@ -14,7 +14,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            if (!IsPostBack)
             {
                 string cardId = Request.QueryString["card"];
 
@@ -23,13 +23,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 txtCreditNumber.Text = card.cardNumber.ToString();
                 txtExpirationDate.Text = card.expirationDate.ToString();
                 txtVerificationCode.Text = card.verificationCode.ToString();
+                if (card.defaultCard == 1)
+                {
+                    checkDefault.Checked = true;
+                }
 
                 Locale locale = SessionManager.GetLocale(Context);
                 UpdateComboCreditType(locale.Language);
-            }
-            catch
-            {
-
             }
         }
 
@@ -42,13 +42,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 long number = Convert.ToInt64(txtCreditNumber);
                 int verification = Convert.ToInt32(txtVerificationCode);
                 System.DateTime date = Convert.ToDateTime(txtExpirationDate);
+                byte defaultCard = 0;
+                if (checkDefault.Checked)
+                {
+                    defaultCard = 1;
+                }
+                
 
                 CreditCardDetails creditCardDetails =
                     new CreditCardDetails(comboCreditType.SelectedValue, number, 
-                        verification, date, 0, SessionManager.GetUserSession(Context).UserProfileId);
+                        verification, date, defaultCard, SessionManager.GetUserSession(Context).UserProfileId);
 
-                SessionManager.UpdateCreditCardDetails(cardId,
-                    creditCardDetails);
+                SessionManager.UpdateCreditCardDetails(Context, cardId, creditCardDetails);
 
                 Response.Redirect(
                     Response.ApplyAppPathModifier("~/Pages/User/ListCreditCards.aspx"));

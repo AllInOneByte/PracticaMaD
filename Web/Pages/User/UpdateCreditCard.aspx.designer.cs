@@ -67,6 +67,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularCreditNumberValidator1;
         
         /// <summary>
+        /// Control lblNumberError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNumberError;
+        
+        /// <summary>
         /// Control lclCreditType.
         /// </summary>
         /// <remarks>
@@ -155,6 +164,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpirationDateValidator1;
+        
+        /// <summary>
+        /// Control lclCheckDefault.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Localize lclCheckDefault;
+        
+        /// <summary>
+        /// Control checkDefault.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox checkDefault;
         
         /// <summary>
         /// Control btnUpdateCard.

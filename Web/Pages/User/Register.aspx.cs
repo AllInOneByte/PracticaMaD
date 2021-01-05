@@ -123,7 +123,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                         txtPassword.Text, userProfileDetailsVO);
 
                     SessionManager.RegisterCreditCard(Context, comboCreditType.SelectedValue,
-                        txtCreditNumber.Text, txtVerificationCode.Text, txtExpirationDate.Text);
+                        txtCreditNumber.Text, txtVerificationCode.Text, true, txtExpirationDate.Text);
 
                     Response.Redirect(Response.
                         ApplyAppPathModifier("~/Pages/MainPage.aspx"));

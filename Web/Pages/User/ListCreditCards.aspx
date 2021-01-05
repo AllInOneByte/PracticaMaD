@@ -17,11 +17,11 @@
                 meta:resourcekey="lnkRegisterCreditCard"/>
             <asp:Table ID="lclTableCreditCards" runat="server" meta:resourcekey="lclTableCreditCards">
                 <asp:TableHeaderRow ID="Header1" runat="server">
-                    <asp:TableHeaderCell ID="lclHeaderNumber" meta:resourceKey="lclHeaderNumber">Number</asp:TableHeaderCell>
-                    <asp:TableHeaderCell ID="lclHeaderType" meta:resourceKey="lclHeaderType">Type</asp:TableHeaderCell>
-                    <asp:TableHeaderCell ID="lclHeaderExpiration" meta:resourceKey="lclHeaderExpiration">Expiration Date</asp:TableHeaderCell>
-                    <asp:TableHeaderCell ID="lclHeaderVerification" meta:resourceKey="lclHeaderVerification">Verification Code</asp:TableHeaderCell>
-                    <asp:TableHeaderCell ID="lclHeaderDefault" meta:resourceKey="lclHeaderDefault">Default</asp:TableHeaderCell>
+                    <asp:TableHeaderCell ID="lclHeaderNumber" meta:resourceKey="lclHeaderNumber"></asp:TableHeaderCell>
+                    <asp:TableHeaderCell ID="lclHeaderType" meta:resourceKey="lclHeaderType"></asp:TableHeaderCell>
+                    <asp:TableHeaderCell ID="lclHeaderExpiration" meta:resourceKey="lclHeaderExpiration"></asp:TableHeaderCell>
+                    <asp:TableHeaderCell ID="lclHeaderVerification" meta:resourceKey="lclHeaderVerification"></asp:TableHeaderCell>
+                    <asp:TableHeaderCell ID="lclHeaderDefault" meta:resourceKey="lclHeaderDefault"></asp:TableHeaderCell>
                 </asp:TableHeaderRow>
             </asp:Table>
         </form>

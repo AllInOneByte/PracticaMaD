@@ -110,7 +110,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         /// <param name="expirationDate">The expiration date of the creditCard.</param>
         /// <exception cref="DuplicateInstanceException"/>
         public static void RegisterCreditCard(HttpContext context,
-            String creditType, string creditNumber, String verificationCode, String expirationDate)
+            String creditType, string creditNumber, String verificationCode, bool defaultCard, String expirationDate)
         {
             long number = Convert.ToInt64(creditNumber);
             int verification = Convert.ToInt32(verificationCode);
@@ -119,7 +119,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             UserSession userSession =
                 (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
 
-            userService.AddCreditCard(new CreditCardDetails(creditType,number,verification,date,0,userSession.UserProfileId));
+            long id = userService.AddCreditCard(new CreditCardDetails(creditType,number,verification,date,0,userSession.UserProfileId));
+            if (defaultCard) {
+                AssignDefaultCardToUser(context, id, number);
+            }
         }
 
         public static List<CreditCard> FindAllCredritCards(HttpContext context)
@@ -137,9 +140,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             return userService.FindCreditCardsDetails(ID);
         }
 
-        public static void UpdateCreditCardDetails(long cardId, CreditCardDetails creditCardDetails)
+        public static void UpdateCreditCardDetails(HttpContext context, long cardId, CreditCardDetails creditCardDetails)
         {
+          if (creditCardDetails.DefaultCard == 1)
+            {
+                AssignDefaultCardToUser(context, cardId, creditCardDetails.cardNumber); 
+            }
             userService.UpdateCreditCard(cardId, creditCardDetails);
+        }
+
+        public static void AssignDefaultCardToUser(HttpContext context, long cardId, long number)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            userSession.CardDefaultId = cardId;
+            userSession.CardDefaultNumber = number;
+
+            userService.AssignDefaultCard(cardId, userSession.UserProfileId);
         }
 
         /// <summary>
@@ -170,7 +188,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
 
             FormsAuthentication.SetAuthCookie(loginName, false);
         }
-
 
 
         /// <summary>
