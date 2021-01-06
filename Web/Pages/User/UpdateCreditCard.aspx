@@ -18,13 +18,12 @@
                         class="entry">
                         <asp:TextBox ID="txtCreditNumber" runat="server" Width="100px" Columns="16"
                             meta:resourcekey="txtCreditNumberResource1"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredCreditNumberValidator1" runat="server" ControlToValidate="txtCreditCard"
+                        <asp:RequiredFieldValidator ID="RequiredCreditNumberValidator1" runat="server" ControlToValidate="txtCreditNumber"
                             Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"
                             meta:resourcekey="rfvCreditNumberResource1"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RegularCreditNumberValidator1"
-                            ControlToValidate="lclCreditNumber" runat="server"
-                            ErrorMessage="Only Numbers allowed"
-                            ValidationExpression="\d+"></asp:RegularExpressionValidator></span>
+                            ControlToValidate="txtCreditNumber" runat="server"
+                            ValidationExpression="\d+" meta:resourcekey="revNumberError"></asp:RegularExpressionValidator>
                 <asp:Label ID="lblNumberError" runat="server" ForeColor="Red" Style="position: relative"
                             Visible="False" meta:resourcekey="lblNumberError"></asp:Label></span>
             </div>
@@ -47,12 +46,11 @@
                             meta:resourcekey="rfvVerificationCodeResource1"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RegularVerificationCodeValidator1"
                             ControlToValidate="txtVerificationCode" runat="server"
-                            ErrorMessage="Only Numbers allowed"
-                            ValidationExpression="\d+"></asp:RegularExpressionValidator></span>
+                            ValidationExpression="\d+" meta:resourcekey="revNumberError"></asp:RegularExpressionValidator></span>
             </div>
             <div class="field">
                 <span class="label">
-                    <asp:Localize ID="lclExpirationDate" runat="server" meta:resourcekey="lclVerificationCode" /></span><span
+                    <asp:Localize ID="lclExpirationDate" runat="server" meta:resourcekey="lclExpirationDate" /></span><span
                         class="entry">
                         <asp:TextBox ID="txtExpirationDate" runat="server" Width="100px" Columns="16"
                             meta:resourcekey="txtExpirationDateResource1"></asp:TextBox>
@@ -61,7 +59,7 @@
                             meta:resourcekey="rfvExpirationDateResource1"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RegularExpirationDateValidator1" runat="server" ControlToValidate="txtExpirationDate"
                             Display="Dynamic" ValidationExpression="\d+\d+/\d+\d+/\d+\d+\d+\d+"
-                            meta:resourcekey="revExpirationDatel"></asp:RegularExpressionValidator></span>
+                            meta:resourcekey="revExpirationDate"></asp:RegularExpressionValidator></span>
             </div>
             <div class="field">
                 <span class="label">
@@ -70,7 +68,7 @@
                     <asp:CheckBox ID="checkDefault" runat="server" AutoPostBack="false"/></span>
             </div>
             <div class="button">
-                <asp:Button ID="btnUpdateCard" runat="server" OnClick="BtnUpdateCardClick" meta:resourcekey="btnUpdateCard"/>
+                <asp:Button ID="btnUpdateCard" runat="server" OnClick="BtnUpdateClick" meta:resourcekey="btnUpdateCard"/>
             </div>
         </form>
     </div>

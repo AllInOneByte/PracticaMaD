@@ -253,7 +253,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\RegisterCreditCard.resx" />
+    <Content Include="Pages\User\App_LocalResources\RegisterCreditCard.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
@@ -352,28 +352,28 @@
     <Content Include="App_LocalResources\PracticaMaD.Master.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\RegisterCreditCard.gl.resx" />
+    <Content Include="Pages\User\App_LocalResources\RegisterCreditCard.aspx.gl.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\RegisterCreditCard.es.resx" />
+    <Content Include="Pages\User\App_LocalResources\RegisterCreditCard.aspx.es.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\UpdateCreditCard.resx" />
+    <Content Include="Pages\User\App_LocalResources\UpdateCreditCard.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\UpdateCreditCard.gl.resx" />
+    <Content Include="Pages\User\App_LocalResources\UpdateCreditCard.aspx.gl.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\UpdateCreditCard.es.resx" />
+    <Content Include="Pages\User\App_LocalResources\UpdateCreditCard.aspx.es.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\ListCreditCards.resx" />
+    <Content Include="Pages\User\App_LocalResources\ListCreditCards.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\ListCreditCards.gl.resx" />
+    <Content Include="Pages\User\App_LocalResources\ListCreditCards.aspx.gl.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\ListCreditCards.es.resx" />
+    <Content Include="Pages\User\App_LocalResources\ListCreditCards.aspx.es.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

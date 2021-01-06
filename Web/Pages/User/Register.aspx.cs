@@ -24,7 +24,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
                 /* Combo box initialization */
                 UpdateComboLanguage(defaultLanguage);
-                UpdateComboCreditType(defaultLanguage);
                 UpdateComboCountry(defaultLanguage, defaultCountry);
             }
         }
@@ -78,14 +77,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             this.comboLanguage.SelectedValue = selectedLanguage;
         }
 
-        private void UpdateComboCreditType(String selectedLanguage)
-        {
-            this.comboCreditType.DataSource = CreditType.GetCreditType(selectedLanguage);
-            this.comboCreditType.DataTextField = "text";
-            this.comboCreditType.DataValueField = "value";
-            this.comboCreditType.DataBind();
-        }
-
         /// <summary>
         /// Loads the countries in the comboBox in the *selectedLanguage*.
         /// Also, the *selectedCountry* will appear selected in the
@@ -110,21 +101,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         {
             if (Page.IsValid)
             {
-                try
+            try
                 {
                     UserProfileDetails userProfileDetailsVO =
                         new UserProfileDetails(txtFirstName.Text, txtSurname.Text,
                             txtEmail.Text, comboLanguage.SelectedValue,
-                            comboCountry.SelectedValue, 0, txtAddress.Text);
-
-                    
+                            comboCountry.SelectedValue, 0, txtAddress.Text);;
 
                     SessionManager.RegisterUser(Context, txtLogin.Text,
                         txtPassword.Text, userProfileDetailsVO);
 
-                    SessionManager.RegisterCreditCard(Context, comboCreditType.SelectedValue,
-                        txtCreditNumber.Text, txtVerificationCode.Text, true, txtExpirationDate.Text);
-
+                    if (checkCard.Checked)
+                    {
+                        Response.Redirect(Response.
+                        ApplyAppPathModifier("~/Pages/User/RegisterCreditCard.aspx"));
+                    }
                     Response.Redirect(Response.
                         ApplyAppPathModifier("~/Pages/MainPage.aspx"));
                 }
@@ -142,7 +133,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
              */
             this.UpdateComboCountry(comboLanguage.SelectedValue,
                 comboCountry.SelectedValue);
-            this.UpdateComboCreditType(comboLanguage.SelectedValue);
         }
     }
 }

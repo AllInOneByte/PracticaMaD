@@ -165,16 +165,7 @@
   <data name="revEmail.ErrorMessage" xml:space="preserve">
     <value>Sintaxis de email incorrecta</value>
   </data>
-  <data name="lclCreditNumber" xml:space="preserve">
-    <value>Número da Tarxeta de Crédito</value>
-  </data>
-  <data name="lclCreditType" xml:space="preserve">
-    <value>Tipo da Tarxeta de Crédito</value>
-  </data>
-  <data name="lclExpirationDate" xml:space="preserve">
-    <value>Data de expiración da Tarxeta de Crédito (dd/MM/AAAA)</value>
-  </data>
-  <data name="lclVerificationCode" xml:space="preserve">
-    <value>Código de verificación da tarxeta de Crédito</value>
+  <data name="lclCreditCard" xml:space="preserve">
+    <value>Rexistrar Tarxeta de Crédito</value>
   </data>
 </root>

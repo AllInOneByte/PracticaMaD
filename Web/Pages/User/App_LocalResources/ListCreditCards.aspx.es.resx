@@ -117,28 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnUpdateCard.Text" xml:space="preserve">
-    <value>Save</value>
+  <data name="lclHeaderDefault.Text" xml:space="preserve">
+    <value>Predeterminada</value>
   </data>
-  <data name="lblNumberError.Text" xml:space="preserve">
-    <value>Credit Card already exists</value>
+  <data name="lclHeaderExpiration.Text" xml:space="preserve">
+    <value>Fecha de expiración</value>
   </data>
-  <data name="lclCheckDefault.Text" xml:space="preserve">
-    <value>Default Credit Card</value>
+  <data name="lclHeaderNumber.Text" xml:space="preserve">
+    <value>Número</value>
   </data>
-  <data name="lclCreditNumber.Text" xml:space="preserve">
-    <value>Credit Card Number</value>
+  <data name="lclHeaderType.Text" xml:space="preserve">
+    <value>Tipo</value>
   </data>
-  <data name="lclCreditType.Text" xml:space="preserve">
-    <value>Credit Card Type</value>
+  <data name="lclHeaderVerification.Text" xml:space="preserve">
+    <value>Codigo de verificación</value>
   </data>
-  <data name="lclExpirationDate.Text" xml:space="preserve">
-    <value>Credit Card Expiration Date (dd/MM/YYYY)</value>
+  <data name="lclTableCreditCards.Text" xml:space="preserve">
+    <value>Tarjetas de Crédito</value>
   </data>
-  <data name="lclVerificationCode.Text" xml:space="preserve">
-    <value>Credit Card Verification Code</value>
+  <data name="lnkRegisterCreditCard.Text" xml:space="preserve">
+    <value>Registrar Tarjeta de Crédito</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>Practica MaD - User Credit Card Registration</value>
+    <value>PracticaMaD - Tarjetas de Crédito del Usuario</value>
+  </data>
+  <data name="lclMenuExplanation.Text" xml:space="preserve">
+    <value>Información de las Tarjetas de Crédito</value>
   </data>
 </root>

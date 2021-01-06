@@ -21,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 CreditCard card = SessionManager.FindCreditCard(cardId);
 
                 txtCreditNumber.Text = card.cardNumber.ToString();
-                txtExpirationDate.Text = card.expirationDate.ToString();
+                txtExpirationDate.Text = card.expirationDate.Date.ToString("dd/MM/yyyy");
                 txtVerificationCode.Text = card.verificationCode.ToString();
                 if (card.defaultCard == 1)
                 {
@@ -33,32 +33,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             }
         }
 
-        protected void BtnUpdateCardClick(object sender, EventArgs e)
+        protected void BtnUpdateClick(object sender, EventArgs e)
         {
 
             if (Page.IsValid)
             {
                 long cardId = Convert.ToInt64(Request.QueryString["card"]);
-                long number = Convert.ToInt64(txtCreditNumber);
-                int verification = Convert.ToInt32(txtVerificationCode);
-                System.DateTime date = Convert.ToDateTime(txtExpirationDate);
+                long number = Convert.ToInt64(txtCreditNumber.Text);
+                int verification = Convert.ToInt32(txtVerificationCode.Text);
+                System.DateTime date = Convert.ToDateTime(txtExpirationDate.Text);
                 byte defaultCard = 0;
                 if (checkDefault.Checked)
                 {
                     defaultCard = 1;
                 }
-                
+
 
                 CreditCardDetails creditCardDetails =
-                    new CreditCardDetails(comboCreditType.SelectedValue, number, 
+                    new CreditCardDetails(comboCreditType.SelectedValue, number,
                         verification, date, defaultCard, SessionManager.GetUserSession(Context).UserProfileId);
 
                 SessionManager.UpdateCreditCardDetails(Context, cardId, creditCardDetails);
 
                 Response.Redirect(
-                    Response.ApplyAppPathModifier("~/Pages/User/ListCreditCards.aspx"));
+                   Response.ApplyAppPathModifier("~/Pages/User/ListCreditCards.aspx"));
 
             }
+
         }
 
         private void UpdateComboCreditType(String selectedLanguage)

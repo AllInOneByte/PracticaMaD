@@ -135,10 +135,22 @@
   <data name="lclVerificationCode.Text" xml:space="preserve">
     <value>Código de verificación de la Tarjeta de Crédito</value>
   </data>
-  <data name="Page.Title.Text" xml:space="preserve">
+  <data name="Page.Title" xml:space="preserve">
     <value>Practica MaD - Registro de la Tarjeta de Crédito del Usuario</value>
   </data>
   <data name="lblNumberError.Text" xml:space="preserve">
     <value>Tarjeta de Crédito ya existente</value>
+  </data>
+  <data name="revEmail.ErrorMessage" xml:space="preserve">
+    <value>Sintaxis de email incorrecta</value>
+  </data>
+  <data name="revExpirationDate.ErrorMessage" xml:space="preserve">
+    <value>Sintaxis de fecha incorrecta</value>
+  </data>
+  <data name="revNumberError.ErrorMessage" xml:space="preserve">
+    <value>Solo números permitidos</value>
+  </data>
+  <data name="lclMenuExplanation.Text" xml:space="preserve">
+    <value>Registro de Tarjeta de Crédito</value>
   </data>
 </root>
