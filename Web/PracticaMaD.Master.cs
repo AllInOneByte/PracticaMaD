@@ -6,7 +6,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 {
     public partial class PracticaMaD : System.Web.UI.MasterPage
     {
-        public static readonly String USER_SESSION_ATTRIBUTE = "userSession";
+        public static readonly string USER_SESSION_ATTRIBUTE = "userSession";
 
         protected void Page_Load(object sender, EventArgs e)
         {

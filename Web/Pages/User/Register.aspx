@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
-    CodeBehind="Register.aspx.cs" Inherits="Es.Udc.DotNet.MPracticaMaD.Web.Pages.User.Register"
+    CodeBehind="Register.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.User.Register"
     meta:resourcekey="Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation"

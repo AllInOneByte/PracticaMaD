@@ -29,7 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
         private const string productName = "product1";
         private const decimal productPrice = 10;
-        private System.DateTime productDate = System.DateTime.Now;
+        private readonly System.DateTime productDate = System.DateTime.Now;
         private const int productQuantity = 10;
 
         private const string commentBody = "comment1";
@@ -54,7 +54,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
         #endregion Variables
 
-        private Category createCategory(string categoryName)
+        private Category CreateCategory(string categoryName)
         {
             Category category = new Category
             {
@@ -65,22 +65,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             return category;
         }
-        private Product createProduct(string productName, decimal productPrice, System.DateTime productDate,
+        private Product CreateProduct(string productName, decimal productPrice, System.DateTime productDate,
                 int productQuantity, long categoryId)
         {
 
-            var product = new Product();
-            product.productName = productName;
-            product.productPrice = productPrice;
-            product.productDate = productDate;
-            product.productQuantity = productQuantity;
-            product.categoryId = categoryId;
+            Product product = new Product
+            {
+                productName = productName,
+                productPrice = productPrice,
+                productDate = productDate,
+                productQuantity = productQuantity,
+                categoryId = categoryId
+            };
 
             productDao.Create(product);
 
             return product;
         }
-        private UserProfile createUser()
+        private UserProfile CreateUser()
         {
             UserProfile user = new UserProfile
             {
@@ -99,7 +101,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             return user;
         }
-        private Tag createTag(string tagName)
+        private Tag CreateTag(string tagName)
         {
             Tag tag = new Tag
             {
@@ -119,8 +121,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             using (var scope = new TransactionScope())
             {
-                var category = createCategory(categoryName);
-                var product = createProduct(productName, productPrice, productDate,
+                var category = CreateCategory(categoryName);
+                var product = CreateProduct(productName, productPrice, productDate,
                     productQuantity, category.categoryId);
                 var productFind = productDao.Find(product.productId);
 
@@ -155,12 +157,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             using (var scope = new TransactionScope())
             {
-                var category = createCategory(categoryName);
-                List<Product> productList = new List<Product>();
-                productList.Add(createProduct(productName, productPrice, productDate,
-                    productQuantity, category.categoryId));
-                productList.Add(createProduct("product2", 9, System.DateTime.Now, 10, category.categoryId));
-                productList.Add(createProduct("product3", 8, System.DateTime.Now, 13, category.categoryId));
+                var category = CreateCategory(categoryName);
+                List<Product> productList = new List<Product>
+                {
+                    CreateProduct(productName, productPrice, productDate,
+                    productQuantity, category.categoryId),
+                    CreateProduct("product2", 9, System.DateTime.Now, 10, category.categoryId),
+                    CreateProduct("product3", 8, System.DateTime.Now, 13, category.categoryId)
+                };
 
                 var productDetailsList = productService.FindAllProducts();
 
@@ -187,12 +191,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             using (var scope = new TransactionScope())
             {
-                var category = createCategory(categoryName);
-                List<Product> productList = new List<Product>();
-                productList.Add(createProduct(productName, productPrice, productDate, productQuantity,
-                    category.categoryId));
-                createProduct("pro2", 9, System.DateTime.Now, 10, category.categoryId);
-                productList.Add(createProduct("product3", 8, System.DateTime.Now, 13, category.categoryId));
+                var category = CreateCategory(categoryName);
+                List<Product> productList = new List<Product>
+                {
+                    CreateProduct(productName, productPrice, productDate, productQuantity,
+                    category.categoryId)
+                };
+                CreateProduct("pro2", 9, System.DateTime.Now, 10, category.categoryId);
+                productList.Add(CreateProduct("product3", 8, System.DateTime.Now, 13, category.categoryId));
 
                 var productDetailsList = productService.FindAllProductsByKeyword("product", -1);
 
@@ -219,14 +225,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             using (var scope = new TransactionScope())
             {
-                var category1 = createCategory(categoryName);
-                var category2 = createCategory("category2");
+                var category1 = CreateCategory(categoryName);
+                var category2 = CreateCategory("category2");
 
-                List<Product> productList = new List<Product>();
-                productList.Add(createProduct(productName, productPrice, productDate,
-                    productQuantity, category1.categoryId));
-                createProduct("pro2", 9, System.DateTime.Now, 10, category1.categoryId);
-                createProduct("product3", 8, System.DateTime.Now, 13, category2.categoryId);
+                List<Product> productList = new List<Product>
+                {
+                    CreateProduct(productName, productPrice, productDate,
+                    productQuantity, category1.categoryId)
+                };
+                CreateProduct("pro2", 9, System.DateTime.Now, 10, category1.categoryId);
+                CreateProduct("product3", 8, System.DateTime.Now, 13, category2.categoryId);
 
                 var productDetailsList = productService.FindAllProductsByKeyword("product", category1.categoryId);
 
@@ -252,8 +260,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             using (var scope = new TransactionScope())
             {
-                var category = createCategory(categoryName);
-                var product = createProduct(productName, productPrice, productDate,
+                var category = CreateCategory(categoryName);
+                var product = CreateProduct(productName, productPrice, productDate,
                     productQuantity, category.categoryId);
 
                 List<SpecificProperty> properties = new List<SpecificProperty>();
@@ -302,10 +310,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             using (var scope = new TransactionScope())
             {
-                var category = createCategory(categoryName);
-                var product = createProduct(productName, productPrice, productDate,
+                var category = CreateCategory(categoryName);
+                var product = CreateProduct(productName, productPrice, productDate,
                     productQuantity, category.categoryId);
-                var user = createUser();
+                var user = CreateUser();
 
                 var commentId = productService.AddComment(product.productId, user.usrId, commentBody);
 
@@ -327,15 +335,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             using (var scope = new TransactionScope())
             {
-                var category = createCategory(categoryName);
-                var product = createProduct(productName, productPrice, productDate,
+                var category = CreateCategory(categoryName);
+                var product = CreateProduct(productName, productPrice, productDate,
                     productQuantity, category.categoryId);
-                var user = createUser();
+                var user = CreateUser();
 
                 List<long> tagIds = new List<long>
                 {
-                    createTag(tagName1).tagId,
-                    createTag(tagName2).tagId
+                    CreateTag(tagName1).tagId,
+                    CreateTag(tagName2).tagId
                 };
 
                 var commentId = productService.AddComment(product.productId, user.usrId, commentBody, tagIds);
@@ -367,10 +375,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             using (var scope = new TransactionScope())
             {
-                var category = createCategory(categoryName);
-                var product = createProduct(productName, productPrice, productDate,
+                var category = CreateCategory(categoryName);
+                var product = CreateProduct(productName, productPrice, productDate,
                     productQuantity, category.categoryId);
-                var user = createUser();
+                var user = CreateUser();
 
                 var commentId = productService.AddComment(product.productId, user.usrId, commentBody);
 
@@ -390,14 +398,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             using (var scope = new TransactionScope())
             {
-                var category = createCategory(categoryName);
-                var product = createProduct(productName, productPrice, productDate,
+                var category = CreateCategory(categoryName);
+                var product = CreateProduct(productName, productPrice, productDate,
                     productQuantity, category.categoryId);
-                var user = createUser();
+                var user = CreateUser();
 
-                List<long> tagIds = new List<long>();
-                tagIds.Add(createTag(tagName1).tagId);
-                tagIds.Add(createTag(tagName2).tagId);
+                List<long> tagIds = new List<long>
+                {
+                    CreateTag(tagName1).tagId,
+                    CreateTag(tagName2).tagId
+                };
 
                 var commentId = productService.AddComment(product.productId, user.usrId,
                     commentBody, new List<long>());
@@ -434,16 +444,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             using (var scope = new TransactionScope())
             {
-                var category = createCategory(categoryName);
-                var product = createProduct(productName, productPrice, productDate,
+                var category = CreateCategory(categoryName);
+                var product = CreateProduct(productName, productPrice, productDate,
                     productQuantity, category.categoryId);
-                var user = createUser();
+                var user = CreateUser();
 
-                List<long> newTagIds = new List<long>();
-                newTagIds.Add(createTag(tagName1).tagId);
+                List<long> newTagIds = new List<long>
+                {
+                    CreateTag(tagName1).tagId
+                };
 
-                List<long> removeTagIds = new List<long>();
-                removeTagIds.Add(createTag(tagName2).tagId);
+                List<long> removeTagIds = new List<long>
+                {
+                    CreateTag(tagName2).tagId
+                };
 
                 var commentId = productService.AddComment(product.productId, user.usrId,
                     commentBody, removeTagIds);
@@ -487,23 +501,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             using (var scope = new TransactionScope())
             {
-                var category = createCategory(categoryName);
-                var product = createProduct("anotherProductNameTest", productPrice,
+                var category = CreateCategory(categoryName);
+                var product = CreateProduct("anotherProductNameTest", productPrice,
                     productDate, productQuantity, category.categoryId);
-                var user = createUser();
+                var user = CreateUser();
 
                 List<long> tagIds1 = new List<long>();
                 List<long> tagIds2 = new List<long>();
-                tagIds1.Add(createTag(tagName1).tagId);
-                tagIds2.Add(createTag(tagName2).tagId);
+                tagIds1.Add(CreateTag(tagName1).tagId);
+                tagIds2.Add(CreateTag(tagName2).tagId);
 
-                List<string> commentsBody = new List<string>();
-                commentsBody.Add(commentBody);
-                commentsBody.Add("comment2");
+                List<string> commentsBody = new List<string>
+                {
+                    commentBody,
+                    "comment2"
+                };
 
-                List<long> commentsIds = new List<long>();
-                commentsIds.Add(productService.AddComment(product.productId, user.usrId, commentsBody[0], tagIds1));
-                commentsIds.Add(productService.AddComment(product.productId, user.usrId, commentsBody[1], tagIds2));
+                List<long> commentsIds = new List<long>
+                {
+                    productService.AddComment(product.productId, user.usrId, commentsBody[0], tagIds1),
+                    productService.AddComment(product.productId, user.usrId, commentsBody[1], tagIds2)
+                };
 
                 CommentBlock listComments = productService.FindAllProductComments(product.productId);
 
@@ -548,9 +566,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             using (var scope = new TransactionScope())
             {
-                List<Tag> tagList = new List<Tag>();
-                tagList.Add(createTag(tagName1));
-                tagList.Add(createTag(tagName2));
+                List<Tag> tagList = new List<Tag>
+                {
+                    CreateTag(tagName1),
+                    CreateTag(tagName2)
+                };
 
                 TagBlock tagFoundList = productService.FindAllTags();
 
@@ -564,6 +584,37 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 }
 
                 Assert.IsFalse(tagFoundList.ExistMoreTags);
+            }
+        }
+
+        [TestMethod]
+        public void FindAllCategoriesTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                int numberCategories = 5;
+
+                List<Category> categories = new List<Category>();
+
+                for (int i = 0; i < numberCategories; i++)
+                {
+                    Category cat = new Category
+                    {
+                        categoryName = "CategoryTest" + i
+                    };
+
+                    categoryDao.Create(cat);
+                    categories.Add(cat);
+                }
+
+                List<Category> foundCategories = productService.FindAllCategories();
+
+                Assert.AreEqual(numberCategories, foundCategories.Count);
+
+                for (int i = 0; i < numberCategories; i++)
+                {
+                    Assert.AreEqual(categories[i], foundCategories[i]);
+                }
             }
         }
 

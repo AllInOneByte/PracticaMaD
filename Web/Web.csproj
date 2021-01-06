@@ -105,6 +105,7 @@
     <Content Include="Global.asax" />
     <Content Include="Pages\Errors\InternalError.aspx" />
     <Content Include="Pages\MainPage.aspx" />
+    <Content Include="Pages\Product\ProductSearch.aspx" />
     <Content Include="Pages\UserExists.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
     <Content Include="Pages\User\ChangePassword.aspx" />
@@ -162,8 +163,16 @@
     <Compile Include="Pages\MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Product\ProductSearch.aspx.cs">
+      <DependentUpon>ProductSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\ProductSearch.aspx.designer.cs">
+      <DependentUpon>ProductSearch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\UserExists.aspx.cs">
       <DependentUpon>UserExists.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\UserExists.aspx.designer.cs">
       <DependentUpon>UserExists.aspx</DependentUpon>
