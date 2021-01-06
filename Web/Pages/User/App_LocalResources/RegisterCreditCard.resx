@@ -117,40 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnUpdate.Text" xml:space="preserve">
-    <value>Update</value>
+  <data name="btnRegisterCreditCard.Text" xml:space="preserve">
+    <value>Register</value>
   </data>
-  <data name="lclCountry.Text" xml:space="preserve">
-    <value>Country</value>
+  <data name="lclCheckDefault.Text" xml:space="preserve">
+    <value>Default Credit Card</value>
   </data>
-  <data name="lclEmail.Text" xml:space="preserve">
-    <value>Email</value>
+  <data name="lclCreditNumber.Text" xml:space="preserve">
+    <value>Credit Card Number</value>
   </data>
-  <data name="lclFirstName.Text" xml:space="preserve">
-    <value>First name</value>
+  <data name="lclCreditType.Text" xml:space="preserve">
+    <value>Credit Card Type</value>
   </data>
-  <data name="lclAddress.Text" xml:space="preserve">
-    <value>Address</value>
+  <data name="lclExpirationDate.Text" xml:space="preserve">
+    <value>Credit Card Expiration Date (dd/MM/YYYY)</value>
   </data>
-  <data name="lclLanguage.Text" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="lclMenuExplanation.Text" xml:space="preserve">
-    <value>User profile details</value>
-  </data>
-  <data name="lclSurname.Text" xml:space="preserve">
-    <value>Surname</value>
-  </data>
-  <data name="lnkChangePassword.Text" xml:space="preserve">
-    <value>Change password</value>
+  <data name="lclVerificationCode.Text" xml:space="preserve">
+    <value>Credit Card Verification Code</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>PracticaMaD - Update User Profile</value>
+    <value>Practica MaD - Update User Credit Card</value>
   </data>
-  <data name="revEmail.ErrorMessage" xml:space="preserve">
-    <value>Incorrect email syntax</value>
-  </data>
-  <data name="lnkListCreditCards.Text" xml:space="preserve">
-    <value>User Credit Cards</value>
+  <data name="lblNumberError.Text" xml:space="preserve">
+    <value>Credit Card already exists</value>
   </data>
 </root>

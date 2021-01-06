@@ -117,40 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnUpdate.Text" xml:space="preserve">
-    <value>Update</value>
+  <data name="lclHeaderDefault.Text" xml:space="preserve">
+    <value>Predeterminada</value>
   </data>
-  <data name="lclCountry.Text" xml:space="preserve">
-    <value>Country</value>
+  <data name="lclHeaderExpiration.Text" xml:space="preserve">
+    <value>Fecha de expiración</value>
   </data>
-  <data name="lclEmail.Text" xml:space="preserve">
-    <value>Email</value>
+  <data name="lclHeaderNumber.Text" xml:space="preserve">
+    <value>Número</value>
   </data>
-  <data name="lclFirstName.Text" xml:space="preserve">
-    <value>First name</value>
+  <data name="lclHeaderType.Text" xml:space="preserve">
+    <value>Tipo</value>
   </data>
-  <data name="lclAddress.Text" xml:space="preserve">
-    <value>Address</value>
+  <data name="lclHeaderVerification.Text" xml:space="preserve">
+    <value>Codigo de verificación</value>
   </data>
-  <data name="lclLanguage.Text" xml:space="preserve">
-    <value>Language</value>
+  <data name="lclTableCreditCards.Text" xml:space="preserve">
+    <value>Tarjetas de Crédito</value>
   </data>
-  <data name="lclMenuExplanation.Text" xml:space="preserve">
-    <value>User profile details</value>
-  </data>
-  <data name="lclSurname.Text" xml:space="preserve">
-    <value>Surname</value>
-  </data>
-  <data name="lnkChangePassword.Text" xml:space="preserve">
-    <value>Change password</value>
+  <data name="lnkRegisterCreditCard.Text" xml:space="preserve">
+    <value>Registrar Tarjeta de Crédito</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>PracticaMaD - Update User Profile</value>
-  </data>
-  <data name="revEmail.ErrorMessage" xml:space="preserve">
-    <value>Incorrect email syntax</value>
-  </data>
-  <data name="lnkListCreditCards.Text" xml:space="preserve">
-    <value>User Credit Cards</value>
+    <value>Tarjetas de Crédito del Usuario</value>
   </data>
 </root>

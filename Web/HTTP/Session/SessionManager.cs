@@ -1,10 +1,12 @@
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Util;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Security;
 
@@ -99,6 +101,66 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         }
 
         /// <summary>
+        /// Registers the creditCard.
+        /// </summary>
+        /// <param name="context">Http Context includes request, response, etc.</param>
+        /// <param name="creditType">The type of the creditCard.</param>
+        /// <param name="creditNumber">The number of the creditCard.</param>
+        /// <param name="verificationCode">The verification code of the creditCard.</param>
+        /// <param name="expirationDate">The expiration date of the creditCard.</param>
+        /// <exception cref="DuplicateInstanceException"/>
+        public static void RegisterCreditCard(HttpContext context,
+            String creditType, string creditNumber, String verificationCode, bool defaultCard, String expirationDate)
+        {
+            long number = Convert.ToInt64(creditNumber);
+            int verification = Convert.ToInt32(verificationCode);
+            System.DateTime date = Convert.ToDateTime(expirationDate);
+
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            long id = userService.AddCreditCard(new CreditCardDetails(creditType,number,verification,date,0,userSession.UserProfileId));
+            if (defaultCard) {
+                AssignDefaultCardToUser(context, id, number);
+            }
+        }
+
+        public static List<CreditCard> FindAllCredritCards(HttpContext context)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            return userService.FindAllCreditCardsDetails(userSession.UserProfileId);
+        }
+
+        public static CreditCard FindCreditCard(String creditId)
+        {
+            long ID = Convert.ToInt64(creditId);
+
+            return userService.FindCreditCardsDetails(ID);
+        }
+
+        public static void UpdateCreditCardDetails(HttpContext context, long cardId, CreditCardDetails creditCardDetails)
+        {
+          if (creditCardDetails.DefaultCard == 1)
+            {
+                AssignDefaultCardToUser(context, cardId, creditCardDetails.cardNumber); 
+            }
+            userService.UpdateCreditCard(cardId, creditCardDetails);
+        }
+
+        public static void AssignDefaultCardToUser(HttpContext context, long cardId, long number)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            userSession.CardDefaultId = cardId;
+            userSession.CardDefaultNumber = number;
+
+            userService.AssignDefaultCard(cardId, userSession.UserProfileId);
+        }
+
+        /// <summary>
         /// Registers the user.
         /// </summary>
         /// <param name="context">Http Context includes request, response, etc.</param>
@@ -126,6 +188,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
 
             FormsAuthentication.SetAuthCookie(loginName, false);
         }
+
 
         /// <summary>
         /// Login method. Authenticates an user in the current context.

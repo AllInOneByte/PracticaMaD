@@ -150,4 +150,7 @@
   <data name="revEmail.ErrorMessage" xml:space="preserve">
     <value>Sintaxis de email incorrecta</value>
   </data>
+  <data name="lnkListCreditCards.Text" xml:space="preserve">
+    <value>Tarxetas de Crédito do usuario</value>
+  </data>
 </root>

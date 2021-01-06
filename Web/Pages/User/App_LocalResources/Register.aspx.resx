@@ -165,4 +165,16 @@
   <data name="revEmail.ErrorMessage" xml:space="preserve">
     <value>Incorrect email syntax</value>
   </data>
+  <data name="lclCreditNumber.Text" xml:space="preserve">
+    <value>Credit Card Number</value>
+  </data>
+  <data name="lclCreditType.Text" xml:space="preserve">
+    <value>Credit Card Type</value>
+  </data>
+  <data name="lclExpirationDate.Text" xml:space="preserve">
+    <value>Credit Card Expiration Date (dd/MM/YYYY)</value>
+  </data>
+  <data name="lclVerificationCode.Text" xml:space="preserve">
+    <value>Credit Card Verification Code</value>
+  </data>
 </root>

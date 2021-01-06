@@ -117,40 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnUpdate.Text" xml:space="preserve">
-    <value>Update</value>
+  <data name="btnUpdateCard.Text" xml:space="preserve">
+    <value>Guardar cambios</value>
   </data>
-  <data name="lclCountry.Text" xml:space="preserve">
-    <value>Country</value>
+  <data name="lblNumberError.Text" xml:space="preserve">
+    <value>Tarjeta de Crédito ya existente</value>
   </data>
-  <data name="lclEmail.Text" xml:space="preserve">
-    <value>Email</value>
+  <data name="lclCheckDefault.Text" xml:space="preserve">
+    <value>Trajeta de Crédito predeterminada</value>
   </data>
-  <data name="lclFirstName.Text" xml:space="preserve">
-    <value>First name</value>
+  <data name="lclCreditNumber.Text" xml:space="preserve">
+    <value>Número de la Tarjeta de Crédito</value>
   </data>
-  <data name="lclAddress.Text" xml:space="preserve">
-    <value>Address</value>
+  <data name="lclCreditType.Text" xml:space="preserve">
+    <value>Tipo de la Tarjeta de Crédito</value>
   </data>
-  <data name="lclLanguage.Text" xml:space="preserve">
-    <value>Language</value>
+  <data name="lclExpirationDate.Text" xml:space="preserve">
+    <value>Fecha de expiración de la Tarjeta de Crédito (dd/MM/AAAA)</value>
   </data>
-  <data name="lclMenuExplanation.Text" xml:space="preserve">
-    <value>User profile details</value>
-  </data>
-  <data name="lclSurname.Text" xml:space="preserve">
-    <value>Surname</value>
-  </data>
-  <data name="lnkChangePassword.Text" xml:space="preserve">
-    <value>Change password</value>
+  <data name="lclVerificationCode.Text" xml:space="preserve">
+    <value>Código de verificación de la Tarjeta de Crédito</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>PracticaMaD - Update User Profile</value>
-  </data>
-  <data name="revEmail.ErrorMessage" xml:space="preserve">
-    <value>Incorrect email syntax</value>
-  </data>
-  <data name="lnkListCreditCards.Text" xml:space="preserve">
-    <value>User Credit Cards</value>
+    <value>Practica MaD - Actualizar Información de la Tarjeta de Crédito del Usuario</value>
   </data>
 </root>
