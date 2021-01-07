@@ -47,7 +47,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                     row.Cells.Add(type);
 
                     expiration = new TableCell();
-                    expiration.Text = card.expirationDate.ToString();
+                    expiration.Text = card.expirationDate.ToString("dd/MM/yyyy");
                     row.Cells.Add(expiration);
 
                     verification = new TableCell();

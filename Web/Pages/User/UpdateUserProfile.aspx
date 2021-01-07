@@ -15,9 +15,10 @@
             <asp:HyperLink ID="lnkChangePassword" runat="server" 
                 NavigateUrl="~/Pages/User/ChangePassword.aspx"
                 meta:resourcekey="lnkChangePassword"/>
+            <asp:Label ID="lblDash3" runat="server" Text="-" />
             <asp:HyperLink ID="lnkListCreditCards" runat="server" 
                 NavigateUrl="~/Pages/User/ListCreditCards.aspx"
-                meta:resourcekey="lnkCreditCards"/>
+                meta:resourcekey="lnkListCreditCards"/>
             <div class="field">
                 <span class="label"><asp:Localize ID="lclFirstName" runat="server" meta:resourcekey="lclFirstName" /></span><span class="entry">
                     <asp:TextBox ID="txtFirstName" runat="server" Width="100" Columns="16"></asp:TextBox>

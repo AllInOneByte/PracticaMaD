@@ -117,14 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnUpdateCard.Text" xml:space="preserve">
-    <value>Gardar cambios</value>
-  </data>
-  <data name="lblNumberError.Text" xml:space="preserve">
-    <value>Tarxeta de Crédito xa existente</value>
+  <data name="btnRegisterCreditCard.Text" xml:space="preserve">
+    <value>Rexistrar</value>
   </data>
   <data name="lclCheckDefault.Text" xml:space="preserve">
-    <value>Traxeta de Crédito predeterminada</value>
+    <value>Tarxeta Predeterminada</value>
   </data>
   <data name="lclCreditNumber.Text" xml:space="preserve">
     <value>Número da Tarxeta de Crédito</value>
@@ -139,6 +136,21 @@
     <value>Código de verificación da Tarxeta de Crédito</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>Practica MaD - Actualizar Información da Tarxeta de Crédito do Usuario</value>
+    <value>Practica MaD - Rexistro da Tarxeta de Crédito do Usuario</value>
+  </data>
+  <data name="lblNumberError.Text" xml:space="preserve">
+    <value>Tarxeta de Crédito xa existente</value>
+  </data>
+  <data name="revEmail.ErrorMessage" xml:space="preserve">
+    <value>Sintaxis de email incorrecta</value>
+  </data>
+  <data name="revExpirationDate.ErrorMessage" xml:space="preserve">
+    <value>Sintaxis da fecha incorrecta</value>
+  </data>
+  <data name="revNumberError.ErrorMessage" xml:space="preserve">
+    <value>Só números permitidos</value>
+  </data>
+  <data name="lclMenuExplanation.Text" xml:space="preserve">
+    <value>Rexistro da Tarxeta de Crédito</value>
   </data>
 </root>

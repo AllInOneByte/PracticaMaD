@@ -117,28 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lclHeaderDefault.Text" xml:space="preserve">
-    <value>Predeterminada</value>
+  <data name="btnUpdateCard.Text" xml:space="preserve">
+    <value>Save</value>
   </data>
-  <data name="lclHeaderExpiration.Text" xml:space="preserve">
-    <value>Fecha de expiración</value>
+  <data name="lblNumberError.Text" xml:space="preserve">
+    <value>Credit Card already exists</value>
   </data>
-  <data name="lclHeaderNumber.Text" xml:space="preserve">
-    <value>Número</value>
+  <data name="lclCheckDefault.Text" xml:space="preserve">
+    <value>Default Credit Card</value>
   </data>
-  <data name="lclHeaderType.Text" xml:space="preserve">
-    <value>Tipo</value>
+  <data name="lclCreditNumber.Text" xml:space="preserve">
+    <value>Credit Card Number</value>
   </data>
-  <data name="lclHeaderVerification.Text" xml:space="preserve">
-    <value>Codigo de verificación</value>
+  <data name="lclCreditType.Text" xml:space="preserve">
+    <value>Credit Card Type</value>
   </data>
-  <data name="lclTableCreditCards.Text" xml:space="preserve">
-    <value>Tarjetas de Crédito</value>
+  <data name="lclExpirationDate.Text" xml:space="preserve">
+    <value>Credit Card Expiration Date (dd/MM/YYYY)</value>
   </data>
-  <data name="lnkRegisterCreditCard.Text" xml:space="preserve">
-    <value>Registrar Tarjeta de Crédito</value>
+  <data name="lclVerificationCode.Text" xml:space="preserve">
+    <value>Credit Card Verification Code</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>Tarjetas de Crédito del Usuario</value>
+    <value>Practica MaD - User Credit Card Registration</value>
+  </data>
+  <data name="revEmail.ErrorMessage" xml:space="preserve">
+    <value>Incorrect email syntax</value>
+  </data>
+  <data name="revExpirationDate.ErrorMessage" xml:space="preserve">
+    <value>Incorrect date syntax</value>
+  </data>
+  <data name="revNumberError.ErrorMessage" xml:space="preserve">
+    <value>Only numbers allow</value>
+  </data>
+  <data name="lclMenuExplanation.Text" xml:space="preserve">
+    <value>Credit Card Information</value>
   </data>
 </root>
