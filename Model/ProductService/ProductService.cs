@@ -1,12 +1,12 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
-using Es.Udc.DotNet.PracticaMaD.Model.LabeledDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Ninject;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
@@ -16,72 +16,75 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         public IProductDao ProductDao { private get; set; }
 
         [Inject]
-        public ILabeledDao LabeledDao { private get; set; }
-
-        [Inject]
         public ICommentDao CommentDao { private get; set; }
 
         [Inject]
         public ITagDao TagDao { private get; set; }
+
+        [Inject]
+        public ICategoryDao CategoryDao { private get; set; }
 
         #region IProductService Members
 
         #region Product Members
 
         /// <exception cref="InstanceNotFoundException"/>
+        /// <exception cref="NegativeStockException"/>
         [Transactional]
-        public void UpdateProductDetails(long productId, ProductUpdateDetails productDetails)
+        public void DecreaseProductStock(long productId, int quantity)
         {
             Product product = ProductDao.Find(productId);
 
-            product.productName = productDetails.ProductName;
-            product.productPrice = productDetails.ProductPrice;
-            product.productQuantity = productDetails.ProductQuantity;
+            if (product.productQuantity < quantity)
+                throw new NegativeStockException(productId, product.productQuantity, quantity);
+
+            product.productQuantity = product.productQuantity - quantity;
 
             ProductDao.Update(product);
         }
 
-        public List<ProductDetails> FindAllProducts()
+        /// <exception cref="InstanceNotFoundException"/>
+        [Transactional]
+        public void UpdateProductDetails(long productId, string productName,
+            decimal productPrice, int productQuantity)
         {
-            List<ProductDetails> productsDetails = new List<ProductDetails>();
-            List<Product> products = ProductDao.FindAll();
+            Product product = ProductDao.Find(productId);
 
-            foreach (var p in products)
-            {
-                productsDetails.Add(new ProductDetails(p.productId, p.productName, p.Category.categoryName, p.productDate, p.productPrice));
-            }
+            product.productName = productName;
+            product.productPrice = productPrice;
+            product.productQuantity = productQuantity;
 
-            return productsDetails;
+            ProductDao.Update(product);
         }
 
-        public List<ProductDetails> FindAllProductsByKeyword(string keyword, long categoryId)
+        public ProductBlock FindAllProducts(int startIndex = 0, int count = 20)
         {
-            List<ProductDetails> productsDetails = new List<ProductDetails>();
-            List<Product> products = ProductDao.FindByKeywordsAndCategory(keyword, categoryId);
+            List<Product> products = ProductDao.FindAll(startIndex, count + 1);
 
-            foreach (var p in products)
-            {
-                productsDetails.Add(new ProductDetails(p.productId, p.productName, p.Category.categoryName, p.productDate, p.productPrice));
-            }
+            bool existMoreProducts = (products.Count == count + 1);
 
-            return productsDetails;
+            if (existMoreProducts) products.RemoveAt(count);
+
+            return new ProductBlock(products, existMoreProducts);
+        }
+
+        public ProductBlock FindAllProductsByKeyword(string keyword, long categoryId = -1,
+            int startIndex = 0, int count = 20)
+        {
+            List<Product> products = ProductDao.FindByKeywordsAndCategory(keyword, categoryId,
+                startIndex, count + 1);
+
+            bool existMoreProducts = (products.Count == count + 1);
+
+            if (existMoreProducts) products.RemoveAt(count);
+
+            return new ProductBlock(products, existMoreProducts);
         }
 
         /// <exception cref="InstanceNotFoundException"/>
-        public ProductLinkDetails FindProduct(long productId)
+        public Product FindProduct(long productId)
         {
-            Product p = ProductDao.Find(productId);
-            List<string> specificName = new List<string>();
-            List<string> specificValue = new List<string>();
-
-            foreach (var s in p.SpecificProperties.ToList())
-            {
-                specificName.Add(s.propertyName);
-                specificValue.Add(s.propertyValue);
-            }
-
-            return new ProductLinkDetails(p.productId, p.productName, p.Category.categoryName, p.productDate,
-                p.productPrice, p.productQuantity, specificName, specificValue);
+            return ProductDao.Find(productId);
         }
 
         #endregion Product Members
@@ -89,11 +92,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         #region Comment Members
 
         /// <exception cref="InstanceNotFoundException"/>
-        public long AddComment(long productId, long userId, CommentUpdate details)
+        public long AddComment(long productId, long userId, string commentBody)
         {
             Comment comment = new Comment
             {
-                comment1 = details.CommentBody,
+                comment1 = commentBody,
                 commentDate = System.DateTime.Now,
                 userId = userId,
                 productId = productId
@@ -101,16 +104,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
             CommentDao.Create(comment);
 
-            foreach (var tagId in details.TagIds)
-            {
-                Labeled labeled = new Labeled
-                {
-                    tagId = tagId,
-                    commentId = comment.commentId
-                };
+            return comment.commentId;
+        }
 
-                LabeledDao.Create(labeled);
+        public long AddComment(long productId, long userId, string commentBody, List<long> tags)
+        {
+            Comment comment = new Comment
+            {
+                comment1 = commentBody,
+                commentDate = System.DateTime.Now,
+                userId = userId,
+                productId = productId
+            };
+
+            List<Tag> tagList = new List<Tag>();
+
+            foreach (var tagId in tags)
+            {
+                tagList.Add(TagDao.Find(tagId));
             }
+            comment.Tags = tagList;
+
+            CommentDao.Create(comment);
 
             return comment.commentId;
         }
@@ -119,51 +134,60 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         public void DeleteComment(long commentId)
         {
             var comment = CommentDao.Find(commentId);
-            foreach (var l in comment.Labeleds.ToList())
-            {
-                LabeledDao.Remove(l.labeledId);
-            }
             CommentDao.Remove(comment.commentId);
         }
 
         /// <exception cref="InstanceNotFoundException"/>
-        public void UpdateComment(long commentId, CommentUpdate details)
+        public void UpdateComment(long commentId, string commentBody)
         {
-            Comment c = CommentDao.Find(commentId);
+            Comment comment = CommentDao.Find(commentId);
 
-            c.comment1 = details.CommentBody;
+            comment.comment1 = commentBody;
 
-            CommentDao.Update(c);
-
-            foreach (var tagId in details.TagIds)
-            {
-                Labeled labeled = new Labeled
-                {
-                    tagId = tagId,
-                    commentId = commentId
-                };
-
-                LabeledDao.Create(labeled);
-            }
-
+            CommentDao.Update(comment);
         }
 
-        public List<CommentDetails> FindAllProductComments(long productId)
+        /// <exception cref="InstanceNotFoundException"/>
+        public void UpdateComment(long commentId, string commentBody, List<long> newTags)
         {
-            List<CommentDetails> details = new List<CommentDetails>();
-            List<Comment> comments = CommentDao.FindByProductIdOrderByDeliveryDate(productId);
+            Comment comment = CommentDao.Find(commentId);
 
-            foreach (var c in comments)
+            comment.comment1 = commentBody;
+            foreach (var tagId in newTags)
             {
-                List<string> tagNames = new List<string>();
-                foreach (var l in c.Labeleds.ToList())
-                {
-                    tagNames.Add(l.Tag.tagName);
-                }
-                details.Add(new CommentDetails(c.commentId, c.comment1, c.commentDate, c.userId, tagNames));
+                comment.Tags.Add(TagDao.Find(tagId));
             }
 
-            return details;
+            CommentDao.Update(comment);
+        }
+
+        /// <exception cref="InstanceNotFoundException"/>
+        public void UpdateComment(long commentId, string commentBody, List<long> newTags, List<long> removeTags)
+        {
+            Comment comment = CommentDao.Find(commentId);
+
+            comment.comment1 = commentBody;
+            foreach (var tagId in newTags)
+            {
+                comment.Tags.Add(TagDao.Find(tagId));
+            }
+            foreach (var tagId in removeTags)
+            {
+                comment.Tags.Remove(TagDao.Find(tagId));
+            }
+
+            CommentDao.Update(comment);
+        }
+
+        public CommentBlock FindAllProductComments(long productId, int startIndex = 0, int count = 20)
+        {
+            List<Comment> comments = CommentDao.FindByProductIdOrderByDeliveryDate(productId, startIndex, count + 1);
+
+            bool existMoreComments = (comments.Count == count + 1);
+
+            if (existMoreComments) comments.RemoveAt(count);
+
+            return new CommentBlock(comments, existMoreComments);
         }
 
         #endregion Comment Members
@@ -190,13 +214,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             return tag.tagId;
         }
 
-        public List<Tag> FindAllTags()
-            {
-                return TagDao.FindAll();
-            }
+        public TagBlock FindAllTags(int startIndex = 0, int count = 20)
+        {
+            List<Tag> tags = TagDao.FindAll(startIndex, count + 1);
 
-            #endregion Tag Members
+            bool existMoreTags = (tags.Count == count + 1);
 
-            #endregion IProductService Members
+            if (existMoreTags) tags.RemoveAt(count);
+
+            return new TagBlock(tags, existMoreTags);
         }
+
+        #endregion Tag Members
+
+        #region Tag Members
+
+        public List<Category> FindAllCategories()
+        {
+            return CategoryDao.FindAll();
+        }
+
+        #endregion Tag Members
+
+        #endregion IProductService Members
+    }
 }

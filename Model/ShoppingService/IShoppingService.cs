@@ -3,6 +3,7 @@ using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DeliveryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DeliveryLineDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Ninject;
 using System.Collections.Generic;
@@ -24,34 +25,42 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         IDeliveryLineDao DeliveryLineDao { set; }
 
         /// <summary>
-        /// Creates a new delivery object from the shopping cart.
+        /// Creates a new delivery object in the database.
         /// </summary>
-        /// <param name="shoppingCart"> The shopping cart data. </param>
-        /// <param name="userId"> The user profile id. </param>
-        /// <param name="cardId"> The credit card id. </param>
-        /// <returns> The created delivery </returns>
+        /// <param name="deliveryPrice"> The total price of the delivery. </param>
+        /// <param name="cardId"> The credit card ID. </param>
+        /// <param name="userId"> The user ID. </param>
+        /// <param name="description"> The description of the purchase. </param>
+        /// <param name="deliveryLines"> The delivery lines. </param>
+        /// <param name="deliveryAddress"> The address to which the delivery will be sent, the user's address by default. </param>
+        /// <returns> The created delivery. </returns>
         /// <exception cref="InstanceNotFoundException"/>
+        /// <exception cref="UnmatchingUserAndCardException"/>
         [Transactional]
-        ShoppingCart CreateDelivery(ShoppingCart shoppingCart,
-            List<ShoppingCartDetails> shoppingCartDetails);
+        Delivery CreateDelivery(decimal deliveryPrice, long cardId, long userId, string description,
+            List<DeliveryLine> deliveryLines, string deliveryAddress = null);
 
         /// <summary>
         /// Retrieves all the deliveries of the user.
         /// </summary>
         /// <param name="userId"> The user profile id. </param>
-        /// <returns> A list with all the deliveries from the user </returns>
+        /// <param name="startIndex"> The index at which the deliveries list must start. </param>
+        /// <param name="count"> The maximum number of deliveries that must return the function. </param>
+        /// <returns> A list with all the deliveries from the user. </returns>
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        List<ShoppingCart> GetAllDeliveries(long userId);
+        DeliveryBlock GetAllDeliveries(long userId, int startIndex = 0, int count = 20);
 
         /// <summary>
         /// Gets the details of a specific delivery.
         /// </summary>
         /// <param name="deliveryId"> The delivery id. </param>
-        /// <returns> The details of the delivery </returns>
+        /// <param name = "startIndex" > The index at which the delivery lines list must start. </param>
+        /// <param name="count"> The maximum number of delivery lines that must return the function. </param>
+        /// <returns> The details of the delivery. </returns>
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        List<ShoppingCartDetails> GetDeliveryDetails(long deliveryId);
+        DeliveryLineBlock GetDeliveryDetails(long deliveryId, int startIndex = 0, int count = 20);
 
         /// <summary>
         /// Update a ShoppingCart
@@ -80,6 +89,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
         ShoppingCart ModifyAmountOfItems(ShoppingCart shoppingCart, int amount);
-
     }
 }

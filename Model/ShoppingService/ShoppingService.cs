@@ -3,6 +3,7 @@ using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DeliveryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DeliveryLineDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Ninject;
 using System;
@@ -27,90 +28,65 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         #region IShoppingService members
 
         /// <exception cref="InstanceNotFoundException"/>
+        /// <exception cref="UnmatchingUserAndCardException"/>
         [Transactional]
-        public ShoppingCart CreateDelivery(ShoppingCart shoppingCart,
-            List<ShoppingCartDetails> shoppingCartDetails)
+        public Delivery CreateDelivery(decimal deliveryPrice, long cardId, long userId, string description,
+            List<DeliveryLine> deliveryLines, string deliveryAddress = null)
         {
-            if (CreditCardDao.FindByUserId(shoppingCart.UserId)
-                .Contains(CreditCardDao.Find(shoppingCart.CardId)))
+            if (CreditCardDao.FindByUserId(userId)
+                .Contains(CreditCardDao.Find(cardId)))
             {
                 Delivery delivery = new Delivery
                 {
-                    cardId = shoppingCart.CardId,
-                    userId = shoppingCart.UserId,
-                    deliveryAddress = shoppingCart.DeliveryAddress,
-                    deliveryDate = shoppingCart.DeliveryDate,
-                    deliveryPrice = shoppingCart.DeliveryPrice,
-                    description = shoppingCart.Description
+                    deliveryDate = DateTime.Now,
+                    deliveryPrice = deliveryPrice,
+                    deliveryAddress = deliveryAddress ?? UserProfileDao.Find(userId).address,
+                    cardId = cardId,
+                    userId = userId,
+                    description = description
                 };
 
                 DeliveryDao.Create(delivery);
 
-                foreach (ShoppingCartDetails item in shoppingCartDetails)
+                foreach (DeliveryLine item in deliveryLines)
                 {
-                    DeliveryLine line = new DeliveryLine
-                    {
-                        deliveryLineAmount = item.DeliveryLineAmount,
-                        deliveryLinePrice = item.DeliveryLinePrice,
-                        productId = item.ProductId,
-                        deliveryId = delivery.deliveryId
-                    };
+                    item.deliveryId = delivery.deliveryId;
 
-                    DeliveryLineDao.Create(line);
+                    DeliveryLineDao.Create(item);
                 }
 
-                shoppingCart.DeliveryId = delivery.deliveryId;
-
-                return shoppingCart;
-                
+                return delivery;
             }
             else
             {
-                throw new Exception(); /// TODO: make a custom exception like UnmatchingUserAndCardException 
+                throw new UnmatchingUserAndCardException(userId, cardId);
             }
         }
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        public List<ShoppingCart> GetAllDeliveries(long userId)
+        public DeliveryBlock GetAllDeliveries(long userId, int startIndex = 0, int count = 20)
         {
-            List<Delivery> deliveries = DeliveryDao.FindByUserId(userId);
-            List<ShoppingCart> shoppingCarts = new List<ShoppingCart>();
+            List<Delivery> deliveries = DeliveryDao.FindByUserId(userId, startIndex, count + 1);
 
-            foreach (Delivery delivery in deliveries)
-            {
-                ShoppingCart shoppingCart = new ShoppingCart(delivery.deliveryDate,
-                    delivery.deliveryPrice, delivery.deliveryAddress,
-                    delivery.description, delivery.userId, delivery.cardId)
-                {
-                    DeliveryId = delivery.deliveryId
-                };
+            bool existMoreDeliveries = (deliveries.Count == count + 1);
 
-                shoppingCarts.Add(shoppingCart);
-            }
+            if (existMoreDeliveries) deliveries.RemoveAt(count);
 
-            return shoppingCarts;
+            return new DeliveryBlock(deliveries, existMoreDeliveries);
         }
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        public List<ShoppingCartDetails> GetDeliveryDetails(long deliveryId)
+        public DeliveryLineBlock GetDeliveryDetails(long deliveryId, int startIndex = 0, int count = 20)
         {
-            List<DeliveryLine> lines = DeliveryLineDao.FindByDeliveryId(deliveryId);
-            List<ShoppingCartDetails> details = new List<ShoppingCartDetails>();
+            List<DeliveryLine> deliveryLines = DeliveryLineDao.FindByDeliveryId(deliveryId, startIndex, count + 1);
 
-            foreach (DeliveryLine line in lines)
-            {
-                ShoppingCartDetails shoppingCartDetails = new ShoppingCartDetails(
-                    line.deliveryLineAmount, line.deliveryLinePrice, line.productId)
-                {
-                    DeliveryId = line.deliveryId
-                };
+            bool existMoreDeliveryLines = (deliveryLines.Count == count + 1);
 
-                details.Add(shoppingCartDetails);
-            }
+            if (existMoreDeliveryLines) deliveryLines.RemoveAt(count);
 
-            return details;
+            return new DeliveryLineBlock(deliveryLines, existMoreDeliveryLines);
         }
 
         /// <exception cref="InstanceNotFoundException"/>

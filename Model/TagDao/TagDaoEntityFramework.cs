@@ -26,7 +26,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
         /// Finds all the tags
         /// </summary>
         /// <returns></returns>
-        public List<Tag> FindAll()
+        public List<Tag> FindAll(int startIndex = 0, int count = 20)
         {
             List<Tag> tags = new List<Tag>();
 
@@ -36,7 +36,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 
             var result =
                     (from t in dbTags
-                     select t);
+                     orderby t.tagName ascending
+                     select t).Skip(startIndex).Take(count);
 
             tags = result.ToList<Tag>();
 

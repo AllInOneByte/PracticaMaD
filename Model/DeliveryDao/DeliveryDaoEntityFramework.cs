@@ -29,7 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DeliveryDao
         /// <param userId="userId">userId</param>
         /// <returns>List of Deliverys</returns>
         /// <exception cref="InstanceNotFoundException"/>
-        public List<Delivery> FindByUserId(long userId)
+        public List<Delivery> FindByUserId(long userId, int startIndex = 0, int count = 20)
         {
             List<Delivery> delivery = null;
 
@@ -40,7 +40,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DeliveryDao
             var result =
                 (from d in deliveryFound
                  where d.userId == userId
-                 select d);
+                 orderby d.deliveryDate descending
+                 select d).Skip(startIndex).Take(count);
 
             delivery = result.ToList();
 

@@ -25,7 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 
         #region ICommentDao Members. Specific Operations
 
-        public List<Comment> FindByProductIdOrderByDeliveryDate(long productId)
+        public List<Comment> FindByProductIdOrderByDeliveryDate(long productId, int startIndex = 0, int count = 20)
         {
             List<Comment> comments = null;
 
@@ -37,7 +37,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
                 (from c in commentsFound
                  where c.productId == productId
                  orderby c.commentDate descending
-                 select c);
+                 select c).Skip(startIndex).Take(count);
 
             comments = result.ToList();
 

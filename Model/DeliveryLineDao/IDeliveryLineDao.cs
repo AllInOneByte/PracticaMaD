@@ -11,7 +11,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DeliveryLineDao
         /// <param deliveryId="deliveryId">deliveryId</param>
         /// <returns>List of DeliberyLine</returns>
         /// <exception cref="InstanceNotFoundException"/>
-        List<DeliveryLine> FindByDeliveryId(long deliveryId);
+        List<DeliveryLine> FindByDeliveryId(long deliveryId, int startIndex = 0, int count = 20);
     }
 }
 

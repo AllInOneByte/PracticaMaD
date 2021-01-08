@@ -3,6 +3,7 @@ using System;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
@@ -78,6 +79,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
             card = result.FirstOrDefault();
 
             #endregion Option 1: Using Linq.
+
+            if (card == null)
+                throw new InstanceNotFoundException(userId,
+                    typeof(CreditCard).FullName);
 
             return card;
         }
