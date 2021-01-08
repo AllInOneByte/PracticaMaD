@@ -28,34 +28,36 @@
                 </span>
 
                 <span class="button">
-                <asp:Button ID="btnSearch" runat="server" OnClick="BtnSearchClick" meta:resourcekey="btnSearch" />
+                    <asp:Button ID="btnSearch" runat="server" OnClick="BtnSearchClick" meta:resourcekey="btnSearch" />
                 </span>
             </div>
-            
+
+            <div>
+                <p>
+                    <asp:Label ID="lblNoProducts" meta:resourcekey="lblNoProducts" runat="server"></asp:Label>
+                </p>
+                <asp:GridView ID="gvProducts" runat="server" GridLines="None" AutoGenerateColumns="False">
+                    <Columns>
+                        <asp:BoundField DataField="productName" HeaderText="<%$ Resources:Common, productName %>" />
+                        <asp:BoundField DataField="productPrice" HeaderText="<%$ Resources:Common, productPrice %>" />
+                        <asp:BoundField DataField="productDate" HeaderText="<%$ Resources:Common, productDate %>" />
+                        <asp:BoundField DataField="productQuantity" HeaderText="<%$ Resources:Common, productQuantity %>" />
+                    </Columns>
+                </asp:GridView>
+            </div>
+
+            <!-- "Previous" and "Next" links. -->
+            <div class="previousNextLinks">
+                <span class="previousLink">
+                    <asp:HyperLink ID="lnkPrevious" Text="<%$ Resources:Common, Previous %>"
+                        runat="server" Visible="False"></asp:HyperLink>
+                </span>
+                <span class="nextLink">
+                   <asp:HyperLink ID="lnkNext" Text="<%$ Resources:Common, Next %>" runat="server"
+                        Visible="False"></asp:HyperLink>
+                </span>
+            </div>
         </form>
     </div>
-    <div>
-        <p>
-            <asp:Label ID="lblNoProducts" meta:resourcekey="lblNoProducts" runat="server"></asp:Label>
-        </p>
-        <asp:GridView ID="gvProducts" runat="server" GridLines="None" AutoGenerateColumns="False">
-            <Columns>
-                <asp:BoundField DataField="productName" HeaderText="<%$ Resources:Common, productName %>" />
-                <asp:BoundField DataField="productPrice" HeaderText="<%$ Resources:Common, productPrice %>" />
-                <asp:BoundField DataField="productDate" HeaderText="<%$ Resources:Common, productDate %>" />
-                <asp:BoundField DataField="productQuantity" HeaderText="<%$ Resources:Common, productQuantity %>" />
-            </Columns>
-        </asp:GridView>
-    </div>
-    <!-- "Previous" and "Next" links. -->
-    <div class="previousNextLinks">
-        <span class="previousLink">
-            <asp:HyperLink ID="lnkPrevious" Text="<%$ Resources:Common, Previous %>"
-                runat="server" Visible="False"></asp:HyperLink>
-        </span>
-        <span class="nextLink">
-            <asp:HyperLink ID="lnkNext" Text="<%$ Resources:Common, Next %>" runat="server"
-                Visible="False"></asp:HyperLink>
-        </span>
-    </div>
+    
 </asp:Content>
