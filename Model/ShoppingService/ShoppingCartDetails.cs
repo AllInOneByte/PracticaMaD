@@ -10,7 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
     {
         #region Properties Region
 
-        public int DeliveryLineAmount { get; private set; }
+        public int DeliveryLineAmount { get; set; }
 
         public decimal DeliveryLinePrice { get; private set; }
 
