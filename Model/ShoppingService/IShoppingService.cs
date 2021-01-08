@@ -61,5 +61,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
         DeliveryLineBlock GetDeliveryDetails(long deliveryId, int startIndex = 0, int count = 20);
+
+        /// <summary>
+        /// Update a ShoppingCart
+        /// </summary>
+        /// <param name="new_shoppingCart"> The New ShoppingCart data. </param>
+        /// <returns> The details of the shoppingCart </returns>
+        /// <exception cref="InstanceNotFoundException"/>
+        [Transactional]
+        ShoppingCart UpdateShoppingCartDetails(ShoppingCart new_shoppingCart);
+
+        /// <summary>
+        /// Delete a item in a shoppingCart
+        /// </summary>
+        /// <param name="shoppingCart"> The ShoppingCart. </param>
+        /// <returns> Delete the details of the shoppingCart </returns>
+        /// <exception cref="InstanceNotFoundException"/>
+        [Transactional]
+        ShoppingCart DeleteShoppingCartDetails(ShoppingCart shoppingCart);
+
+        /// <summary>
+        /// Modify the amount of items on the shoppingcart
+        /// </summary>
+        /// <param name="shoppingCart"> The ShoppingCart. </param>
+        /// <param name="amount"> The new amount of items. </param>
+        /// <returns> The modified shoppingCart </returns>
+        /// <exception cref="InstanceNotFoundException"/>
+        [Transactional]
+        ShoppingCart ModifyAmountOfItems(ShoppingCart shoppingCart, int amount);
     }
 }

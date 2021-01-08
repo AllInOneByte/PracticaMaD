@@ -89,6 +89,54 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             return new DeliveryLineBlock(deliveryLines, existMoreDeliveryLines);
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
+        [Transactional]
+
+        public List<ShoppingCartDetails> CreateShoppingCartDetails(List<ShoppingCartDetails> shoppingCartDetails, long productId)
+        {
+            ShoppingCartDetails shop = new ShoppingCartDetails(0, 0, productId);
+
+            shoppingCartDetails.Add(shop);
+
+            return shoppingCartDetails;
+        
+        }
+
+
+        /// <exception cref="InstanceNotFoundException"/>
+        [Transactional]
+        public List<ShoppingCartDetails> DeleteShoppingCartDetails(List<ShoppingCartDetails> shoppingCartDetails, long productId)
+        {
+            List<ShoppingCartDetails> shoppingCartDetails_aux = new List<ShoppingCartDetails>();
+
+            foreach (ShoppingCartDetails item in shoppingCartDetails)
+            {
+                if (item.ProductId != productId)
+                {
+                    shoppingCartDetails_aux.Add(item);
+
+                };
+
+            }
+            return shoppingCartDetails_aux;
+
+        }
+
+        [Transactional]
+        public List<ShoppingCartDetails> ModifyAmountOfItems(List<ShoppingCartDetails> shoppingCartDetails, long productId, int amount) {
+
+            foreach (ShoppingCartDetails item in shoppingCartDetails)
+            {
+                if (item.ProductId == productId) 
+                {
+                    item.DeliveryLineAmount = amount;
+      
+                };
+
+            }
+
+            return shoppingCartDetails;
+        }
         #endregion IShoppingService members
     }
 }
