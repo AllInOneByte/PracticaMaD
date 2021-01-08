@@ -40,6 +40,10 @@
                         NavigateUrl="~/Pages/User/UpdateUserProfile.aspx"
                         meta:resourcekey="lnkUpdate" />
                     <asp:Label ID="lblDash3" runat="server" Text="-" />
+                    <asp:HyperLink ID="lnkListDeliveries" runat="server"
+                        NavigateUrl="~/Pages/Shopping/ListDeliveries.aspx"
+                        meta:resourcekey="lnkListDeliveries" />
+                    <asp:Label ID="lblDash4" runat="server" Text="-" />
                     <asp:HyperLink ID="lnkLogout" runat="server"
                         NavigateUrl="~/Pages/User/Logout.aspx"
                         meta:resourcekey="lnkLogout" />

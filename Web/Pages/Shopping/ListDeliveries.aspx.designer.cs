@@ -22,6 +22,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping {
         protected global::System.Web.UI.WebControls.Localize lclMenuExplanation;
         
         /// <summary>
+        /// Control ListDeliveriesForm.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm ListDeliveriesForm;
+        
+        /// <summary>
         /// Control lblNoDeliveries.
         /// </summary>
         /// <remarks>
@@ -56,5 +65,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink lnkNext;
+        
+        /// <summary>
+        /// Control lnkMain.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkMain;
     }
 }

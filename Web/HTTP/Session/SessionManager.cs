@@ -106,14 +106,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
                 (IIoCManager)HttpContext.Current.Application["managerIoC"];
 
             userService = iocManager.Resolve<IUserService>();
+            shoppingService = iocManager.Resolve<IShoppingService>();
         }
 
-        public static DeliveryBlock GetAllDelevireis(HttpContext context)
+        public static DeliveryBlock GetAllDelevireis(HttpContext context, int startIndex, int count)
         {
             UserSession userSession =
                 (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
 
-            return shoppingService.GetAllDeliveries(userSession.UserProfileId);
+            return shoppingService.GetAllDeliveries(userSession.UserProfileId, startIndex, count);
+        }
+
+        public static DeliveryLineBlock GetAllDeleviryLines(long deliveryId, int startIndex, int count)
+        {
+            return shoppingService.GetDeliveryDetails(deliveryId, startIndex, count);
         }
 
         /// <summary>

@@ -129,10 +129,31 @@
   <data name="description" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="identifier" xml:space="preserve">
-    <value>Delivery</value>
+  <data name="lblNoDeliveries.Text" xml:space="preserve">
+    <value>No purchase has been made yet</value>
+  </data>
+  <data name="lclMenuExplanation.Text" xml:space="preserve">
+    <value>User Deliveries</value>
+  </data>
+  <data name="lnkMain.Text" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="lnkNext.Text" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="lnkPrevious.Text" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Deliveries Information</value>
   </data>
   <data name="price" xml:space="preserve">
     <value>Price</value>
+  </data>
+  <data name="details" xml:space="preserve">
+    <value>More details</value>
+  </data>
+  <data name="id" xml:space="preserve">
+    <value>Delivery</value>
   </data>
 </root>

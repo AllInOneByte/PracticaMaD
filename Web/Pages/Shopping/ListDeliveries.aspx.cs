@@ -23,17 +23,66 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
                 lnkPrevious.Visible = false;
                 lnkNext.Visible = false;
                 lblNoDeliveries.Visible = false;
-            }
 
-            /* Get Deliveries Info */
-            DeliveryBlock deliveryBlock =
-                SessionManager.GetAllDelevireis(Context);
+                /* Get Start Index */
+                try
+                {
+                    startIndex = Int32.Parse(Request.Params.Get("startIndex"));
+                }
+                catch (ArgumentNullException)
+                {
+                    startIndex = 0;
+                }
 
-            if (deliveryBlock.Deliveries.Count == 0)
-            {
-                lblNoDeliveries.Visible = true;
-                return;
+                /* Get Count */
+                try
+                {
+                    count = Int32.Parse(Request.Params.Get("count"));
+                }
+                catch (ArgumentNullException)
+                {
+                    count = 2;
+                }
+
+                /* Get Deliveries Info */
+                DeliveryBlock deliveryBlock =
+                    SessionManager.GetAllDelevireis(Context, startIndex, count);
+
+                if (deliveryBlock.Deliveries.Count == 0)
+                {
+                    lblNoDeliveries.Visible = true;
+                    return;
+                }
+
+                this.gvDeliveries.DataSource = deliveryBlock.Deliveries;
+                this.gvDeliveries.DataBind();
+
+                /* "Previous" link */
+                if ((startIndex - count) >= 0)
+                {
+                    String url =
+                        "~/Pages/Shopping/ListDeliveries.aspx?" + " &startIndex=" + (startIndex - count) 
+                        + "&count=" + count;
+
+                    this.lnkPrevious.NavigateUrl =
+                        Response.ApplyAppPathModifier(url);
+                    this.lnkPrevious.Visible = true;
+                }
+
+                /* "Next" link */
+                if (deliveryBlock.ExistMoreDeliveries)
+                {
+                    String url =
+                        "~/Pages/Shopping/ListDeliveries.aspx?" +
+                        "&startIndex=" + (startIndex + count) + "&count=" +
+                        count;
+
+                    this.lnkNext.NavigateUrl =
+                        Response.ApplyAppPathModifier(url);
+                    this.lnkNext.Visible = true;
+                }
             }
-        }
+        }
+
     }
 }

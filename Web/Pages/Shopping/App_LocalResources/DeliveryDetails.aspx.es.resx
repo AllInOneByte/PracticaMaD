@@ -117,34 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lclHeaderDefault.Text" xml:space="preserve">
-    <value>Predeterminada</value>
-  </data>
-  <data name="lclHeaderExpiration.Text" xml:space="preserve">
-    <value>Data de expiración</value>
-  </data>
-  <data name="lclHeaderNumber.Text" xml:space="preserve">
-    <value>Número</value>
-  </data>
-  <data name="lclHeaderType.Text" xml:space="preserve">
-    <value>Tipo</value>
-  </data>
-  <data name="lclHeaderVerification.Text" xml:space="preserve">
-    <value>Codigo de verificación</value>
-  </data>
-  <data name="lclTableCreditCards.Text" xml:space="preserve">
-    <value>Tarxetas de Crédito</value>
-  </data>
-  <data name="lnkRegisterCreditCard.Text" xml:space="preserve">
-    <value>Rexistrar Tarxeta de Crédito</value>
-  </data>
-  <data name="Page.Title" xml:space="preserve">
-    <value>Practica MaD - Tarxetas de Crédito do Usuario</value>
+  <data name="amount" xml:space="preserve">
+    <value>Cantidad</value>
   </data>
   <data name="lclMenuExplanation.Text" xml:space="preserve">
-    <value>Información das Tarxetas de Crédito</value>
+    <value>Líneas de pedido</value>
   </data>
-  <data name="lnkMain.Text" xml:space="preserve">
-    <value>Inicio</value>
+  <data name="lnkBack.Text" xml:space="preserve">
+    <value>Volver</value>
+  </data>
+  <data name="lnkNext.Text" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
+  <data name="lnkPrevious.Text" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>Información de compra</value>
+  </data>
+  <data name="price" xml:space="preserve">
+    <value>Precio</value>
+  </data>
+  <data name="product" xml:space="preserve">
+    <value>Producto</value>
   </data>
 </root>

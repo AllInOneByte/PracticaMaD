@@ -139,7 +139,7 @@
     <value>PracticaMaD - Información de las compras</value>
   </data>
   <data name="lblNoDeliveries.Text" xml:space="preserve">
-    <value>Aún no se han realizado ninguna compra</value>
+    <value>Aún no se ha realizado ninguna compra</value>
   </data>
   <data name="lclMenuExplanation.Text" xml:space="preserve">
     <value>Compras del usuario</value>
@@ -149,5 +149,11 @@
   </data>
   <data name="lnkPrevious.Text" xml:space="preserve">
     <value>Anterior</value>
+  </data>
+  <data name="details" xml:space="preserve">
+    <value>Ver más detalles</value>
+  </data>
+  <data name="id" xml:space="preserve">
+    <value>Pedido</value>
   </data>
 </root>

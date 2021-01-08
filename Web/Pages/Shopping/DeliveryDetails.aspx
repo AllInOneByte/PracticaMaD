@@ -11,65 +11,27 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_BodyContent"
     runat="server">
     <div id="form">
-        <form id="DeliveryDetailsForm" method="GET" runat="server">
-            <div class="field">
-                <span class="label">
-                    <asp:Localize ID="lclCreditNumber" runat="server" meta:resourcekey="lclCreditNumber" /></span><span
-                        class="entry">
-                        <asp:TextBox ID="txtCreditNumber" runat="server" Width="100px" Columns="16"
-                            meta:resourcekey="txtCreditNumberResource1"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredCreditNumberValidator1" runat="server" ControlToValidate="txtCreditNumber"
-                            Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"
-                            meta:resourcekey="rfvCreditNumberResource1"></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="RegularCreditNumberValidator1"
-                            ControlToValidate="txtCreditNumber" runat="server"
-                            ValidationExpression="\d+" meta:resourcekey="revNumberError"></asp:RegularExpressionValidator>
-                <asp:Label ID="lblNumberError" runat="server" ForeColor="Red" Style="position: relative"
-                            Visible="False" meta:resourcekey="lblNumberError"></asp:Label></span>
+        <form id="DeliverieForm" method="GET" runat="server">
+            <asp:GridView ID="gvDeliverie" runat="server" GridLines="None" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:BoundField DataField="ProductName" HeaderText="<%$ Resources:, product %>" />
+                    <asp:BoundField DataField="DeliveryLineAmount" HeaderText="<%$ Resources:, amount %>" />
+                    <asp:BoundField DataField="DeliveryLinePrice" HeaderText="<%$ Resources:, price %>" />
+                 </Columns>
+            </asp:GridView>
+            <br />
+            <div class="previousNextLinks">
+                <span class="previousLink">
+                    <asp:HyperLink ID="lnkPrevious" meta:resourcekey="lnkPrevious" runat="server" Visible="False"></asp:HyperLink>
+                </span><span class="nextLink">
+                    <asp:HyperLink ID="lnkNext" meta:resourcekey="lnkNext" runat="server" Visible="False"></asp:HyperLink>
+                </span>
             </div>
-            <div class="field">
-                <span class="label">
-                    <asp:Localize ID="lclCreditType" runat="server" meta:resourcekey="lclCreditType" /></span><span
-                        class="entry">
-                        <asp:DropDownList ID="comboCreditType" runat="server" Width="100px"
-                            meta:resourcekey="comboCreditTypeResource1">
-                        </asp:DropDownList></span>
-            </div>
-            <div class="field">
-                <span class="label">
-                    <asp:Localize ID="lclVerificationCode" runat="server" meta:resourcekey="lclVerificationCode" /></span><span
-                        class="entry">
-                        <asp:TextBox ID="txtVerificationCode" runat="server" Width="100px" Columns="16"
-                            meta:resourcekey="txtVerificationCodeResource1"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredVerificationCodeValidator1" runat="server" ControlToValidate="txtVerificationCode"
-                            Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"
-                            meta:resourcekey="rfvVerificationCodeResource1"></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="RegularVerificationCodeValidator1"
-                            ControlToValidate="txtVerificationCode" runat="server"
-                            ValidationExpression="\d+" meta:resourcekey="revNumberError"></asp:RegularExpressionValidator></span>
-            </div>
-            <div class="field">
-                <span class="label">
-                    <asp:Localize ID="lclExpirationDate" runat="server" meta:resourcekey="lclExpirationDate" /></span><span
-                        class="entry">
-                        <asp:TextBox ID="txtExpirationDate" runat="server" Width="100px" Columns="16"
-                            meta:resourcekey="txtExpirationDateResource1"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredExpirationDateValidator1" runat="server" ControlToValidate="txtExpirationDate"
-                            Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"
-                            meta:resourcekey="rfvExpirationDateResource1"></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="RegularExpirationDateValidator1" runat="server" ControlToValidate="txtExpirationDate"
-                            Display="Dynamic" ValidationExpression="\d+\d+/\d+\d+/\d+\d+\d+\d+"
-                            meta:resourcekey="revExpirationDate"></asp:RegularExpressionValidator></span>
-            </div>
-            <div class="field">
-                <span class="label">
-                    <asp:Localize ID="lclCheckDefault" runat="server" meta:resourcekey="lclCheckDefault" /></span><span
-                        class="entry">
-                    <asp:CheckBox ID="checkDefault" runat="server" AutoPostBack="false"/></span>
-            </div>
-            <div class="button">
-                <asp:Button ID="btnUpdateCard" runat="server" OnClick="BtnUpdateClick" meta:resourcekey="btnUpdateCard"/>
-            </div>
+            <br />
+            <br />
+            <asp:HyperLink ID="lnkBack" runat="server" 
+            NavigateUrl="~/Pages/Shopping/ListDeliveries.aspx"
+            meta:resourcekey="lnkBack"/>
         </form>
     </div>
 </asp:Content>
