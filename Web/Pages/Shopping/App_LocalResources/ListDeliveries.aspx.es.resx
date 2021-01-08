@@ -117,55 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnRegister.Text" xml:space="preserve">
-    <value>Register</value>
+  <data name="address" xml:space="preserve">
+    <value>Dirección</value>
   </data>
-  <data name="cvPasswordCheck.Text" xml:space="preserve">
-    <value>Passwords do not match</value>
+  <data name="card" xml:space="preserve">
+    <value>Tarjeta de Crédito</value>
   </data>
-  <data name="lblLoginError.Text" xml:space="preserve">
-    <value>User already exists</value>
+  <data name="date" xml:space="preserve">
+    <value>Fecha</value>
   </data>
-  <data name="lclCountry.Text" xml:space="preserve">
-    <value>Country</value>
+  <data name="description" xml:space="preserve">
+    <value>Descripción</value>
   </data>
-  <data name="lclEmail.Text" xml:space="preserve">
-    <value>Email</value>
+  <data name="price" xml:space="preserve">
+    <value>Precio</value>
   </data>
-  <data name="lclFirstName.Text" xml:space="preserve">
-    <value>First name</value>
-  </data>
-  <data name="lclLanguage.Text" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="lclMenuExplanation.Text" xml:space="preserve">
-    <value>User registration</value>
-  </data>
-  <data name="lclPassword.Text" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="lclRetypePassword.Text" xml:space="preserve">
-    <value>Retype password</value>
-  </data>
-  <data name="lclAddress.Text" xml:space="preserve">
-    <value>Address</value>
-  </data>
-  <data name="lclSurname.Text" xml:space="preserve">
-    <value>Surname</value>
-  </data>
-  <data name="lnkUserExists.Text" xml:space="preserve">
-    <value>Check if user exists</value>
+  <data name="lnkMain.Text" xml:space="preserve">
+    <value>Inicio</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>PracticaMaD - User Registration</value>
+    <value>PracticaMaD - Información de las compras</value>
   </data>
-  <data name="lclUserName.Text" xml:space="preserve">
-    <value>User name</value>
+  <data name="lblNoDeliveries.Text" xml:space="preserve">
+    <value>Aún no se han realizado ninguna compra</value>
   </data>
-  <data name="revEmail.ErrorMessage" xml:space="preserve">
-    <value>Incorrect email syntax</value>
+  <data name="lclMenuExplanation.Text" xml:space="preserve">
+    <value>Compras del usuario</value>
   </data>
-  <data name="lclCreditCard.Text" xml:space="preserve">
-    <value>Register Credit Card</value>
+  <data name="lnkNext.Text" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
+  <data name="lnkPrevious.Text" xml:space="preserve">
+    <value>Anterior</value>
   </data>
 </root>

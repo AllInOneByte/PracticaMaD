@@ -1,5 +1,6 @@
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Model;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Util;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
@@ -92,12 +93,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             set { userService = value; }
         }
 
+        private static IShoppingService shoppingService;
+
+        public IShoppingService ShoppingService
+        {
+            set { shoppingService = value; }
+        }
+
         static SessionManager()
         {
             IIoCManager iocManager =
                 (IIoCManager)HttpContext.Current.Application["managerIoC"];
 
             userService = iocManager.Resolve<IUserService>();
+        }
+
+        public static DeliveryBlock GetAllDelevireis(HttpContext context)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+
+            return shoppingService.GetAllDeliveries(userSession.UserProfileId);
         }
 
         /// <summary>

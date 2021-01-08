@@ -144,4 +144,7 @@
   <data name="lclMenuExplanation.Text" xml:space="preserve">
     <value>Credit Cards Information</value>
   </data>
+  <data name="lnkMain" xml:space="preserve">
+    <value>Main</value>
+  </data>
 </root>

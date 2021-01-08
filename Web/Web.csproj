@@ -106,6 +106,8 @@
     <Content Include="Pages\Errors\InternalError.aspx" />
     <Content Include="Pages\MainPage.aspx" />
     <Content Include="Pages\Product\ProductSearch.aspx" />
+    <Content Include="Pages\Shopping\DeliveryDetails.aspx" />
+    <Content Include="Pages\Shopping\ListDeliveries.aspx" />
     <Content Include="Pages\UserExists.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
     <Content Include="Pages\User\ChangePassword.aspx" />
@@ -169,6 +171,20 @@
     </Compile>
     <Compile Include="Pages\Product\ProductSearch.aspx.designer.cs">
       <DependentUpon>ProductSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Shopping\DeliveryDetails.aspx.cs">
+      <DependentUpon>DeliveryDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Shopping\DeliveryDetails.aspx.designer.cs">
+      <DependentUpon>DeliveryDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Shopping\ListDeliveries.aspx.cs">
+      <DependentUpon>ListDeliveries.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Shopping\ListDeliveries.aspx.designer.cs">
+      <DependentUpon>ListDeliveries.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserExists.aspx.cs">
       <DependentUpon>UserExists.aspx</DependentUpon>
@@ -374,6 +390,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\User\App_LocalResources\ListCreditCards.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Shopping\App_LocalResources\ListDeliveries.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Shopping\App_LocalResources\ListDeliveries.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Shopping\App_LocalResources\ListDeliveries.aspx.gl.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
