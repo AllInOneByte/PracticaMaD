@@ -12,11 +12,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         public int DeliveryLineAmount { get; set; }
 
-        public decimal DeliveryLinePrice { get; private set; }
+        public decimal DeliveryLinePrice { get; set; }
 
-        public long DeliveryId { get; set; }
-
-        public long ProductId { get; private set; }
+        public long ProductId { get; set; }
         
         #endregion Properties Region
 
@@ -25,7 +23,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// </summary>
         /// <param name="deliveryLineAmount"> The amount of items of a product. </param>
         /// <param name="deliveryLinePrice"> The price of the product. </param>
-        /// <param name="deliveryId"> The delivery id. </param>
         /// <param name="productId"> The product id. </param>
         public ShoppingCartDetails(int deliveryLineAmount, 
             decimal deliveryLinePrice, long productId)
@@ -41,7 +38,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             return details != null &&
                    DeliveryLineAmount == details.DeliveryLineAmount &&
                    DeliveryLinePrice == details.DeliveryLinePrice &&
-                   DeliveryId == details.DeliveryId &&
                    ProductId == details.ProductId;
         }
 
@@ -50,7 +46,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             var hashCode = 531276092;
             hashCode = hashCode * -1521134295 + DeliveryLineAmount.GetHashCode();
             hashCode = hashCode * -1521134295 + DeliveryLinePrice.GetHashCode();
-            hashCode = hashCode * -1521134295 + DeliveryId.GetHashCode();
             hashCode = hashCode * -1521134295 + ProductId.GetHashCode();
             return hashCode;
         }
