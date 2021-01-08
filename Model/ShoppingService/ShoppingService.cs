@@ -116,29 +116,50 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
 
-        public ShoppingCart UpdateShoppingCartDetails(ShoppingCart shoppingCart) { 
-        
-            if ((CreditCardDao.Find(shoppingCart.CardId) != null) {
+        public List<ShoppingCartDetails> CreateShoppingCartDetails(List<ShoppingCartDetails> shoppingCartDetails, long productId)
+        {
+            ShoppingCartDetails shop = new ShoppingCartDetails(0, 0, productId);
 
-                ShoppingCart shoppingCart = shoppingCart.Update(shoppingCart);
+            shoppingCartDetails.Add(shop);
 
-            }
-
-            return shoppingCart;
+            return shoppingCartDetails;
         
         }
 
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        public void DeleteShoppingCartDetails(ShoppingCart shoppingCart)
+        public List<ShoppingCartDetails> DeleteShoppingCartDetails(List<ShoppingCartDetails> shoppingCartDetails, long productId)
         {
-            if ((CreditCardDao.Find(shoppingCart.CardId) != null) {
+            List<ShoppingCartDetails> shoppingCartDetails_aux = new List<ShoppingCartDetails>();
 
-                shoppingCart.Delete(shoppingCart);
+            foreach (ShoppingCartDetails item in shoppingCartDetails)
+            {
+                if (item.ProductId != productId)
+                {
+                    shoppingCartDetails_aux.Add(item);
+
+                };
+
+            }
+            return shoppingCartDetails_aux;
+
+        }
+
+        [Transactional]
+        public List<ShoppingCartDetails> ModifyAmountOfItems(List<ShoppingCartDetails> shoppingCartDetails, long productId, int amount) {
+
+            foreach (ShoppingCartDetails item in shoppingCartDetails)
+            {
+                if (item.ProductId == productId) 
+                {
+                    item.DeliveryLineAmount = amount;
+      
+                };
 
             }
 
+            return shoppingCartDetails;
         }
         #endregion IShoppingService members
     }
