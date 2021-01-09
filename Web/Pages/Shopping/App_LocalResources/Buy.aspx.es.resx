@@ -117,40 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnRegisterCreditCard.Text" xml:space="preserve">
-    <value>Register</value>
-  </data>
-  <data name="lclCheckDefault.Text" xml:space="preserve">
-    <value>Default Credit Card</value>
-  </data>
-  <data name="lclCreditNumber.Text" xml:space="preserve">
-    <value>Credit Card Number</value>
-  </data>
-  <data name="lclCreditType.Text" xml:space="preserve">
-    <value>Credit Card Type</value>
-  </data>
-  <data name="lclExpirationDate.Text" xml:space="preserve">
-    <value>Credit Card Expiration Date (MM/YY)</value>
-  </data>
-  <data name="lclVerificationCode.Text" xml:space="preserve">
-    <value>Credit Card Verification Code</value>
-  </data>
-  <data name="Page.Title" xml:space="preserve">
-    <value>Practica MaD - Update User Credit Card</value>
+  <data name="btnBuy.Text" xml:space="preserve">
+    <value>Comprar</value>
   </data>
   <data name="lblNumberError.Text" xml:space="preserve">
-    <value>Credit Card already exists</value>
+    <value>Tarjeta de Crédito NO encontrada</value>
   </data>
-  <data name="revEmail.ErrorMessage" xml:space="preserve">
-    <value>Incorrect email syntax</value>
+  <data name="lblUserError.Text" xml:space="preserve">
+    <value>Tarjeta de Crédito inválida</value>
   </data>
-  <data name="revExpirationDate.ErrorMessage" xml:space="preserve">
-    <value>Incorrect date syntax</value>
+  <data name="lclAddress.Text" xml:space="preserve">
+    <value>Dirección</value>
   </data>
-  <data name="revNumberError.ErrorMessage" xml:space="preserve">
-    <value>Only numbers allow</value>
+  <data name="lclCreditNumber.Text" xml:space="preserve">
+    <value>Tarjeta de Crédito</value>
+  </data>
+  <data name="lclDescription.Text" xml:space="preserve">
+    <value>Descripción</value>
   </data>
   <data name="lclMenuExplanation.Text" xml:space="preserve">
-    <value>Credit Card registration</value>
+    <value>Comprar</value>
+  </data>
+  <data name="lclTotal.Text" xml:space="preserve">
+    <value>Precio Total</value>
+  </data>
+  <data name="lnkRegisterCreditCard.Text" xml:space="preserve">
+    <value>Registrar Tarjeta de Crédito</value>
+  </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Comprar</value>
+  </data>
+  <data name="revNumberError.ErrorMessage" xml:space="preserve">
+    <value>Solo se permiten números</value>
+  </data>
+  <data name="lblAmountError.Text" xml:space="preserve">
+    <value>No hay suficiente cantidad en  stock de</value>
+  </data>
+  <data name="lnkBack.Text" xml:space="preserve">
+    <value>Regresar al carrito</value>
   </data>
 </root>

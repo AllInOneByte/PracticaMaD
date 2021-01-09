@@ -130,7 +130,7 @@
     <value>Tipo de la Tarjeta de Crédito</value>
   </data>
   <data name="lclExpirationDate.Text" xml:space="preserve">
-    <value>Fecha de expiración de la Tarjeta de Crédito (dd/MM/AAAA)</value>
+    <value>Fecha de expiración de la Tarjeta de Crédito (MM/AA)</value>
   </data>
   <data name="lclVerificationCode.Text" xml:space="preserve">
     <value>Código de verificación de la Tarjeta de Crédito</value>

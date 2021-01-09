@@ -37,7 +37,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                         txtCreditNumber.Text, txtVerificationCode.Text, checkDefault.Checked, txtExpirationDate.Text);
 
                     Response.Redirect(Response.
-                        ApplyAppPathModifier("~/Pages/User/ListCreditCards.aspx"));
+                        ApplyAppPathModifier("~/Pages/MainPage.aspx"));
                 }
                 catch (DuplicateInstanceException)
                 {

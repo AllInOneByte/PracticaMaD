@@ -41,6 +41,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// <returns> The created delivery. </returns>
         /// <exception cref="InstanceNotFoundException"/>
         /// <exception cref="UnmatchingUserAndCardException"/>
+        /// <exception cref="StockEmptyException"/>
         [Transactional]
         Delivery CreateDelivery(decimal deliveryPrice, long cardNumber, long userId, string description,
             List<ShoppingCart> shoppingCart, string deliveryAddress = null);
@@ -72,7 +73,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// </summary>
         /// <param name="new_shoppingCart"> The New ShoppingCart data. </param>
         /// <returns> The details of the shoppingCart </returns>
-        List<ShoppingCart> UpdateShoppingCartDetails(List<ShoppingCart> shoppingCart, long productId, int amount);
+        /// <exception cref="StockEmptyException"/>
+        List<ShoppingCart> UpdateShoppingCartDetails(List<ShoppingCart> shoppingCart, long productId, int amount, bool gitf);
 
         /// <summary>
         /// Delete a item in a shoppingCart
@@ -87,6 +89,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// <param name="shoppingCart"> The ShoppingCart. </param>
         /// <param name="amount"> The new amount of items. </param>
         /// <returns> The modified shoppingCart </returns>
+        /// <exception cref="StockEmptyException"/>
         List<ShoppingCart> ModifyAmountOfItems(List<ShoppingCart> shoppingCart, long productId, int amount);
 
         /// <summary>

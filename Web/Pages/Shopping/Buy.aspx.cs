@@ -6,6 +6,7 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Log;
 using System;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 {
@@ -32,6 +33,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 
                 SessionManager.Buy(Context,number, txtDescription.Text, txtAddress.Text, price);
 
+                Response.Redirect(Response.
+                      ApplyAppPathModifier("~/Pages/Shopping/ListDeliveries.aspx"));
+
             }
             catch (UnmatchingUserAndCardException)
             {
@@ -42,6 +46,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
             {
                 lblNumberError.Visible = true;
                 lnkRegisterCreditCard.Visible = true;
+            }
+            catch (StockEmptyException ex)
+            {
+                int index = ex.Message.LastIndexOf('|');
+                string men = ex.Message.Substring(index + 14);
+
+                lblAmountError.Visible = true;
+                lblAmountError.Text += men;
             }
         }
     }

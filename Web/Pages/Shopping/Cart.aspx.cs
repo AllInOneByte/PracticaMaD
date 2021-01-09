@@ -3,6 +3,7 @@ using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using System.Web;
 using System.Web.UI;
@@ -93,26 +94,39 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 
         protected void OnClickSum(object sender, EventArgs e)
         {
-            Button button = sender as Button;
+            try
+            {
+                Button button = sender as Button;
 
-            long productId = Convert.ToInt64(button.ID);
+                long productId = Convert.ToInt64(button.ID);
 
-            SessionManager.ModifyAmount(Context, productId, 1);
+                SessionManager.ModifyAmount(Context, productId, 1);
 
-            Response.Redirect(Response.
-                      ApplyAppPathModifier("~/Pages/Shopping/Cart.aspx"));
+                Response.Redirect(Response.
+                          ApplyAppPathModifier("~/Pages/Shopping/Cart.aspx"));
+            }catch (StockEmptyException)
+            {
+                lblAmountError.Visible = true;
+            }
         }
 
         protected void OnClickRest(object sender, EventArgs e)
         {
-            Button button = sender as Button;
+            try
+            {
+                Button button = sender as Button;
 
-            long productId = Convert.ToInt64(button.ID);
+                long productId = Convert.ToInt64(button.ID);
 
-            SessionManager.ModifyAmount(Context, productId, -1);
+                SessionManager.ModifyAmount(Context, productId, -1);
 
-            Response.Redirect(Response.
-                     ApplyAppPathModifier("~/Pages/Shopping/Cart.aspx"));
+                Response.Redirect(Response.
+                         ApplyAppPathModifier("~/Pages/Shopping/Cart.aspx"));
+            }
+            catch (StockEmptyException)
+            {
+                lblAmountError.Visible = true;
+            }
         }
 
         protected void OnClickDelete(object sender, EventArgs e)

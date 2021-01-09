@@ -40,6 +40,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping {
         protected global::System.Web.UI.WebControls.HyperLink lnkRegisterCreditCard;
         
         /// <summary>
+        /// Control lblAmountError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAmountError;
+        
+        /// <summary>
         /// Control lclDescription.
         /// </summary>
         /// <remarks>
@@ -182,5 +191,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBuy;
+        
+        /// <summary>
+        /// Control lnkBack.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkBack;
     }
 }

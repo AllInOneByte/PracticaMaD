@@ -119,6 +119,7 @@
     <Compile Include="ShoppingService\DeliveryDetails.cs" />
     <Compile Include="ShoppingService\DeliveryLineBlock.cs" />
     <Compile Include="ShoppingService\DeliveryLineDetails.cs" />
+    <Compile Include="ShoppingService\Exceptions\StockEmptyException.cs" />
     <Compile Include="ShoppingService\Exceptions\UnmatchingUserAndCardException.cs" />
     <Compile Include="ShoppingService\IShoppingService.cs" />
     <Compile Include="ShoppingService\ShoppingCart.cs" />
