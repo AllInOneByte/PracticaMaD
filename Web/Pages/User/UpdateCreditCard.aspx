@@ -24,6 +24,9 @@
                         <asp:RegularExpressionValidator ID="RegularCreditNumberValidator1"
                             ControlToValidate="txtCreditNumber" runat="server"
                             ValidationExpression="\d+" meta:resourcekey="revNumberError"></asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="RegularCreditNumberValidator2"
+                            ControlToValidate="txtCreditNumber" runat="server"
+                            ValidationExpression="^[\s\S]{12,19}$" meta:resourcekey="revNumberTamError"></asp:RegularExpressionValidator>
                 <asp:Label ID="lblNumberError" runat="server" ForeColor="Red" Style="position: relative"
                             Visible="False" meta:resourcekey="lblNumberError"></asp:Label></span>
             </div>
@@ -46,7 +49,10 @@
                             meta:resourcekey="rfvVerificationCodeResource1"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RegularVerificationCodeValidator1"
                             ControlToValidate="txtVerificationCode" runat="server"
-                            ValidationExpression="\d+" meta:resourcekey="revNumberError"></asp:RegularExpressionValidator></span>
+                            ValidationExpression="\d+" meta:resourcekey="revNumberError"></asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="RegularVerificationCodeValidator2"
+                            ControlToValidate="txtCreditNumber" runat="server"
+                            ValidationExpression="^[\s\S]{3,4}$" meta:resourcekey="revVerificationTamError"></asp:RegularExpressionValidator></span>
             </div>
             <div class="field">
                 <span class="label">

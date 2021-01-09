@@ -153,4 +153,10 @@
   <data name="lclMenuExplanation.Text" xml:space="preserve">
     <value>Credit Card Information</value>
   </data>
+  <data name="revNumberTamError.ErrorMessage" xml:space="preserve">
+    <value>Invalid Credit Card</value>
+  </data>
+  <data name="revVerificationTamErro.ErrorMessage" xml:space="preserve">
+    <value>Invalid Verification Code Lenght</value>
+  </data>
 </root>
