@@ -144,4 +144,7 @@
   <data name="btnBuy.Text" xml:space="preserve">
     <value>Comprar</value>
   </data>
+  <data name="lblAmountError.Text" xml:space="preserve">
+    <value>Non existe a cantidade especifícada en stock</value>
+  </data>
 </root>

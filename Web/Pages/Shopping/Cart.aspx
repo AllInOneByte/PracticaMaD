@@ -11,6 +11,8 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_BodyContent"
     runat="server">
     <div id="form">
+        <asp:Label ID="lblAmountError" runat="server" ForeColor="Red" Style="position: relative"
+                            Visible="False" meta:resourcekey="lblAmountError"></asp:Label>
         <form id="CartForm" method="GET" runat="server">
             <asp:Label ID="lblEmpty" meta:resourcekey="lblEmpty" runat="server" Visible="false"></asp:Label>
             <br />

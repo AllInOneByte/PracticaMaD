@@ -201,7 +201,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         {
             long number = Convert.ToInt64(creditNumber);
             int verification = Convert.ToInt32(verificationCode);
-            System.DateTime date = Convert.ToDateTime(expirationDate);
+            System.DateTime date = DateTime.ParseExact(expirationDate, "MM/yy", null);
 
             UserSession userSession =
                 (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
