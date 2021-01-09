@@ -1,5 +1,6 @@
 ﻿using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
+using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using System;
 using System.Globalization;
 using System.Web;
@@ -10,6 +11,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblProductError.Visible = false;
+            TableProductInfo.Visible = false;
+            hlComments.Visible = false;
+
             long productId;
 
             /* Get productId */
@@ -19,9 +24,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             }
             catch (ArgumentNullException)
             {
-                productId = -1;
-                // TODO: Hacer otra cosa
+                lblProductError.Visible = true;
+                return;
             }
+
+            TableProductInfo.Visible = true;
 
             /* Get the Service */
             IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
@@ -36,6 +43,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             cellProductDate.Text = product.productDate.ToString("d/M/yyyy");
             cellProductPrice.Text = product.productPrice.ToString("C", CultureInfo.CurrentCulture);
             cellProductQuantity.Text = product.productQuantity.ToString();
+
+            hlComments.NavigateUrl =
+                Settings.Default.PracticaMaD_applicationURL + "/Pages/Product/ProductComments.aspx" +
+                "?product=" + product.productId;
+
+            hlComments.Visible = true;
         }
     }
 }

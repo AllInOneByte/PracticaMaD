@@ -10,6 +10,8 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
+    <asp:Label ID="lblProductError" runat="server" ForeColor="Red" Style="position: relative"
+                            Visible="False" meta:resourcekey="lblProductError"></asp:Label>
     <asp:Table ID="TableProductInfo" runat="server" Width="100%">
         <asp:TableHeaderRow runat="server">
             <asp:TableHeaderCell ID="cellCaptionProductID" runat="server"
@@ -44,4 +46,5 @@
             <asp:TableCell ID="cellProductQuantity" runat="server"></asp:TableCell>
         </asp:TableRow>
     </asp:Table>
+    <asp:HyperLink ID="hlComments" runat="server" meta:resourcekey="hlComments" />
 </asp:Content>

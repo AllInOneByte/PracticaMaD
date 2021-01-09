@@ -22,6 +22,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product {
         protected global::System.Web.UI.WebControls.Localize lclMenuExplanation;
         
         /// <summary>
+        /// Control lblProductError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblProductError;
+        
+        /// <summary>
         /// Control TableProductInfo.
         /// </summary>
         /// <remarks>
@@ -137,5 +146,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableCell cellProductQuantity;
+        
+        /// <summary>
+        /// Control hlComments.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlComments;
     }
 }

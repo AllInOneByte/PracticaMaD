@@ -459,8 +459,15 @@
   <ItemGroup>
     <Content Include="Pages\User\App_LocalResources\Buy.aspx.es.resx" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Pages\Product\App_LocalResources\" />
+    <Content Include="Pages\Product\App_LocalResources\ProductDetails.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\ProductDetails.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\ProductDetails.aspx.gl.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
