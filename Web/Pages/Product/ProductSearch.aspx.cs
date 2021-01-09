@@ -136,14 +136,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
         {
             if (Page.IsValid)
             {
-                string keyword = txtSearch.Text;
-                long catId = int.Parse(CategoryDropDownList.SelectedItem.Value);
+                string keyword;
+                long catId;
 
                 int startIndex, count;
 
                 lnkPrevious.Visible = false;
                 lnkNext.Visible = false;
                 lblNoProducts.Visible = false;
+
+                /* Get keyword */
+                try
+                {
+                    keyword = Request.Params.Get("keyword");
+                }
+                catch (ArgumentNullException)
+                {
+                    keyword = txtSearch.Text;
+                }
+
+                /* Get category id */
+                try
+                {
+                    catId = int.Parse(Request.Params.Get("category"));
+                }
+                catch (ArgumentNullException)
+                {
+                    catId = int.Parse(CategoryDropDownList.SelectedItem.Value);
+                }
 
                 /* Get Start Index */
                 try
@@ -188,7 +208,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                     string url =
                         Settings.Default.PracticaMaD_applicationURL +
                         "/Pages/ProductSearch.aspx" + "?startIndex=" + (startIndex - count) +
-                        "&count=" + count;
+                        "&count=" + count + "&keyword=" + keyword + "&category=" + catId;
 
                     lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
                     lnkPrevious.Visible = true;
@@ -200,7 +220,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                     string url =
                         Settings.Default.PracticaMaD_applicationURL +
                         "/Pages/ShowAccountsByUserID.aspx" + "?startIndex=" + (startIndex + count) +
-                        "&count=" + count;
+                        "&count=" + count + "&keyword=" + keyword + "&category=" + catId;
 
                     lnkNext.NavigateUrl =
                         Response.ApplyAppPathModifier(url);
