@@ -42,8 +42,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// <exception cref="InstanceNotFoundException"/>
         /// <exception cref="UnmatchingUserAndCardException"/>
         [Transactional]
-        Delivery CreateDelivery(decimal deliveryPrice, long cardId, long userId, string description,
-            List<DeliveryLine> deliveryLines, string deliveryAddress = null);
+        Delivery CreateDelivery(decimal deliveryPrice, long cardNumber, long userId, string description,
+            List<ShoppingCart> shoppingCart, string deliveryAddress = null);
 
         /// <summary>
         /// Retrieves all the deliveries of the user.

@@ -6,6 +6,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.DeliveryLineDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -35,36 +36,46 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// <exception cref="InstanceNotFoundException"/>
         /// <exception cref="UnmatchingUserAndCardException"/>
         [Transactional]
-        public Delivery CreateDelivery(decimal deliveryPrice, long cardId, long userId, string description,
-            List<DeliveryLine> deliveryLines, string deliveryAddress = null)
+        public Delivery CreateDelivery(decimal deliveryPrice, long cardNumber, long userId, string description,
+            List<ShoppingCart> shoppingCart, string deliveryAddress = null)
         {
+           
+            CreditCard card = CreditCardDao.FindByNumber(cardNumber);
+
+
             if (CreditCardDao.FindByUserId(userId)
-                .Contains(CreditCardDao.Find(cardId)))
+                .Contains(card))
             {
                 Delivery delivery = new Delivery
                 {
                     deliveryDate = DateTime.Now,
                     deliveryPrice = deliveryPrice,
                     deliveryAddress = deliveryAddress ?? UserProfileDao.Find(userId).address,
-                    cardId = cardId,
+                    cardId = card.cardId,
                     userId = userId,
                     description = description
                 };
 
                 DeliveryDao.Create(delivery);
 
-                foreach (DeliveryLine item in deliveryLines)
+                DeliveryLine deliveryLine;
+                foreach (ShoppingCart item in shoppingCart)
                 {
-                    item.deliveryId = delivery.deliveryId;
+                    deliveryLine = new DeliveryLine();
 
-                    DeliveryLineDao.Create(item);
+                    deliveryLine.deliveryLineAmount = item.Amount;
+                    deliveryLine.deliveryLinePrice = item.Product.productPrice;
+                    deliveryLine.productId = item.Product.productId;
+                    deliveryLine.deliveryId = delivery.deliveryId;
+
+                    DeliveryLineDao.Create(deliveryLine);
                 }
 
                 return delivery;
             }
             else
             {
-                throw new UnmatchingUserAndCardException(userId, cardId);
+                throw new UnmatchingUserAndCardException(userId, cardNumber);
             }
         }
 
