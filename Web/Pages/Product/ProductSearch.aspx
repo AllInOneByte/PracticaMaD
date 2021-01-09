@@ -33,7 +33,7 @@
                 <p>
                     <asp:Label ID="lblNoProducts" meta:resourcekey="lblNoProducts" runat="server"></asp:Label>
                 </p>
-                <asp:GridView ID="gvProducts" runat="server" GridLines="None" AutoGenerateColumns="False">
+                <asp:GridView ID="gvProducts" runat="server" GridLines="None" AutoGenerateColumns="False" Width="100%">
                     <Columns>
                         <asp:HyperLinkField DataTextField="productName"
                             HeaderText="<%$ Resources:Common, productName %>"
