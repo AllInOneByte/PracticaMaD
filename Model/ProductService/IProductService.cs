@@ -138,7 +138,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// </summary>
         /// <param name="tagName"> The tag's name. </param>
         /// <exception cref="DuplicateInstanceException"/>
-        long addTag(string tagName);
+        long AddTag(string tagName);
 
         /// <summary>
         /// Find all tags.

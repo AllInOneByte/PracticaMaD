@@ -195,7 +195,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         #region Tag Members
 
         /// <exception cref="DuplicateInstanceException"/>
-        public long addTag(string tagName)
+        public long AddTag(string tagName)
         {
             Tag tag = new Tag();
             try
@@ -227,14 +227,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         #endregion Tag Members
 
-        #region Tag Members
+        #region Category Members
 
         public List<Category> FindAllCategories()
         {
             return CategoryDao.FindAll();
         }
 
-        #endregion Tag Members
+        #endregion Category Members
 
         #endregion IProductService Members
     }
