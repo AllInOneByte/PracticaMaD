@@ -106,6 +106,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Product identifier.
+        /// </summary>
+        internal static string productId {
+            get {
+                return ResourceManager.GetString("productId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Name.
         /// </summary>
         internal static string productName {
@@ -120,6 +129,15 @@ namespace Resources {
         internal static string productPrice {
             get {
                 return ResourceManager.GetString("productPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Quantity.
+        /// </summary>
+        internal static string productQuantity {
+            get {
+                return ResourceManager.GetString("productQuantity", resourceCulture);
             }
         }
         
