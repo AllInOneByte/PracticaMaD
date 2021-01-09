@@ -20,6 +20,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
                     lnkUpdate.Visible = false;
                 if (lblDash3 != null)
                     lblDash3.Visible = false;
+                if (lnkListDeliveries != null)
+                    lnkListDeliveries.Visible = false;
+                if (lblDash5 != null)
+                    lblDash5.Visible = false;
                 if (lnkLogout != null)
                     lnkLogout.Visible = false;
 

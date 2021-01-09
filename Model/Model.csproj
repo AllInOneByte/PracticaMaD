@@ -122,7 +122,6 @@
     <Compile Include="ShoppingService\Exceptions\UnmatchingUserAndCardException.cs" />
     <Compile Include="ShoppingService\IShoppingService.cs" />
     <Compile Include="ShoppingService\ShoppingCart.cs" />
-    <Compile Include="ShoppingService\ShoppingCartDetails.cs" />
     <Compile Include="ShoppingService\ShoppingService.cs" />
     <Compile Include="SpecificProperty.cs">
       <DependentUpon>PracticaMad.tt</DependentUpon>

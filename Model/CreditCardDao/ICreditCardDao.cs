@@ -14,6 +14,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
         List<CreditCard> FindByUserId(long userId);
 
         /// <summary>
+        /// Finds a default CreditCard by number 
+        /// </summary>
+        /// <param name="number">number</param>
+        /// <returns>The Default CreditCard</returns>
+        /// <exception cref="InstanceNotFoundException"/>
+        CreditCard FindByNumber(long number);
+
+        /// <summary>
         /// Finds a default CreditCard by userId 
         /// </summary>
         /// <param name="userId">userId</param>

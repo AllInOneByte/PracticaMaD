@@ -168,4 +168,7 @@
   <data name="lclCreditCard.Text" xml:space="preserve">
     <value>Register Credit Card</value>
   </data>
+  <data name="default" xml:space="preserve">
+    <value>Default</value>
+  </data>
 </root>

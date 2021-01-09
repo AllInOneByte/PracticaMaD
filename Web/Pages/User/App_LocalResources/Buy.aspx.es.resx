@@ -117,31 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblWelcome.Hello.Text" xml:space="preserve">
-    <value>Hola</value>
+  <data name="btnBuy.Text" xml:space="preserve">
+    <value>Comprar</value>
   </data>
-  <data name="lblWelcome.Text" xml:space="preserve">
-    <value>Benvido a PracticaMaD</value>
+  <data name="lclAddress.Text" xml:space="preserve">
+    <value>Dirección</value>
   </data>
-  <data name="lclFooter.Text" xml:space="preserve">
-    <value>Copyright &amp;copy; Departamento Ciencias de la Computación y Tecnologías de la Información - Universidade da Coruña</value>
+  <data name="lclCreditNumber.Text" xml:space="preserve">
+    <value>Tarjeta de Crédito</value>
   </data>
-  <data name="lclPageTitle.Text" xml:space="preserve">
-    <value>PracticaMaD: Exemplo dunha Aplicación Web MVC con .NET</value>
+  <data name="lclMenuExplanation.Text" xml:space="preserve">
+    <value>Comprar</value>
   </data>
-  <data name="lnkAuthenticate.Text" xml:space="preserve">
-    <value>Autenticación</value>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Comprar</value>
   </data>
-  <data name="lnkCart.Text" xml:space="preserve">
-    <value>Carrito</value>
-  </data>
-  <data name="lnkListDeliveries.Text" xml:space="preserve">
-    <value>Meus pedidos</value>
-  </data>
-  <data name="lnkLogout.Text" xml:space="preserve">
-    <value>Saír</value>
-  </data>
-  <data name="lnkUpdate.Text" xml:space="preserve">
-    <value>Actualizar información de usuario</value>
+  <data name="revNumberError.ErrorMessage" xml:space="preserve">
+    <value>Solo se permiten números</value>
   </data>
 </root>

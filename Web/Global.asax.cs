@@ -25,6 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 
         protected void Session_Start(object sender, EventArgs e)
         {
+            SessionManager.TouchCart(Context);
             SessionManager.TouchSession(Context);
         }
 

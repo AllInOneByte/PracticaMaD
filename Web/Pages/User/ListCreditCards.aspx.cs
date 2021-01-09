@@ -57,7 +57,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                     fav = new TableCell();
                     checkDefault = new CheckBox();
                     checkDefault.ID = "ChkSelect";
-                    checkDefault.CheckedChanged += new EventHandler(this.Check_Change);
+                    checkDefault.Enabled = false;
                     if (card.defaultCard == 1)
                     {
                         checkDefault.Checked = true;
@@ -76,30 +76,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             
         }
 
-        protected void Check_Change(Object sender, EventArgs e)
-        {
-
-            CheckBox activeCheckBox = sender as CheckBox;
-
-            foreach (TableRow rw in lclTableCreditCards.Rows)
-            {
-                CheckBox chkBx = (CheckBox)rw.FindControl("ChkSelect");
-                if (chkBx != activeCheckBox)
-                {
-                    chkBx.Checked = false;
-                }
-                else
-                {
-                    HyperLink cardId = (HyperLink)rw.FindControl("cardId");
-                    long number = Convert.ToInt64(cardId.Text);
-                    long id = Convert.ToInt64(cardId.NavigateUrl.Trim('=')[1]);
-
-                    SessionManager.AssignDefaultCardToUser(Context, id, number);
-
-                    chkBx.Checked = true;
-                }
-            }
-
-        }
     }
 }

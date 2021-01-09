@@ -168,4 +168,7 @@
   <data name="lclCreditCard.Text" xml:space="preserve">
     <value>Rexistrar Tarxeta de Crédito</value>
   </data>
+  <data name="default" xml:space="preserve">
+    <value>Predeterminada</value>
+  </data>
 </root>

@@ -110,7 +110,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                         new UserProfileDetails(firstName, lastName, email, language, country, role, address));
 
                     var expected = new LoginResult(userId, firstName,
-                        PasswordEncrypter.Crypt(clearPassword), language, country, role);
+                        PasswordEncrypter.Crypt(clearPassword), language, country, role, address);
 
                     // Login with clear password
                     var actual =
@@ -135,7 +135,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                         new UserProfileDetails(firstName, lastName, email, language, country, role, address));
 
                     var expected = new LoginResult(userId, firstName,
-                        PasswordEncrypter.Crypt(clearPassword), language, country, role);
+                        PasswordEncrypter.Crypt(clearPassword), language, country, role, address);
 
                     // Login with encrypted password
                     var obtained =

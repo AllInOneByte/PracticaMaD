@@ -5,6 +5,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.DeliveryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DeliveryLineDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Ninject;
 using System.Collections.Generic;
 
@@ -23,6 +24,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         [Inject]
         IDeliveryLineDao DeliveryLineDao { set; }
+        [Inject]
+        IProductDao ProductDao { set; }
+
+
 
         /// <summary>
         /// Creates a new delivery object in the database.
@@ -37,8 +42,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// <exception cref="InstanceNotFoundException"/>
         /// <exception cref="UnmatchingUserAndCardException"/>
         [Transactional]
-        Delivery CreateDelivery(decimal deliveryPrice, long cardId, long userId, string description,
-            List<DeliveryLine> deliveryLines, string deliveryAddress = null);
+        Delivery CreateDelivery(decimal deliveryPrice, long cardNumber, long userId, string description,
+            List<ShoppingCart> shoppingCart, string deliveryAddress = null);
 
         /// <summary>
         /// Retrieves all the deliveries of the user.
@@ -67,18 +72,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// </summary>
         /// <param name="new_shoppingCart"> The New ShoppingCart data. </param>
         /// <returns> The details of the shoppingCart </returns>
-        /// <exception cref="InstanceNotFoundException"/>
-        [Transactional]
-        ShoppingCart UpdateShoppingCartDetails(ShoppingCart new_shoppingCart);
+        List<ShoppingCart> UpdateShoppingCartDetails(List<ShoppingCart> shoppingCart, long productId, int amount);
 
         /// <summary>
         /// Delete a item in a shoppingCart
         /// </summary>
         /// <param name="shoppingCart"> The ShoppingCart. </param>
         /// <returns> Delete the details of the shoppingCart </returns>
-        /// <exception cref="InstanceNotFoundException"/>
-        [Transactional]
-        ShoppingCart DeleteShoppingCartDetails(ShoppingCart shoppingCart);
+        List<ShoppingCart> DeleteShoppingCartDetails(List<ShoppingCart> shoppingCart, long productId);
 
         /// <summary>
         /// Modify the amount of items on the shoppingcart
@@ -86,8 +87,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// <param name="shoppingCart"> The ShoppingCart. </param>
         /// <param name="amount"> The new amount of items. </param>
         /// <returns> The modified shoppingCart </returns>
-        /// <exception cref="InstanceNotFoundException"/>
-        [Transactional]
-        ShoppingCart ModifyAmountOfItems(ShoppingCart shoppingCart, int amount);
+        List<ShoppingCart> ModifyAmountOfItems(List<ShoppingCart> shoppingCart, long productId, int amount);
+
+        /// <summary>
+        /// Modify the gift of a product on the shoppingcart
+        /// </summary>
+        /// <param name="shoppingCart"> The ShoppingCart. </param>
+        /// <param name="amount"> The boolean. </param>
+        /// <returns> The modified shoppingCart </returns>
+        List<ShoppingCart> ModifyGift(List<ShoppingCart> shoppingCart, long productId, bool gift);
     }
 }
