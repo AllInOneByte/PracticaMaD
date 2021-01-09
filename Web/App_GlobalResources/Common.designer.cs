@@ -61,11 +61,65 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Category.
+        /// </summary>
+        internal static string categoryName {
+            get {
+                return ResourceManager.GetString("categoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Mandatory Field.
         /// </summary>
         internal static string mandatoryField {
             get {
                 return ResourceManager.GetString("mandatoryField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Next.
+        /// </summary>
+        internal static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Previous.
+        /// </summary>
+        internal static string Previous {
+            get {
+                return ResourceManager.GetString("Previous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Publication date.
+        /// </summary>
+        internal static string productDate {
+            get {
+                return ResourceManager.GetString("productDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Name.
+        /// </summary>
+        internal static string productName {
+            get {
+                return ResourceManager.GetString("productName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Price per unit.
+        /// </summary>
+        internal static string productPrice {
+            get {
+                return ResourceManager.GetString("productPrice", resourceCulture);
             }
         }
         
