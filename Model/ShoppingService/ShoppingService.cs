@@ -5,6 +5,8 @@ using Es.Udc.DotNet.PracticaMaD.Model.DeliveryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DeliveryLineDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -25,41 +27,55 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         [Inject]
         public IDeliveryLineDao DeliveryLineDao { private get; set; }
 
+        [Inject]
+        public IProductDao ProductDao { private get; set; }
+
+
         #region IShoppingService members
 
         /// <exception cref="InstanceNotFoundException"/>
         /// <exception cref="UnmatchingUserAndCardException"/>
         [Transactional]
-        public Delivery CreateDelivery(decimal deliveryPrice, long cardId, long userId, string description,
-            List<DeliveryLine> deliveryLines, string deliveryAddress = null)
+        public Delivery CreateDelivery(decimal deliveryPrice, long cardNumber, long userId, string description,
+            List<ShoppingCart> shoppingCart, string deliveryAddress = null)
         {
+           
+            CreditCard card = CreditCardDao.FindByNumber(cardNumber);
+
+
             if (CreditCardDao.FindByUserId(userId)
-                .Contains(CreditCardDao.Find(cardId)))
+                .Contains(card))
             {
                 Delivery delivery = new Delivery
                 {
                     deliveryDate = DateTime.Now,
                     deliveryPrice = deliveryPrice,
                     deliveryAddress = deliveryAddress ?? UserProfileDao.Find(userId).address,
-                    cardId = cardId,
+                    cardId = card.cardId,
                     userId = userId,
                     description = description
                 };
 
                 DeliveryDao.Create(delivery);
 
-                foreach (DeliveryLine item in deliveryLines)
+                DeliveryLine deliveryLine;
+                foreach (ShoppingCart item in shoppingCart)
                 {
-                    item.deliveryId = delivery.deliveryId;
+                    deliveryLine = new DeliveryLine();
 
-                    DeliveryLineDao.Create(item);
+                    deliveryLine.deliveryLineAmount = item.Amount;
+                    deliveryLine.deliveryLinePrice = item.Product.productPrice;
+                    deliveryLine.productId = item.Product.productId;
+                    deliveryLine.deliveryId = delivery.deliveryId;
+
+                    DeliveryLineDao.Create(deliveryLine);
                 }
 
                 return delivery;
             }
             else
             {
-                throw new UnmatchingUserAndCardException(userId, cardId);
+                throw new UnmatchingUserAndCardException(userId, cardNumber);
             }
         }
 
@@ -101,54 +117,82 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
             return new DeliveryLineBlock(details, existMoreDeliveryLines);
         }
-
-        /// <exception cref="InstanceNotFoundException"/>
-        [Transactional]
-
-        public List<ShoppingCartDetails> CreateShoppingCartDetails(List<ShoppingCartDetails> shoppingCartDetails, long productId)
-        {
-            ShoppingCartDetails shop = new ShoppingCartDetails(0, 0, productId);
-
-            shoppingCartDetails.Add(shop);
-
-            return shoppingCartDetails;
         
-        }
-
-
-        /// <exception cref="InstanceNotFoundException"/>
-        [Transactional]
-        public List<ShoppingCartDetails> DeleteShoppingCartDetails(List<ShoppingCartDetails> shoppingCartDetails, long productId)
+        public List<ShoppingCart> UpdateShoppingCartDetails(List<ShoppingCart> shoppingCart, long productId, int amount)
         {
-            List<ShoppingCartDetails> shoppingCartDetails_aux = new List<ShoppingCartDetails>();
-
-            foreach (ShoppingCartDetails item in shoppingCartDetails)
+            foreach (ShoppingCart item in shoppingCart)
             {
-                if (item.ProductId != productId)
+                if (item.Product.productId == productId)
                 {
-                    shoppingCartDetails_aux.Add(item);
+                    item.Product.productQuantity += item.Amount - amount;
+                    item.Amount = amount;
 
+                    return shoppingCart;
                 };
 
             }
-            return shoppingCartDetails_aux;
+            Product product = ProductDao.Find(productId);
 
+            product.productQuantity -= amount;
+            ShoppingCart shop = new ShoppingCart(amount, product, false);
+
+            shoppingCart.Add(shop);
+
+            return shoppingCart;
+        
         }
 
-        [Transactional]
-        public List<ShoppingCartDetails> ModifyAmountOfItems(List<ShoppingCartDetails> shoppingCartDetails, long productId, int amount) {
+        
+        public List<ShoppingCart> DeleteShoppingCartDetails(List<ShoppingCart> shoppingCart, long productId)
+        {
+            List<ShoppingCart> shoppingCart_aux = new List<ShoppingCart>();
 
-            foreach (ShoppingCartDetails item in shoppingCartDetails)
+            foreach (ShoppingCart item in shoppingCart)
             {
-                if (item.ProductId == productId) 
+                if (item.Product.productId != productId)
                 {
-                    item.DeliveryLineAmount = amount;
+                    shoppingCart_aux.Add(item);
+
+                }
+                else
+                {
+                    item.Product.productQuantity += item.Amount;
+                };
+
+            }
+            return shoppingCart_aux;
+
+        }
+        
+        public List<ShoppingCart> ModifyAmountOfItems(List<ShoppingCart> shoppingCart, long productId, int amount)
+        {
+
+            foreach (ShoppingCart item in shoppingCart)
+            {
+                if (item.Product.productId == productId) 
+                {
+                    item.Amount += amount;
+                    item.Product.productQuantity -= amount;
       
                 };
 
             }
 
-            return shoppingCartDetails;
+            return shoppingCart;
+        }
+
+        public List<ShoppingCart> ModifyGift(List<ShoppingCart> shoppingCart, long productId, bool gift)
+        {
+            foreach (ShoppingCart item in shoppingCart)
+            {
+                if (item.Product.productId == productId)
+                {
+                    item.Gift = gift;
+                };
+
+            }
+
+            return shoppingCart;
         }
         #endregion IShoppingService members
     }

@@ -17,7 +17,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <param name="language">The language.</param>
         /// <param name="country">The country.</param>
         public LoginResult(long userProfileId, String firstName,
-            String encryptedPassword, String language, String country, byte rol)
+            String encryptedPassword, String language, String country, byte rol, string address)
         {
             this.UserProfileId = userProfileId;
             this.FirstName = firstName;
@@ -25,6 +25,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             this.Language = language;
             this.Rol = rol;
             this.Country = country;
+            this.Addres = address;
+        }
+
+        public LoginResult(long userProfileId, String firstName,
+            String encryptedPassword, String language, String country, byte rol, string address, long cardId, long cardNumber)
+        {
+            this.UserProfileId = userProfileId;
+            this.FirstName = firstName;
+            this.EncryptedPassword = encryptedPassword;
+            this.Language = language;
+            this.Rol = rol;
+            this.Country = country;
+            this.Addres = address;
+            this.CardId = cardId;
+            this.CardNumber = cardNumber;
         }
 
         #region Properties Region
@@ -60,6 +75,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         public long UserProfileId { get; private set; }
 
         public byte Rol { get; private set; }
+
+        public String Addres { get; private set; }
+
+        public long CardId { get; private set; }
+
+        public long CardNumber { get; private set; }
+
         #endregion Properties Region
 
         public override bool Equals(object obj)
@@ -71,6 +93,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                    && (this.EncryptedPassword == target.EncryptedPassword)
                    && (this.Language == target.Language)
                    && (this.Rol == target.Rol)
+                   && (this.CardNumber == target.CardNumber)
+                   && (this.Addres == target.Addres)
+                   && (this.CardId == target.CardId)
                    && (this.Country == target.Country);
         }
 
@@ -100,6 +125,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 "encryptedPassword = " + EncryptedPassword + " | " +
                 "language = " + Language + " | " +
                 "country = " + Country + " | " +
+                "address = " + Addres + " | " +
+                "cardId = " + CardId + " | " +
+                "cardNumber = " + CardNumber + " | " +
                 "rol = " + Rol + " ]";
 
             return strLoginResult;

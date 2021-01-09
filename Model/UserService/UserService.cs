@@ -98,8 +98,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 }
             }
 
-            return new LoginResult(userProfile.usrId, userProfile.firstName,
-                storedPassword, userProfile.language, userProfile.country, userProfile.role);
+            try
+            {
+                CreditCard card = creditCardDao.FindDefaultUserIdCard(userProfile.usrId);
+
+                return new LoginResult(userProfile.usrId, userProfile.firstName,
+                storedPassword, userProfile.language, userProfile.country, userProfile.role, userProfile.address,
+                card.cardId, card.cardNumber);
+            }
+            catch (InstanceNotFoundException)
+            {
+                return new LoginResult(userProfile.usrId, userProfile.firstName,
+                storedPassword, userProfile.language, userProfile.country, userProfile.role, userProfile.address);
+            }
         }
 
         /// <summary>

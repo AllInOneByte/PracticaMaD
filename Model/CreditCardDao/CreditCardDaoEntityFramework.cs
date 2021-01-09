@@ -56,6 +56,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
 
         #endregion FindByUserId
 
+        #region FindByNumber
+
+        public CreditCard FindByNumber(long number)
+        {
+            CreditCard card = null;
+
+            #region Option 1: Using Linq.
+
+            DbSet<CreditCard> creditCards = Context.Set<CreditCard>();
+
+            var result =
+                    (from c in creditCards
+                     where c.cardNumber == number
+                     select c);
+
+            card = result.FirstOrDefault();
+
+            #endregion Option 1: Using Linq.
+
+            if (card == null)
+                throw new InstanceNotFoundException(number,
+                    typeof(CreditCard).FullName);
+
+            return card;
+        }
+
+        #endregion FindByNumber
+
         #region FindDefaultByUserIdCard
 
         /// <summary>

@@ -31,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         private static UserProfile user;
         private static Category category;
         private static Product product;
-        private static DeliveryLine deliveryLine;
+        private static ShoppingCart shoppingCart;
 
         private TransactionScope transaction;
 
@@ -51,12 +51,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             try
             {
-                List<DeliveryLine> details = new List<DeliveryLine>
+                List<ShoppingCart> details = new List<ShoppingCart>
                 {
-                    deliveryLine
+                    shoppingCart
                 };
 
-                Delivery delivery = shoppingService.CreateDelivery(new decimal(9.99), creditCard.cardId,
+                Delivery delivery = shoppingService.CreateDelivery(new decimal(9.99), creditCard.cardNumber,
                     user.usrId, "Short description", details);
 
                 Assert.IsNotNull(delivery.deliveryId);
@@ -81,17 +81,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             try
             {
-                List<DeliveryLine> details = new List<DeliveryLine>
+                List<ShoppingCart> details = new List<ShoppingCart>
                 {
-                    deliveryLine
+                    shoppingCart
                 };
 
-                Delivery delivery = shoppingService.CreateDelivery(new decimal(9.99), creditCard.cardId,
+                Delivery delivery = shoppingService.CreateDelivery(new decimal(9.99), creditCard.cardNumber,
                     user.usrId, "Short description", details);
                 DeliveryBlock foundDeliveries = shoppingService.GetAllDeliveries(user.usrId);
 
                 Assert.AreEqual(1, foundDeliveries.Deliveries.Count);
-                Assert.AreEqual(delivery, foundDeliveries.Deliveries[0]);
+                Assert.AreEqual(creditCard.cardNumber, foundDeliveries.Deliveries[0].CardNumber);
+                Assert.AreEqual(System.DateTime.Now.ToString("dd/MM/yyyy"), foundDeliveries.Deliveries[0].DeliveryDate);
+                Assert.AreEqual(product.productPrice, foundDeliveries.Deliveries[0].DeliveryPrice);
+                Assert.AreEqual("Short description", foundDeliveries.Deliveries[0].Description);
+                Assert.AreEqual(delivery.deliveryId, foundDeliveries.Deliveries[0].DeliveryId);
                 Assert.IsFalse(foundDeliveries.ExistMoreDeliveries);
             }
             catch (Exception)
@@ -108,20 +112,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             try
             {
-                List<DeliveryLine> details = new List<DeliveryLine>
+                List<ShoppingCart> details = new List<ShoppingCart>
                 {
-                    deliveryLine
+                    shoppingCart
                 };
 
-                Delivery delivery = shoppingService.CreateDelivery(new decimal(9.99), creditCard.cardId,
+                Delivery delivery = shoppingService.CreateDelivery(new decimal(9.99), creditCard.cardNumber,
                     user.usrId, "Short description", details);
                 DeliveryLineBlock foundDetails = shoppingService.GetDeliveryDetails(delivery.deliveryId);
 
                 Assert.AreEqual(1, foundDetails.DeliveryLines.Count);
-                Assert.AreEqual(delivery.deliveryId, foundDetails.DeliveryLines[0].deliveryId);
-                Assert.AreEqual(deliveryLine.deliveryLineAmount, foundDetails.DeliveryLines[0].deliveryLineAmount);
-                Assert.AreEqual(deliveryLine.deliveryLinePrice, foundDetails.DeliveryLines[0].deliveryLinePrice);
-                Assert.AreEqual(deliveryLine.productId, foundDetails.DeliveryLines[0].productId);
+                Assert.AreEqual(shoppingCart.Amount, foundDetails.DeliveryLines[0].DeliveryLineAmount);
+                Assert.AreEqual(product.productPrice, foundDetails.DeliveryLines[0].DeliveryLinePrice);
+                Assert.AreEqual(product.productName, foundDetails.DeliveryLines[0].ProductName);
                 Assert.IsFalse(foundDetails.ExistMoreDeliveryLines);
             }
             catch (Exception)
@@ -207,12 +210,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             productDao.Create(newProduct);
             product = newProduct;
 
-            deliveryLine = new DeliveryLine
-            {
-                deliveryLineAmount = 1,
-                deliveryLinePrice = new decimal(9.99),
-                productId = product.productId
-            };
+            shoppingCart = new ShoppingCart(1, product, false);
         }
 
         //Use TestCleanup to run code after each test has run
