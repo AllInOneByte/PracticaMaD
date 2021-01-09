@@ -145,9 +145,15 @@
     <value>Description</value>
   </data>
   <data name="lclTotal.Text" xml:space="preserve">
-    <value>Precio Total</value>
+    <value>Total Price</value>
   </data>
   <data name="lnkRegisterCreditCard.Text" xml:space="preserve">
     <value>Credit Card Registration</value>
+  </data>
+  <data name="lblAmountError.Text" xml:space="preserve">
+    <value>Insufficient amount in stock of</value>
+  </data>
+  <data name="lnkBack.Text" xml:space="preserve">
+    <value>Return to Shopping Cart</value>
   </data>
 </root>

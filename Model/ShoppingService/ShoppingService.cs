@@ -63,7 +63,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 {
                     deliveryLine = new DeliveryLine();
 
-                    deliveryLine.deliveryLineAmount = item.Amount;
+                    if (item.Product.productQuantity - item.Amount > 0)
+                    {
+                        item.Product.productQuantity -= item.Amount;
+                        deliveryLine.deliveryLineAmount = item.Amount;
+                    }
+                    else
+                    {
+                        throw new StockEmptyException(item.Product.productId, item.Product.productName);
+                    }
+                    
                     deliveryLine.deliveryLinePrice = item.Product.productPrice;
                     deliveryLine.productId = item.Product.productId;
                     deliveryLine.deliveryId = delivery.deliveryId;
@@ -118,27 +127,42 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             return new DeliveryLineBlock(details, existMoreDeliveryLines);
         }
         
-        public List<ShoppingCart> UpdateShoppingCartDetails(List<ShoppingCart> shoppingCart, long productId, int amount)
+        public List<ShoppingCart> UpdateShoppingCartDetails(List<ShoppingCart> shoppingCart, long productId, int amount, bool gitf)
         {
             foreach (ShoppingCart item in shoppingCart)
             {
                 if (item.Product.productId == productId)
                 {
-                    item.Product.productQuantity += item.Amount - amount;
-                    item.Amount = amount;
+                    if (item.Product.productQuantity + item.Amount - amount > 0)
+                    {
+                        item.Amount = amount;
+                    }
+                    else
+                    {
+                        throw new StockEmptyException(item.Product.productId, item.Product.productName);
+                    }
 
                     return shoppingCart;
                 };
 
             }
+
             Product product = ProductDao.Find(productId);
 
-            product.productQuantity -= amount;
-            ShoppingCart shop = new ShoppingCart(amount, product, false);
+            if (product.productQuantity - amount > 0)
+            {
+                product.productQuantity -= amount;
+                ShoppingCart shop = new ShoppingCart(amount, product, gitf);
 
-            shoppingCart.Add(shop);
+                shoppingCart.Add(shop);
 
-            return shoppingCart;
+                return shoppingCart;
+            }
+            else
+            {
+                throw new StockEmptyException(product.productId, product.productName);
+            }
+            
         
         }
 
@@ -154,10 +178,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                     shoppingCart_aux.Add(item);
 
                 }
-                else
-                {
-                    item.Product.productQuantity += item.Amount;
-                };
 
             }
             return shoppingCart_aux;
@@ -166,13 +186,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         
         public List<ShoppingCart> ModifyAmountOfItems(List<ShoppingCart> shoppingCart, long productId, int amount)
         {
-
+            
             foreach (ShoppingCart item in shoppingCart)
             {
                 if (item.Product.productId == productId) 
                 {
-                    item.Amount += amount;
-                    item.Product.productQuantity -= amount;
+                    int modify = item.Amount + amount;
+                    if (item.Product.productQuantity - modify > 0)
+                    {
+                        item.Amount += amount;
+                    }
+                    else
+                    {
+                        throw new StockEmptyException(item.Product.productId, item.Product.productName);
+                    }
+                    
       
                 };
 

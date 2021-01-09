@@ -21,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 CreditCard card = SessionManager.FindCreditCard(cardId);
 
                 txtCreditNumber.Text = card.cardNumber.ToString();
-                txtExpirationDate.Text = card.expirationDate.Date.ToString("dd/MM/yyyy");
+                txtExpirationDate.Text = card.expirationDate.Date.ToString("MM/yy");
                 txtVerificationCode.Text = card.verificationCode.ToString();
                 if (card.defaultCard == 1)
                 {

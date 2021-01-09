@@ -2,6 +2,7 @@
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using System;
 using System.Data;
 using System.Reflection;
@@ -41,7 +42,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
                 }
                 catch (ArgumentNullException)
                 {
-                    count = 2;
+                    count = Settings.Default.PracticaMaD_defaultCount;
                 }
 
                 /* Get Deliveries Info */

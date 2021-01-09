@@ -17,6 +17,11 @@
                     NavigateUrl="~/Pages/User/RegisterCreditCard.aspx"
                     meta:resourcekey="lnkRegisterCreditCard" Visible="false"/>
                 <div class="field">
+                <br />
+                <br />
+                <asp:Label ID="lblAmountError" runat="server" ForeColor="Red" Style="position: relative"
+                        Visible="False" meta:resourcekey="lblAmountError"></asp:Label>
+                <br />
                 <span class="label"><asp:Localize ID="lclDescription" runat="server" meta:resourcekey="lclDescription" /></span><span class="entry">
                     <asp:TextBox ID="txtDescription" runat="server" Width="100" Columns="16"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="DescriptionValidator1" runat="server"
@@ -53,6 +58,11 @@
             <div class="button">
                 <asp:Button ID="btnBuy" runat="server" OnClick="BtnBuyClick" meta:resourcekey="btnBuy"/>
             </div>
+            <br />
+            <br />
+            <asp:HyperLink ID="lnkBack" runat="server" 
+                    NavigateUrl="~/Pages/Shopping/Cart.aspx"
+                    meta:resourcekey="lnkBack" Visible="false"/>
         </form>
     </div>
 </asp:Content>
