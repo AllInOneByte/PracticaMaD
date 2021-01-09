@@ -117,34 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lclHeaderDefault.Text" xml:space="preserve">
-    <value>Predeterminada</value>
+  <data name="address" xml:space="preserve">
+    <value>Address</value>
   </data>
-  <data name="lclHeaderExpiration.Text" xml:space="preserve">
-    <value>Data de expiración</value>
+  <data name="card" xml:space="preserve">
+    <value>Credit Card</value>
   </data>
-  <data name="lclHeaderNumber.Text" xml:space="preserve">
-    <value>Número</value>
+  <data name="date" xml:space="preserve">
+    <value>Date</value>
   </data>
-  <data name="lclHeaderType.Text" xml:space="preserve">
-    <value>Tipo</value>
+  <data name="description" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="lclHeaderVerification.Text" xml:space="preserve">
-    <value>Codigo de verificación</value>
-  </data>
-  <data name="lclTableCreditCards.Text" xml:space="preserve">
-    <value>Tarxetas de Crédito</value>
-  </data>
-  <data name="lnkRegisterCreditCard.Text" xml:space="preserve">
-    <value>Rexistrar Tarxeta de Crédito</value>
-  </data>
-  <data name="Page.Title" xml:space="preserve">
-    <value>Practica MaD - Tarxetas de Crédito do Usuario</value>
+  <data name="lblNoDeliveries.Text" xml:space="preserve">
+    <value>No purchase has been made yet</value>
   </data>
   <data name="lclMenuExplanation.Text" xml:space="preserve">
-    <value>Información das Tarxetas de Crédito</value>
+    <value>User Deliveries</value>
   </data>
   <data name="lnkMain.Text" xml:space="preserve">
-    <value>Inicio</value>
+    <value>Menu</value>
+  </data>
+  <data name="lnkNext.Text" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="lnkPrevious.Text" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Deliveries Information</value>
+  </data>
+  <data name="price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="details" xml:space="preserve">
+    <value>More details</value>
+  </data>
+  <data name="id" xml:space="preserve">
+    <value>Delivery</value>
   </data>
 </root>

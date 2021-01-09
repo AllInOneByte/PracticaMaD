@@ -24,6 +24,9 @@
                     <asp:TableHeaderCell ID="lclHeaderDefault" meta:resourceKey="lclHeaderDefault"></asp:TableHeaderCell>
                 </asp:TableHeaderRow>
             </asp:Table>
+            <asp:HyperLink ID="lnkMain" runat="server" 
+            NavigateUrl="~/Pages/MainPage.aspx"
+            meta:resourcekey="lnkMain"/>
         </form>
     </div>
 </asp:Content>

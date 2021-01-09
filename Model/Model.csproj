@@ -116,7 +116,9 @@
     <Compile Include="ProductService\TagBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingService\DeliveryBlock.cs" />
+    <Compile Include="ShoppingService\DeliveryDetails.cs" />
     <Compile Include="ShoppingService\DeliveryLineBlock.cs" />
+    <Compile Include="ShoppingService\DeliveryLineDetails.cs" />
     <Compile Include="ShoppingService\Exceptions\UnmatchingUserAndCardException.cs" />
     <Compile Include="ShoppingService\IShoppingService.cs" />
     <Compile Include="ShoppingService\ShoppingCart.cs" />
@@ -156,6 +158,7 @@
       <DependentUpon>PracticaMad.Model.edmx</DependentUpon>
       <LastGenOutput>PracticaMad.cs</LastGenOutput>
     </Content>
+    <Content Include="Sql\SqlServerCreateData.sql" />
     <Content Include="Sql\SqlServerCreateDatabase.sql" />
     <Content Include="Sql\SqlServerCreateTables.sql" />
   </ItemGroup>

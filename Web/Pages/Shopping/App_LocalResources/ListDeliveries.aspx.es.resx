@@ -117,34 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lclHeaderDefault.Text" xml:space="preserve">
-    <value>Predeterminada</value>
+  <data name="address" xml:space="preserve">
+    <value>Dirección</value>
   </data>
-  <data name="lclHeaderExpiration.Text" xml:space="preserve">
-    <value>Data de expiración</value>
+  <data name="card" xml:space="preserve">
+    <value>Tarjeta de Crédito</value>
   </data>
-  <data name="lclHeaderNumber.Text" xml:space="preserve">
-    <value>Número</value>
+  <data name="date" xml:space="preserve">
+    <value>Fecha</value>
   </data>
-  <data name="lclHeaderType.Text" xml:space="preserve">
-    <value>Tipo</value>
+  <data name="description" xml:space="preserve">
+    <value>Descripción</value>
   </data>
-  <data name="lclHeaderVerification.Text" xml:space="preserve">
-    <value>Codigo de verificación</value>
-  </data>
-  <data name="lclTableCreditCards.Text" xml:space="preserve">
-    <value>Tarxetas de Crédito</value>
-  </data>
-  <data name="lnkRegisterCreditCard.Text" xml:space="preserve">
-    <value>Rexistrar Tarxeta de Crédito</value>
-  </data>
-  <data name="Page.Title" xml:space="preserve">
-    <value>Practica MaD - Tarxetas de Crédito do Usuario</value>
-  </data>
-  <data name="lclMenuExplanation.Text" xml:space="preserve">
-    <value>Información das Tarxetas de Crédito</value>
+  <data name="price" xml:space="preserve">
+    <value>Precio</value>
   </data>
   <data name="lnkMain.Text" xml:space="preserve">
     <value>Inicio</value>
+  </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Información de las compras</value>
+  </data>
+  <data name="lblNoDeliveries.Text" xml:space="preserve">
+    <value>Aún no se ha realizado ninguna compra</value>
+  </data>
+  <data name="lclMenuExplanation.Text" xml:space="preserve">
+    <value>Compras del usuario</value>
+  </data>
+  <data name="lnkNext.Text" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
+  <data name="lnkPrevious.Text" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
+  <data name="details" xml:space="preserve">
+    <value>Ver más detalles</value>
+  </data>
+  <data name="id" xml:space="preserve">
+    <value>Pedido</value>
   </data>
 </root>

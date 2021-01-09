@@ -7,10 +7,10 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping {
     
     
-    public partial class ListCreditCards {
+    public partial class ListDeliveries {
         
         /// <summary>
         /// Control lclMenuExplanation.
@@ -22,85 +22,49 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         protected global::System.Web.UI.WebControls.Localize lclMenuExplanation;
         
         /// <summary>
-        /// Control ListCreditCardsForm.
+        /// Control ListDeliveriesForm.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm ListCreditCardsForm;
+        protected global::System.Web.UI.HtmlControls.HtmlForm ListDeliveriesForm;
         
         /// <summary>
-        /// Control lnkRegisterCreditCard.
+        /// Control lblNoDeliveries.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkRegisterCreditCard;
+        protected global::System.Web.UI.WebControls.Label lblNoDeliveries;
         
         /// <summary>
-        /// Control lclTableCreditCards.
+        /// Control gvDeliveries.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table lclTableCreditCards;
+        protected global::System.Web.UI.WebControls.GridView gvDeliveries;
         
         /// <summary>
-        /// Control Header1.
+        /// Control lnkPrevious.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderRow Header1;
+        protected global::System.Web.UI.WebControls.HyperLink lnkPrevious;
         
         /// <summary>
-        /// Control lclHeaderNumber.
+        /// Control lnkNext.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell lclHeaderNumber;
-        
-        /// <summary>
-        /// Control lclHeaderType.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell lclHeaderType;
-        
-        /// <summary>
-        /// Control lclHeaderExpiration.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell lclHeaderExpiration;
-        
-        /// <summary>
-        /// Control lclHeaderVerification.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell lclHeaderVerification;
-        
-        /// <summary>
-        /// Control lclHeaderDefault.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell lclHeaderDefault;
+        protected global::System.Web.UI.WebControls.HyperLink lnkNext;
         
         /// <summary>
         /// Control lnkMain.

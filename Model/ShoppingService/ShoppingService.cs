@@ -68,12 +68,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         public DeliveryBlock GetAllDeliveries(long userId, int startIndex = 0, int count = 20)
         {
             List<Delivery> deliveries = DeliveryDao.FindByUserId(userId, startIndex, count + 1);
+            List<DeliveryDetails> details = new List<DeliveryDetails>();
 
             bool existMoreDeliveries = (deliveries.Count == count + 1);
 
             if (existMoreDeliveries) deliveries.RemoveAt(count);
 
-            return new DeliveryBlock(deliveries, existMoreDeliveries);
+            foreach(Delivery delivery in deliveries)
+            {
+                details.Add(new DeliveryDetails(delivery.deliveryId, delivery.deliveryDate.ToString("dd/MM/yyyy"),
+                    delivery.deliveryPrice, delivery.deliveryAddress, delivery.CreditCard.cardNumber, delivery.description));
+            }
+
+            return new DeliveryBlock(details, existMoreDeliveries);
         }
 
         /// <exception cref="InstanceNotFoundException"/>
@@ -81,12 +88,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         public DeliveryLineBlock GetDeliveryDetails(long deliveryId, int startIndex = 0, int count = 20)
         {
             List<DeliveryLine> deliveryLines = DeliveryLineDao.FindByDeliveryId(deliveryId, startIndex, count + 1);
+            List<DeliveryLineDetails> details = new List<DeliveryLineDetails>();
 
             bool existMoreDeliveryLines = (deliveryLines.Count == count + 1);
 
             if (existMoreDeliveryLines) deliveryLines.RemoveAt(count);
 
-            return new DeliveryLineBlock(deliveryLines, existMoreDeliveryLines);
+            foreach (DeliveryLine line in deliveryLines)
+            {
+                details.Add(new DeliveryLineDetails(line.deliveryLineAmount, line.deliveryLinePrice, line.Product.productName));
+            }
+
+            return new DeliveryLineBlock(details, existMoreDeliveryLines);
         }
 
         /// <exception cref="InstanceNotFoundException"/>

@@ -165,7 +165,7 @@
   <data name="revEmail.ErrorMessage" xml:space="preserve">
     <value>Sintaxis de email incorrecta</value>
   </data>
-  <data name="lclCreditCard" xml:space="preserve">
+  <data name="lclCreditCard.Text" xml:space="preserve">
     <value>Registrar Tarjeta de Crédito</value>
   </data>
 </root>

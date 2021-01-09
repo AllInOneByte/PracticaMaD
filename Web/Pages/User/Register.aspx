@@ -74,7 +74,7 @@
             </div>
             <div class="field">
                 <span class="label">
-                    <asp:Localize ID="lclAddress" runat="server" meta:resourcekey="lclSAddress" /></span><span
+                    <asp:Localize ID="lclAddress" runat="server" meta:resourcekey="lclAddress" /></span><span
                         class="entry">
                         <asp:TextBox ID="txtAddress" runat="server" Width="100px" Columns="16"
                             meta:resourcekey="txtAddressResource1"></asp:TextBox>
