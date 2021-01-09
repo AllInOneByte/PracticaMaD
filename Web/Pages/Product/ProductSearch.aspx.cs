@@ -63,7 +63,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             {
                 string url =
                     Settings.Default.PracticaMaD_applicationURL +
-                    "/Pages/ProductSearch.aspx" + "?startIndex=" + (startIndex - count) +
+                    "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex - count) +
                     "&count=" + count;
 
                 lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
@@ -75,7 +75,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             {
                 string url =
                     Settings.Default.PracticaMaD_applicationURL +
-                    "/Pages/ShowAccountsByUserID.aspx" + "?startIndex=" + (startIndex + count) +
+                    "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex + count) +
                     "&count=" + count;
 
                 lnkNext.NavigateUrl =
@@ -207,7 +207,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 {
                     string url =
                         Settings.Default.PracticaMaD_applicationURL +
-                        "/Pages/ProductSearch.aspx" + "?startIndex=" + (startIndex - count) +
+                        "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex - count) +
                         "&count=" + count + "&keyword=" + keyword + "&category=" + catId;
 
                     lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
@@ -219,7 +219,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 {
                     string url =
                         Settings.Default.PracticaMaD_applicationURL +
-                        "/Pages/ShowAccountsByUserID.aspx" + "?startIndex=" + (startIndex + count) +
+                        "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex + count) +
                         "&count=" + count + "&keyword=" + keyword + "&category=" + catId;
 
                     lnkNext.NavigateUrl =
