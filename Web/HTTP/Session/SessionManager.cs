@@ -150,6 +150,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             ShoppingCartSession shoppingCart = (ShoppingCartSession)context.Session[SHOPPING_CART_SESSION_ATTRIBUTE];
 
             shoppingService.CreateDelivery(price,creditNumber,userSession.UserProfileId,description,shoppingCart.ShoppingCart,address);
+
+            shoppingCart.ShoppingCart = new List<ShoppingCart>();
         }
 
         public static void ForGift(HttpContext context, long productId, bool gitf) 
