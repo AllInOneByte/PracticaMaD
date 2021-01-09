@@ -105,6 +105,7 @@
     <Content Include="Global.asax" />
     <Content Include="Pages\Errors\InternalError.aspx" />
     <Content Include="Pages\MainPage.aspx" />
+    <Content Include="Pages\Product\ProductDetails.aspx" />
     <Content Include="Pages\Product\ProductSearch.aspx" />
     <Content Include="Pages\Shopping\DeliveryDetails.aspx" />
     <Content Include="Pages\Shopping\ListDeliveries.aspx" />
@@ -164,6 +165,13 @@
     </Compile>
     <Compile Include="Pages\MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\ProductDetails.aspx.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\ProductDetails.aspx.designer.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Product\ProductSearch.aspx.cs">
       <DependentUpon>ProductSearch.aspx</DependentUpon>
