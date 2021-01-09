@@ -141,4 +141,10 @@
   <data name="searchButton" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="productId" xml:space="preserve">
+    <value>Product identifier</value>
+  </data>
+  <data name="productQuantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
 </root>
