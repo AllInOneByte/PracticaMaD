@@ -117,31 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblWelcome.Hello.Text" xml:space="preserve">
-    <value>Hola</value>
+  <data name="lblEmpty.Text" xml:space="preserve">
+    <value>O carrito esta vacío</value>
   </data>
-  <data name="lblWelcome.Text" xml:space="preserve">
-    <value>Benvido a PracticaMaD</value>
-  </data>
-  <data name="lclFooter.Text" xml:space="preserve">
-    <value>Copyright &amp;copy; Departamento Ciencias de la Computación y Tecnologías de la Información - Universidade da Coruña</value>
-  </data>
-  <data name="lclPageTitle.Text" xml:space="preserve">
-    <value>PracticaMaD: Exemplo dunha Aplicación Web MVC con .NET</value>
-  </data>
-  <data name="lnkAuthenticate.Text" xml:space="preserve">
-    <value>Autenticación</value>
-  </data>
-  <data name="lnkCart.Text" xml:space="preserve">
+  <data name="lclCart.Text" xml:space="preserve">
     <value>Carrito</value>
   </data>
-  <data name="lnkListDeliveries.Text" xml:space="preserve">
-    <value>Meus pedidos</value>
+  <data name="lclMenuExplanation.Text" xml:space="preserve">
+    <value>Carrito da compra</value>
   </data>
-  <data name="lnkLogout.Text" xml:space="preserve">
-    <value>Saír</value>
+  <data name="lnkBack.Text" xml:space="preserve">
+    <value>Regresar aos productos</value>
   </data>
-  <data name="lnkUpdate.Text" xml:space="preserve">
-    <value>Actualizar información de usuario</value>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Carrito da compra</value>
+  </data>
+  <data name="lclAmount.Text" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
+  <data name="lclGift.Text" xml:space="preserve">
+    <value>Envolver para presente</value>
+  </data>
+  <data name="lclProductName.Text" xml:space="preserve">
+    <value>Producto</value>
+  </data>
+  <data name="btnBuy.Text" xml:space="preserve">
+    <value>Comprar</value>
   </data>
 </root>

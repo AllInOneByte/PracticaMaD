@@ -106,8 +106,10 @@
     <Content Include="Pages\Errors\InternalError.aspx" />
     <Content Include="Pages\MainPage.aspx" />
     <Content Include="Pages\Product\ProductSearch.aspx" />
+    <Content Include="Pages\Shopping\Buy.aspx" />
     <Content Include="Pages\Shopping\DeliveryDetails.aspx" />
     <Content Include="Pages\Shopping\ListDeliveries.aspx" />
+    <Content Include="Pages\Shopping\Cart.aspx" />
     <Content Include="Pages\UserExists.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
     <Content Include="Pages\User\ChangePassword.aspx" />
@@ -141,6 +143,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HTTP\Session\SessionManager.cs" />
+    <Compile Include="HTTP\Session\ShoppingCartSession.cs" />
     <Compile Include="HTTP\Session\SpecificCulturePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -172,6 +175,13 @@
     <Compile Include="Pages\Product\ProductSearch.aspx.designer.cs">
       <DependentUpon>ProductSearch.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Shopping\Buy.aspx.cs">
+      <DependentUpon>Buy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Shopping\Buy.aspx.designer.cs">
+      <DependentUpon>Buy.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Shopping\DeliveryDetails.aspx.cs">
       <DependentUpon>DeliveryDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -185,6 +195,13 @@
     </Compile>
     <Compile Include="Pages\Shopping\ListDeliveries.aspx.designer.cs">
       <DependentUpon>ListDeliveries.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Shopping\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Shopping\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserExists.aspx.cs">
       <DependentUpon>UserExists.aspx</DependentUpon>
@@ -408,6 +425,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Shopping\App_LocalResources\DeliveryDetails.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Shopping\App_LocalResources\Cart.aspx.gl.resx" />
+    <Content Include="Pages\Shopping\App_LocalResources\Cart.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Shopping\App_LocalResources\Cart.aspx.es.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

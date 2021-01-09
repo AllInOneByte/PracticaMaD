@@ -86,6 +86,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         public static readonly String USER_SESSION_ATTRIBUTE =
                "userSession";
 
+        public static readonly String SHOPPING_CART_SESSION_ATTRIBUTE = "shoppingCartSession";
+
         private static IUserService userService;
 
         public IUserService UserService
@@ -108,6 +110,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             userService = iocManager.Resolve<IUserService>();
             shoppingService = iocManager.Resolve<IShoppingService>();
         }
+
+        public static List<ShoppingCart> GetShoppingCart(HttpContext context)
+        {
+            ShoppingCartSession shoppingCart = (ShoppingCartSession)context.Session[SHOPPING_CART_SESSION_ATTRIBUTE];
+            return shoppingCart.ShoppingCart;
+        }
+
+        public static void ForGift(HttpContext context, long productId, bool gitf) 
+        {
+            ShoppingCartSession shoppingCart = (ShoppingCartSession)context.Session[SHOPPING_CART_SESSION_ATTRIBUTE];
+
+            shoppingCart.ShoppingCart = shoppingService.ModifyGift(shoppingCart.ShoppingCart, productId, gitf);
+        }
+
+        public static void ModifyAmount(HttpContext context, long productId, int amount)
+        {
+            ShoppingCartSession shoppingCart = (ShoppingCartSession)context.Session[SHOPPING_CART_SESSION_ATTRIBUTE];
+
+            shoppingCart.ShoppingCart = shoppingService.ModifyAmountOfItems(shoppingCart.ShoppingCart, productId, amount);
+        }
+
+        public static void DeleteProductOfCart(HttpContext context, long productId)
+        {
+            ShoppingCartSession shoppingCart = (ShoppingCartSession)context.Session[SHOPPING_CART_SESSION_ATTRIBUTE];
+
+            shoppingCart.ShoppingCart = shoppingService.DeleteShoppingCartDetails(shoppingCart.ShoppingCart, productId);
+        }
+
 
         public static DeliveryBlock GetAllDelevireis(HttpContext context, int startIndex, int count)
         {
@@ -433,6 +463,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
              * as cookies). If so, we reconstruct user's session objects.
              */
             UpdateSessionFromCookies(context);
+        }
+
+        public static void TouchCart(HttpContext context)
+        {
+            ShoppingCartSession shoppingCartSession = new ShoppingCartSession();
+            shoppingCartSession.ShoppingCart = new List<ShoppingCart>();
+
+            context.Session.Add(SHOPPING_CART_SESSION_ATTRIBUTE, shoppingCartSession);
         }
 
         /// <summary>
