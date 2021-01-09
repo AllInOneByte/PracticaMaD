@@ -3,7 +3,6 @@ using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -38,7 +37,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             }
             catch (ArgumentNullException)
             {
-                count = int.Parse(ConfigurationManager.AppSettings["defaultCount"]);
+                count = Settings.Default.PracticaMaD_defaultCount;
             }
 
             /* Get the Service */
@@ -122,8 +121,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
         protected DataRow CreateRow(string text, long value, DataTable dt)
         {
-            // Create a DataRow using the DataTable defined in the 
-            // CreateDataSource method.
+            // Create a DataRow using the DataTable.
             DataRow dr = dt.NewRow();
 
             dr[0] = text;
@@ -182,7 +180,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 }
                 catch (ArgumentNullException)
                 {
-                    count = int.Parse(ConfigurationManager.AppSettings["defaultCount"]);
+                    count = Settings.Default.PracticaMaD_defaultCount;
                 }
 
                 /* Get the Service */

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" 
+﻿<%@ Page Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
     CodeBehind="ProductSearch.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Product.ProductSearch"
     meta:resourcekey="Page" %>
 
@@ -35,13 +35,16 @@
                 </p>
                 <asp:GridView ID="gvProducts" runat="server" GridLines="None" AutoGenerateColumns="False">
                     <Columns>
-                        <asp:HyperLinkField DataTextField="productName" HeaderText="<%$ Resources:Common, productName %>"
+                        <asp:HyperLinkField DataTextField="productName"
+                            HeaderText="<%$ Resources:Common, productName %>"
                             DataNavigateUrlFields="productId"
                             DataNavigateUrlFormatString="/Pages/ProductDetails.aspx?product={0}" />
                         <asp:BoundField DataField="Category.categoryName"
-                            HeaderText="<%$ Resources:Common, Category.categoryName %>" />
-                        <asp:BoundField DataField="productDate" HeaderText="<%$ Resources:Common, productDate %>" />
-                        <asp:BoundField DataField="productPrice" HeaderText="<%$ Resources:Common, productPrice %>" />
+                            HeaderText="<%$ Resources:Common, categoryName %>" />
+                        <asp:BoundField DataField="productDate" HeaderText="<%$ Resources:Common, productDate %>"
+                            DataFormatString="{0:d/M/yyyy}" />
+                        <asp:BoundField DataField="productPrice" HeaderText="<%$ Resources:Common, productPrice %>"
+                            DataFormatString="{0:C}"/>
                     </Columns>
                 </asp:GridView>
             </div>
@@ -53,11 +56,11 @@
                         runat="server" Visible="False"></asp:HyperLink>
                 </span>
                 <span class="nextLink">
-                   <asp:HyperLink ID="lnkNext" Text="<%$ Resources:Common, Next %>" runat="server"
+                    <asp:HyperLink ID="lnkNext" Text="<%$ Resources:Common, Next %>" runat="server"
                         Visible="False"></asp:HyperLink>
                 </span>
             </div>
         </form>
     </div>
-    
+
 </asp:Content>
