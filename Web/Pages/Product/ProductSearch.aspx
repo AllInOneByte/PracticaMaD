@@ -2,17 +2,14 @@
     CodeBehind="ProductSearch.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Product.ProductSearch"
     meta:resourcekey="Page" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation"
-    runat="server">
-    -
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation" runat="server">
     <asp:Localize ID="lclMenuExplanation" runat="server" meta:resourcekey="lclMenuExplanation" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_MenuLinks" runat="server">
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_BodyContent"
-    runat="server">
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <div id="form">
         <form id="ProductSearchForm" method="get" runat="server">
 
@@ -38,10 +35,13 @@
                 </p>
                 <asp:GridView ID="gvProducts" runat="server" GridLines="None" AutoGenerateColumns="False">
                     <Columns>
-                        <asp:BoundField DataField="productName" HeaderText="<%$ Resources:Common, productName %>" />
-                        <asp:BoundField DataField="productPrice" HeaderText="<%$ Resources:Common, productPrice %>" />
+                        <asp:HyperLinkField DataTextField="productName" HeaderText="<%$ Resources:Common, productName %>"
+                            DataNavigateUrlFields="productId"
+                            DataNavigateUrlFormatString="/Pages/ProductDetails.aspx?product={0}" />
+                        <asp:BoundField DataField="Category.categoryName"
+                            HeaderText="<%$ Resources:Common, Category.categoryName %>" />
                         <asp:BoundField DataField="productDate" HeaderText="<%$ Resources:Common, productDate %>" />
-                        <asp:BoundField DataField="productQuantity" HeaderText="<%$ Resources:Common, productQuantity %>" />
+                        <asp:BoundField DataField="productPrice" HeaderText="<%$ Resources:Common, productPrice %>" />
                     </Columns>
                 </asp:GridView>
             </div>

@@ -549,7 +549,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             using (var scope = new TransactionScope())
             {
-                var tagId = productService.addTag(tagName1);
+                var tagId = productService.AddTag(tagName1);
 
                 var tag = tagDao.Find(tagId);
 
