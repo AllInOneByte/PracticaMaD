@@ -4,7 +4,6 @@ using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Web;
 
