@@ -45,7 +45,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <returns> A list of products. </returns>
         ProductBlock FindAllProducts(int startIndex = 0, int count = 20);
 
-        
+        /// <summary>
+        /// Find all products that contains the tag id in the comments.
+        /// </summary>
+       /// <param name="TagId"> The tag ID. </param>
+        /// <param name="startIndex"> The index at which the products list must start </param>
+        /// <param name="count"> The maximum number of products that must return the function. </param>
+        /// <returns> A list of products. </returns>
+        ProductBlock FindAllProductsByTag(long tagId, int startIndex = 0, int count = 20);
+
         /// <summary>
         /// Find all creditCards that meet the search conditions.
         /// </summary>
@@ -61,7 +69,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// Find all creditCards that meet the search conditions.
         /// </summary>
         /// <param name="keyword"> The keyword that must be contained within the name of the product </param>
-        /// <param name="categoryId"> The category ID. </param>
         /// <param name="startIndex"> The index at which the products list must start </param>
         /// <param name="count"> The maximum number of products that must return the function. </param>
         /// <returns> A list of products. </returns>

@@ -53,6 +53,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             return new ProductBlock(products, existMoreProducts);
         }
 
+        public ProductBlock FindAllProductsByTag(long tagId, int startIndex = 0, int count = 20)
+        {
+            List<Product> products = new List<Product>();
+
+            bool existMoreProducts = (products.Count == count + 1);
+
+            if (existMoreProducts) products.RemoveAt(count);
+
+            return new ProductBlock(products, existMoreProducts);
+        }
+
         public ProductBlock FindAllProductsByKeyword(string keyword, long categoryId,
             int startIndex = 0, int count = 20)
         {

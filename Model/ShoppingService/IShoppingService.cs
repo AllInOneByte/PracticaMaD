@@ -70,7 +70,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         /// <summary>
         /// Update a ShoppingCart
         /// </summary>
-        /// <param name="new_shoppingCart"> The New ShoppingCart data. </param>
+        /// <param name="shoppingCart"> The New ShoppingCart data. </param>
         /// <returns> The details of the shoppingCart </returns>
         /// <exception cref="StockEmptyException"/>
         List<ShoppingCart> UpdateShoppingCartDetails(List<ShoppingCart> shoppingCart, long productId, int amount, bool gitf);

@@ -87,7 +87,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
                     item = new HyperLink();
 
                     item.Text = tag.tagName;
-                    item.NavigateUrl = "~/Pages/Product/ProductSearch.aspx";
+                    item.NavigateUrl = "~/Pages/Product/ProductSearch.aspx?tagId="+tag.tagId;
                     item.CssClass = GetCssClass(tag.Comments.Count);
 
                     cell.Controls.Add(item);

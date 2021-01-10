@@ -92,7 +92,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
         }
 
-        
+        public List<Product> FindAllByTag(long tagId, int startIndex, int count)
+        {
+
+            #region Option 1: Using Linq.
+            return new List<Product>();
+
+            #endregion Option 1: Using Linq.
+        }
+
         /// <summary>
         /// Finds all Products
         /// <returns>List of Products</returns>

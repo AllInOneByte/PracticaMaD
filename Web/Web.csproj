@@ -108,7 +108,6 @@
     <Content Include="Pages\Product\ProductDetails.aspx" />
     <Content Include="Pages\Product\ProductSearch.aspx" />
     <Content Include="Pages\Product\RegisterTag.aspx" />
-    <Content Include="Pages\Product\TagCloud.aspx" />
     <Content Include="Pages\Shopping\Buy.aspx" />
     <Content Include="Pages\Shopping\DeliveryDetails.aspx" />
     <Content Include="Pages\Shopping\ListDeliveries.aspx" />
@@ -191,13 +190,6 @@
     </Compile>
     <Compile Include="Pages\Product\RegisterTag.aspx.designer.cs">
       <DependentUpon>RegisterTag.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Product\TagCloud.aspx.cs">
-      <DependentUpon>TagCloud.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Product\TagCloud.aspx.designer.cs">
-      <DependentUpon>TagCloud.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Shopping\Buy.aspx.cs">
       <DependentUpon>Buy.aspx</DependentUpon>
