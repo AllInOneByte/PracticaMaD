@@ -20,7 +20,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             /* Get productId */
             try
             {
-                productId = int.Parse(Request.Params.Get("product"));
+                productId = long.Parse(Request.Params.Get("product"));
             }
             catch (ArgumentNullException)
             {

@@ -150,4 +150,13 @@
   <data name="addToCart" xml:space="preserve">
     <value>Añadir al carrito</value>
   </data>
+  <data name="commentDate" xml:space="preserve">
+    <value>Fecha de publicación</value>
+  </data>
+  <data name="userProfileName" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="commentBody" xml:space="preserve">
+    <value>Comentario</value>
+  </data>
 </root>
