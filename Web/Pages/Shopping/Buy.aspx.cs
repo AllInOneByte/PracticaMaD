@@ -12,48 +12,60 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 {
     public partial class Buy : System.Web.UI.Page
     {
-        Decimal price;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 txtAddress.Text = SessionManager.GetAddress(Context);
-                txtCreditNumber.Text = SessionManager.GetCreditCardNumber(Context).ToString();
-                price = SessionManager.GetTotalPrice(Context);
-                txtPrice.Text = price.ToString();
+                long creditCard = SessionManager.GetCreditCardNumber(Context);
+                if (creditCard != 0)
+                {
+                    txtCreditNumber.Text = creditCard.ToString();
+                }
+                txtPrice.Text = SessionManager.GetTotalPrice(Context).ToString();
             }
         }
 
         protected void BtnBuyClick(object sender, EventArgs e)
         {
-             try
+            if (Page.IsValid)
             {
-                long number = Convert.ToInt64(txtCreditNumber.Text);
+                try
+                {
+                    long number = Convert.ToInt64(txtCreditNumber.Text);
 
-                SessionManager.Buy(Context,number, txtDescription.Text, txtAddress.Text, price);
+                    SessionManager.Buy(Context, number, txtDescription.Text, txtAddress.Text);
 
-                Response.Redirect(Response.
-                      ApplyAppPathModifier("~/Pages/Shopping/ListDeliveries.aspx"));
+                    Response.Redirect(Response.
+                          ApplyAppPathModifier("~/Pages/Shopping/ListDeliveries.aspx"));
 
-            }
-            catch (UnmatchingUserAndCardException)
-            {
-                lblUserError.Visible = true;
+                }
+                catch (Exception ex)
+                {
+                    if (ex is UnmatchingUserAndCardException)
+                    {
+                        lblUserError.Visible = true;
 
-            }
-            catch (InstanceNotFoundException)
-            {
-                lblNumberError.Visible = true;
-                lnkRegisterCreditCard.Visible = true;
-            }
-            catch (StockEmptyException ex)
-            {
-                int index = ex.Message.LastIndexOf('|');
-                string men = ex.Message.Substring(index + 14);
+                        return;
+                    }
+                    if (ex is InstanceNotFoundException)
+                    {
+                        lblNumberError.Visible = true;
+                        lnkRegisterCreditCard.Visible = true;
 
-                lblAmountError.Visible = true;
-                lblAmountError.Text += men;
+                        return;
+                    }
+                    if (ex is StockEmptyException)
+                    {
+                        int index = ex.Message.LastIndexOf('|');
+                        string men = ex.Message.Substring(index + 14);
+
+                        lblAmountError.Visible = true;
+                        lblAmountError.Text += men;
+
+                        return;
+                    }
+                }
             }
         }
     }

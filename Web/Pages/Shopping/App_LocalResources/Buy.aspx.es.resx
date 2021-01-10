@@ -156,4 +156,7 @@
   <data name="lnkBack.Text" xml:space="preserve">
     <value>Regresar al carrito</value>
   </data>
+  <data name="revVerificationTamError.ErrorMessage" xml:space="preserve">
+    <value>Tamaño de código inválido</value>
+  </data>
 </root>

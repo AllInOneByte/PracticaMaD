@@ -12,6 +12,8 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <asp:Label ID="lblProductError" runat="server" ForeColor="Red" Style="position: relative"
         Visible="False" meta:resourcekey="lblProductError"></asp:Label>
+    <br />
+    <br />
     <asp:Table ID="TableProductInfo" runat="server" Width="100%">
         <asp:TableHeaderRow runat="server">
             <asp:TableHeaderCell ID="cellCaptionProductID" runat="server"
@@ -46,5 +48,44 @@
             <asp:TableCell ID="cellProductQuantity" runat="server"></asp:TableCell>
         </asp:TableRow>
     </asp:Table>
+    <br />
+    <br />
     <asp:HyperLink ID="hlComments" runat="server" meta:resourcekey="hlComments" />
+    <br />
+    <br />
+    <br />
+    <div id="AddCart">
+        <form id="ProductDetailsForm" method="post" runat="server">
+            <div class="field">
+                <span class="label">
+                    <asp:Localize ID="lclAmount" runat="server" meta:resourcekey="lclAmount" /></span><span
+                        class="entry">
+                        <asp:TextBox ID="txtAmount" runat="server" Width="100px" Columns="16"
+                            meta:resourcekey="txtAmountResource1"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredAmountValidator1" runat="server" ControlToValidate="txtAmount"
+                            Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"
+                            meta:resourcekey="rfvAmountResource1"></asp:RequiredFieldValidator>
+                        <asp:Label ID="lblAmountError" runat="server" ForeColor="Red" Style="position: relative"
+                            Visible="False" meta:resourcekey="lblAmountError"></asp:Label></span>
+            </div>
+            <div class="field">
+                <span class="label">
+                    <asp:Localize ID="lclGift" runat="server" meta:resourcekey="lclGift" /></span><span
+                        class="entry">
+                    <asp:CheckBox ID="checkGift" runat="server" AutoPostBack="false"/></span>
+            </div>
+            <div class="button">
+                <asp:Button ID="btnAddCart" runat="server" OnClick="BtnAddCartClick" meta:resourcekey="btnAddCart"/>
+            </div>
+        </form>
+    </div>
+    <br />
+    <br />
+    <asp:HyperLink ID="lnkUpdate" runat="server" 
+            NavigateUrl="~/Pages/Product/ModifyProduct.aspx?productId=" Visible="false"
+            meta:resourcekey="lnkUpdate"/>
+    <br />
+    <asp:HyperLink ID="lnkBack" runat="server" 
+            NavigateUrl="~/Pages/Product/ProductSearch.aspx"
+            meta:resourcekey="lnkBack"/>
 </asp:Content>

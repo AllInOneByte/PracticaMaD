@@ -117,28 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnAddCart.Text" xml:space="preserve">
-    <value>Add to Shopping Cart</value>
+  <data name="btnUpdate.Text" xml:space="preserve">
+    <value>Update</value>
   </data>
-  <data name="hlComments.Text" xml:space="preserve">
-    <value>Comments</value>
+  <data name="lblNameError.Text" xml:space="preserve">
+    <value>Product already exists</value>
   </data>
-  <data name="lblAmountError.Text" xml:space="preserve">
-    <value>Quantity available in stock insufficient</value>
+  <data name="lclMenuExplanation.Text" xml:space="preserve">
+    <value>Update Information Product</value>
   </data>
-  <data name="lblProductError.Text" xml:space="preserve">
-    <value>No product was found</value>
+  <data name="lclName.Text" xml:space="preserve">
+    <value>Product Name</value>
   </data>
-  <data name="lclAmount.Text" xml:space="preserve">
+  <data name="lclPrice.Text" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="lclQuantity.Text" xml:space="preserve">
     <value>Amount</value>
   </data>
-  <data name="lclGift.Text" xml:space="preserve">
-    <value>Gift wrap</value>
+  <data name="revNumberError.ErrorMessage" xml:space="preserve">
+    <value>Only numbers allow</value>
   </data>
-  <data name="lnkBack.Text" xml:space="preserve">
-    <value>Product List</value>
-  </data>
-  <data name="lnkUpdate.Text" xml:space="preserve">
-    <value>Update Product</value>
+  <data name="revPriceError.ErrorMessage" xml:space="preserve">
+    <value>Invalid Sintaxis</value>
   </data>
 </root>

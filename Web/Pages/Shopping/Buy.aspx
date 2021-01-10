@@ -27,12 +27,15 @@
                     <asp:RequiredFieldValidator ID="DescriptionValidator1" runat="server"
                         ControlToValidate="txtDescription" Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"/></span>
                 </div>
+                <br />
                 <div class="field">
                 <span class="label"><asp:Localize ID="lclTotal" runat="server" meta:resourcekey="lclTotal" /></span><span class="entry">
                     <asp:TextBox ID="txtPrice" ReadOnly="true" runat="server" Width="100" Columns="16"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
                         ControlToValidate="txtPrice" Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"/></span>
                 </div>
+                <br />
+                <div class="field">
                 <span class="label">
                     <asp:Localize ID="lclCreditNumber" runat="server" meta:resourcekey="lclCreditNumber" /></span><span
                         class="entry">
@@ -44,17 +47,22 @@
                         <asp:RegularExpressionValidator ID="RegularCreditNumberValidator1"
                             ControlToValidate="txtCreditNumber" runat="server"
                             ValidationExpression="\d+" meta:resourcekey="revNumberError"></asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="RegularCreditNumberValidator2"
+                            ControlToValidate="txtCreditNumber" runat="server"
+                            ValidationExpression="^[\s\S]{12,19}$" meta:resourcekey="revNumberTamError"></asp:RegularExpressionValidator>
                         <asp:Label ID="lblNumberError" runat="server" ForeColor="Red" Style="position: relative"
                             Visible="False" meta:resourcekey="lblNumberError"></asp:Label>
                         <asp:Label ID="lblUserError" runat="server" ForeColor="Red" Style="position: relative"
                             Visible="False" meta:resourcekey="lblUserError"></asp:Label></span>
             </div>
+            <br />
             <div class="field">
                 <span class="label"><asp:Localize ID="lclAddress" runat="server" meta:resourcekey="lclAddress" /></span><span class="entry">
                     <asp:TextBox ID="txtAddress" runat="server" Width="100" Columns="16"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvAddress" runat="server"
                         ControlToValidate="txtAddress" Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"/></span>
             </div>
+            <br />
             <div class="button">
                 <asp:Button ID="btnBuy" runat="server" OnClick="BtnBuyClick" meta:resourcekey="btnBuy"/>
             </div>

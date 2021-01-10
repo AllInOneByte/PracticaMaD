@@ -33,9 +33,23 @@
             </div>
             <br />
             <br />
-            <asp:HyperLink ID="lnkBack" runat="server" 
-            NavigateUrl="~/Pages/MainPage.aspx"
-            meta:resourcekey="lnkBack"/>
+            <div id="Returns">
+                <span>
+                    <asp:HyperLink ID="lnkBack" runat="server" 
+                            NavigateUrl="~/Pages/Product/ProductSearch.aspx"
+                            meta:resourcekey="lnkBack"/>
+                </span>
+                <span>
+                    <asp:Label ID="lblDash1" runat="server" Text=" - "></asp:Label>
+                </span>
+                <span>
+                    <asp:HyperLink ID="lnkMain" runat="server" 
+                            NavigateUrl="~/Pages/MainPage.aspx"
+                            meta:resourcekey="lnkMain"/>
+                </span>
+            </div>
+            
+
         </form>
     </div>
 </asp:Content>

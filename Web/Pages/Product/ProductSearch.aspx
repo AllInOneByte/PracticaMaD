@@ -35,7 +35,7 @@
                         <asp:HyperLinkField DataTextField="productName"
                             HeaderText="<%$ Resources:Common, productName %>"
                             DataNavigateUrlFields="productId"
-                            DataNavigateUrlFormatString="/Pages/ProductDetails.aspx?product={0}" />
+                            DataNavigateUrlFormatString="~/Pages/Product/ProductDetails.aspx?product={0}" />
                         <asp:BoundField DataField="Category.categoryName"
                             HeaderText="<%$ Resources:Common, categoryName %>" />
                         <asp:BoundField DataField="productDate" HeaderText="<%$ Resources:Common, productDate %>"
