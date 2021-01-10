@@ -31,14 +31,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
                 return ((int)(this["PracticaMaD_defaultCount"]));
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8081/PracticaMaD")]
-        public string PracticaMaD_applicationURL {
-            get {
-                return ((string)(this["PracticaMaD_applicationURL"]));
-            }
-        }
     }
 }

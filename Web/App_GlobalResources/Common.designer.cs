@@ -79,6 +79,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Comment.
+        /// </summary>
+        internal static string commentBody {
+            get {
+                return ResourceManager.GetString("commentBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Publication date.
+        /// </summary>
+        internal static string commentDate {
+            get {
+                return ResourceManager.GetString("commentDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Mandatory Field.
         /// </summary>
         internal static string mandatoryField {
@@ -156,6 +174,15 @@ namespace Resources {
         internal static string searchButton {
             get {
                 return ResourceManager.GetString("searchButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a User.
+        /// </summary>
+        internal static string userProfileName {
+            get {
+                return ResourceManager.GetString("userProfileName", resourceCulture);
             }
         }
     }

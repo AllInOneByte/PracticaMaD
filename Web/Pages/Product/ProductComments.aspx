@@ -10,24 +10,20 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
-    <div>
-        <p>
-            <asp:Label ID="lblNoComments" meta:resourcekey="lblNoComments" runat="server"></asp:Label>
-        </p>
-        <asp:GridView ID="gvProducts" runat="server" GridLines="None" AutoGenerateColumns="False" Width="100%">
-            <Columns>
-                <asp:HyperLinkField DataTextField="productName"
-                    HeaderText="<%$ Resources:Common, productName %>"
-                    DataNavigateUrlFields="productId"
-                    DataNavigateUrlFormatString="/Pages/ProductDetails.aspx?product={0}" />
-                <asp:BoundField DataField="Category.categoryName"
-                    HeaderText="<%$ Resources:Common, categoryName %>" />
-                <asp:BoundField DataField="productDate" HeaderText="<%$ Resources:Common, productDate %>"
-                    DataFormatString="{0:d/M/yyyy}" />
-                <asp:BoundField DataField="productPrice" HeaderText="<%$ Resources:Common, productPrice %>"
-                    DataFormatString="{0:C}" />
-            </Columns>
-        </asp:GridView>
+    <div id="form">
+        <form id="ProductCommentForm" method="get" runat="server">
+            <p>
+                <asp:Label ID="lblNoComments" meta:resourcekey="lblNoComments" runat="server"></asp:Label>
+            </p>
+            <asp:GridView ID="gvProducts" runat="server" GridLines="None" AutoGenerateColumns="False" Width="100%">
+                <Columns>
+                    <asp:BoundField DataField="UserProfile.firstName" HeaderText="<%$ Resources:Common, userProfileName %>" />
+                    <asp:BoundField DataField="comment1" HeaderText="<%$ Resources:Common, commentBody %>" />
+                    <asp:BoundField DataField="commentDate" HeaderText="<%$ Resources:Common, commentDate %>"
+                        DataFormatString="{0:d/M/yyyy}" />
+                </Columns>
+            </asp:GridView>
+        </form>
     </div>
 
     <!-- "Previous" and "Next" links. -->
