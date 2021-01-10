@@ -17,13 +17,12 @@
             </p>
             <asp:GridView ID="gvDeliveries" runat="server" GridLines="None" AutoGenerateColumns="False">
                 <Columns>
-                    <asp:BoundField DataField="DeliveryId" HeaderText="<%$ Resources:, id %>" />
+                    <asp:HyperLinkField DataTextField="DeliveryId" DataNavigateUrlFields="DeliveryId" DataNavigateUrlFormatString="~/Pages/Shopping/DeliveryDetails.aspx?deliveryId={0}"  HeaderText="<%$ Resources:, id %>" />
                    <asp:BoundField DataField="Description" HeaderText="<%$ Resources:, description %>" />
                     <asp:BoundField DataField="DeliveryPrice" HeaderText="<%$ Resources:, price %>" />
                     <asp:BoundField DataField="DeliveryDate" HeaderText="<%$ Resources:, date %>" />
                     <asp:BoundField DataField="CardNumber" HeaderText="<%$ Resources:, card %>" />
                     <asp:BoundField DataField="DeliveryAddress" HeaderText="<%$ Resources:, address %>" />
-                    <asp:HyperLinkField Text="..." DataNavigateUrlFields="DeliveryId" DataNavigateUrlFormatString="~/Pages/Shopping/DeliveryDetails.aspx?deliveryId={0}"  HeaderText="<%$ Resources:, details %>" />
                 </Columns>
             </asp:GridView>
             <br />

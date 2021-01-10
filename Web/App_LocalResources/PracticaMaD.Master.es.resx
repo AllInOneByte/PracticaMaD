@@ -141,7 +141,13 @@
   <data name="lnkLogout.Text" xml:space="preserve">
     <value>Salir</value>
   </data>
+  <data name="lnkRegisterTag.Text" xml:space="preserve">
+    <value>Registrar Etiqueta</value>
+  </data>
   <data name="lnkUpdate.Text" xml:space="preserve">
     <value>Actualizar información de usuario</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Etiquetas</value>
   </data>
 </root>

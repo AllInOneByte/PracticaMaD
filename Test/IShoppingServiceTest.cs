@@ -133,6 +133,113 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             }
         }
 
+        // <summary>
+        /// A test for UpdateShoppingCartDetails.
+        /// </summary>
+        [TestMethod()]
+        public void UpdateShoppingCartDetailsTest()
+        {
+            try
+            {
+                List<ShoppingCart> details = new List<ShoppingCart>();
+
+                details = shoppingService.UpdateShoppingCartDetails(details, product.productId, 1, false);
+
+                Assert.AreEqual(1, details.Count);
+                Assert.AreEqual(shoppingCart.Amount, details[0].Amount);
+                Assert.AreEqual(product, details[0].Product);
+                Assert.AreEqual(false, details[0].Gift);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
+
+        // <summary>
+        /// A test for DeleteShoppingCartDetails.
+        /// </summary>
+        [TestMethod()]
+        public void DeleteShoppingCartDetailsTest()
+        {
+            try
+            {
+                List<ShoppingCart> details = new List<ShoppingCart>();
+
+                details = shoppingService.UpdateShoppingCartDetails(details, product.productId, 1, false);
+
+                Assert.AreEqual(1, details.Count);
+
+                details = shoppingService.DeleteShoppingCartDetails(details, product.productId);
+
+                Assert.AreEqual(0, details.Count);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
+
+        // <summary>
+        /// A test for ModifyAmountOfItems.
+        /// </summary>
+        [TestMethod()]
+        public void ModifyAmountOfItemsTest()
+        {
+            try
+            {
+                List<ShoppingCart> details = new List<ShoppingCart>();
+
+                details = shoppingService.UpdateShoppingCartDetails(details, product.productId, 1, false);
+
+                Assert.AreEqual(1, details.Count);
+                Assert.AreEqual(shoppingCart.Amount, details[0].Amount);
+                Assert.AreEqual(product, details[0].Product);
+                Assert.AreEqual(false, details[0].Gift);
+
+                details = shoppingService.UpdateShoppingCartDetails(details, product.productId, details[0].Amount+1, false);
+
+                Assert.AreEqual(1, details.Count);
+                Assert.AreEqual(shoppingCart.Amount+1, details[0].Amount);
+                Assert.AreEqual(product, details[0].Product);
+                Assert.AreEqual(false, details[0].Gift);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
+
+        // <summary>
+        /// A test for ModifyGift.
+        /// </summary>
+        [TestMethod()]
+        public void ModifyGiftTest()
+        {
+            try
+            {
+                List<ShoppingCart> details = new List<ShoppingCart>();
+
+                details = shoppingService.UpdateShoppingCartDetails(details, product.productId, 1, false);
+
+                Assert.AreEqual(1, details.Count);
+                Assert.AreEqual(shoppingCart.Amount, details[0].Amount);
+                Assert.AreEqual(product, details[0].Product);
+                Assert.AreEqual(false, details[0].Gift);
+
+                details = shoppingService.ModifyGift(details, product.productId, true);
+
+                Assert.AreEqual(1, details.Count);
+                Assert.AreEqual(shoppingCart.Amount, details[0].Amount);
+                Assert.AreEqual(product, details[0].Product);
+                Assert.AreEqual(true, details[0].Gift);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
+
         #region Additional test attributes
 
         //Use ClassInitialize to run code before running the first test in the class

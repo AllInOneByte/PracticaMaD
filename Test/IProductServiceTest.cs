@@ -200,7 +200,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 CreateProduct("pro2", 9, System.DateTime.Now, 10, category.categoryId);
                 productList.Add(CreateProduct("product3", 8, System.DateTime.Now, 13, category.categoryId));
 
-                var productDetailsList = productService.FindAllProductsByKeyword("product", -1);
+                var productDetailsList = productService.FindAllProductsByKeyword("product");
 
                 // Check data
                 Assert.AreEqual(productList.Count, productDetailsList.Products.Count);
@@ -387,6 +387,37 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
                 productService.DeleteComment(commentId);
                 commentDao.Find(commentId);
+            }
+        }
+
+        /// <summary>
+        /// A test for UpdateComment.
+        /// </summary>
+        [TestMethod]
+        public void UpdateCommentTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                var category = CreateCategory(categoryName);
+                var product = CreateProduct(productName, productPrice, productDate,
+                    productQuantity, category.categoryId);
+                var user = CreateUser();
+
+                var commentId = productService.AddComment(product.productId, user.usrId, commentBody);
+
+                var findComment = commentDao.Find(commentId);
+
+                // Check data
+                Assert.AreEqual(product.productId, findComment.productId);
+                Assert.AreEqual(user.usrId, findComment.userId);
+                Assert.AreEqual(commentBody, findComment.comment1);
+                Assert.AreEqual(System.DateTime.Now.Date, findComment.commentDate.Date);
+                Assert.AreEqual(0, findComment.Tags.Count);
+                productService.UpdateComment(commentId, "commentTest2");
+                findComment = commentDao.Find(commentId);
+
+                // Check data
+                Assert.AreEqual("commentTest2", findComment.comment1);
             }
         }
 

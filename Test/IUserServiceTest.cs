@@ -513,6 +513,41 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             }
         }
 
+        /// <summary>
+        /// A test to FindCreditCardsDetails
+        /// </summary>
+        [TestMethod]
+        public void FindCreditCardsDetailsTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                var user = new UserProfile
+                {
+                    loginName = loginName,
+                    enPassword = clearPassword,
+                    firstName = firstName,
+                    lastName = lastName,
+                    email = email,
+                    language = language,
+                    country = country,
+                    role = 1,
+                    address = address
+                };
+                userProfileDao.Create(user);
+                
+                var creditCardId = userService.AddCreditCard(new CreditCardDetails(cardType, cardNumber, verificationCode, expirationDate, defaultCard, user.usrId));
+
+
+                CreditCard retriveFoundCard = userService.FindCreditCardsDetails(creditCardId);
+
+                Assert.AreEqual(cardType, retriveFoundCard.cardType);
+                Assert.AreEqual(cardNumber, retriveFoundCard.cardNumber);
+                Assert.AreEqual(defaultCard, retriveFoundCard.defaultCard);
+                Assert.AreEqual(expirationDate.Date, retriveFoundCard.expirationDate.Date);
+                Assert.AreEqual(verificationCode, retriveFoundCard.verificationCode);
+
+            }
+        }
 
         #region Additional test attributes
 

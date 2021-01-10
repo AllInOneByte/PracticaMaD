@@ -1,6 +1,7 @@
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Util;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
@@ -102,6 +103,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             set { shoppingService = value; }
         }
 
+        private static IProductService productService;
+
+        public IProductService ProductService
+        {
+            set { productService = value; }
+        }
+
         static SessionManager()
         {
             IIoCManager iocManager =
@@ -109,6 +117,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
 
             userService = iocManager.Resolve<IUserService>();
             shoppingService = iocManager.Resolve<IShoppingService>();
+            productService = iocManager.Resolve<IProductService>();
+        }
+
+        public static void CreateTag(string tagName)
+        {
+            productService.AddTag(tagName);
+        }
+        
+
+        public static TagBlock FindAllTags(int startIndex, int count)
+        {
+            return productService.FindAllTags(startIndex,count);
         }
 
         public static List<ShoppingCart> GetShoppingCart(HttpContext context)
@@ -150,6 +170,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             ShoppingCartSession shoppingCart = (ShoppingCartSession)context.Session[SHOPPING_CART_SESSION_ATTRIBUTE];
 
             shoppingService.CreateDelivery(price,creditNumber,userSession.UserProfileId,description,shoppingCart.ShoppingCart,address);
+
+            shoppingCart.ShoppingCart = new List<ShoppingCart>();
         }
 
         public static void ForGift(HttpContext context, long productId, bool gitf) 
@@ -197,18 +219,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         /// <param name="expirationDate">The expiration date of the creditCard.</param>
         /// <exception cref="DuplicateInstanceException"/>
         public static void RegisterCreditCard(HttpContext context,
-            String creditType, string creditNumber, String verificationCode, bool defaultCard, String expirationDate)
+            String creditType, long creditNumber, int verificationCode, bool defaultCard, System.DateTime expirationDate)
         {
-            long number = Convert.ToInt64(creditNumber);
-            int verification = Convert.ToInt32(verificationCode);
-            System.DateTime date = DateTime.ParseExact(expirationDate, "MM/yy", null);
-
             UserSession userSession =
                 (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
 
-            long id = userService.AddCreditCard(new CreditCardDetails(creditType,number,verification,date,0,userSession.UserProfileId));
+            long id = userService.AddCreditCard(new CreditCardDetails(creditType, creditNumber,verificationCode,expirationDate,0,userSession.UserProfileId));
             if (defaultCard) {
-                AssignDefaultCardToUser(context, id, number);
+                AssignDefaultCardToUser(context, id, creditNumber);
             }
         }
 
@@ -266,6 +284,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             /* Insert necessary objects in the session. */
             UserSession userSession = new UserSession();
             userSession.UserProfileId = usrId;
+            userSession.Rol = userProfileDetails.role;
             userSession.FirstName = userProfileDetails.firstName;
 
             Locale locale = new Locale(userProfileDetails.language,
@@ -333,6 +352,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             UserSession userSession = new UserSession();
             userSession.UserProfileId = loginResult.UserProfileId;
             userSession.FirstName = loginResult.FirstName;
+            userSession.Rol = loginResult.Rol;
             userSession.CardDefaultId = loginResult.CardId;
             userSession.CardDefaultNumber = loginResult.CardNumber;
 
@@ -376,6 +396,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
                 return false;
 
             return (context.Session[USER_SESSION_ATTRIBUTE] != null);
+        }
+
+        public static Boolean IsAdminAuthenticated(HttpContext context)
+        {
+            if (context.Session == null)
+                return false;
+
+            UserSession userSession = (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+            if ( userSession != null)
+            {
+                if (userSession.Rol == 1)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public static Locale GetLocale(HttpContext context)

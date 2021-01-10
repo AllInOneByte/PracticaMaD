@@ -148,6 +148,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web {
         protected global::System.Web.UI.WebControls.Label lblDash5;
         
         /// <summary>
+        /// Control lnkRegisterTag.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkRegisterTag;
+        
+        /// <summary>
+        /// Control lblDash6.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDash6;
+        
+        /// <summary>
         /// Control lnkLogout.
         /// </summary>
         /// <remarks>
@@ -155,6 +173,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink lnkLogout;
+        
+        /// <summary>
+        /// Control ContentPlaceHolder_Cloud.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder_Cloud;
+        
+        /// <summary>
+        /// Control tags.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tags;
         
         /// <summary>
         /// Control ContentPlaceHolder_BodyContent.

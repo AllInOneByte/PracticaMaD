@@ -34,6 +34,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         #region IShoppingService members
 
         /// <exception cref="InstanceNotFoundException"/>
+        /// <exception cref="NegativeStockException"/>
+        [Transactional]
+        private void DecreaseProductStock(Product product, int quantity)
+        {
+            product.productQuantity = product.productQuantity - quantity;
+
+            ProductDao.Update(product);
+        }
+
+        /// <exception cref="InstanceNotFoundException"/>
         /// <exception cref="UnmatchingUserAndCardException"/>
         [Transactional]
         public Delivery CreateDelivery(decimal deliveryPrice, long cardNumber, long userId, string description,
@@ -65,7 +75,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
                     if (item.Product.productQuantity - item.Amount > 0)
                     {
-                        item.Product.productQuantity -= item.Amount;
+                        DecreaseProductStock(item.Product, item.Amount);
                         deliveryLine.deliveryLineAmount = item.Amount;
                     }
                     else
@@ -133,7 +143,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             {
                 if (item.Product.productId == productId)
                 {
-                    if (item.Product.productQuantity + item.Amount - amount >= 0)
+                    if ((item.Product.productQuantity + item.Amount) - amount >= 0)
                     {
                         item.Amount = amount;
                     }
@@ -149,9 +159,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
             Product product = ProductDao.Find(productId);
 
-            if (product.productQuantity - amount > 0)
+            if (product.productQuantity - amount >= 0)
             {
-                product.productQuantity -= amount;
                 ShoppingCart shop = new ShoppingCart(amount, product, gitf);
 
                 shoppingCart.Add(shop);
@@ -191,8 +200,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             {
                 if (item.Product.productId == productId) 
                 {
-                    int modify = item.Amount + amount;
-                    if (item.Product.productQuantity - modify >= 0)
+                    if (item.Product.productQuantity + item.Amount >= 0)
                     {
                         item.Amount += amount;
                     }

@@ -41,7 +41,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 long cardId = Convert.ToInt64(Request.QueryString["card"]);
                 long number = Convert.ToInt64(txtCreditNumber.Text);
                 int verification = Convert.ToInt32(txtVerificationCode.Text);
-                System.DateTime date = Convert.ToDateTime(txtExpirationDate.Text);
+                System.DateTime date = DateTime.ParseExact(txtExpirationDate.Text, "MM/yy", null);
                 byte defaultCard = 0;
                 if (checkDefault.Checked)
                 {
