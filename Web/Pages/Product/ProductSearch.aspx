@@ -19,13 +19,9 @@
                 </span>
 
                 <span class="entry">
-                    <asp:TextBox ID="txtSearch" runat="server" Width="100" Columns="16"></asp:TextBox>
-                    <asp:DropDownList ID="CategoryDropDownList" AutoPostBack="True" runat="server">
-                    </asp:DropDownList>
-                </span>
-
-                <span class="button">
-                    <asp:Button ID="btnSearch" runat="server" OnClick="BtnSearchClick" meta:resourcekey="btnSearch" />
+                    <asp:TextBox ID="txtSearch" runat="server" Width="30%" Columns="16" meta:resourcekey="txtSearch"></asp:TextBox>
+                    <asp:DropDownList ID="CategoryDropDownList" AutoPostBack="False" runat="server" Width="30%"></asp:DropDownList>
+                    <asp:Button ID="btnSearch" runat="server" OnClick="BtnSearchClick" meta:resourcekey="btnSearch" Width="30%" />
                 </span>
             </div>
 
@@ -44,7 +40,13 @@
                         <asp:BoundField DataField="productDate" HeaderText="<%$ Resources:Common, productDate %>"
                             DataFormatString="{0:d/M/yyyy}" />
                         <asp:BoundField DataField="productPrice" HeaderText="<%$ Resources:Common, productPrice %>"
-                            DataFormatString="{0:C}"/>
+                            DataFormatString="{0:C}" />
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:Button runat="server" Text="<%$ Resources:Common, addToCart %>"
+                                    CommandName="BtnAddToCartClick" Visible="<%# IsUserAuthenticated() %>" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
             </div>

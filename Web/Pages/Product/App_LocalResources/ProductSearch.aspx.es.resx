@@ -117,37 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="categoryName" xml:space="preserve">
-    <value>Categoría</value>
-  </data>
-  <data name="mandatoryField" xml:space="preserve">
-    <value>Campo obligatorio</value>
-  </data>
-  <data name="Next" xml:space="preserve">
-    <value>Siguiente</value>
-  </data>
-  <data name="Previous" xml:space="preserve">
-    <value>Anterior</value>
-  </data>
-  <data name="productDate" xml:space="preserve">
-    <value>Fecha de publicación</value>
-  </data>
-  <data name="productId" xml:space="preserve">
-    <value>Identificador del producto</value>
-  </data>
-  <data name="productName" xml:space="preserve">
-    <value>Nombre</value>
-  </data>
-  <data name="productPrice" xml:space="preserve">
-    <value>Precio por unidad</value>
-  </data>
-  <data name="productQuantity" xml:space="preserve">
-    <value>Cantidad</value>
-  </data>
-  <data name="searchButton" xml:space="preserve">
+  <data name="btnSearch.Text" xml:space="preserve">
     <value>Buscar</value>
   </data>
-  <data name="addToCart" xml:space="preserve">
-    <value>Añadir al carrito</value>
+  <data name="lblNoProducts.Text" xml:space="preserve">
+    <value>No se encontraron productos</value>
+  </data>
+  <data name="lclSearch.Text" xml:space="preserve">
+    <value>Filtro de productos</value>
+  </data>
+  <data name="txtSearch.placeholder" xml:space="preserve">
+    <value>Palabra clave...</value>
   </data>
 </root>
