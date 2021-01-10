@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
@@ -227,9 +228,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             }
         }
 
-        protected void BtnAddToCartClick(object sender, EventArgs e)
+        protected void BtnAddToCartClick_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            
+            if (e.CommandName == "BtnAddToCartClick")
+            {
+                // Convert the row index stored in the CommandArgument
+                // property to an Integer.
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                // Retrieve the row that contains the button clicked 
+                // by the user from the Rows collection.
+                GridViewRow row = gvProducts.Rows[index];
+
+                Convert.ToInt32(row.Cells[0].Text); // productId
+            }
         }
 
         protected bool IsUserAuthenticated()

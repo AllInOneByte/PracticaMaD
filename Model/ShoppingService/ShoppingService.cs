@@ -133,7 +133,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             {
                 if (item.Product.productId == productId)
                 {
-                    if (item.Product.productQuantity + item.Amount - amount > 0)
+                    if (item.Product.productQuantity + item.Amount - amount >= 0)
                     {
                         item.Amount = amount;
                     }
@@ -192,7 +192,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 if (item.Product.productId == productId) 
                 {
                     int modify = item.Amount + amount;
-                    if (item.Product.productQuantity - modify > 0)
+                    if (item.Product.productQuantity - modify >= 0)
                     {
                         item.Amount += amount;
                     }
