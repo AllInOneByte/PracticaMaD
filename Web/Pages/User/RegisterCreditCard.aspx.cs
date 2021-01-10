@@ -33,8 +33,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             {
                 try
                 {
+                    long number = Convert.ToInt64(txtCreditNumber.Text);
+                    int verification = Convert.ToInt32(txtVerificationCode.Text);
+                    System.DateTime date = DateTime.ParseExact(txtExpirationDate.Text, "MM/yy", null);
+
                     SessionManager.RegisterCreditCard(Context, comboCreditType.SelectedValue,
-                        txtCreditNumber.Text, txtVerificationCode.Text, checkDefault.Checked, txtExpirationDate.Text);
+                      number, verification, checkDefault.Checked, date);
 
                     Response.Redirect(Response.
                         ApplyAppPathModifier("~/Pages/MainPage.aspx"));

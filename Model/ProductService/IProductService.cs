@@ -25,15 +25,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         [Inject]
         ICategoryDao CategoryDao { set; }
 
-        /// <summary>
-        /// Decrease the product's quantity.
-        /// </summary>
-        /// <param name="productId"> The product's id. </param>
-        /// <param name="quantity"> The product's quantity to be extracted from stock. </param>
-        /// <exception cref="InstanceNotFoundException"/>
-        /// <exception cref="NegativeStockException"/>
-        [Transactional]
-        void DecreaseProductStock(long productId, int quantity);
 
         /// <summary>
         /// Update the product details.
@@ -54,6 +45,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <returns> A list of products. </returns>
         ProductBlock FindAllProducts(int startIndex = 0, int count = 20);
 
+        
         /// <summary>
         /// Find all creditCards that meet the search conditions.
         /// </summary>
@@ -62,9 +54,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="startIndex"> The index at which the products list must start </param>
         /// <param name="count"> The maximum number of products that must return the function. </param>
         /// <returns> A list of products. </returns>
-        ProductBlock FindAllProductsByKeyword(string keyword, long categoryId = -1,
+        ProductBlock FindAllProductsByKeyword(string keyword, long categoryId,
             int startIndex = 0, int count = 20);
 
+        /// <summary>
+        /// Find all creditCards that meet the search conditions.
+        /// </summary>
+        /// <param name="keyword"> The keyword that must be contained within the name of the product </param>
+        /// <param name="categoryId"> The category ID. </param>
+        /// <param name="startIndex"> The index at which the products list must start </param>
+        /// <param name="count"> The maximum number of products that must return the function. </param>
+        /// <returns> A list of products. </returns>
+        ProductBlock FindAllProductsByKeyword(string keyword, int startIndex = 0, int count = 20);
+
+        
         /// <summary>
         /// Find a product.
         /// </summary>
@@ -153,5 +156,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// </summary>
         /// <returns> A list of categories. </returns>
         List<Category> FindAllCategories();
+        
     }
 }

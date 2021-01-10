@@ -25,41 +25,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
         #region IUserProfileDao Members. Specific Operations
         /// <summary>
-        /// Finds a Product by Key words or Category
+        /// Finds a Product by Key words and Category
         /// </summary>
         /// <param keyWords="keyWords">keyWords</param>
         /// <param categoryId="categoryId">categoryId</param>
         /// <returns>List of Product</returns>
         /// <exception cref="InstanceNotFoundException"/>
-        public List<Product> FindByKeywordsAndCategory(string keyWords, long categoryId = -1,
-            int startIndex = 0, int count = 20) {
+        public List<Product> FindByKeywords(string keyWords, int startIndex = 0, int count = 20) {
             List<Product> product = null;
 
             #region Option 1: Using Linq.
 
             DbSet<Product> products = Context.Set<Product>();
 
-            if (categoryId <= 0)
-            {
-                var result =
-                    (from p in products
-                     where p.productName.ToLower().Contains(keyWords.ToLower())
-                     orderby p.productName ascending
-                     select p).Skip(startIndex).Take(count);
+            
+            var result =
+                (from p in products
+                    where p.productName.ToLower().Contains(keyWords.ToLower())
+                    orderby p.productName ascending
+                    select p).Skip(startIndex).Take(count);
 
-                product = result.ToList();
+            product = result.ToList();
 
-            }
-            else {
-                var result =
-                    (from p in products
-                     where (p.productName.ToLower().Contains(keyWords.ToLower()) && (p.categoryId == categoryId))
-                     orderby p.productName ascending
-                     select p).Skip(startIndex).Take(count);
-
-                product = result.ToList();
-
-            }
+            
 
             #endregion Option 1: Using Linq.
 
@@ -71,6 +59,40 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
         }
 
+        /// <summary>
+        /// Finds a Product by Key words
+        /// </summary>
+        /// <param keyWords="keyWords">keyWords</param>
+        /// <returns>List of Product</returns>
+        /// <exception cref="InstanceNotFoundException"/>
+        public List<Product> FindByKeywords(string keyWords, long categoryId, int startIndex = 0, int count = 20)
+        {
+            List<Product> product = null;
+
+            #region Option 1: Using Linq.
+
+            DbSet<Product> products = Context.Set<Product>();
+
+            var result =
+                (from p in products
+                    where (p.productName.ToLower().Contains(keyWords.ToLower()) && (p.categoryId == categoryId))
+                    orderby p.productName ascending
+                    select p).Skip(startIndex).Take(count);
+
+            product = result.ToList();
+
+
+            #endregion Option 1: Using Linq.
+
+            if (product == null)
+                throw new InstanceNotFoundException(keyWords,
+                    typeof(Product).FullName);
+
+            return product;
+
+        }
+
+        
         /// <summary>
         /// Finds all Products
         /// <returns>List of Products</returns>

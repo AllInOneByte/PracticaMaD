@@ -200,7 +200,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 CreateProduct("pro2", 9, System.DateTime.Now, 10, category.categoryId);
                 productList.Add(CreateProduct("product3", 8, System.DateTime.Now, 13, category.categoryId));
 
-                var productDetailsList = productService.FindAllProductsByKeyword("product", -1);
+                var productDetailsList = productService.FindAllProductsByKeyword("product");
 
                 // Check data
                 Assert.AreEqual(productList.Count, productDetailsList.Products.Count);

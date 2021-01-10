@@ -156,7 +156,7 @@
   <data name="revNumberTamError.ErrorMessage" xml:space="preserve">
     <value>Tarjeta Inválida</value>
   </data>
-  <data name="revVerificationTamErro.ErrorMessage" xml:space="preserve">
+  <data name="revVerificationTamError.ErrorMessage" xml:space="preserve">
     <value>Tamaño de código inválido</value>
   </data>
 </root>

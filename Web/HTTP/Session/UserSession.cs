@@ -7,6 +7,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
 
         private long userProfileId;
         private String firstName;
+        private byte rol;
 
         private long cardDefaultId;
         private long cardDefaultNumber;
@@ -21,6 +22,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         {
             get { return firstName; }
             set { firstName = value; }
+        }
+
+        public byte Rol
+        {
+            get { return rol;  }
+            set { rol = value; }
         }
 
         public long CardDefaultId

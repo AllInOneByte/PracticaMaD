@@ -141,7 +141,13 @@
   <data name="lnkLogout.Text" xml:space="preserve">
     <value>Logout</value>
   </data>
+  <data name="lnkRegisterTag.Text" xml:space="preserve">
+    <value>Register Tag</value>
+  </data>
   <data name="lnkUpdate.Text" xml:space="preserve">
     <value>Update Profile</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Tags</value>
   </data>
 </root>

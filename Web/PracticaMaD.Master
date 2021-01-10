@@ -48,12 +48,24 @@
                         NavigateUrl="~/Pages/Shopping/Cart.aspx"
                         meta:resourcekey="lnkCart" />
                     <asp:Label ID="lblDash5" runat="server" Text="-" />
+                    <asp:HyperLink ID="lnkRegisterTag" runat="server"
+                        NavigateUrl="~/Pages/Product/RegisterTag.aspx"
+                        meta:resourcekey="lnkRegisterTag" />
+                    <asp:Label ID="lblDash6" runat="server" Text="-" />
                     <asp:HyperLink ID="lnkLogout" runat="server"
                         NavigateUrl="~/Pages/User/Logout.aspx"
                         meta:resourcekey="lnkLogout" />
                 </asp:ContentPlaceHolder>
             </span>
         </div>
+
+        <!-- Tag Cloud. -->
+        <div id="CloudTag">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder_Cloud" runat="server">
+                <asp:Table ID="tags" runat="server" HorizontalAlign="Center"></asp:Table>
+            </asp:ContentPlaceHolder>
+        </div>
+        
 
         <!-- Body content. -->
         <div id="content">

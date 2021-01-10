@@ -28,7 +28,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         IProductDao ProductDao { set; }
 
 
-
         /// <summary>
         /// Creates a new delivery object in the database.
         /// </summary>

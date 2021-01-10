@@ -51,7 +51,7 @@
                             ControlToValidate="txtVerificationCode" runat="server"
                             ValidationExpression="\d+" meta:resourcekey="revNumberError"></asp:RegularExpressionValidator>
                         <asp:RegularExpressionValidator ID="RegularVerificationCodeValidator2"
-                            ControlToValidate="txtCreditNumber" runat="server"
+                            ControlToValidate="txtVerificationCode" runat="server"
                             ValidationExpression="^[\s\S]{3,4}$" meta:resourcekey="revVerificationTamError"></asp:RegularExpressionValidator></span>
             </div>
             <div class="field">
@@ -64,7 +64,7 @@
                             Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"
                             meta:resourcekey="rfvExpirationDateResource1"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RegularExpirationDateValidator1" runat="server" ControlToValidate="txtExpirationDate"
-                            Display="Dynamic" ValidationExpression="\d+\d+/\d+\d+/\d+\d+\d+\d+"
+                            Display="Dynamic" ValidationExpression="\d+\d+/\d+\d+"
                             meta:resourcekey="revExpirationDate"></asp:RegularExpressionValidator></span>
             </div>
             <div class="field">

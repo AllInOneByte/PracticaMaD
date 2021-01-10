@@ -107,6 +107,8 @@
     <Content Include="Pages\MainPage.aspx" />
     <Content Include="Pages\Product\ProductDetails.aspx" />
     <Content Include="Pages\Product\ProductSearch.aspx" />
+    <Content Include="Pages\Product\RegisterTag.aspx" />
+    <Content Include="Pages\Product\TagCloud.aspx" />
     <Content Include="Pages\Shopping\Buy.aspx" />
     <Content Include="Pages\Shopping\DeliveryDetails.aspx" />
     <Content Include="Pages\Shopping\ListDeliveries.aspx" />
@@ -182,6 +184,20 @@
     </Compile>
     <Compile Include="Pages\Product\ProductSearch.aspx.designer.cs">
       <DependentUpon>ProductSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\RegisterTag.aspx.cs">
+      <DependentUpon>RegisterTag.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\RegisterTag.aspx.designer.cs">
+      <DependentUpon>RegisterTag.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\TagCloud.aspx.cs">
+      <DependentUpon>TagCloud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\TagCloud.aspx.designer.cs">
+      <DependentUpon>TagCloud.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Shopping\Buy.aspx.cs">
       <DependentUpon>Buy.aspx</DependentUpon>
@@ -464,6 +480,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Shopping\App_LocalResources\Buy.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\RegisterTag.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\RegisterTag.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\RegisterTag.aspx.es.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

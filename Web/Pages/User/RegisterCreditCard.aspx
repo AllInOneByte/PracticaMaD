@@ -52,7 +52,7 @@
                             ControlToValidate="txtVerificationCode" runat="server"
                             ValidationExpression="\d+" meta:resourcekey="revNumberError"></asp:RegularExpressionValidator>
                         <asp:RegularExpressionValidator ID="RegularVerificationCodeValidator2"
-                            ControlToValidate="txtCreditNumber" runat="server"
+                            ControlToValidate="txtVerificationCode" runat="server"
                             ValidationExpression="^[\s\S]{3,4}$" meta:resourcekey="revVerificationTamError"></asp:RegularExpressionValidator></span>
             </div>
             <div class="field">

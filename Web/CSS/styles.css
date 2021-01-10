@@ -54,12 +54,15 @@ a {
     font-weight: bold;
 }
 
+#tagCloud {
+    color: #fffac6
+}
+
 #menuLinks a {
     color: #fffac6;
 }
 
 /* Content. */
-
 #content {
     margin: 10px 0;
     text-align: center;
@@ -131,4 +134,34 @@ input, select, textarea {
     text-align: center;
     width: 100%;
     padding-top: 5px;
+}
+
+a.TagSize1 {
+    font-family: Arial;
+    font-size: 15px;
+    color: #FF0000;
+}
+
+a.TagSize2 {
+    font-family: Arial;
+    font-size: 20px;
+    color: #993333;
+}
+
+a.TagSize3 {
+    font-family: Arial;
+    font-size: 25px;
+    color: #0000FF;
+}
+
+a.TagSize4 {
+    font-family: Arial;
+    font-size: 30px;
+    color: #009900;
+}
+
+a.TagSize5 {
+    font-family: Arial;
+    font-size: 35px;
+    color: #9900FF;
 }

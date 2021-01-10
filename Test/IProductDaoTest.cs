@@ -131,7 +131,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 productDao.Create(product);
             }
 
-            List<Product> totalRetrievedProducts = productDao.FindByKeywordsAndCategory("1",category.categoryId);
+            List<Product> totalRetrievedProducts = productDao.FindByKeywords("1",category.categoryId);
 
             Assert.AreEqual(numberFoundProducts, totalRetrievedProducts.Count);
 
@@ -187,7 +187,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             List<Product> sortedProducts = createdProducts.OrderBy(p => p.productName).ToList();
 
-            List<Product> totalRetrievedProducts = productDao.FindByKeywordsAndCategory("1", -1);
+            List<Product> totalRetrievedProducts = productDao.FindByKeywords("1");
 
             Assert.AreEqual(sortedProducts.Count, totalRetrievedProducts.Count);
 
