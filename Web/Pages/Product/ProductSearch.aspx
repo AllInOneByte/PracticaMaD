@@ -45,7 +45,7 @@
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:Button runat="server" Text="<%$ Resources:Common, addToCart %>"
-                                    CommandName="BtnAddToCartClick" Visible="<%# IsUserAuthenticated() %>" />
+                                    CommandName="BtnAddToCartClick" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
