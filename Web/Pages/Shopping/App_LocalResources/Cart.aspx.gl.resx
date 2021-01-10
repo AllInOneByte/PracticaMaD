@@ -127,7 +127,7 @@
     <value>Carrito da compra</value>
   </data>
   <data name="lnkBack.Text" xml:space="preserve">
-    <value>Regresar aos productos</value>
+    <value>Productos</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
     <value>PracticaMaD - Carrito da compra</value>
@@ -146,5 +146,11 @@
   </data>
   <data name="lblAmountError.Text" xml:space="preserve">
     <value>Non existe a cantidade especifícada en stock</value>
+  </data>
+  <data name="btnDelete" xml:space="preserve">
+    <value>Borrar</value>
+  </data>
+  <data name="lnkMain.Text" xml:space="preserve">
+    <value>Inicio</value>
   </data>
 </root>

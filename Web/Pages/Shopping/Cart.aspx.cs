@@ -18,7 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
             
             List<ShoppingCart> cart = SessionManager.GetShoppingCart(Context);
 
-            if(cart.Count == 0)
+            if (cart.Count == 0)
             {
                 lblEmpty.Visible = true;
                 lclCart.Visible = false;
@@ -28,7 +28,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 
             TableRow row;
 
-            TableCell product,  amount, gitf, sum, rest, delete;
+            TableCell product, amount, gitf, sum, rest, delete;
 
             CheckBox checkGift;
 
@@ -45,8 +45,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 
                 rest = new TableCell();
                 brest = new LinkButton();
-                brest.ID = line.Product.productId.ToString();
-                brest.OnClientClick += new EventHandler(this.OnClickRest);
+                brest.CommandArgument = line.Product.productId.ToString();
+                brest.Click += new EventHandler(this.OnClickRest);
                 brest.Text = "-";
                 rest.Controls.Add(brest);
                 row.Cells.Add(rest);
@@ -57,8 +57,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 
                 sum = new TableCell();
                 bsum = new LinkButton();
-                bsum.ID = line.Product.productId.ToString();
-                bsum.OnClientClick += new EventHandler(this.OnClickSum);
+                bsum.CommandArgument = line.Product.productId.ToString();
+                bsum.Click += new EventHandler(this.OnClickSum);
                 bsum.Text = "+";
                 sum.Controls.Add(bsum);
                 row.Cells.Add(sum);
@@ -73,14 +73,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 
                 delete = new TableCell();
                 bdelete = new Button();
-                bdelete.ID = line.Product.productId.ToString();
-                bdelete.OnClientClick += new EventHandler(this.OnClickDelete);
-                bdelete.Text = "<%$ Resources:, delete %>";
-                delete.Controls.Add(bdelete);
+                bdelete.CommandArgument = line.Product.productId.ToString();
+                bdelete.Click += new EventHandler(this.OnClickDelete);
+                bdelete.Text = GetLocalResourceObject("btnBuy.Text").ToString();
                 row.Cells.Add(delete);
 
                 lclCart.Rows.Add(row);
             }
+            
         }
 
         protected void Check_Change(object sender, EventArgs e)
@@ -89,22 +89,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 
             long productId = Convert.ToInt64(check.ID);
 
-            SessionManager.ForGift(Context,productId,check.Checked);
+            SessionManager.ForGift(Context, productId, check.Checked);
         }
 
         protected void OnClickSum(object sender, EventArgs e)
         {
             try
             {
-                Button button = sender as Button;
+                LinkButton button = (LinkButton)sender;
 
-                long productId = Convert.ToInt64(button.ID);
+                long productId = Convert.ToInt64(button.CommandArgument);
 
                 SessionManager.ModifyAmount(Context, productId, 1);
 
                 Response.Redirect(Response.
-                          ApplyAppPathModifier("~/Pages/Shopping/Cart.aspx"));
-            }catch (StockEmptyException)
+                         ApplyAppPathModifier("~/Pages/Shopping/Cart.aspx"));
+            }
+            catch (StockEmptyException)
             {
                 lblAmountError.Visible = true;
             }
@@ -114,9 +115,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
         {
             try
             {
-                Button button = sender as Button;
+                LinkButton button = (LinkButton)sender;
 
-                long productId = Convert.ToInt64(button.ID);
+                long productId = Convert.ToInt64(button.CommandArgument);
 
                 SessionManager.ModifyAmount(Context, productId, -1);
 
@@ -131,9 +132,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 
         protected void OnClickDelete(object sender, EventArgs e)
         {
-            Button button = sender as Button;
+            Button button = (Button)sender;
 
-            long productId = Convert.ToInt64(button.ID);
+            long productId = Convert.ToInt64(button.CommandArgument);
 
             SessionManager.DeleteProductOfCart(Context, productId);
 

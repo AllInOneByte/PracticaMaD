@@ -136,7 +136,7 @@
     <value>Delivery Information</value>
   </data>
   <data name="price" xml:space="preserve">
-    <value>Price</value>
+    <value>Unit Price</value>
   </data>
   <data name="product" xml:space="preserve">
     <value>Product</value>

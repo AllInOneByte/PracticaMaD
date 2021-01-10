@@ -120,6 +120,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             productService = iocManager.Resolve<IProductService>();
         }
 
+        public static void UpdateProduct(long productId, string productName, decimal productPrice, int productQuantity)
+        {
+            productService.UpdateProductDetails(productId, productName, productPrice, productQuantity);
+        }
+
+        public static Product FindProduct(long productId)
+        {
+            return productService.FindProduct(productId);
+        }
+
+        public static void AddToShoppingCart(HttpContext context, long productId, int amount, bool gift)
+        {
+            ShoppingCartSession shoppingCart = (ShoppingCartSession)context.Session[SHOPPING_CART_SESSION_ATTRIBUTE];
+
+            shoppingCart.ShoppingCart = shoppingService.UpdateShoppingCartDetails(shoppingCart.ShoppingCart, productId, amount, gift);
+
+            UpdateCartSession(context, shoppingCart);
+        }
+
         public static void CreateTag(string tagName)
         {
             productService.AddTag(tagName);
@@ -157,21 +176,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             decimal price = 0;
             foreach(ShoppingCart line in shoppingCart.ShoppingCart)
             {
-                price += line.Product.productPrice;
+                price += line.Product.productPrice * line.Amount;
             }
 
             return price;
         }
-        public static void Buy(HttpContext context, long creditNumber, string description, string address, decimal price)
+        public static void Buy(HttpContext context, long creditNumber, string description, string address)
         {
+           
             UserSession userSession =
                 (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
 
             ShoppingCartSession shoppingCart = (ShoppingCartSession)context.Session[SHOPPING_CART_SESSION_ATTRIBUTE];
 
-            shoppingService.CreateDelivery(price,creditNumber,userSession.UserProfileId,description,shoppingCart.ShoppingCart,address);
+            shoppingService.CreateDelivery(GetTotalPrice(context), creditNumber, userSession.UserProfileId, description, shoppingCart.ShoppingCart, address);
 
             shoppingCart.ShoppingCart = new List<ShoppingCart>();
+
+            UpdateCartSession(context, shoppingCart);
         }
 
         public static void ForGift(HttpContext context, long productId, bool gitf) 
@@ -179,6 +201,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             ShoppingCartSession shoppingCart = (ShoppingCartSession)context.Session[SHOPPING_CART_SESSION_ATTRIBUTE];
 
             shoppingCart.ShoppingCart = shoppingService.ModifyGift(shoppingCart.ShoppingCart, productId, gitf);
+
+            UpdateCartSession(context, shoppingCart);
         }
 
         public static void ModifyAmount(HttpContext context, long productId, int amount)
@@ -186,6 +210,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             ShoppingCartSession shoppingCart = (ShoppingCartSession)context.Session[SHOPPING_CART_SESSION_ATTRIBUTE];
 
             shoppingCart.ShoppingCart = shoppingService.ModifyAmountOfItems(shoppingCart.ShoppingCart, productId, amount);
+
+            UpdateCartSession(context, shoppingCart);
         }
 
         public static void DeleteProductOfCart(HttpContext context, long productId)
@@ -193,6 +219,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             ShoppingCartSession shoppingCart = (ShoppingCartSession)context.Session[SHOPPING_CART_SESSION_ATTRIBUTE];
 
             shoppingCart.ShoppingCart = shoppingService.DeleteShoppingCartDetails(shoppingCart.ShoppingCart, productId);
+
+            UpdateCartSession(context, shoppingCart);
         }
 
 
@@ -263,6 +291,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             userSession.CardDefaultNumber = number;
 
             userService.AssignDefaultCard(cardId, userSession.UserProfileId);
+            context.Session.Add(USER_SESSION_ATTRIBUTE, userSession);
         }
 
         /// <summary>
@@ -295,6 +324,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             shoppingCart.Address = userProfileDetails.address;
 
             UpdateSessionForAuthenticatedUser(context, userSession, locale);
+            UpdateCartSession(context, shoppingCart);
 
             FormsAuthentication.SetAuthCookie(loginName, false);
         }
@@ -364,6 +394,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
                 new Locale(loginResult.Language, loginResult.Country);
 
             UpdateSessionForAuthenticatedUser(context, userSession, locale);
+            UpdateCartSession(context, shoppingCart);
 
             return loginResult;
         }
@@ -453,6 +484,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             userSession.FirstName = userProfileDetails.firstName;
 
             UpdateSessionForAuthenticatedUser(context, userSession, locale);
+            UpdateCartSession(context, shoppingCart);
         }
 
         /// <summary>
@@ -555,12 +587,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             UpdateSessionFromCookies(context);
         }
 
+        public static void UpdateCartSession(HttpContext context, ShoppingCartSession shoppingCartSession)
+        {
+            context.Session.Add(SHOPPING_CART_SESSION_ATTRIBUTE, shoppingCartSession);
+        }
+
         public static void TouchCart(HttpContext context)
         {
             ShoppingCartSession shoppingCartSession = new ShoppingCartSession();
             shoppingCartSession.ShoppingCart = new List<ShoppingCart>();
 
-            context.Session.Add(SHOPPING_CART_SESSION_ATTRIBUTE, shoppingCartSession);
+            UpdateCartSession(context, shoppingCartSession);
         }
 
         /// <summary>

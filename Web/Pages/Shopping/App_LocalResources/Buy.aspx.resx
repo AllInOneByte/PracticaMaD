@@ -156,4 +156,7 @@
   <data name="lnkBack.Text" xml:space="preserve">
     <value>Return to Shopping Cart</value>
   </data>
+  <data name="revNumberTamError.ErrorMessage" xml:space="preserve">
+    <value>Invalid Credit Card</value>
+  </data>
 </root>

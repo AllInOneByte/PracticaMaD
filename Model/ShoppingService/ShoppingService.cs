@@ -34,7 +34,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         #region IShoppingService members
 
         /// <exception cref="InstanceNotFoundException"/>
-        /// <exception cref="NegativeStockException"/>
         [Transactional]
         private void DecreaseProductStock(Product product, int quantity)
         {
@@ -49,7 +48,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         public Delivery CreateDelivery(decimal deliveryPrice, long cardNumber, long userId, string description,
             List<ShoppingCart> shoppingCart, string deliveryAddress = null)
         {
-           
+
             CreditCard card = CreditCardDao.FindByNumber(cardNumber);
 
 
@@ -73,13 +72,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 {
                     deliveryLine = new DeliveryLine();
 
-                    if (item.Product.productQuantity - item.Amount > 0)
+                    if (item.Product.productQuantity - item.Amount >= 0)
                     {
                         DecreaseProductStock(item.Product, item.Amount);
                         deliveryLine.deliveryLineAmount = item.Amount;
                     }
                     else
                     {
+                        DeliveryDao.Remove(delivery.deliveryId);
                         throw new StockEmptyException(item.Product.productId, item.Product.productName);
                     }
                     
@@ -200,9 +200,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             {
                 if (item.Product.productId == productId) 
                 {
-                    if (item.Product.productQuantity + item.Amount >= 0)
+                    if (item.Product.productQuantity >= item.Amount + amount)
                     {
-                        item.Amount += amount;
+                        if(item.Amount + amount >= 0)
+                        {
+                            item.Amount += amount;
+                        }
+
                     }
                     else
                     {

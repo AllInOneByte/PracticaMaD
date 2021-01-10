@@ -1,5 +1,4 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+﻿using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Log;
