@@ -143,7 +143,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             {
                 if (item.Product.productId == productId)
                 {
-                    if (item.Product.productQuantity + item.Amount - amount > 0)
+                    if ((item.Product.productQuantity + item.Amount) - amount >= 0)
                     {
                         item.Amount = amount;
                     }
@@ -159,7 +159,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
             Product product = ProductDao.Find(productId);
 
-            if (product.productQuantity - amount > 0)
+            if (product.productQuantity - amount >= 0)
             {
                 ShoppingCart shop = new ShoppingCart(amount, product, gitf);
 
@@ -200,7 +200,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             {
                 if (item.Product.productId == productId) 
                 {
-                    if (item.Product.productQuantity + item.Amount > 0)
+                    if (item.Product.productQuantity + item.Amount >= 0)
                     {
                         item.Amount += amount;
                     }
