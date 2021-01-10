@@ -105,6 +105,7 @@
     <Content Include="Global.asax" />
     <Content Include="Pages\Errors\InternalError.aspx" />
     <Content Include="Pages\MainPage.aspx" />
+    <Content Include="Pages\Product\ProductComments.aspx" />
     <Content Include="Pages\Product\ProductDetails.aspx" />
     <Content Include="Pages\Product\ProductSearch.aspx" />
     <Content Include="Pages\Product\RegisterTag.aspx" />
@@ -169,6 +170,13 @@
     </Compile>
     <Compile Include="Pages\MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\ProductComments.aspx.cs">
+      <DependentUpon>ProductComments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\ProductComments.aspx.designer.cs">
+      <DependentUpon>ProductComments.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Product\ProductDetails.aspx.cs">
       <DependentUpon>ProductDetails.aspx</DependentUpon>
@@ -467,7 +475,9 @@
   <ItemGroup>
     <Content Include="Pages\User\App_LocalResources\Buy.aspx.es.resx" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\ProductSearch.aspx.resx" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Product\App_LocalResources\ProductDetails.aspx.resx" />
   </ItemGroup>
@@ -491,6 +501,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Product\App_LocalResources\RegisterTag.aspx.es.resx" />
+  </ItemGroup>
+   </ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\ProductSearch.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\ProductSearch.aspx.gl.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

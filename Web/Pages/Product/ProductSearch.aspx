@@ -19,13 +19,9 @@
                 </span>
 
                 <span class="entry">
-                    <asp:TextBox ID="txtSearch" runat="server" Width="100" Columns="16"></asp:TextBox>
-                    <asp:DropDownList ID="CategoryDropDownList" AutoPostBack="True" runat="server">
-                    </asp:DropDownList>
-                </span>
-
-                <span class="button">
-                    <asp:Button ID="btnSearch" runat="server" OnClick="BtnSearchClick" meta:resourcekey="btnSearch" />
+                    <asp:TextBox ID="txtSearch" runat="server" Width="30%" Columns="16" meta:resourcekey="txtSearch"></asp:TextBox>
+                    <asp:DropDownList ID="CategoryDropDownList" AutoPostBack="False" runat="server" Width="30%"></asp:DropDownList>
+                    <asp:Button ID="btnSearch" runat="server" OnClick="BtnSearchClick" meta:resourcekey="btnSearch" Width="30%" />
                 </span>
             </div>
 
@@ -33,8 +29,9 @@
                 <p>
                     <asp:Label ID="lblNoProducts" meta:resourcekey="lblNoProducts" runat="server"></asp:Label>
                 </p>
-                <asp:GridView ID="gvProducts" runat="server" GridLines="None" AutoGenerateColumns="False" Width="100%">
+                <asp:GridView ID="gvProducts" OnRowCommand="BtnAddToCartClick_RowCommand" runat="server" GridLines="None" AutoGenerateColumns="False" Width="100%">
                     <Columns>
+                        <asp:BoundField DataField="productId" Visible="false" />
                         <asp:HyperLinkField DataTextField="productName"
                             HeaderText="<%$ Resources:Common, productName %>"
                             DataNavigateUrlFields="productId"
@@ -44,7 +41,13 @@
                         <asp:BoundField DataField="productDate" HeaderText="<%$ Resources:Common, productDate %>"
                             DataFormatString="{0:d/M/yyyy}" />
                         <asp:BoundField DataField="productPrice" HeaderText="<%$ Resources:Common, productPrice %>"
-                            DataFormatString="{0:C}"/>
+                            DataFormatString="{0:C}" />
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:Button runat="server" Text="<%$ Resources:Common, addToCart %>"
+                                    CommandName="BtnAddToCartClick" Visible="<%# IsUserAuthenticated() %>" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
             </div>

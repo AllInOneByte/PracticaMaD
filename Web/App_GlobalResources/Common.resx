@@ -147,4 +147,7 @@
   <data name="productQuantity" xml:space="preserve">
     <value>Quantity</value>
   </data>
+  <data name="addToCart" xml:space="preserve">
+    <value>Add to cart</value>
+  </data>
 </root>
