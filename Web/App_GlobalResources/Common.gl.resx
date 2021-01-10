@@ -147,4 +147,7 @@
   <data name="searchButton" xml:space="preserve">
     <value>Procurar</value>
   </data>
+  <data name="addToCart" xml:space="preserve">
+    <value>Añadir ao carrito</value>
+  </data>
 </root>

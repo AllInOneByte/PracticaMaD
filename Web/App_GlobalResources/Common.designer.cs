@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Add to cart.
+        /// </summary>
+        internal static string addToCart {
+            get {
+                return ResourceManager.GetString("addToCart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Category.
         /// </summary>
         internal static string categoryName {

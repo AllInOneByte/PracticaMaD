@@ -1,6 +1,7 @@
 ﻿using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using System;
 using System.Collections.Generic;
@@ -224,6 +225,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                     lnkNext.Visible = true;
                 }
             }
+        }
+
+        protected void BtnAddToCartClick(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected bool IsUserAuthenticated()
+        {
+            return SessionManager.IsUserAuthenticated(HttpContext.Current);
         }
     }
 }
