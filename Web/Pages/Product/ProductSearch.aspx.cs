@@ -62,7 +62,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             if ((startIndex - count) >= 0)
             {
                 string url =
-                    Settings.Default.PracticaMaD_applicationURL +
                     "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex - count) +
                     "&count=" + count;
 
@@ -74,7 +73,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             if (productBlock.ExistMoreProducts)
             {
                 string url =
-                    Settings.Default.PracticaMaD_applicationURL +
                     "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex + count) +
                     "&count=" + count;
 
@@ -205,7 +203,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 if ((startIndex - count) >= 0)
                 {
                     string url =
-                        Settings.Default.PracticaMaD_applicationURL +
                         "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex - count) +
                         "&count=" + count + "&keyword=" + keyword + "&category=" + catId;
 
@@ -217,7 +214,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 if (productBlock.ExistMoreProducts)
                 {
                     string url =
-                        Settings.Default.PracticaMaD_applicationURL +
                         "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex + count) +
                         "&count=" + count + "&keyword=" + keyword + "&category=" + catId;
 
