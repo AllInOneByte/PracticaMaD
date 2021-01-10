@@ -502,7 +502,7 @@
   <ItemGroup>
     <Content Include="Pages\Product\App_LocalResources\RegisterTag.aspx.es.resx" />
   </ItemGroup>
-   </ItemGroup>
+   <ItemGroup>
     <Content Include="Pages\Product\App_LocalResources\ProductSearch.aspx.es.resx" />
   </ItemGroup>
   <ItemGroup>
