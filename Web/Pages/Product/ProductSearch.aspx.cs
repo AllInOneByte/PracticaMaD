@@ -44,7 +44,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
             IProductService productService = iocManager.Resolve<IProductService>();
 
-            /* Get Accounts Info */
+            /* Get Products Info */
             ProductBlock productBlock =
                 productService.FindAllProducts(startIndex, count);
 
