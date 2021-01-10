@@ -73,7 +73,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             if ((startIndex - count) >= 0)
             {
                 string url =
-                    Settings.Default.PracticaMaD_applicationURL +
                     "/Pages/Product/ProductComments.aspx" + "?product=" + productId + "&startIndex=" + (startIndex - count) +
                     "&count=" + count;
 
@@ -85,7 +84,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             if (commentBlock.ExistMoreComments)
             {
                 string url =
-                    Settings.Default.PracticaMaD_applicationURL +
                     "/Pages/Product/ProductComments.aspx" + "?product=" + productId + "&startIndex=" + (startIndex + count) +
                     "&count=" + count;
 
