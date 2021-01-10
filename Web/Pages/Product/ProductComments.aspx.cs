@@ -20,11 +20,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             lnkPrevious.Visible = false;
             lnkNext.Visible = false;
             lblNoComments.Visible = false;
+            hlAddComment.Visible = false;
 
             /* Get productId */
             try
             {
                 productId = long.Parse(Request.Params.Get("product"));
+                hlAddComment.Visible = true;
             }
             catch (ArgumentNullException)
             {
@@ -73,8 +75,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             if ((startIndex - count) >= 0)
             {
                 string url =
-                    "/Pages/Product/ProductComments.aspx" + "?product=" + productId + "&startIndex=" + (startIndex - count) +
-                    "&count=" + count;
+                    "/Pages/Product/ProductComments.aspx" + "?product=" + productId +
+                    "&startIndex=" + (startIndex - count) + "&count=" + count;
 
                 lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
                 lnkPrevious.Visible = true;
@@ -84,12 +86,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             if (commentBlock.ExistMoreComments)
             {
                 string url =
-                    "/Pages/Product/ProductComments.aspx" + "?product=" + productId + "&startIndex=" + (startIndex + count) +
-                    "&count=" + count;
+                    "/Pages/Product/ProductComments.aspx" + "?product=" + productId +
+                    "&startIndex=" + (startIndex + count) + "&count=" + count;
 
                 lnkNext.NavigateUrl = Response.ApplyAppPathModifier(url);
                 lnkNext.Visible = true;
             }
+
+            hlAddComment.NavigateUrl = "/Pages/Product/AddComment.aspx" +
+                "?product=" + productId;
         }
     }
 }

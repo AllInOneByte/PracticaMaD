@@ -15,6 +15,9 @@
             <p>
                 <asp:Label ID="lblNoComments" meta:resourcekey="lblNoComments" runat="server"></asp:Label>
             </p>
+
+            <asp:HyperLink ID="hlAddComment" runat="server" meta:resourcekey="hlAddComment" Visible="false" />
+
             <asp:GridView ID="gvProducts" runat="server" GridLines="None" AutoGenerateColumns="False" Width="100%">
                 <Columns>
                     <asp:BoundField DataField="UserProfile.firstName" HeaderText="<%$ Resources:Common, userProfileName %>" />
@@ -33,8 +36,8 @@
                 runat="server" Visible="False"></asp:HyperLink>
         </span>
         <span class="nextLink">
-            <asp:HyperLink ID="lnkNext" Text="<%$ Resources:Common, Next %>" runat="server"
-                Visible="False"></asp:HyperLink>
+            <asp:HyperLink ID="lnkNext" Text="<%$ Resources:Common, Next %>"
+                runat="server" Visible="False"></asp:HyperLink>
         </span>
     </div>
 </asp:Content>
