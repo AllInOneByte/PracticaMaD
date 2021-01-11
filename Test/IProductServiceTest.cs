@@ -468,63 +468,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         }
 
         /// <summary>
-        /// A test for UpdateComment adding and delete  Tags.
-        /// </summary>
-        [TestMethod]
-        public void UpdateComment_AddAndRemoveTags_Test()
-        {
-            using (var scope = new TransactionScope())
-            {
-                var category = CreateCategory(categoryName);
-                var product = CreateProduct(productName, productPrice, productDate,
-                    productQuantity, category.categoryId);
-                var user = CreateUser();
-
-                List<long> newTagIds = new List<long>
-                {
-                    CreateTag(tagName1).tagId
-                };
-
-                List<long> removeTagIds = new List<long>
-                {
-                    CreateTag(tagName2).tagId
-                };
-
-                var commentId = productService.AddComment(product.productId, user.usrId,
-                    commentBody, removeTagIds);
-
-                var findComment = commentDao.Find(commentId);
-
-                // Check data
-                Assert.AreEqual(product.productId, findComment.productId);
-                Assert.AreEqual(user.usrId, findComment.userId);
-                Assert.AreEqual(commentBody, findComment.comment1);
-                Assert.AreEqual(System.DateTime.Now.Date, findComment.commentDate.Date);
-                Assert.AreEqual(1, findComment.Tags.Count);
-                int i = 0;
-                foreach (var l in findComment.Tags)
-                {
-                    Assert.AreEqual(removeTagIds[i], l.tagId);
-                    i++;
-                }
-
-                productService.UpdateComment(commentId, "commentTest2", newTagIds, removeTagIds);
-                findComment = commentDao.Find(commentId);
-
-                // Check data
-                Assert.AreEqual("commentTest2", findComment.comment1);
-                Assert.AreEqual(1, findComment.Tags.Count);
-
-                i = 0;
-                foreach (var l in findComment.Tags)
-                {
-                    Assert.AreEqual(newTagIds[i], l.tagId);
-                    i++;
-                }
-            }
-        }
-
-        /// <summary>
         /// A test for FindAllProductComments.
         /// </summary>
         [TestMethod]

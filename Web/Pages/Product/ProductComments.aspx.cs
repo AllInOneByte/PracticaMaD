@@ -2,14 +2,12 @@
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
@@ -136,7 +134,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 Comment comment = comments.ElementAt(e.Row.RowIndex);
 
                 // Find ListBox
-                ListBox lst = (ListBox) e.Row.FindControl("tagList");
+                ListBox lst = (ListBox)e.Row.FindControl("tagList");
 
                 foreach (Tag tag in comment.Tags)
                 {
@@ -157,7 +155,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
         protected void BtnModify_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("/Pages/Product/ModifyComment.aspx?comment=" + cellOwnCommentId.Text);
         }
     }
 }
