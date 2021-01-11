@@ -83,6 +83,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         Product FindProduct(long productId);
 
         /// <summary>
+        /// Find a comment.
+        /// </summary>
+        /// <param commentId="commentId"> The ID of the comment to be found. </param>
+        /// <returns> The found comment. </returns>
+        /// <exception cref="InstanceNotFoundException"/>
+        Comment FindCommentById(long commentId);
+
+        /// <summary>
         /// Add a new comment.
         /// </summary>
         /// <param name="productId"> The product's id. </param>
@@ -122,16 +130,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="newTags"> The comment's new tags. </param>
         /// <exception cref="InstanceNotFoundException"/>
         void UpdateComment(long commentId, string commentBody, List<long> newTags);
-
-        /// <summary>
-        /// Update the comment.
-        /// </summary>
-        /// <param name="commentId"> The comment's id. </param>
-        /// <param name="commentBody"> The comment's body. </param>
-        /// <param name="newTags"> The comment's new tags. </param>
-        /// <param name="removeTags"> The remove tags of the commennt. </param>
-        /// <exception cref="InstanceNotFoundException"/>
-        void UpdateComment(long commentId, string commentBody, List<long> newTags, List<long> removeTags);
 
         /// <summary>
         /// Find all comments of a product.

@@ -99,6 +99,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         #region Comment Members
 
         /// <exception cref="InstanceNotFoundException"/>
+        public Comment FindCommentById(long commentId)
+        {
+            return CommentDao.Find(commentId);
+        }
+
+        /// <exception cref="InstanceNotFoundException"/>
         public long AddComment(long productId, long userId, string commentBody)
         {
             Comment comment = new Comment
@@ -159,29 +165,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         {
             Comment comment = CommentDao.Find(commentId);
 
-            comment.comment1 = commentBody;
-            foreach (var tagId in newTags)
-            {
-                comment.Tags.Add(TagDao.Find(tagId));
-            }
-
-            CommentDao.Update(comment);
-        }
-
-        /// <exception cref="InstanceNotFoundException"/>
-        public void UpdateComment(long commentId, string commentBody, List<long> newTags, List<long> removeTags)
-        {
-            Comment comment = CommentDao.Find(commentId);
+            ICollection<Tag> tags = new List<Tag>();
 
             comment.comment1 = commentBody;
             foreach (var tagId in newTags)
             {
-                comment.Tags.Add(TagDao.Find(tagId));
+                tags.Add(TagDao.Find(tagId));
             }
-            foreach (var tagId in removeTags)
-            {
-                comment.Tags.Remove(TagDao.Find(tagId));
-            }
+
+            comment.Tags = tags;
 
             CommentDao.Update(comment);
         }
