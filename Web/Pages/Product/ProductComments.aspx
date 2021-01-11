@@ -44,7 +44,7 @@
             <asp:GridView ID="gvProducts" runat="server" GridLines="None" AutoGenerateColumns="False"
                 Width="100%" OnRowDataBound="gvProducts_RowDataBound">
                 <Columns>
-                    <asp:BoundField DataField="commentId" />
+                    <asp:BoundField DataField="commentId" Visible="false" />
                     <asp:BoundField DataField="UserProfile.firstName" HeaderText="<%$ Resources:Common, userProfileName %>" />
                     <asp:BoundField DataField="comment1" HeaderText="<%$ Resources:Common, commentBody %>" />
                     <asp:BoundField DataField="commentDate" HeaderText="<%$ Resources:Common, commentDate %>"
