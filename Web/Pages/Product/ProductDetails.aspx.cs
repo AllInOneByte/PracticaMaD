@@ -16,7 +16,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
         {
             lblProductError.Visible = false;
             TableProductInfo.Visible = false;
-            hlComments.Visible = false;
+            hlComments.Visible = true;
             hlAddComment.Visible = false;
 
             long productId;
@@ -80,10 +80,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             hlAddComment.NavigateUrl = "/Pages/Product/AddComment.aspx" +
                     "?product=" + productId;
 
-            CommentBlock commentBlock =
-                productService.FindAllProductComments(0, Settings.Default.PracticaMaD_defaultCount);
-
-            if (commentBlock.Comments.Count == 0)
+            if (product.Comments.Count == 0)
             {
                 hlComments.Visible = false;
             }

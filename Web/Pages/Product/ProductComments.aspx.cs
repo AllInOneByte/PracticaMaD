@@ -62,7 +62,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
             /* Get Products Info */
             CommentBlock commentBlock =
-                productService.FindAllProductComments(startIndex, count);
+                productService.FindAllProductComments(productId, startIndex, count);
 
             if (commentBlock.Comments.Count == 0)
             {

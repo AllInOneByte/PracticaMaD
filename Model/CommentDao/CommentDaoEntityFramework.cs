@@ -60,7 +60,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 
             var result =
                 (from c in commentsFound
-                 where (c.productId == productId) && c.userId == userId
+                 where (c.productId == productId && c.userId == userId)
                  select c);
 
             comment = result.FirstOrDefault();
