@@ -110,6 +110,7 @@
     <Content Include="Pages\Product\ProductDetails.aspx" />
     <Content Include="Pages\Product\ProductSearch.aspx" />
     <Content Include="Pages\Product\RegisterTag.aspx" />
+    <Content Include="Pages\Shopping\AddProductCart.aspx" />
     <Content Include="Pages\Shopping\Buy.aspx" />
     <Content Include="Pages\Shopping\DeliveryDetails.aspx" />
     <Content Include="Pages\Shopping\ListDeliveries.aspx" />
@@ -206,6 +207,13 @@
     </Compile>
     <Compile Include="Pages\Product\RegisterTag.aspx.designer.cs">
       <DependentUpon>RegisterTag.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Shopping\AddProductCart.aspx.cs">
+      <DependentUpon>AddProductCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Shopping\AddProductCart.aspx.designer.cs">
+      <DependentUpon>AddProductCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Shopping\Buy.aspx.cs">
       <DependentUpon>Buy.aspx</DependentUpon>
@@ -524,8 +532,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Product\App_LocalResources\ModifyProduct.aspx.es.resx" />
-   </ItemGroup>
-   <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Pages\Product\App_LocalResources\ProductComments.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
@@ -533,6 +541,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Product\App_LocalResources\ProductComments.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Shopping\App_LocalResources\AddProductCart.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Shopping\App_LocalResources\AddProductCart.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Shopping\App_LocalResources\AddProductCart.aspx.es.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

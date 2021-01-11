@@ -1,10 +1,11 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using System;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
-using System.Data;
-using System.Web;
-using System.Web.UI.WebControls;
+using Es.Udc.DotNet.ModelUtil.Log;
+using System;
+using System.Globalization;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
@@ -42,7 +43,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                     Response.Redirect(Response.
                         ApplyAppPathModifier("~/Pages/Product/ProductDetails.aspx?product=" + productId));
                 }
-                catch (DuplicateInstanceException)
+                catch (Exception)
                 {
                     lblNameError.Visible = true;
                 }

@@ -154,7 +154,7 @@
     <value>Insufficient amount in stock of</value>
   </data>
   <data name="lnkBack.Text" xml:space="preserve">
-    <value>Return to Shopping Cart</value>
+    <value>Cancel and return to Shopping Cart</value>
   </data>
   <data name="revNumberTamError.ErrorMessage" xml:space="preserve">
     <value>Invalid Credit Card</value>

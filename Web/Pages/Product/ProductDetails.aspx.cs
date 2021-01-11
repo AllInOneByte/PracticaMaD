@@ -53,34 +53,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 "/Pages/Product/ProductComments.aspx" +
                 "?product=" + product.productId;
 
-            btnAddCart.CommandArgument = product.productId.ToString();
-
             lnkUpdate.NavigateUrl += product.productId;
+            lnkAddCart.NavigateUrl += product.productId + "&productQuantity=" + product.productQuantity;
+
             if (SessionManager.IsAdminAuthenticated(Context))
             {
                 lnkUpdate.Visible = true;
             }
 
             hlComments.Visible = true;
-        }
-
-        protected void BtnAddCartClick(object sender, EventArgs e)
-        {
-            try
-            {
-                long id = Convert.ToInt64(btnAddCart.CommandArgument);
-                int amount = Convert.ToInt32(txtAmount.Text);
-
-                SessionManager.AddToShoppingCart(Context, id, amount, checkGift.Checked);
-
-                Response.Redirect(
-                   Response.ApplyAppPathModifier("~/Pages/Shopping/Cart.aspx"));
-
-            }
-            catch (StockEmptyException)
-            {
-                lblAmountError.Visible = true;
-            }
         }
     }
 }

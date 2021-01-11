@@ -129,4 +129,7 @@
   <data name="lclTag.Text" xml:space="preserve">
     <value>Tag Name</value>
   </data>
+  <data name="lnkMain.Text" xml:space="preserve">
+    <value>Menu</value>
+  </data>
 </root>

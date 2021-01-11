@@ -159,4 +159,7 @@
   <data name="revVerificationTamError.ErrorMessage" xml:space="preserve">
     <value>Lonxitide de código inválido</value>
   </data>
+  <data name="lnkBack.Test" xml:space="preserve">
+    <value>Volver</value>
+  </data>
 </root>

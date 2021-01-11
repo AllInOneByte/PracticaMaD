@@ -12,9 +12,13 @@
     runat="server">
     <div id="form">
         <form id="ListCreditCardsForm" method="GET" runat="server">
+            <br />
+            <br />
             <asp:HyperLink ID="lnkRegisterCreditCard" runat="server" 
                 NavigateUrl="~/Pages/User/RegisterCreditCard.aspx"
                 meta:resourcekey="lnkRegisterCreditCard"/>
+            <br />
+            <br />
             <asp:Table ID="lclTableCreditCards" runat="server" meta:resourcekey="lclTableCreditCards">
                 <asp:TableHeaderRow ID="Header1" runat="server">
                     <asp:TableHeaderCell ID="lclHeaderNumber" meta:resourceKey="lclHeaderNumber"></asp:TableHeaderCell>

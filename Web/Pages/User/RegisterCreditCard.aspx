@@ -13,6 +13,13 @@
     runat="server">
     <div id="form">
         <form id="RegisterCreditCardForm" method="post" runat="server">
+            <br />
+            <br />
+            <asp:HyperLink ID="lnkBack" runat="server" 
+                NavigateUrl="~/Pages/User/ListCreditCards.aspx"
+                meta:resourcekey="lnkBack"/>
+            <br />
+            <br />
             <div class="field">
                 <span class="label">
                     <asp:Localize ID="lclCreditNumber" runat="server" meta:resourcekey="lclCreditNumber" /></span><span
