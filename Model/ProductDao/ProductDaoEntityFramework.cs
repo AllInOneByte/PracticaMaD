@@ -60,6 +60,35 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         }
 
         /// <summary>
+        /// Finds a Product by Tag Id
+        /// </summary>
+        /// <param tagId="tagId">TagIds</param>
+        /// <returns>List of Product</returns>
+        /// <exception cref="InstanceNotFoundException"/>
+        public List<Product> FindByTagId(long tagId, int startIndex = 0, int count = 20)
+        {
+            List<Product> product = null;
+
+            #region Option 1: Using Linq.
+
+            DbSet<Product> products = Context.Set<Product>();
+
+            var result =
+                (from p in products
+                 where p.Comments.Any(c => c.Tags.Any(t => t.tagId == tagId))
+                 orderby p.productName ascending
+                 select p).Skip(startIndex).Take(count);
+
+            product = result.ToList();
+
+
+            #endregion Option 1: Using Linq.
+
+            return product;
+
+        }
+
+        /// <summary>
         /// Finds a Product by Key words
         /// </summary>
         /// <param keyWords="keyWords">keyWords</param>

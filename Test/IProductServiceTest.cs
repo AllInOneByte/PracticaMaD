@@ -149,6 +149,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             }
         }
 
+
+
         /// <summary>
         /// A test for FindAllProducts
         /// </summary>
@@ -167,6 +169,59 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 };
 
                 var productDetailsList = productService.FindAllProducts();
+
+                // Check data
+                Assert.AreEqual(productList.Count, productDetailsList.Products.Count);
+
+                for (int i = 0; i < productList.Count; i++)
+                {
+                    Assert.AreEqual(productList[i].productId, productDetailsList.Products[i].productId);
+                    Assert.AreEqual(productList[i].productName, productDetailsList.Products[i].productName);
+                    Assert.AreEqual(productList[i].Category.categoryName,
+                        productDetailsList.Products[i].Category.categoryName);
+                    Assert.AreEqual(productList[i].productDate, productDetailsList.Products[i].productDate);
+                    Assert.AreEqual(productList[i].productPrice, productDetailsList.Products[i].productPrice);
+                }
+            }
+        }
+
+        /// <summary>
+        /// A test for FindProductsByTagId.
+        /// </summary>
+        [TestMethod]
+        public void FindProductsByTagIdTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                var user = CreateUser();
+                var category = CreateCategory(categoryName);
+                var tag1 = CreateTag(tagName1);
+                var tag2 = CreateTag(tagName2);
+
+                var product1 = CreateProduct(productName, productPrice, productDate, productQuantity,
+                    category.categoryId);
+                List<Product> productList = new List<Product>
+                {
+                    product1
+                };
+                var product2 = CreateProduct("pro2", 9, System.DateTime.Now, 10, category.categoryId);
+                var product3 = CreateProduct("product3", 8, System.DateTime.Now, 13, category.categoryId);
+                productList.Add(product3);
+
+                List<long> tagIds1 = new List<long>
+                {
+                    tag1.tagId
+                };
+                List<long> tagIds2 = new List<long>
+                {
+                    tag2.tagId
+                };
+
+                productService.AddComment(product1.productId, user.usrId, "comment", tagIds1);
+                productService.AddComment(product2.productId, user.usrId, "comment", tagIds2);
+                productService.AddComment(product3.productId, user.usrId, "comment", tagIds1);
+
+                var productDetailsList = productService.FindAllProductsByTag(tag1.tagId);
 
                 // Check data
                 Assert.AreEqual(productList.Count, productDetailsList.Products.Count);

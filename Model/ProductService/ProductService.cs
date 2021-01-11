@@ -55,7 +55,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         public ProductBlock FindAllProductsByTag(long tagId, int startIndex = 0, int count = 20)
         {
-            List<Product> products = new List<Product>();
+            List<Product> products = ProductDao.FindByTagId(tagId);
 
             bool existMoreProducts = (products.Count == count + 1);
 

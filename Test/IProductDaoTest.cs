@@ -1,6 +1,9 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using System;
@@ -19,9 +22,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         private static IKernel kernel;
         private static IProductDao productDao;
         private static ICategoryDao categoryDao;
+        private static ITagDao tagDao;
+        private static IUserProfileDao userProfileDao;
+        private static ICommentDao commentDao;
         private Product product;
         private Category category;
         private Category category2;
+        private Tag tag;
+        private UserProfile user;
 
         // Variables used in several tests are initialized here
         private const String categoryName = "categoryTest";
@@ -62,6 +70,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             kernel = TestManager.ConfigureNInjectKernel();
             productDao = kernel.Get<IProductDao>();
             categoryDao = kernel.Get<ICategoryDao>();
+            tagDao = kernel.Get<ITagDao>();
+            userProfileDao = kernel.Get<IUserProfileDao>();
+            commentDao = kernel.Get<ICommentDao>();
         }
 
         //Use ClassCleanup to run code after all tests in a class have run
@@ -85,6 +96,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             categoryDao.Create(category);
             categoryDao.Create(category2);
+
+            tag = new Tag();
+            tag.tagName = "tag";
+            tagDao.Create(tag);
+
+            user = new UserProfile();
+            user.address = "address";
+            user.country = "ES";
+            user.language = "es";
+            user.loginName = "login";
+            user.enPassword = "password";
+            user.firstName = "name";
+            user.lastName = "surname";
+            user.role = 0;
+            user.email = "email";
+            userProfileDao.Create(user);
+
         }
 
         //Use TestCleanup to run code after each test has run
@@ -95,6 +123,55 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         }
 
         #endregion Additional test attributes
+
+        /// <summary>
+        ///A test for FindByTagId.
+        ///</summary>
+        [TestMethod]
+        public void DAO_FindByTagId()
+        {
+            int numberFoundProducts = 1;
+            List<Product> createdProducts = new List<Product>();
+
+            product = new Product();
+            product.productName = productName + 1;
+            product.productPrice = productPrice;
+            product.productDate = productDate;
+            product.productQuantity = productQuantity;
+            product.Category = category;
+
+            productDao.Create(product);
+
+            Comment comment = new Comment();
+
+            comment.comment1 = "comment";
+            comment.commentDate = System.DateTime.Now;
+            comment.productId = product.productId;
+            comment.userId = user.usrId;
+            comment.Tags.Add(tag);
+
+            commentDao.Create(comment);
+
+            createdProducts.Add(product);
+
+            product = new Product();
+            product.productName = "name" + 2;
+            product.productPrice = productPrice;
+            product.productDate = productDate;
+            product.productQuantity = productQuantity;
+            product.categoryId = category2.categoryId;
+
+            productDao.Create(product);
+
+            List<Product> totalRetrievedProducts = productDao.FindByTagId(tag.tagId);
+
+            Assert.AreEqual(numberFoundProducts, totalRetrievedProducts.Count);
+
+            for (int i = 0; i < numberFoundProducts; i++)
+            {
+                Assert.AreEqual(totalRetrievedProducts[i], createdProducts[i]);
+            }
+        }
 
         /// <summary>
         ///A test for FindByKeywordsAndCategory. With Category
@@ -113,7 +190,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 product.productPrice = productPrice;
                 product.productDate = productDate;
                 product.productQuantity = productQuantity;
-                product.categoryId = category.categoryId;
+                product.Category = category;
 
                 productDao.Create(product);
                 if (i == 1)
@@ -140,6 +217,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 Assert.AreEqual(totalRetrievedProducts[i], createdProducts[i]);
             }
         }
+
+
 
         /// <summary>
         ///A test for FindByKeywordsAndCategory. Within Category
