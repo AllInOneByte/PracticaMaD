@@ -16,14 +16,18 @@
                 <asp:Label ID="lblNoComments" meta:resourcekey="lblNoComments" runat="server"></asp:Label>
             </p>
 
-            <asp:HyperLink ID="hlAddComment" runat="server" meta:resourcekey="hlAddComment" Visible="false" />
-
-            <asp:GridView ID="gvProducts" runat="server" GridLines="None" AutoGenerateColumns="False" Width="100%">
+            <asp:GridView ID="gvProducts" runat="server" GridLines="None" AutoGenerateColumns="False"
+                Width="100%" OnRowDataBound="gvProducts_RowDataBound">
                 <Columns>
                     <asp:BoundField DataField="UserProfile.firstName" HeaderText="<%$ Resources:Common, userProfileName %>" />
                     <asp:BoundField DataField="comment1" HeaderText="<%$ Resources:Common, commentBody %>" />
                     <asp:BoundField DataField="commentDate" HeaderText="<%$ Resources:Common, commentDate %>"
                         DataFormatString="{0:d/M/yyyy}" />
+                    <asp:TemplateField HeaderText="<%$ Resources:Common, commentTags %>">
+                        <ItemTemplate>
+                            <asp:ListBox ID="tagList" runat="server"></asp:ListBox>
+                        </ItemTemplate>
+                    </asp:TemplateField> 
                 </Columns>
             </asp:GridView>
         </form>

@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Tags.
+        /// </summary>
+        internal static string commentTags {
+            get {
+                return ResourceManager.GetString("commentTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Mandatory Field.
         /// </summary>
         internal static string mandatoryField {

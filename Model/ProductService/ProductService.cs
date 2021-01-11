@@ -197,6 +197,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             return new CommentBlock(comments, existMoreComments);
         }
 
+        /// <exception cref="InstanceNotFoundException" />
+        public Comment FindCommentByProductAndUser(long productId, long userId)
+        {
+            return CommentDao.FindByProductIdAndUserId(productId, userId);
+        }
+
         #endregion Comment Members
 
         #region Tag Members

@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model;
+using System.Management.Instrumentation;
+using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
@@ -19,6 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             lblProductError.Visible = false;
             TableProductInfo.Visible = false;
             hlComments.Visible = false;
+            hlAddComment.Visible = false;
 
             long productId;
 
@@ -60,8 +63,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             {
                 lnkUpdate.Visible = true;
             }
+            if (SessionManager.IsUserAuthenticated(Context))
+            {
+                try
+                {
+                    productService.FindCommentByProductAndUser(productId,
+                        SessionManager.GetUserSession(Context).UserProfileId);
+                }
+                catch (InstanceNotFoundException)
+                {
+                    hlAddComment.Visible = true;
+                }
+            }
+            else
+            {
+                hlAddComment.Visible = true;
+            }
 
-            hlComments.Visible = true;
+            hlAddComment.NavigateUrl = "/Pages/Product/AddComment.aspx" +
+                    "?product=" + productId;
+
+            CommentBlock commentBlock =
+                productService.FindAllProductComments(0, Settings.Default.PracticaMaD_defaultCount);
+
+            if (commentBlock.Comments.Count == 0)
+            {
+                hlComments.Visible = true;
+            }
+            
         }
 
         protected void BtnAddCartClick(object sender, EventArgs e)

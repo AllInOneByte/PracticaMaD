@@ -1,5 +1,9 @@
-﻿using Es.Udc.DotNet.ModelUtil.IoC;
+﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using System;
 using System.Collections.Generic;
@@ -20,13 +24,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             lnkPrevious.Visible = false;
             lnkNext.Visible = false;
             lblNoComments.Visible = false;
-            hlAddComment.Visible = false;
 
             /* Get productId */
             try
             {
                 productId = long.Parse(Request.Params.Get("product"));
-                hlAddComment.Visible = true;
             }
             catch (ArgumentNullException)
             {
@@ -68,6 +70,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 return;
             }
 
+            ViewState["comments"] = commentBlock.Comments;
+
             gvProducts.DataSource = commentBlock.Comments;
             gvProducts.DataBind();
 
@@ -93,8 +97,41 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 lnkNext.Visible = true;
             }
 
-            hlAddComment.NavigateUrl = "/Pages/Product/AddComment.aspx" +
-                "?product=" + productId;
+            Comment comment = null;
+
+            if (SessionManager.IsUserAuthenticated(Context))
+            {
+                try
+                {
+                    comment = productService.FindCommentByProductAndUser(productId,
+                        SessionManager.GetUserSession(Context).UserProfileId);
+                }
+                catch (InstanceNotFoundException)
+                {
+                    // hacer desaparecer el comentario propio o algo
+                }
+            }
+            else
+            {
+                // lo mismo que arriba
+            }
+        }
+
+        protected void gvProducts_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                List<Comment> comments = (List<Comment>)ViewState["comments"];
+                Comment comment = comments.ElementAt(e.Row.RowIndex);
+
+                // Find ListBox
+                ListBox lst = (ListBox) e.Row.FindControl("tagList");
+
+                foreach (Tag tag in comment.Tags)
+                {
+                    lst.Items.Add(new ListItem(tag.tagName));
+                }
+            }
         }
     }
 }

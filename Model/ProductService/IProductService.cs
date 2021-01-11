@@ -3,7 +3,6 @@ using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
-using Es.Udc.DotNet.PracticaMaD.Model.ProductService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Ninject;
 using System.Collections.Generic;
@@ -48,7 +47,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <summary>
         /// Find all products that contains the tag id in the comments.
         /// </summary>
-       /// <param name="TagId"> The tag ID. </param>
+        /// <param name="TagId"> The tag ID. </param>
         /// <param name="startIndex"> The index at which the products list must start </param>
         /// <param name="count"> The maximum number of products that must return the function. </param>
         /// <returns> A list of products. </returns>
@@ -74,7 +73,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <returns> A list of products. </returns>
         ProductBlock FindAllProductsByKeyword(string keyword, int startIndex = 0, int count = 20);
 
-        
+
         /// <summary>
         /// Find a product.
         /// </summary>
@@ -144,6 +143,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         CommentBlock FindAllProductComments(long productId, int startIndex = 0, int count = 20);
 
         /// <summary>
+        /// Find a comment of a product made by a specific user.
+        /// </summary>
+        /// <param name="productId"> The product's ID </param>
+        /// <param name="userId"> The user ID. </param>
+        /// <returns> A comment made by the indicated user for the indicated product. </returns>
+        /// <exception cref="InstanceNotFoundException" />
+        Comment FindCommentByProductAndUser(long productId, long userId);
+
+        /// <summary>
         /// Add a new tag.
         /// </summary>
         /// <param name="tagName"> The tag's name. </param>
@@ -170,6 +178,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// </summary>
         /// <returns> A list of categories. </returns>
         List<Category> FindAllCategories();
-        
+
     }
 }
