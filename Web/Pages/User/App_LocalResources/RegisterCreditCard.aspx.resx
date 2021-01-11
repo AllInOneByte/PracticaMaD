@@ -159,4 +159,7 @@
   <data name="revVerificationTamError.ErrorMessage" xml:space="preserve">
     <value>Invalid Verification Code Lenght</value>
   </data>
+  <data name="lnkBack.Test" xml:space="preserve">
+    <value>Back</value>
+  </data>
 </root>

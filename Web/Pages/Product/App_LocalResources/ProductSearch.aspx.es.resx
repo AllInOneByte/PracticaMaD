@@ -129,6 +129,9 @@
   <data name="lclSearch.Text" xml:space="preserve">
     <value>Filtro de productos</value>
   </data>
+  <data name="lnkBack.Text" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
   <data name="txtSearch.placeholder" xml:space="preserve">
     <value>Palabra clave...</value>
   </data>

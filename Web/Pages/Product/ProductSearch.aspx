@@ -24,7 +24,13 @@
                     <asp:Button ID="btnSearch" runat="server" OnClick="BtnSearchClick" meta:resourcekey="btnSearch" Width="30%" />
                 </span>
             </div>
-
+            <br />
+            <br />
+             <asp:HyperLink ID="lnkBack" runat="server" 
+                    NavigateUrl="~/Pages/MainPage.aspx"
+                    meta:resourcekey="lnkBack"/>
+            <br />
+            <br />
             <div>
                 <p>
                     <asp:Label ID="lblNoProducts" meta:resourcekey="lblNoProducts" runat="server"></asp:Label>

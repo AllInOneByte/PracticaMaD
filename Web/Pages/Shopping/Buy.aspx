@@ -70,7 +70,7 @@
             <br />
             <asp:HyperLink ID="lnkBack" runat="server" 
                     NavigateUrl="~/Pages/Shopping/Cart.aspx"
-                    meta:resourcekey="lnkBack" Visible="false"/>
+                    meta:resourcekey="lnkBack"/>
         </form>
     </div>
 </asp:Content>

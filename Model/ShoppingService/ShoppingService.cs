@@ -51,7 +51,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
             CreditCard card = CreditCardDao.FindByNumber(cardNumber);
 
-
             if (CreditCardDao.FindByUserId(userId)
                 .Contains(card))
             {
@@ -79,7 +78,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                     }
                     else
                     {
-                        DeliveryDao.Remove(delivery.deliveryId);
                         throw new StockEmptyException(item.Product.productId, item.Product.productName);
                     }
                     

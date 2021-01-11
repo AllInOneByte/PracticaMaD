@@ -30,6 +30,11 @@
             <div class="button">
                 <asp:Button ID="btnRegisterTag" runat="server" OnClick="BtnRegisterTagClick" meta:resourcekey="btnRegisterTag" />
             </div>
+            <br />
+            <br />
+            <asp:HyperLink ID="lnkMain" runat="server" 
+                NavigateUrl="~/Pages/MainPage.aspx"
+                meta:resourcekey="lnkMain"/>
         </form>
     </div>
 </asp:Content>

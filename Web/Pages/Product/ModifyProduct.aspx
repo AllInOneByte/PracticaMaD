@@ -54,6 +54,11 @@
             <div class="button">
                 <asp:Button ID="btnUpdate" runat="server" OnClick="BtnUpdateClick" meta:resourcekey="btnUpdate"/>
             </div>
+            <br />
+            <br />
+            <asp:HyperLink ID="lnkBack" runat="server" 
+                    NavigateUrl="~/Pages/Product/ProductSearch.aspx"
+                    meta:resourcekey="lnkBack"/>
         </form>
     </div>
 </asp:Content>

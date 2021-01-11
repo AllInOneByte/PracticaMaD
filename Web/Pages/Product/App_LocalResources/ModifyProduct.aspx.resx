@@ -135,6 +135,9 @@
   <data name="lclQuantity.Text" xml:space="preserve">
     <value>Amount</value>
   </data>
+  <data name="lnkBack.Test" xml:space="preserve">
+    <value>Products</value>
+  </data>
   <data name="revNumberError.ErrorMessage" xml:space="preserve">
     <value>Only numbers allow</value>
   </data>
