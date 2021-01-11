@@ -169,6 +169,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             ICollection<Tag> tags = new List<Tag>();
 
             comment.comment1 = commentBody;
+            comment.Tags.Clear();
             foreach (var tagId in newTags)
             {
                 tags.Add(TagDao.Find(tagId));
@@ -178,8 +179,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
             CommentDao.Update(comment);
         }
-
-        [Transactional]
+        
         public CommentBlock FindAllProductComments(long productId, int startIndex = 0, int count = 20)
         {
             List<Comment> comments = CommentDao.FindByProductIdOrderByDeliveryDate(productId, startIndex, count + 1);
@@ -192,7 +192,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         }
 
         /// <exception cref="InstanceNotFoundException" />
-        [Transactional]
         public Comment FindCommentByProductAndUser(long productId, long userId)
         {
             return CommentDao.FindByProductIdAndUserId(productId, userId);

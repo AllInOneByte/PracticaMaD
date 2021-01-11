@@ -55,7 +55,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             lnkUpdate.NavigateUrl += product.productId;
             lnkAddCart.NavigateUrl += product.productId + "&productQuantity=" + product.productQuantity;
 
-            if (SessionManager.IsAdminAuthenticated(Context))
+            if (SessionManager.IsUserAuthenticated(Context))
             {
                 lnkUpdate.Visible = true;
             }
