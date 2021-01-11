@@ -1,21 +1,17 @@
-﻿using Es.Udc.DotNet.ModelUtil.IoC;
+﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using System;
 using System.Globalization;
 using System.Web;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using System.Collections.Generic;
-using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
-using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Model;
-using System.Management.Instrumentation;
-using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
     public partial class ProductDetails : System.Web.UI.Page
     {
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             lblProductError.Visible = false;
@@ -91,7 +87,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             {
                 hlComments.Visible = false;
             }
-            
+
         }
     }
 }
