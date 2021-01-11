@@ -21,10 +21,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         /// <returns>List of Product</returns>
         /// <exception cref="InstanceNotFoundException"/>
         List<Product> FindByKeywords(string keyWords, int startIndex = 0, int count = 20);
-        
+
+        /// <summary>
+        /// Finds a Product by Tag Id
+        /// </summary>
+        /// <param tagId="tagId">TagIds</param>
+        /// <returns>List of Product</returns>
+        /// <exception cref="InstanceNotFoundException"/>
+        List<Product> FindByTagId(long tagId, int startIndex = 0, int count = 20);
+
             /// <summary>
-        /// Finds all Products
-        /// <returns>List of Products</returns>
+            /// Finds all Products
+            /// <returns>List of Products</returns>
         List<Product> FindAll(int startIndex = 0, int count = 20);
     }
 }

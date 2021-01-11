@@ -133,38 +133,79 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             /* If there is no keyword, search all products */
             else
             {
-                /* Get Products Info */
-                ProductBlock productBlock = productService.FindAllProducts(startIndex, count);
-
-                if (productBlock.Products.Count == 0)
+                try 
                 {
-                    lblNoProducts.Visible = true;
-                    return;
+                    long tagId = long.Parse(Request.Params.Get("tagId"));
+
+                    /* Get Products Info */
+                    ProductBlock productBlock = productService.FindAllProductsByTag(tagId, startIndex, count);
+
+                    if (productBlock.Products.Count == 0)
+                    {
+                        lblNoProducts.Visible = true;
+                        return;
+                    }
+
+                    gvProducts.DataSource = productBlock.Products;
+                    gvProducts.DataBind();
+
+                    /* "Previous" link */
+                    if ((startIndex - count) >= 0)
+                    {
+                        string url =
+                            "/Pages/Product/ProductSearch.aspx" + "?tagId=" + tagId + "startIndex=" + (startIndex - count) +
+                            "&count=" + count;
+
+                        lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
+                        lnkPrevious.Visible = true;
+                    }
+
+                    /* "Next" link */
+                    if (productBlock.ExistMoreProducts)
+                    {
+                        string url =
+                            "/Pages/Product/ProductSearch.aspx" + "?tagId=" + tagId + "startIndex=" + (startIndex + count) +
+                            "&count=" + count;
+
+                        lnkNext.NavigateUrl = Response.ApplyAppPathModifier(url);
+                        lnkNext.Visible = true;
+                    }
                 }
-
-                gvProducts.DataSource = productBlock.Products;
-                gvProducts.DataBind();
-
-                /* "Previous" link */
-                if ((startIndex - count) >= 0)
+                catch (ArgumentNullException)
                 {
-                    string url =
-                        "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex - count) +
-                        "&count=" + count;
+                    /* Get Products Info */
+                    ProductBlock productBlock = productService.FindAllProducts(startIndex, count);
 
-                    lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
-                    lnkPrevious.Visible = true;
-                }
+                    if (productBlock.Products.Count == 0)
+                    {
+                        lblNoProducts.Visible = true;
+                        return;
+                    }
 
-                /* "Next" link */
-                if (productBlock.ExistMoreProducts)
-                {
-                    string url =
-                        "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex + count) +
-                        "&count=" + count;
+                    gvProducts.DataSource = productBlock.Products;
+                    gvProducts.DataBind();
 
-                    lnkNext.NavigateUrl = Response.ApplyAppPathModifier(url);
-                    lnkNext.Visible = true;
+                    /* "Previous" link */
+                    if ((startIndex - count) >= 0)
+                    {
+                        string url =
+                            "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex - count) +
+                            "&count=" + count;
+
+                        lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
+                        lnkPrevious.Visible = true;
+                    }
+
+                    /* "Next" link */
+                    if (productBlock.ExistMoreProducts)
+                    {
+                        string url =
+                            "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex + count) +
+                            "&count=" + count;
+
+                        lnkNext.NavigateUrl = Response.ApplyAppPathModifier(url);
+                        lnkNext.Visible = true;
+                    }
                 }
             }
 
@@ -237,20 +278,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             }
         }
 
-        protected void BtnAddToCartClick_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "BtnAddToCartClick")
-            {
-                // Convert the row index stored in the CommandArgument
-                // property to an Integer.
-                int index = Convert.ToInt32(e.CommandArgument);
-
-                // Retrieve the row that contains the button clicked 
-                // by the user from the Rows collection.
-                GridViewRow row = gvProducts.Rows[index];
-
-                Convert.ToInt32(row.Cells[0].Text); // productId
-            }
-        }
     }
 }
