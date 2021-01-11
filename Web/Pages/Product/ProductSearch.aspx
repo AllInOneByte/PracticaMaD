@@ -35,7 +35,7 @@
                 <p>
                     <asp:Label ID="lblNoProducts" meta:resourcekey="lblNoProducts" runat="server"></asp:Label>
                 </p>
-                <asp:GridView ID="gvProducts" OnRowCommand="BtnAddToCartClick_RowCommand" runat="server" GridLines="None" AutoGenerateColumns="False" Width="100%">
+                <asp:GridView ID="gvProducts" runat="server" GridLines="None" AutoGenerateColumns="False" Width="100%">
                     <Columns>
                         <asp:BoundField DataField="productId" Visible="false" />
                         <asp:HyperLinkField DataTextField="productName"
