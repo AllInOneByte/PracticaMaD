@@ -70,8 +70,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 return;
             }
 
-            ViewState["comments"] = commentBlock.Comments;
-
             gvProducts.DataSource = commentBlock.Comments;
             gvProducts.DataBind();
 
@@ -130,8 +128,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                List<Comment> comments = (List<Comment>)ViewState["comments"];
-                Comment comment = comments.ElementAt(e.Row.RowIndex);
+                /* Get the Service */
+                IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+                IProductService productService = iocManager.Resolve<IProductService>();
+
+                Comment comment = productService.FindCommentById(long.Parse(e.Row.Cells[0].Text));
 
                 // Find ListBox
                 ListBox lst = (ListBox)e.Row.FindControl("tagList");
