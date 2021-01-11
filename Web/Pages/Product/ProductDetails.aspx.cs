@@ -63,6 +63,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             {
                 lnkUpdate.Visible = true;
             }
+
             if (SessionManager.IsUserAuthenticated(Context))
             {
                 try
@@ -88,7 +89,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
             if (commentBlock.Comments.Count == 0)
             {
-                hlComments.Visible = true;
+                hlComments.Visible = false;
             }
             
         }
