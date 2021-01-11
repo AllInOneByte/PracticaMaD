@@ -117,19 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnSearch.Text" xml:space="preserve">
-    <value>Buscar</value>
+  <data name="btnAddCart.Text" xml:space="preserve">
+    <value>Add to Shopping Cart</value>
   </data>
-  <data name="lblNoProducts.Text" xml:space="preserve">
-    <value>No se encontraron productos</value>
+  <data name="lblAmount.Text" xml:space="preserve">
+    <value>Amount</value>
   </data>
-  <data name="lclAdd.Text" xml:space="preserve">
-    <value>Añadir al carrito</value>
+  <data name="lblAmountError.Text" xml:space="preserve">
+    <value>Insufficient quantity available in stock of</value>
   </data>
-  <data name="lclSearch.Text" xml:space="preserve">
-    <value>Filtro de productos</value>
+  <data name="lblQuantity.Text" xml:space="preserve">
+    <value>Available stock :</value>
   </data>
-  <data name="txtSearch.placeholder" xml:space="preserve">
-    <value>Palabra clave...</value>
+  <data name="lclGift.Text" xml:space="preserve">
+    <value>Gift wrap</value>
+  </data>
+  <data name="lnkBack.Text" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="revNumberError.ErrorMessage" xml:space="preserve">
+    <value>Only numbers allow</value>
   </data>
 </root>

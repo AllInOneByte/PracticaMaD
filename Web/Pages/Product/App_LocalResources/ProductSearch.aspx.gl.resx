@@ -123,6 +123,9 @@
   <data name="lblNoProducts.Text" xml:space="preserve">
     <value>Non se atoparon produtos</value>
   </data>
+  <data name="lclAdd.Text" xml:space="preserve">
+    <value>Engadir ao carrito</value>
+  </data>
   <data name="lclSearch.Text" xml:space="preserve">
     <value>Filtro de produtos</value>
   </data>

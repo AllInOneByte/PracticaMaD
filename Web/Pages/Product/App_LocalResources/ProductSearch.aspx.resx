@@ -123,6 +123,9 @@
   <data name="lblNoProducts.Text" xml:space="preserve">
     <value>No products found</value>
   </data>
+  <data name="lclAdd.Text" xml:space="preserve">
+    <value>Add to Shopping Cart</value>
+  </data>
   <data name="lclSearch.Text" xml:space="preserve">
     <value>Product filter</value>
   </data>

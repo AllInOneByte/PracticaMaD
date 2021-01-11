@@ -42,12 +42,7 @@
                             DataFormatString="{0:d/M/yyyy}" />
                         <asp:BoundField DataField="productPrice" HeaderText="<%$ Resources:Common, productPrice %>"
                             DataFormatString="{0:C}" />
-                        <asp:TemplateField>
-                            <ItemTemplate>
-                                <asp:Button runat="server" Text="<%$ Resources:Common, addToCart %>"
-                                    CommandName="BtnAddToCartClick" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
+                        <asp:HyperLinkField Text="lclAdd" DataNavigateUrlFields="productId, productQuantity" DataNavigateUrlFormatString="~/Pages/Shopping/AddProductCart.aspx?productId={0}&productQuantity={1}"  meta:resourcekey="lclAdd" />
                     </Columns>
                 </asp:GridView>
             </div>
