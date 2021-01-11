@@ -147,7 +147,7 @@
   <data name="lblAmountError.Text" xml:space="preserve">
     <value>Non existe a cantidade especifícada en stock</value>
   </data>
-  <data name="btnDelete" xml:space="preserve">
+  <data name="btnDelete.Text" xml:space="preserve">
     <value>Borrar</value>
   </data>
   <data name="lnkMain.Text" xml:space="preserve">

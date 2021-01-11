@@ -14,11 +14,12 @@
         <form id="ModifyProductForm" method="POST" runat="server">
             <div class="field">
                 <span class="label">
-                    <asp:Localize ID="lclName" runat="server" meta:resourcekey="lclName" /></span><span
+                    <asp:Localize ID="lclName" runat="server" meta:resourcekey="lclName" />
+                </span><span
                         class="entry">
                         <asp:TextBox ID="txtName" runat="server" Width="100px" Columns="16"
                             meta:resourcekey="txtNameResource1"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredNameValidator1" runat="server" ControlToValidate="txtName"
+                        <asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="txtName"
                             Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"
                             meta:resourcekey="rfvNameResource1"></asp:RequiredFieldValidator>
                         <asp:Label ID="lblNameError" runat="server" ForeColor="Red" Style="position: relative"
@@ -29,7 +30,7 @@
                     <asp:Localize ID="lclQuantity" runat="server" meta:resourcekey="lclQuantity" /></span><span
                         class="entry">
                         <asp:TextBox ID="txtQuantity" runat="server" Width="100px" Columns="16"
-                            meta:resourcekey="txtQuantityResource1"></asp:TextBox>
+                            meta:resourcekey="txtQuantity"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredQuantityValidator1" runat="server" ControlToValidate="txtQuantity"
                             Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"
                             meta:resourcekey="rfvQuantityResource1"></asp:RequiredFieldValidator>
@@ -42,12 +43,12 @@
                     <asp:Localize ID="lclPrice" runat="server" meta:resourcekey="lclPrice" /></span><span
                         class="entry">
                         <asp:TextBox ID="txtPrice" runat="server" Width="100px" Columns="16"
-                            meta:resourcekey="txtPriceResource1"></asp:TextBox>
+                            meta:resourcekey="txtPrice"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredPriceValidator1" runat="server" ControlToValidate="txtPrice"
                             Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"
                             meta:resourcekey="rfvExpirationDateResource1"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RegularPriceValidator1" runat="server" ControlToValidate="txtPrice"
-                            Display="Dynamic" ValidationExpression="\d+.\d+"
+                            Display="Dynamic" ValidationExpression="\d+,\d+"
                             meta:resourcekey="revPriceError"></asp:RegularExpressionValidator></span>
             </div>
             <div class="button">

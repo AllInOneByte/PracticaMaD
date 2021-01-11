@@ -12,15 +12,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            long productId = Int64.Parse(Request.Params.Get("productId"));
+            if (!IsPostBack)
+            {
+                long productId = Int64.Parse(Request.Params.Get("productId"));
 
-            var product = SessionManager.FindProduct(productId);
+                var product = SessionManager.FindProduct(productId);
 
-            txtName.Text = product.productName;
-            txtPrice.Text = product.productPrice.ToString();
-            txtQuantity.Text = product.productQuantity.ToString();
+                txtName.Text = product.productName;
+                txtPrice.Text = product.productPrice.ToString();
+                txtQuantity.Text = product.productQuantity.ToString();
 
-            btnUpdate.CommandArgument = product.productId.ToString();
+                btnUpdate.CommandArgument = product.productId.ToString();
+            }
         }
 
         protected void BtnUpdateClick(object sender, EventArgs e)
@@ -29,14 +32,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             {
                 try
                 {
-                    long producId = Convert.ToInt64(btnUpdate.CommandArgument);
-                    int quantaty = Convert.ToInt32(txtQuantity.Text);
+                    long productId = Int64.Parse(Request.Params.Get("productId"));
+
+                    int quantity = Convert.ToInt32(txtQuantity.Text);
                     decimal price = Convert.ToDecimal(txtPrice.Text);
 
-                    SessionManager.UpdateProduct(producId, txtName.Text, price, quantaty);
+                    SessionManager.UpdateProduct(productId, txtName.Text, price, quantity);
 
                     Response.Redirect(Response.
-                        ApplyAppPathModifier("~/Pages/Product/ProductDetails.aspx?product="+producId));
+                        ApplyAppPathModifier("~/Pages/Product/ProductDetails.aspx?product=" + productId));
                 }
                 catch (DuplicateInstanceException)
                 {

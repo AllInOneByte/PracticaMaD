@@ -75,7 +75,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
                 bdelete = new Button();
                 bdelete.CommandArgument = line.Product.productId.ToString();
                 bdelete.Click += new EventHandler(this.OnClickDelete);
-                bdelete.Text = GetLocalResourceObject("btnBuy.Text").ToString();
+                bdelete.Text = GetLocalResourceObject("btnDelete.Text").ToString();
+                bdelete.BackColor = System.Drawing.Color.Red;
+                delete.Controls.Add(bdelete);
                 row.Cells.Add(delete);
 
                 lclCart.Rows.Add(row);
