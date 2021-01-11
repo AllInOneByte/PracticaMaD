@@ -3,7 +3,6 @@ using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
-using Es.Udc.DotNet.PracticaMaD.Model.ProductService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Ninject;
 using System.Collections.Generic;
@@ -48,7 +47,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <summary>
         /// Find all products that contains the tag id in the comments.
         /// </summary>
-       /// <param name="TagId"> The tag ID. </param>
+        /// <param name="TagId"> The tag ID. </param>
         /// <param name="startIndex"> The index at which the products list must start </param>
         /// <param name="count"> The maximum number of products that must return the function. </param>
         /// <returns> A list of products. </returns>
@@ -74,7 +73,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <returns> A list of products. </returns>
         ProductBlock FindAllProductsByKeyword(string keyword, int startIndex = 0, int count = 20);
 
-        
+
         /// <summary>
         /// Find a product.
         /// </summary>
@@ -82,6 +81,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <returns> The found product. </returns>
         /// <exception cref="InstanceNotFoundException"/>
         Product FindProduct(long productId);
+
+        /// <summary>
+        /// Find a comment.
+        /// </summary>
+        /// <param commentId="commentId"> The ID of the comment to be found. </param>
+        /// <returns> The found comment. </returns>
+        /// <exception cref="InstanceNotFoundException"/>
+        Comment FindCommentById(long commentId);
 
         /// <summary>
         /// Add a new comment.
@@ -125,16 +132,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         void UpdateComment(long commentId, string commentBody, List<long> newTags);
 
         /// <summary>
-        /// Update the comment.
-        /// </summary>
-        /// <param name="commentId"> The comment's id. </param>
-        /// <param name="commentBody"> The comment's body. </param>
-        /// <param name="newTags"> The comment's new tags. </param>
-        /// <param name="removeTags"> The remove tags of the commennt. </param>
-        /// <exception cref="InstanceNotFoundException"/>
-        void UpdateComment(long commentId, string commentBody, List<long> newTags, List<long> removeTags);
-
-        /// <summary>
         /// Find all comments of a product.
         /// </summary>
         /// <param name="productId"> The product's ID </param>
@@ -144,11 +141,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         CommentBlock FindAllProductComments(long productId, int startIndex = 0, int count = 20);
 
         /// <summary>
+        /// Find a comment of a product made by a specific user.
+        /// </summary>
+        /// <param name="productId"> The product's ID </param>
+        /// <param name="userId"> The user ID. </param>
+        /// <returns> A comment made by the indicated user for the indicated product. </returns>
+        /// <exception cref="InstanceNotFoundException" />
+        Comment FindCommentByProductAndUser(long productId, long userId);
+
+        /// <summary>
         /// Add a new tag.
         /// </summary>
         /// <param name="tagName"> The tag's name. </param>
         /// <exception cref="DuplicateInstanceException"/>
         long AddTag(string tagName);
+
+        /// <summary>
+        /// Find a tag by its name.
+        /// </summary>
+        /// <param name="tagName"> The tag's name. </param>
+        /// <exception cref="InstanceNotFoundException"/>
+        Tag FindTagByName(string tagName);
 
         /// <summary>
         /// Find all tags.
@@ -163,6 +176,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// </summary>
         /// <returns> A list of categories. </returns>
         List<Category> FindAllCategories();
-        
+
     }
 }

@@ -117,16 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnDelete.Text" xml:space="preserve">
-    <value>Eliminar comentario</value>
+  <data name="btnAddComment.Text" xml:space="preserve">
+    <value>Publicar</value>
   </data>
-  <data name="btnModify.Text" xml:space="preserve">
-    <value>Modificar comentario</value>
+  <data name="commentBodyTextBox.placeholder" xml:space="preserve">
+    <value>Escribe tu comentario aquí...</value>
   </data>
-  <data name="hlAddComment.Text" xml:space="preserve">
-    <value>Escribir un comentario</value>
+  <data name="commentTagBox.placeholder" xml:space="preserve">
+    <value>Una lista de etiquetas separada por espacios...</value>
   </data>
-  <data name="lblNoComments.Text" xml:space="preserve">
-    <value>No se encontraron comentarios</value>
+  <data name="hlReturnToDetails.Text" xml:space="preserve">
+    <value>Volver a los detalles del producto</value>
+  </data>
+  <data name="lblCommentAdded.Text" xml:space="preserve">
+    <value>Se ha publicado el comentario</value>
+  </data>
+  <data name="lblNoProduct.Text" xml:space="preserve">
+    <value>No se especificó producto</value>
+  </data>
+  <data name="lblUnlogedUser.Text" xml:space="preserve">
+    <value>Usuario no identificado</value>
   </data>
 </root>

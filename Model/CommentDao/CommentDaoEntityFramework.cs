@@ -50,6 +50,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
             return comments;
         }
 
+        public Comment FindByProductIdAndUserId(long productId, long userId)
+        {
+            Comment comment = null;
+
+            #region Option 1: Using Linq.
+
+            DbSet<Comment> commentsFound = Context.Set<Comment>();
+
+            var result =
+                (from c in commentsFound
+                 where (c.productId == productId) && c.userId == userId
+                 select c);
+
+            comment = result.FirstOrDefault();
+
+            #endregion Option 1: Using Linq.
+
+            if (comment == null)
+                throw new InstanceNotFoundException(productId,
+                    typeof(Comment).FullName);
+
+            return comment;
+        }
+
         #endregion ICommentDao Members. Specific Operations
     }
 }

@@ -159,4 +159,7 @@
   <data name="commentBody" xml:space="preserve">
     <value>Comment</value>
   </data>
+  <data name="commentTags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
 </root>

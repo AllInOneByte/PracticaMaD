@@ -50,6 +50,9 @@
     </asp:Table>
     <br />
     <br />
+    <asp:HyperLink ID="hlAddComment" runat="server" meta:resourcekey="hlAddComment" />
+    <br />
+    <br />
     <asp:HyperLink ID="hlComments" runat="server" meta:resourcekey="hlComments" />
     <br />
     <br />

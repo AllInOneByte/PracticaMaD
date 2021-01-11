@@ -105,6 +105,7 @@
     <Content Include="Global.asax" />
     <Content Include="Pages\Errors\InternalError.aspx" />
     <Content Include="Pages\MainPage.aspx" />
+    <Content Include="Pages\Product\AddComment.aspx" />
     <Content Include="Pages\Product\ModifyProduct.aspx" />
     <Content Include="Pages\Product\ProductComments.aspx" />
     <Content Include="Pages\Product\ProductDetails.aspx" />
@@ -172,6 +173,13 @@
     </Compile>
     <Compile Include="Pages\MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\AddComment.aspx.cs">
+      <DependentUpon>AddComment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\AddComment.aspx.designer.cs">
+      <DependentUpon>AddComment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Product\ModifyProduct.aspx.cs">
       <DependentUpon>ModifyProduct.aspx</DependentUpon>
@@ -541,6 +549,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Product\App_LocalResources\ProductComments.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\AddComment.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\AddComment.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\AddComment.aspx.gl.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Shopping\App_LocalResources\AddProductCart.aspx.resx" />

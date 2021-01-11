@@ -1,24 +1,23 @@
-﻿using Es.Udc.DotNet.ModelUtil.IoC;
+﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using System;
 using System.Globalization;
 using System.Web;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using System.Collections.Generic;
-using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
-using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Model;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
     public partial class ProductDetails : System.Web.UI.Page
     {
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             lblProductError.Visible = false;
             TableProductInfo.Visible = false;
             hlComments.Visible = false;
+            hlAddComment.Visible = false;
 
             long productId;
 
@@ -61,7 +60,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 lnkUpdate.Visible = true;
             }
 
-            hlComments.Visible = true;
+            if (SessionManager.IsUserAuthenticated(Context))
+            {
+                try
+                {
+                    productService.FindCommentByProductAndUser(productId,
+                        SessionManager.GetUserSession(Context).UserProfileId);
+                }
+                catch (InstanceNotFoundException)
+                {
+                    hlAddComment.Visible = true;
+                }
+            }
+            else
+            {
+                hlAddComment.Visible = true;
+            }
+
+            hlAddComment.NavigateUrl = "/Pages/Product/AddComment.aspx" +
+                    "?product=" + productId;
+
+            CommentBlock commentBlock =
+                productService.FindAllProductComments(0, Settings.Default.PracticaMaD_defaultCount);
+
+            if (commentBlock.Comments.Count == 0)
+            {
+                hlComments.Visible = false;
+            }
+
         }
     }
 }
