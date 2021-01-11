@@ -121,6 +121,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web {
         protected global::System.Web.UI.WebControls.HyperLink lnkListDeliveries;
         
         /// <summary>
+        /// Control lblDash7.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDash7;
+        
+        /// <summary>
+        /// Control lnkProducts.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkProducts;
+        
+        /// <summary>
         /// Control lblDash4.
         /// </summary>
         /// <remarks>

@@ -147,7 +147,7 @@
   <data name="lblAmountError.Text" xml:space="preserve">
     <value>No hay suficiente cantidad en stock</value>
   </data>
-  <data name="btnDelete" xml:space="preserve">
+  <data name="btnDelete.Text" xml:space="preserve">
     <value>Eliminar</value>
   </data>
   <data name="lnkMain.Text" xml:space="preserve">

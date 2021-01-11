@@ -36,7 +36,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
                     lblDash6.Visible = false;
                 if (lnkRegisterTag != null)
                     lnkRegisterTag.Visible = false;
-        }
+                if (lblDash7 != null)
+                    lblDash6.Visible = false;
+            }
             else
             {
                 if (SessionManager.IsAdminAuthenticated(Context))

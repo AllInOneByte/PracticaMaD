@@ -43,6 +43,10 @@
                     <asp:HyperLink ID="lnkListDeliveries" runat="server"
                         NavigateUrl="~/Pages/Shopping/ListDeliveries.aspx"
                         meta:resourcekey="lnkListDeliveries" />
+                    <asp:Label ID="lblDash7" runat="server" Text="-" />
+                    <asp:HyperLink ID="lnkProducts" runat="server"
+                        NavigateUrl="~/Pages/Product/ProductSearch.aspx"
+                        meta:resourcekey="lnkProducts" />
                     <asp:Label ID="lblDash4" runat="server" Text="-" />
                     <asp:HyperLink ID="lnkCart" runat="server"
                         NavigateUrl="~/Pages/Shopping/Cart.aspx"
