@@ -151,6 +151,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         long AddTag(string tagName);
 
         /// <summary>
+        /// Find a tag by its name.
+        /// </summary>
+        /// <param name="tagName"> The tag's name. </param>
+        /// <exception cref="InstanceNotFoundException"/>
+        Tag FindTagByName(string tagName);
+
+        /// <summary>
         /// Find all tags.
         /// </summary>
         /// <param name="startIndex"> The index at which the tags list must start </param>

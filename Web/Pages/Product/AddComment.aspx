@@ -1,16 +1,38 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddComment.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Product.AddComment" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
+    CodeBehind="AddComment.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Product.AddComment"
+    meta:resourcekey="Page" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation" runat="server">
+    <asp:Localize ID="lclMenuExplanation" runat="server" meta:resourcekey="lclMenuExplanation" />
+</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-        </div>
-    </form>
-</body>
-</html>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_MenuLinks" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
+    <div id="form">
+        <form id="AddCommentForm" method="post" runat="server">
+            <p>
+                <asp:Label ID="lblNoProduct" meta:resourcekey="lblNoProduct" runat="server" Visible="false"
+                    ForeColor="Red"></asp:Label>
+                <br />
+                <asp:Label ID="lblUnlogedUser" meta:resourcekey="lblUnlogedUser" runat="server" Visible="false"
+                    ForeColor="Red"></asp:Label>
+                <br />
+                <asp:Label ID="lblCommentAdded" meta:resourcekey="lblCommentAdded" runat="server" Visible="false"
+                    ForeColor="Green"></asp:Label>
+                <br />
+                <asp:HyperLink ID="hlReturnToDetails" meta:resourcekey="hlReturnToDetails" runat="server" Visible="false"></asp:HyperLink>
+            </p>
+            <asp:TextBox ID="tagBox" runat="server" meta:resourcekey="commentTagBox"
+                Width="50%" TextMode="SingleLine"></asp:TextBox>
+            <br />
+            <br />
+            <asp:TextBox ID="commentBody" runat="server" meta:resourcekey="commentBodyTextBox"
+                Width="50%" TextMode="MultiLine"></asp:TextBox>
+            <div class="button">
+                <asp:Button ID="btnAddComment" runat="server" OnClick="BtnAddCommentClick" meta:resourcekey="btnAddComment"/>
+            </div>
+        </form>
+    </div>
+</asp:Content>

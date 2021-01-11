@@ -221,6 +221,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             return tag.tagId;
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
+        public Tag FindTagByName(string tagName)
+        {
+            return TagDao.FindByName(tagName);
+        }
+
         public TagBlock FindAllTags(int startIndex = 0, int count = 20)
         {
             List<Tag> tags = TagDao.FindAll(startIndex, count + 1);
