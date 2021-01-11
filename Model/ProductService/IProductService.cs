@@ -88,6 +88,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param commentId="commentId"> The ID of the comment to be found. </param>
         /// <returns> The found comment. </returns>
         /// <exception cref="InstanceNotFoundException"/>
+        [Transactional]
         Comment FindCommentById(long commentId);
 
         /// <summary>
@@ -138,6 +139,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="startIndex"> The index at which the comments list must start </param>
         /// <param name="count"> The maximum number of comments that must return the function. </param>
         /// <returns> A list of comments. </returns>
+        [Transactional]
         CommentBlock FindAllProductComments(long productId, int startIndex = 0, int count = 20);
 
         /// <summary>
@@ -147,6 +149,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="userId"> The user ID. </param>
         /// <returns> A comment made by the indicated user for the indicated product. </returns>
         /// <exception cref="InstanceNotFoundException" />
+        [Transactional]
         Comment FindCommentByProductAndUser(long productId, long userId);
 
         /// <summary>

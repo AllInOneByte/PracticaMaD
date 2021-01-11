@@ -16,58 +16,61 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            if (!IsPostBack)
             {
-                long commentId = long.Parse(Request.Params.Get("comment"));
-
-                /* Get the Service */
-                IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
-                IProductService productService = iocManager.Resolve<IProductService>();
-
-                Comment comment = null;
-
                 try
                 {
-                    comment = productService.FindCommentById(commentId);
+                    long commentId = long.Parse(Request.Params.Get("comment"));
+
+                    /* Get the Service */
+                    IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+                    IProductService productService = iocManager.Resolve<IProductService>();
+
+                    Comment comment = null;
+
+                    try
+                    {
+                        comment = productService.FindCommentById(commentId);
+                    }
+                    catch (InstanceNotFoundException)
+                    {
+                        lblNoComment.Visible = true;
+                        tagBox.Visible = false;
+                        commentBody.Visible = false;
+                        btnEditComment.Visible = false;
+
+                        return;
+                    }
+
+                    if (!SessionManager.IsUserAuthenticated(Context) ||
+                        SessionManager.GetUserSession(Context).UserProfileId != comment.userId)
+                    {
+                        lblUnlogedUser.Visible = true;
+                        tagBox.Visible = false;
+                        commentBody.Visible = false;
+                        btnEditComment.Visible = false;
+
+                        return;
+                    }
+
+                    commentBody.Text = comment.comment1;
+                    string tagStr = "";
+
+                    foreach (Tag tag in comment.Tags)
+                    {
+                        tagStr = tagStr + tag.tagName + " ";
+                    }
+
+                    tagBox.Text = tagStr.Trim(' ');
+                    ViewState["tags"] = tagStr.Trim(' ');
                 }
-                catch (InstanceNotFoundException)
+                catch (ArgumentNullException)
                 {
                     lblNoComment.Visible = true;
                     tagBox.Visible = false;
                     commentBody.Visible = false;
                     btnEditComment.Visible = false;
-
-                    return;
                 }
-
-                if (!SessionManager.IsUserAuthenticated(Context) ||
-                    SessionManager.GetUserSession(Context).UserProfileId != comment.userId)
-                {
-                    lblUnlogedUser.Visible = true;
-                    tagBox.Visible = false;
-                    commentBody.Visible = false;
-                    btnEditComment.Visible = false;
-
-                    return;
-                }
-
-                commentBody.Text = comment.comment1;
-                string tagStr = "";
-
-                foreach (Tag tag in comment.Tags)
-                {
-                    tagStr = tagStr +  tag.tagName + " ";
-                }
-
-                tagBox.Text = tagStr.Trim(' ');
-                ViewState["tags"] = tagStr.Trim(' ');
-            }
-            catch (ArgumentNullException)
-            {
-                lblNoComment.Visible = true;
-                tagBox.Visible = false;
-                commentBody.Visible = false;
-                btnEditComment.Visible = false;
             }
         }
 

@@ -62,15 +62,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
             /* Get Products Info */
             CommentBlock commentBlock =
-                productService.FindAllProductComments(startIndex, count);
+                productService.FindAllProductComments(productId, startIndex, count);
 
             if (commentBlock.Comments.Count == 0)
             {
                 lblNoComments.Visible = true;
                 return;
             }
-
-            ViewState["comments"] = commentBlock.Comments;
 
             gvProducts.DataSource = commentBlock.Comments;
             gvProducts.DataBind();
@@ -130,8 +128,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                List<Comment> comments = (List<Comment>)ViewState["comments"];
-                Comment comment = comments.ElementAt(e.Row.RowIndex);
+                /* Get the Service */
+                IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+                IProductService productService = iocManager.Resolve<IProductService>();
+
+                Comment comment = productService.FindCommentById(long.Parse(e.Row.Cells[0].Text));
 
                 // Find ListBox
                 ListBox lst = (ListBox)e.Row.FindControl("tagList");
@@ -148,9 +149,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
             IProductService productService = iocManager.Resolve<IProductService>();
 
-            productService.DeleteComment(Convert.ToInt64(cellOwnCommentId.Text));
+            long id =  Convert.ToInt64(cellOwnCommentId.Text);
+            productService.DeleteComment(id);
 
-            Response.Redirect(Request.RawUrl);
+            
+            Response.Redirect(Response.
+                        ApplyAppPathModifier("/Pages/Product/ProductComments.aspx" + "?product=" + id));
         }
 
         protected void BtnModify_Click(object sender, EventArgs e)
