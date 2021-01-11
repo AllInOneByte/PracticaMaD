@@ -35,7 +35,7 @@
                         <asp:HyperLinkField DataTextField="productName"
                             HeaderText="<%$ Resources:Common, productName %>"
                             DataNavigateUrlFields="productId"
-                            DataNavigateUrlFormatString="~/Pages/Product/ProductDetails.aspx?product={0}" />
+                            DataNavigateUrlFormatString="/Pages/Product/ProductDetails.aspx?product={0}" />
                         <asp:BoundField DataField="Category.categoryName"
                             HeaderText="<%$ Resources:Common, categoryName %>" />
                         <asp:BoundField DataField="productDate" HeaderText="<%$ Resources:Common, productDate %>"
@@ -45,7 +45,7 @@
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:Button runat="server" Text="<%$ Resources:Common, addToCart %>"
-                                    CommandName="BtnAddToCartClick" Visible="<%# IsUserAuthenticated() %>" />
+                                    CommandName="BtnAddToCartClick" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

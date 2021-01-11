@@ -524,6 +524,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Product\App_LocalResources\ModifyProduct.aspx.es.resx" />
+   </ItemGroup>
+   <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\ProductComments.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\ProductComments.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\ProductComments.aspx.gl.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

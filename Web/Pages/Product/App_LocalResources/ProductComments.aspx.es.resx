@@ -117,46 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="categoryName" xml:space="preserve">
-    <value>Category</value>
-  </data>
-  <data name="mandatoryField" xml:space="preserve">
-    <value>Mandatory Field</value>
-  </data>
-  <data name="Next" xml:space="preserve">
-    <value>Next</value>
-  </data>
-  <data name="Previous" xml:space="preserve">
-    <value>Previous</value>
-  </data>
-  <data name="productDate" xml:space="preserve">
-    <value>Publication date</value>
-  </data>
-  <data name="productName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="productPrice" xml:space="preserve">
-    <value>Price per unit</value>
-  </data>
-  <data name="searchButton" xml:space="preserve">
-    <value>Search</value>
-  </data>
-  <data name="productId" xml:space="preserve">
-    <value>Product identifier</value>
-  </data>
-  <data name="productQuantity" xml:space="preserve">
-    <value>Quantity</value>
-  </data>
-  <data name="addToCart" xml:space="preserve">
-    <value>Add to cart</value>
-  </data>
-  <data name="commentDate" xml:space="preserve">
-    <value>Publication date</value>
-  </data>
-  <data name="userProfileName" xml:space="preserve">
-    <value>User</value>
-  </data>
-  <data name="commentBody" xml:space="preserve">
-    <value>Comment</value>
+  <data name="lblNoComments.Text" xml:space="preserve">
+    <value>No se encontraron comentarios</value>
   </data>
 </root>

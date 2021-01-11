@@ -1,6 +1,5 @@
 ﻿using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
-using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using System;
 using System.Globalization;
 using System.Web;
@@ -26,7 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             /* Get productId */
             try
             {
-                productId = int.Parse(Request.Params.Get("product"));
+                productId = long.Parse(Request.Params.Get("product"));
             }
             catch (ArgumentNullException)
             {
@@ -51,7 +50,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             cellProductQuantity.Text = product.productQuantity.ToString();
 
             hlComments.NavigateUrl =
-                Settings.Default.PracticaMaD_applicationURL + "/Pages/Product/ProductComments.aspx" +
+                "/Pages/Product/ProductComments.aspx" +
                 "?product=" + product.productId;
 
             btnAddCart.CommandArgument = product.productId.ToString();
