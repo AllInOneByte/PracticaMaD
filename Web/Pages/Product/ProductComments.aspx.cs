@@ -24,6 +24,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             lnkPrevious.Visible = false;
             lnkNext.Visible = false;
             lblNoComments.Visible = false;
+            btnDelete.Visible = false;
+            btnModify.Visible = false;
 
             /* Get productId */
             try
@@ -105,15 +107,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 {
                     comment = productService.FindCommentByProductAndUser(productId,
                         SessionManager.GetUserSession(Context).UserProfileId);
+
+                    cellOwnCommentId.Text = comment.commentId.ToString();
+                    cellOwnCommentProfileName.Text = comment.UserProfile.firstName;
+                    cellOwnCommentBody.Text = comment.comment1;
+                    cellOwnCommentDate.Text = comment.commentDate.ToString("d/M/yyyy");
+
+                    ownComment.Visible = true;
+                    btnDelete.Visible = true;
+                    btnModify.Visible = true;
                 }
                 catch (InstanceNotFoundException)
                 {
-                    // hacer desaparecer el comentario propio o algo
+                    ownComment.Visible = false;
                 }
             }
             else
             {
-                // lo mismo que arriba
+                ownComment.Visible = false;
             }
         }
 
@@ -132,6 +143,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                     lst.Items.Add(new ListItem(tag.tagName));
                 }
             }
+        }
+
+        protected void BtnDelete_Click(object sender, EventArgs e)
+        {
+            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+            IProductService productService = iocManager.Resolve<IProductService>();
+
+            productService.DeleteComment(Convert.ToInt64(cellOwnCommentId.Text));
+
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void BtnModify_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

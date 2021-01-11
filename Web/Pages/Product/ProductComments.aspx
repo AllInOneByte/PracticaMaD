@@ -16,6 +16,31 @@
                 <asp:Label ID="lblNoComments" meta:resourcekey="lblNoComments" runat="server"></asp:Label>
             </p>
 
+            <asp:Table ID="ownComment" runat="server" Visible="false" Width="100%">
+                <asp:TableHeaderRow runat="server">
+                    <asp:TableHeaderCell ID="cellCaptionOwnCommentProfileName" runat="server"
+                        Text="<%$ Resources:Common, userProfileName %>"></asp:TableHeaderCell>
+
+                    <asp:TableHeaderCell ID="cellCaptionOwnCommentBody" runat="server"
+                        Text="<%$ Resources:Common, commentBody %>"></asp:TableHeaderCell>
+
+                    <asp:TableHeaderCell ID="cellCaptionOwnCommentDate" runat="server"
+                        Text="<%$ Resources:Common, commentDate %>"></asp:TableHeaderCell>
+                </asp:TableHeaderRow>
+                <asp:TableRow runat="server">
+                    <asp:TableCell ID="cellOwnCommentId" runat="server" Visible="false"></asp:TableCell>
+
+                    <asp:TableCell ID="cellOwnCommentProfileName" runat="server"></asp:TableCell>
+
+                    <asp:TableCell ID="cellOwnCommentBody" runat="server"></asp:TableCell>
+
+                    <asp:TableCell ID="cellOwnCommentDate" runat="server"></asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+
+            <asp:Button ID="btnDelete" runat="server" meta:resourcekey="btnDelete" OnClick="BtnDelete_Click" />
+            <asp:Button ID="btnModify" runat="server" meta:resourcekey="btnModify" OnClick="BtnModify_Click" />
+
             <asp:GridView ID="gvProducts" runat="server" GridLines="None" AutoGenerateColumns="False"
                 Width="100%" OnRowDataBound="gvProducts_RowDataBound">
                 <Columns>
