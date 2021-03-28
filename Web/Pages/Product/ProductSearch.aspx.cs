@@ -232,7 +232,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 // for the DropDownList control.
                 DataView dv = new DataView(dt);
 
-                CategoryDropDownList.DataSource = dt;
+                CategoryDropDownList.DataSource = dv;
                 CategoryDropDownList.DataTextField = "CategoryNameField";
                 CategoryDropDownList.DataValueField = "CategoryIdField";
 
