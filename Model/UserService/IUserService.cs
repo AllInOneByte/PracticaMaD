@@ -117,6 +117,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <exception cref="InstanceNotFoundException"/>
         CreditCard FindCreditCardsDetails(long cardID);
 
+        /// <summary>
+        /// Checks if the specified Credit Cards exits.
+        /// </summary>
+        /// <param name="creditNumber"> CreditCard's Number. </param>
+        /// <returns> Boolean to indicate if the creditCard exists </returns>
+        bool CardExists(long creditNumber);
+
     }
 }
 

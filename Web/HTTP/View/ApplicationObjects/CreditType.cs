@@ -4,9 +4,6 @@ using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects
 {
-    /// <summary>
-    /// Summary description for Countries
-    /// </summary>
     public class CreditType
     {
 

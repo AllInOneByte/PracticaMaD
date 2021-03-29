@@ -22,6 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         /// containing the event data.</param>
         protected void BtnLoginClick(object sender, EventArgs e)
         {
+
             if (Page.IsValid)
             {
                 try
@@ -36,12 +37,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 catch (InstanceNotFoundException)
                 {
                     lblLoginError.Visible = true;
+                    lblPasswordError.Visible = false;
                 }
                 catch (IncorrectPasswordException)
                 {
+                    lblLoginError.Visible = false;
                     lblPasswordError.Visible = true;
                 }
             }
+            else
+            {
+                lblLoginError.Visible = false;
+                lblPasswordError.Visible = false;
+            }
+
         }
     }
 }

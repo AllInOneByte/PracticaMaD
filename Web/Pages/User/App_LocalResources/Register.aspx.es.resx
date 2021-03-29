@@ -171,4 +171,43 @@
   <data name="default" xml:space="preserve">
     <value>Predeterminada</value>
   </data>
+  <data name="lblNumberError.Text" xml:space="preserve">
+    <value>Tarjeta de Crédito ya existente</value>
+  </data>
+  <data name="lclCheckDefault.Text" xml:space="preserve">
+    <value>Tarjeta Predeterminada</value>
+  </data>
+  <data name="lclCreditNumber.Text" xml:space="preserve">
+    <value>Número de la Tarjeta de Crédito</value>
+  </data>
+  <data name="lclCreditType.Text" xml:space="preserve">
+    <value>Tipo de la Tarjeta de Crédito</value>
+  </data>
+  <data name="lclExpirationDate.Text" xml:space="preserve">
+    <value>Fecha de expiración de la Tarjeta de Crédito (MM/AA)</value>
+  </data>
+  <data name="lclVerificationCode.Text" xml:space="preserve">
+    <value>Código de verificación de la Tarjeta de Crédito</value>
+  </data>
+  <data name="revExpirationDate.ErrorMessage" xml:space="preserve">
+    <value>Sintaxis de fecha incorrecta</value>
+  </data>
+  <data name="revNumberError.ErrorMessage" xml:space="preserve">
+    <value>Solo números permitidos</value>
+  </data>
+  <data name="revNumberTamError.ErrorMessage" xml:space="preserve">
+    <value>Tarjeta Inválida</value>
+  </data>
+  <data name="revVerificationTamError.ErrorMessage" xml:space="preserve">
+    <value>Tamaño de código inválido</value>
+  </data>
+  <data name="lblOpcional.Text" xml:space="preserve">
+    <value>Opcional: Registrar Tarjeta de Crédito</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="lnkBack.Text" xml:space="preserve">
+    <value>Volver</value>
+  </data>
 </root>

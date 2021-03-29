@@ -25,6 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             this.comboCreditType.DataTextField = "text";
             this.comboCreditType.DataValueField = "value";
             this.comboCreditType.DataBind();
+            this.comboCreditType.SelectedIndex = 0;
         }
 
         protected void BtnRegisterCreditCardClick(object sender, EventArgs e)
@@ -41,7 +42,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                       number, verification, checkDefault.Checked, date);
 
                     Response.Redirect(Response.
-                        ApplyAppPathModifier("~/Pages/MainPage.aspx"));
+                        ApplyAppPathModifier("~/Pages/User/ListCreditCards.aspx"));
                 }
                 catch (DuplicateInstanceException)
                 {

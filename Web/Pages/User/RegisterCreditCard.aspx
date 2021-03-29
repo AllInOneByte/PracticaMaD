@@ -15,10 +15,14 @@
         <form id="RegisterCreditCardForm" method="post" runat="server">
             <br />
             <br />
-            <asp:HyperLink ID="lnkBack" runat="server" 
-                NavigateUrl="~/Pages/User/ListCreditCards.aspx"
-                meta:resourcekey="lnkBack"/>
+            <div class="field">
+                <asp:HyperLink ID="lnkBack" runat="server" NavigateUrl="~/Pages/User/ListCreditCards.aspx" meta:resourcekey="lnkBack"/>
+            </div>
             <br />
+            <div class="field">
+                   <asp:Label ID="lblNumberError" runat="server" ForeColor="Red" Style="position: relative"
+                            Visible="False" meta:resourcekey="lblNumberError"></asp:Label>
+            </div>
             <br />
             <div class="field">
                 <span class="label">
@@ -34,9 +38,7 @@
                             ValidationExpression="\d+" meta:resourcekey="revNumberError"></asp:RegularExpressionValidator>
                         <asp:RegularExpressionValidator ID="RegularCreditNumberValidator2"
                             ControlToValidate="txtCreditNumber" runat="server"
-                            ValidationExpression="^[\s\S]{12,19}$" meta:resourcekey="revNumberTamError"></asp:RegularExpressionValidator>
-                         <asp:Label ID="lblNumberError" runat="server" ForeColor="Red" Style="position: relative"
-                            Visible="False" meta:resourcekey="lblNumberError"></asp:Label></span>
+                            ValidationExpression="^[\s\S]{12,19}$" meta:resourcekey="revNumberTamError"></asp:RegularExpressionValidator></span>                       
             </div>
             <div class="field">
                 <span class="label">

@@ -31,6 +31,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         protected global::System.Web.UI.WebControls.HyperLink lnkRegister;
         
         /// <summary>
+        /// Control lblLoginError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLoginError;
+        
+        /// <summary>
+        /// Control lblPasswordError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPasswordError;
+        
+        /// <summary>
         /// Control AuthenticationForm.
         /// </summary>
         /// <remarks>
@@ -67,15 +85,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLogin;
         
         /// <summary>
-        /// Control lblLoginError.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLoginError;
-        
-        /// <summary>
         /// Control lclPassword.
         /// </summary>
         /// <remarks>
@@ -101,15 +110,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPassword;
-        
-        /// <summary>
-        /// Control lblPasswordError.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPasswordError;
         
         /// <summary>
         /// Control checkRememberPassword.

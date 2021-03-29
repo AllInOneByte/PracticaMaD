@@ -141,9 +141,6 @@
   <data name="lblNumberError.Text" xml:space="preserve">
     <value>Credit Card already exists</value>
   </data>
-  <data name="revEmail.ErrorMessage" xml:space="preserve">
-    <value>Incorrect email syntax</value>
-  </data>
   <data name="revExpirationDate.ErrorMessage" xml:space="preserve">
     <value>Incorrect date syntax</value>
   </data>
@@ -159,7 +156,7 @@
   <data name="revVerificationTamError.ErrorMessage" xml:space="preserve">
     <value>Invalid Verification Code Lenght</value>
   </data>
-  <data name="lnkBack.Test" xml:space="preserve">
+  <data name="lnkBack.Text" xml:space="preserve">
     <value>Back</value>
   </data>
 </root>

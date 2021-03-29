@@ -168,7 +168,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
                 (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
             return userSession.CardDefaultNumber;
         }
-        
+
+        public static Boolean CardExists(long number)
+        {
+            return userService.CardExists(number);
+        }
+
         public static decimal GetTotalPrice(HttpContext context)
         {
             ShoppingCartSession shoppingCart = (ShoppingCartSession)context.Session[SHOPPING_CART_SESSION_ATTRIBUTE];
@@ -273,13 +278,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             return userService.FindCreditCardsDetails(ID);
         }
 
-        public static void UpdateCreditCardDetails(HttpContext context, long cardId, CreditCardDetails creditCardDetails)
+        public static void UpdateCreditCardDetails(HttpContext context, long cardId, Boolean defaultCard, CreditCardDetails creditCardDetails)
         {
-          if (creditCardDetails.DefaultCard == 1)
+          userService.UpdateCreditCard(cardId, creditCardDetails);
+            if (defaultCard)
             {
-                AssignDefaultCardToUser(context, cardId, creditCardDetails.cardNumber); 
+                AssignDefaultCardToUser(context, cardId, creditCardDetails.cardNumber);
             }
-            userService.UpdateCreditCard(cardId, creditCardDetails);
+            else
+            {
+                DesAssignDefaultCardToUser(context, cardId);
+            }
         }
 
         public static void AssignDefaultCardToUser(HttpContext context, long cardId, long number)
@@ -294,6 +303,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             context.Session.Add(USER_SESSION_ATTRIBUTE, userSession);
         }
 
+        public static void DesAssignDefaultCardToUser(HttpContext context, long cardId)
+        {
+            UserSession userSession =
+                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+            
+            if(userSession.CardDefaultId.Equals(cardId))
+            {
+                UserSession user = new UserSession();
+
+                user.UserProfileId = userSession.UserProfileId;
+                user.FirstName = userSession.FirstName;
+                user.Rol = userSession.Rol;
+                
+                context.Session.Remove(USER_SESSION_ATTRIBUTE);
+                context.Session.Add(USER_SESSION_ATTRIBUTE, user);
+            }
+        }
+
         /// <summary>
         /// Registers the user.
         /// </summary>
@@ -302,7 +329,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         /// <param name="clearPassword">Password in clear text</param>
         /// <param name="userProfileDetails">The user profile details.</param>
         /// <exception cref="DuplicateInstanceException"/>
-        public static void RegisterUser(HttpContext context,
+        public static long RegisterUser(HttpContext context,
             String loginName, String clearPassword,
             UserProfileDetails userProfileDetails)
         {
@@ -327,6 +354,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             UpdateCartSession(context, shoppingCart);
 
             FormsAuthentication.SetAuthCookie(loginName, false);
+
+            return usrId;
         }
 
 

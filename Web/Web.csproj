@@ -18,8 +18,10 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -500,12 +502,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Shopping\App_LocalResources\Buy.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\Buy.aspx.gl.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\Buy.aspx.es.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Product\App_LocalResources\ProductSearch.aspx.resx" />

@@ -139,6 +139,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         }
 
         [TestMethod()]
+        public void DAO_FindByNumberTest()
+        {
+            try
+            {
+                try
+                {
+                    CreditCard defaultFound = creditCardDao.FindByNumber(CARD_NUMBER);
+
+                    Assert.AreEqual(creditCards[0], defaultFound);
+                }
+                catch (Exception e)
+                {
+                    Assert.Fail(e.Message);
+                }
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
+
+        [TestMethod()]
         public void DAO_FindDefaultUserIdCardTest()
         {
             try

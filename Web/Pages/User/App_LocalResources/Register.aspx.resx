@@ -171,4 +171,43 @@
   <data name="default" xml:space="preserve">
     <value>Default</value>
   </data>
+  <data name="lblNumberError.Text" xml:space="preserve">
+    <value>Credit Card already exists</value>
+  </data>
+  <data name="lclCheckDefault.Text" xml:space="preserve">
+    <value>Default Credit Card</value>
+  </data>
+  <data name="lclCreditNumber.Text" xml:space="preserve">
+    <value>Credit Card Number</value>
+  </data>
+  <data name="lclCreditType.Text" xml:space="preserve">
+    <value>Credit Card Type</value>
+  </data>
+  <data name="lclExpirationDate.Text" xml:space="preserve">
+    <value>Credit Card Expiration Date (MM/YY)</value>
+  </data>
+  <data name="lclVerificationCode.Text" xml:space="preserve">
+    <value>Credit Card Verification Code</value>
+  </data>
+  <data name="revExpirationDate.ErrorMessage" xml:space="preserve">
+    <value>Incorrect date syntax</value>
+  </data>
+  <data name="revNumberError.ErrorMessage" xml:space="preserve">
+    <value>Only numbers allow</value>
+  </data>
+  <data name="revNumberTamError.ErrorMessage" xml:space="preserve">
+    <value>Invalid Credit Card</value>
+  </data>
+  <data name="revVerificationTamError.ErrorMessage" xml:space="preserve">
+    <value>Invalid Verification Code Lenght</value>
+  </data>
+  <data name="lblOpcional.Text" xml:space="preserve">
+    <value>Optional: Register Credit Card</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="lnkBack.Text" xml:space="preserve">
+    <value>Back</value>
+  </data>
 </root>

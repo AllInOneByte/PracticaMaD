@@ -202,18 +202,42 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             /// <returns> void </returns>
             /// <exception cref="InstanceNotFoundException"/>
             public void UpdateCreditCard(long creditCardId, CreditCardDetails creditCardDetails) {
-
+            
                 CreditCard creditCard =
-                          creditCardDao.Find(creditCardId);
+                        creditCardDao.Find(creditCardId);
 
-                creditCard.cardType = creditCardDetails.CardType;
-                creditCard.cardNumber = creditCardDetails.cardNumber;
-                creditCard.verificationCode = creditCardDetails.VerificationCode;
-                creditCard.expirationDate = creditCardDetails.ExpirationDate;
-                creditCard.userId = creditCardDetails.userId;
-                creditCardDao.Update(creditCard);
+                if (!creditCard.cardNumber.Equals(creditCardDetails.cardNumber))
+                {
+                    try
+                    {
+                        creditCardDao.FindByNumber(creditCardDetails.cardNumber);
 
+                        throw new DuplicateInstanceException(creditCardDetails.cardNumber,
+                        typeof(CreditCard).FullName);
+                    }
+                    catch (InstanceNotFoundException)
+                    {
+                        creditCard.cardType = creditCardDetails.CardType;
+                        creditCard.cardNumber = creditCardDetails.cardNumber;
+                        creditCard.verificationCode = creditCardDetails.VerificationCode;
+                        creditCard.expirationDate = creditCardDetails.ExpirationDate;
+                        creditCard.defaultCard = creditCardDetails.DefaultCard;
+                        creditCard.userId = creditCardDetails.userId;
+                        creditCardDao.Update(creditCard);
+                    }
+                }
+                else
+                {
+                    creditCard.cardType = creditCardDetails.CardType;
+                    creditCard.cardNumber = creditCardDetails.cardNumber;
+                    creditCard.verificationCode = creditCardDetails.VerificationCode;
+                    creditCard.defaultCard = creditCardDetails.DefaultCard;
+                    creditCard.expirationDate = creditCardDetails.ExpirationDate;
+                    creditCard.userId = creditCardDetails.userId;
+                    creditCardDao.Update(creditCard);   
+                }
             }
+
         /// <summary>
         /// Add a Credit Card
         /// </summary>
@@ -223,14 +247,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         public long AddCreditCard(CreditCardDetails creditCardDetails) {
             CreditCard creditCard = new CreditCard();
 
-            foreach (var c in creditCardDao.FindByUserId(creditCardDetails.userId))
+            try
             {
-                if(c.cardNumber == creditCardDetails.cardNumber)
-                {
-                    throw new DuplicateInstanceException(creditCardDetails.cardNumber,
-                    typeof(CreditCard).FullName);
-                }
+                creditCardDao.FindByNumber(creditCardDetails.cardNumber);
+
+                throw new DuplicateInstanceException(creditCardDetails.cardNumber,
+                typeof(CreditCard).FullName);
             }
+            catch (InstanceNotFoundException)
+            {
             creditCard.cardType = creditCardDetails.CardType;
             creditCard.cardNumber = creditCardDetails.cardNumber;
             creditCard.verificationCode = creditCardDetails.VerificationCode;
@@ -238,9 +263,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             creditCard.defaultCard = creditCardDetails.DefaultCard;
             creditCard.userId = creditCardDetails.userId;
             creditCardDao.Create(creditCard);
-         
+
             return creditCard.cardId;
+            }
         }
+
         /// <summary>
         /// update de default creditCard
         /// </summary>
@@ -249,27 +276,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <returns> void </returns>
         public void AssignDefaultCard(long creditCardId, long userId) {
             CreditCard creditCard = new CreditCard();
+            CreditCard creditCard2 = new CreditCard();
             try {
                 creditCard = creditCardDao.Find(creditCardId);
-
-                throw new InstanceNotFoundException(creditCardId,
-                     typeof(CreditCard).FullName);
-
+                creditCard2 = creditCardDao.FindDefaultUserIdCard(userId);
+                creditCard2.defaultCard = 0;
+                creditCardDao.Update(creditCard2);
+                creditCard.defaultCard = 1;
+                creditCardDao.Update(creditCard);
             } catch (InstanceNotFoundException) {
-                try
-                {
-                    CreditCard creditCard2 = creditCardDao.FindDefaultUserIdCard(userId);
-                    creditCard2.defaultCard = 0;
-                    creditCardDao.Update(creditCard2);
-                    creditCard.defaultCard = 1;
-                    creditCardDao.Update(creditCard);
-
-                }
-                catch (InstanceNotFoundException) {
-                    creditCard.defaultCard = 1;
-                    creditCardDao.Update(creditCard);
-                }
-             
+                creditCard.defaultCard = 1;
+                creditCardDao.Update(creditCard);
             }
 
         }
@@ -295,6 +312,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         public CreditCard FindCreditCardsDetails(long cardID)
         {
             return creditCardDao.Find(cardID);
+        }
+
+        /// <summary>
+        /// Checks if the specified Credit Cards exits.
+        /// </summary>
+        /// <param name="creditNumber"> CreditCard's Number. </param>
+        /// <returns> Boolean to indicate if the creditCard exists </returns>
+        public bool CardExists(long creditNumber)
+        {
+            try
+            {
+                CreditCard creditCard = creditCardDao.FindByNumber(creditNumber);
+            }
+            catch (InstanceNotFoundException)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

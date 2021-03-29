@@ -13,6 +13,11 @@
     <div id="form">
         <form id="UpdateCreditCardForm" method="POST" runat="server">
             <div class="field">
+                <asp:Label ID="lblNumberError" runat="server" ForeColor="Red" Style="position: relative"
+                            Visible="False" meta:resourcekey="lblNumberError"></asp:Label>
+            </div>
+            <br />
+            <div class="field">
                 <span class="label">
                     <asp:Localize ID="lclCreditNumber" runat="server" meta:resourcekey="lclCreditNumber" /></span><span
                         class="entry">
@@ -26,9 +31,7 @@
                             ValidationExpression="\d+" meta:resourcekey="revNumberError"></asp:RegularExpressionValidator>
                         <asp:RegularExpressionValidator ID="RegularCreditNumberValidator2"
                             ControlToValidate="txtCreditNumber" runat="server"
-                            ValidationExpression="^[\s\S]{12,19}$" meta:resourcekey="revNumberTamError"></asp:RegularExpressionValidator>
-                <asp:Label ID="lblNumberError" runat="server" ForeColor="Red" Style="position: relative"
-                            Visible="False" meta:resourcekey="lblNumberError"></asp:Label></span>
+                            ValidationExpression="^[\s\S]{12,19}$" meta:resourcekey="revNumberTamError"></asp:RegularExpressionValidator></span>
             </div>
             <div class="field">
                 <span class="label">

@@ -549,6 +549,50 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             }
         }
 
+        /// <summary>
+        /// A test to check if a valid user loginName is found
+        /// </summary>
+        [TestMethod]
+        public void CardExistsForValidCreditCard()
+        {
+            using (var scope = new TransactionScope())
+            {
+                var user = new UserProfile
+                {
+                    loginName = loginName,
+                    enPassword = clearPassword,
+                    firstName = firstName,
+                    lastName = lastName,
+                    email = email,
+                    language = language,
+                    country = country,
+                    role = 1,
+                    address = address
+                };
+                userProfileDao.Create(user);
+
+                var creditCardId = userService.AddCreditCard(new CreditCardDetails(cardType, cardNumber, verificationCode, expirationDate, defaultCard, user.usrId));
+
+                bool cardExists = userService.CardExists(cardNumber);
+
+                Assert.IsTrue(cardExists);
+            }
+        }
+
+        /// <summary>
+        /// A test to check if a not valid user loginame is found
+        /// </summary>
+        [TestMethod]
+        public void CardrExistsForNotValidCreditCard()
+        {
+            using (var scope = new TransactionScope())
+            {
+                bool cardExists = userService.CardExists(cardNumber);
+
+                Assert.IsFalse(cardExists);
+            }
+        }
+
         #region Additional test attributes
 
         //Use ClassInitialize to run code before running the first test in the class
