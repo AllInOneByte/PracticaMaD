@@ -3,6 +3,7 @@ using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
 using System;
 using System.Globalization;
 using System.Web;
@@ -52,11 +53,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 "/Pages/Product/ProductComments.aspx" +
                 "?product=" + product.productId;
 
-            lnkUpdate.NavigateUrl += product.productId;
-            lnkAddCart.NavigateUrl += product.productId + "&productQuantity=" + product.productQuantity;
+            
 
-            if (SessionManager.IsUserAuthenticated(Context))
+            if (SessionManager.IsAdminAuthenticated(Context))
             {
+                lnkUpdate.NavigateUrl += product.productId;
                 lnkUpdate.Visible = true;
             }
 
@@ -83,8 +84,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             if (product.Comments.Count == 0)
             {
                 hlComments.Visible = false;
+                lblDash1.Visible = false;
             }
 
+        }
+
+        protected void BtnAddCartClick(object sender, EventArgs e)
+        {
+            try
+            {
+                long id = long.Parse(Request.Params.Get("product"));
+                int amount = Convert.ToInt32(txtAmount.Text);
+
+                SessionManager.AddToShoppingCart(Context, id, amount, checkGift.Checked);
+
+                Response.Redirect(
+                   Response.ApplyAppPathModifier("~/Pages/Shopping/Cart.aspx"));
+
+            }
+            catch (StockEmptyException ex)
+            {
+                int index = ex.Message.LastIndexOf('|');
+                string men = ex.Message.Substring(index + 15);
+
+                lblAmountError.Text += men;
+                lblAmountError.Visible = true;
+            }
         }
     }
 }

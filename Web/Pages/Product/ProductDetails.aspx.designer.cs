@@ -22,6 +22,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product {
         protected global::System.Web.UI.WebControls.Localize lclMenuExplanation;
         
         /// <summary>
+        /// Control lnkBack.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkBack;
+        
+        /// <summary>
+        /// Control lnkUpdate.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkUpdate;
+        
+        /// <summary>
         /// Control lblProductError.
         /// </summary>
         /// <remarks>
@@ -29,6 +47,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblProductError;
+        
+        /// <summary>
+        /// Control lblAmountError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAmountError;
         
         /// <summary>
         /// Control TableProductInfo.
@@ -148,6 +175,78 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product {
         protected global::System.Web.UI.WebControls.TableCell cellProductQuantity;
         
         /// <summary>
+        /// Control AddProductCartForm.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm AddProductCartForm;
+        
+        /// <summary>
+        /// Control lblAmount.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Localize lblAmount;
+        
+        /// <summary>
+        /// Control txtAmount.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAmount;
+        
+        /// <summary>
+        /// Control RequiredAmountValidator1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredAmountValidator1;
+        
+        /// <summary>
+        /// Control RegularAmountValidator1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularAmountValidator1;
+        
+        /// <summary>
+        /// Control lclGift.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Localize lclGift;
+        
+        /// <summary>
+        /// Control checkGift.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox checkGift;
+        
+        /// <summary>
+        /// Control btnAddCart.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddCart;
+        
+        /// <summary>
         /// Control hlAddComment.
         /// </summary>
         /// <remarks>
@@ -157,6 +256,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product {
         protected global::System.Web.UI.WebControls.HyperLink hlAddComment;
         
         /// <summary>
+        /// Control lblDash1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDash1;
+        
+        /// <summary>
         /// Control hlComments.
         /// </summary>
         /// <remarks>
@@ -164,32 +272,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlComments;
-        
-        /// <summary>
-        /// Control lnkAddCart.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkAddCart;
-        
-        /// <summary>
-        /// Control lnkUpdate.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkUpdate;
-        
-        /// <summary>
-        /// Control lnkBack.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkBack;
     }
 }
