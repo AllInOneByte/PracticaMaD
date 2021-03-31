@@ -260,7 +260,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             if (Page.IsValid)
             {
                 string keyword = txtSearch.Text;
-                long catId = long.Parse(CategoryDropDownList.SelectedItem.Value);
+                long catId = 0;
+
+                if (Session["ddlCategory"] != null)
+                {
+                    catId = Convert.ToInt64(Session["ddlCategory"]);
+                }
                 
                 if (keyword == "")
                 {
@@ -278,5 +283,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             }
         }
 
+        protected void CategoryDDL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["ddlCategory"] = CategoryDropDownList.SelectedItem.Value;
+        }
     }
 }
