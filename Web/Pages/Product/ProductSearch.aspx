@@ -20,7 +20,7 @@
 
                 <span class="entry">
                     <asp:TextBox ID="txtSearch" runat="server" Width="30%" Columns="16" meta:resourcekey="txtSearch"></asp:TextBox>
-                    <asp:DropDownList ID="CategoryDropDownList" AutoPostBack="False" runat="server" Width="30%" OnSelectedIndexChanged="CategoryDDL_SelectedIndexChanged"></asp:DropDownList>
+                    <asp:DropDownList ID="CategoryDropDownList" AutoPostBack="False" runat="server" Width="30%"></asp:DropDownList>
                     <asp:Button ID="btnSearch" runat="server" OnClick="BtnSearchClick" meta:resourcekey="btnSearch" Width="30%" />
                 </span>
             </div>

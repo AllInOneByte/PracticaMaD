@@ -16,6 +16,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
         protected void Page_Load(object sender, EventArgs e)
         {
             int startIndex, count;
+            string selectedValue = "-1";
 
             lnkPrevious.Visible = false;
             lnkNext.Visible = false;
@@ -57,7 +58,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 {
                     long catId = long.Parse(Request.Params.Get("category"));
 
-                    CategoryDropDownList.SelectedValue = Request.Params.Get("category");
+                    selectedValue = Request.Params.Get("category");
 
                     /* Get Products Info */
                     ProductBlock productBlock = productService.FindAllProductsByKeyword(keyword, catId, startIndex, count);
@@ -65,32 +66,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                     if (productBlock.Products.Count == 0)
                     {
                         lblNoProducts.Visible = true;
-                        return;
                     }
-
-                    gvProducts.DataSource = productBlock.Products;
-                    gvProducts.DataBind();
-
-                    /* "Previous" link */
-                    if ((startIndex - count) >= 0)
+                    else
                     {
-                        string url =
-                            "/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword + "&category=" + catId +
-                            "&startIndex=" + (startIndex - count) + "&count=" + count;
+                        gvProducts.DataSource = productBlock.Products;
+                        gvProducts.DataBind();
 
-                        lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
-                        lnkPrevious.Visible = true;
-                    }
+                        /* "Previous" link */
+                        if ((startIndex - count) >= 0)
+                        {
+                            string url =
+                                "/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword + "&category=" + catId +
+                                "&startIndex=" + (startIndex - count) + "&count=" + count;
 
-                    /* "Next" link */
-                    if (productBlock.ExistMoreProducts)
-                    {
-                        string url =
-                            "/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword + "&category=" + catId +
-                            "&startIndex=" + (startIndex + count) + "&count=" + count;
+                            lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
+                            lnkPrevious.Visible = true;
+                        }
 
-                        lnkNext.NavigateUrl = Response.ApplyAppPathModifier(url);
-                        lnkNext.Visible = true;
+                        /* "Next" link */
+                        if (productBlock.ExistMoreProducts)
+                        {
+                            string url =
+                                "/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword + "&category=" + catId +
+                                "&startIndex=" + (startIndex + count) + "&count=" + count;
+
+                            lnkNext.NavigateUrl = Response.ApplyAppPathModifier(url);
+                            lnkNext.Visible = true;
+                        }
                     }
                 }
                 catch (ArgumentNullException)
@@ -101,32 +103,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                     if (productBlock.Products.Count == 0)
                     {
                         lblNoProducts.Visible = true;
-                        return;
                     }
-
-                    gvProducts.DataSource = productBlock.Products;
-                    gvProducts.DataBind();
-
-                    /* "Previous" link */
-                    if ((startIndex - count) >= 0)
+                    else
                     {
-                        string url =
-                            "/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword +
-                            "&startIndex=" + (startIndex - count) + "&count=" + count;
+                        gvProducts.DataSource = productBlock.Products;
+                        gvProducts.DataBind();
 
-                        lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
-                        lnkPrevious.Visible = true;
-                    }
+                        /* "Previous" link */
+                        if ((startIndex - count) >= 0)
+                        {
+                            string url =
+                                "/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword +
+                                "&startIndex=" + (startIndex - count) + "&count=" + count;
 
-                    /* "Next" link */
-                    if (productBlock.ExistMoreProducts)
-                    {
-                        string url =
-                            "/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword +
-                            "&startIndex=" + (startIndex + count) + "&count=" + count;
+                            lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
+                            lnkPrevious.Visible = true;
+                        }
 
-                        lnkNext.NavigateUrl = Response.ApplyAppPathModifier(url);
-                        lnkNext.Visible = true;
+                        /* "Next" link */
+                        if (productBlock.ExistMoreProducts)
+                        {
+                            string url =
+                                "/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword +
+                                "&startIndex=" + (startIndex + count) + "&count=" + count;
+
+                            lnkNext.NavigateUrl = Response.ApplyAppPathModifier(url);
+                            lnkNext.Visible = true;
+                        }
                     }
                 }
             }
@@ -143,32 +146,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                     if (productBlock.Products.Count == 0)
                     {
                         lblNoProducts.Visible = true;
-                        return;
                     }
-
-                    gvProducts.DataSource = productBlock.Products;
-                    gvProducts.DataBind();
-
-                    /* "Previous" link */
-                    if ((startIndex - count) >= 0)
+                    else
                     {
-                        string url =
-                            "/Pages/Product/ProductSearch.aspx" + "?tagId=" + tagId + "startIndex=" + (startIndex - count) +
-                            "&count=" + count;
+                        gvProducts.DataSource = productBlock.Products;
+                        gvProducts.DataBind();
 
-                        lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
-                        lnkPrevious.Visible = true;
-                    }
+                        /* "Previous" link */
+                        if ((startIndex - count) >= 0)
+                        {
+                            string url =
+                                "/Pages/Product/ProductSearch.aspx" + "?tagId=" + tagId + "startIndex=" + (startIndex - count) +
+                                "&count=" + count;
 
-                    /* "Next" link */
-                    if (productBlock.ExistMoreProducts)
-                    {
-                        string url =
-                            "/Pages/Product/ProductSearch.aspx" + "?tagId=" + tagId + "startIndex=" + (startIndex + count) +
-                            "&count=" + count;
+                            lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
+                            lnkPrevious.Visible = true;
+                        }
 
-                        lnkNext.NavigateUrl = Response.ApplyAppPathModifier(url);
-                        lnkNext.Visible = true;
+                        /* "Next" link */
+                        if (productBlock.ExistMoreProducts)
+                        {
+                            string url =
+                                "/Pages/Product/ProductSearch.aspx" + "?tagId=" + tagId + "startIndex=" + (startIndex + count) +
+                                "&count=" + count;
+
+                            lnkNext.NavigateUrl = Response.ApplyAppPathModifier(url);
+                            lnkNext.Visible = true;
+                        }
                     }
                 }
                 catch (ArgumentNullException)
@@ -179,32 +183,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                     if (productBlock.Products.Count == 0)
                     {
                         lblNoProducts.Visible = true;
-                        return;
                     }
-
-                    gvProducts.DataSource = productBlock.Products;
-                    gvProducts.DataBind();
-
-                    /* "Previous" link */
-                    if ((startIndex - count) >= 0)
+                    else
                     {
-                        string url =
-                            "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex - count) +
-                            "&count=" + count;
+                        gvProducts.DataSource = productBlock.Products;
+                        gvProducts.DataBind();
 
-                        lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
-                        lnkPrevious.Visible = true;
-                    }
+                        /* "Previous" link */
+                        if ((startIndex - count) >= 0)
+                        {
+                            string url =
+                                "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex - count) +
+                                "&count=" + count;
 
-                    /* "Next" link */
-                    if (productBlock.ExistMoreProducts)
-                    {
-                        string url =
-                            "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex + count) +
-                            "&count=" + count;
+                            lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
+                            lnkPrevious.Visible = true;
+                        }
 
-                        lnkNext.NavigateUrl = Response.ApplyAppPathModifier(url);
-                        lnkNext.Visible = true;
+                        /* "Next" link */
+                        if (productBlock.ExistMoreProducts)
+                        {
+                            string url =
+                                "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex + count) +
+                                "&count=" + count;
+
+                            lnkNext.NavigateUrl = Response.ApplyAppPathModifier(url);
+                            lnkNext.Visible = true;
+                        }
                     }
                 }
             }
@@ -240,7 +245,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 CategoryDropDownList.DataBind();
 
                 // Set the default selected item.
-                CategoryDropDownList.SelectedIndex = 0;
+                CategoryDropDownList.SelectedValue = selectedValue;
             }
         }
 
@@ -260,12 +265,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             if (Page.IsValid)
             {
                 string keyword = txtSearch.Text;
-                long catId = 0;
-
-                if (Session["ddlCategory"] != null)
-                {
-                    catId = Convert.ToInt64(Session["ddlCategory"]);
-                }
+                long catId = long.Parse(CategoryDropDownList.SelectedValue);
                 
                 if (keyword == "")
                 {
@@ -281,11 +281,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                     Response.Redirect("/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword);
                 }
             }
-        }
-
-        protected void CategoryDDL_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Session["ddlCategory"] = CategoryDropDownList.SelectedItem.Value;
         }
     }
 }
