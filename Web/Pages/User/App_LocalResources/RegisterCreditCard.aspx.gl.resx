@@ -159,4 +159,7 @@
   <data name="lnkBack.Text" xml:space="preserve">
     <value>Volver</value>
   </data>
+  <data name="lblDateError.Text" xml:space="preserve">
+    <value>A data de expiración da Tarxeta de Crédito é inválida</value>
+  </data>
 </root>

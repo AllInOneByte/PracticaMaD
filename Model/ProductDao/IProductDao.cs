@@ -30,9 +30,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         /// <exception cref="InstanceNotFoundException"/>
         List<Product> FindByTagId(long tagId, int startIndex = 0, int count = 20);
 
-            /// <summary>
-            /// Finds all Products
-            /// <returns>List of Products</returns>
+        /// <summary>
+        /// Find a Product by Name
+        /// </summary>
+        /// <param productName="productName">Product Name</param>
+        /// <returns>List of Product</returns>
+        /// <exception cref="InstanceNotFoundException"/>
+        Product FindByName(string productName);
+
+        /// <summary>
+        /// Finds all Products
+        /// <returns>List of Products</returns>
         List<Product> FindAll(int startIndex = 0, int count = 20);
     }
 }

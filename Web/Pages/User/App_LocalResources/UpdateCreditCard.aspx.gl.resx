@@ -159,4 +159,7 @@
   <data name="revVerificationTamError.ErrorMessage" xml:space="preserve">
     <value>Lonxitide de código inválido</value>
   </data>
+  <data name="lblDateError.Text" xml:space="preserve">
+    <value>A data de expiración da Tarxeta de Crédito é inválida</value>
+  </data>
 </root>

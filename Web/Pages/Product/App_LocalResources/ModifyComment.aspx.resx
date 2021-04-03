@@ -129,9 +129,6 @@
   <data name="hlReturnToDetails.Text" xml:space="preserve">
     <value>Return to the product details</value>
   </data>
-  <data name="lblCommentEdited.Text" xml:space="preserve">
-    <value>The comment has been edited</value>
-  </data>
   <data name="lblNoComment.Text" xml:space="preserve">
     <value>No comment specified</value>
   </data>

@@ -29,13 +29,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         #region Product Members
 
         /// <exception cref="InstanceNotFoundException"/>
+        /// <exception cref="DuplicateInstanceException"/>
         [Transactional]
         public void UpdateProductDetails(long productId, string productName,
             decimal productPrice, int productQuantity)
         {
             Product product = ProductDao.Find(productId);
 
-            product.productName = productName;
+            if (!product.productName.Equals(productName))
+            {
+                try
+                {
+                    ProductDao.FindByName(productName);
+
+                    throw new DuplicateInstanceException(productName,
+                    typeof(Product).FullName);
+                }
+                catch (InstanceNotFoundException)
+                {
+                    product.productName = productName;
+                    product.productPrice = productPrice;
+                    product.productQuantity = productQuantity;
+                }
+            }
             product.productPrice = productPrice;
             product.productQuantity = productQuantity;
 

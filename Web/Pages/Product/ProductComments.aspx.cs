@@ -163,12 +163,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
             IProductService productService = iocManager.Resolve<IProductService>();
 
+            long productId = long.Parse(Request.Params.Get("product"));
+
             long id =  Convert.ToInt64(cellOwnCommentId.Text);
             productService.DeleteComment(id);
 
             
             Response.Redirect(Response.
-                        ApplyAppPathModifier("/Pages/Product/ProductComments.aspx" + "?product=" + id));
+                        ApplyAppPathModifier("/Pages/Product/ProductComments.aspx" + "?product=" + productId));
         }
 
         protected void BtnModify_Click(object sender, EventArgs e)

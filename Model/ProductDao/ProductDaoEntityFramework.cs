@@ -121,6 +121,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
         }
 
+        public Product FindByName(string productName)
+        {
+            Product product = null;
+
+            #region Option 1: Using Linq.
+
+            DbSet<Product> userProfiles = Context.Set<Product>();
+
+            var result =
+                (from u in userProfiles
+                 where u.productName == productName
+                 select u);
+
+            product = result.FirstOrDefault();
+
+            #endregion Option 1: Using Linq.
+            if (product == null)
+                throw new InstanceNotFoundException(productName,
+                    typeof(Product).FullName);
+
+            return product;
+        }
+
         /// <summary>
         /// Finds all Products
         /// <returns>List of Products</returns>

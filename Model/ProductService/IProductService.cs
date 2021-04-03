@@ -33,6 +33,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="productPrice"> The product's price. </param>
         /// <param name="productQuantity"> The product's quantity. </param>
         /// <exception cref="InstanceNotFoundException"/>
+        /// <exception cref="DuplicateInstanceException"/>
         [Transactional]
         void UpdateProductDetails(long productId, string productName, decimal productPrice, int productQuantity);
 

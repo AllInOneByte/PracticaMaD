@@ -24,6 +24,8 @@
                             Visible="False" meta:resourcekey="lblNumberError"></asp:Label>
                    <asp:Label ID="lblLoginError" runat="server" ForeColor="Red" Style="position: relative"
                        Visible="False" meta:resourcekey="lblLoginError"></asp:Label>
+                    <asp:Label ID="lblDateError" runat="server" ForeColor="Red" Style="position: relative"
+                           Visible="False" meta:resourcekey="lblDateError"></asp:Label>
             </div>
             <br />
             <div class="field">

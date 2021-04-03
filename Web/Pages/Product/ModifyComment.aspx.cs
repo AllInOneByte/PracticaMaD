@@ -84,7 +84,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             if (SessionManager.IsUserAuthenticated(Context))
             {
                 long commentId = long.Parse(Request.Params.Get("comment"));
-
                 /* Get the Service */
                 IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
                 IProductService productService = iocManager.Resolve<IProductService>();
@@ -117,13 +116,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
                 long productId = productService.FindCommentById(commentId).productId;
 
-                tagBox.Visible = false;
-                commentBody.Visible = false;
-                btnEditComment.Visible = false;
-                lblCommentEdited.Visible = true;
-
-                hlReturnToDetails.NavigateUrl = "/Pages/Product/ProductComments.aspx?product=" + productId;
-                hlReturnToDetails.Visible = true;
+                Response.Redirect(
+                   Response.ApplyAppPathModifier("~/Pages/Product/ProductComments.aspx?product=" + productId.ToString()));
             }
         }
     }

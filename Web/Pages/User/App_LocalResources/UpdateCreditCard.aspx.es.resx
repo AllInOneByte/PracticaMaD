@@ -159,4 +159,7 @@
   <data name="revVerificationTamError.ErrorMessage" xml:space="preserve">
     <value>Tamaño de código inválido</value>
   </data>
+  <data name="lblDateError.Text" xml:space="preserve">
+    <value>La fecha de expiración de la Tarjeta de Crédito es inválida</value>
+  </data>
 </root>

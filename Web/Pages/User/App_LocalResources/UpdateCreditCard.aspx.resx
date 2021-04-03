@@ -159,4 +159,7 @@
   <data name="revVerificationTamError.ErrorMessage" xml:space="preserve">
     <value>Invalid Verification Code Lenght</value>
   </data>
+  <data name="lblDateError.Text" xml:space="preserve">
+    <value>Invalid Credit Card Expiration Date</value>
+  </data>
 </root>

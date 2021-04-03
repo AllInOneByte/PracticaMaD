@@ -43,7 +43,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                     Response.Redirect(Response.
                         ApplyAppPathModifier("~/Pages/Product/ProductDetails.aspx?product=" + productId));
                 }
-                catch (Exception)
+                catch (DuplicateInstanceException)
                 {
                     lblNameError.Visible = true;
                 }

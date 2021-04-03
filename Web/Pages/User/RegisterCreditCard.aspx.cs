@@ -43,6 +43,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                     long number = Convert.ToInt64(txtCreditNumber.Text);
                     int verification = Convert.ToInt32(txtVerificationCode.Text);
                     System.DateTime date = DateTime.ParseExact(txtExpirationDate.Text, "MM/yy", null);
+                    if (date.Year.CompareTo(System.DateTime.Now.Year) < 0 || (date.Year.CompareTo(System.DateTime.Now.Year) == 0 && date.Month.CompareTo(System.DateTime.Now.Month) < 0))
+                    {
+                        lblDateError.Visible = true;
+                        lblNumberError.Visible = false;
+                        return;
+                    }
 
                     SessionManager.RegisterCreditCard(Context, comboCreditType.SelectedValue,
                       number, verification, checkDefault.Checked, date);
@@ -53,6 +59,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 catch (DuplicateInstanceException)
                 {
                     lblNumberError.Visible = true;
+                }
+                catch (FormatException)
+                {
+                    lblDateError.Visible = true;
+                    lblNumberError.Visible = false;
                 }
             }
         }

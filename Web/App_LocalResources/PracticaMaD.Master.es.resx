@@ -132,7 +132,7 @@
   <data name="lnkAuthenticate.Text" xml:space="preserve">
     <value>Autenticación</value>
   </data>
-  <data name="lnkCart.Test" xml:space="preserve">
+  <data name="lnkCart.Text" xml:space="preserve">
     <value>Carrito</value>
   </data>
   <data name="lnkListDeliveries.Text" xml:space="preserve">

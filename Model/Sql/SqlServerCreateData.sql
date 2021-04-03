@@ -8,6 +8,9 @@ INSERT INTO UserProfile
 INSERT INTO UserProfile
 	VALUES('user', 'XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg=', 'Ursula', 'Martinez', 'usri_mp@udc.es', 'es', 'ES', 0, 'sitio 16A');
 
+INSERT INTO CreditCard
+	VALUES('Crédito', '1234567891012345','123','01/31',1,2);
+
 INSERT INTO Category
 	VALUES ('category1');
 

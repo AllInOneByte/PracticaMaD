@@ -210,4 +210,7 @@
   <data name="lnkBack.Text" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="lblDateError.Text" xml:space="preserve">
+    <value>Invalid Credit Card Expiration Date</value>
+  </data>
 </root>
