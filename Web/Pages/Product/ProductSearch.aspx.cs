@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
-    public partial class ProductSearch : System.Web.UI.Page
+    public partial class ProductSearch : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
