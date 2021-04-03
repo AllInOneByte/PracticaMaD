@@ -31,6 +31,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping {
         protected global::System.Web.UI.HtmlControls.HtmlForm BuyForm;
         
         /// <summary>
+        /// Control lblNumberError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNumberError;
+        
+        /// <summary>
+        /// Control lblUserError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUserError;
+        
+        /// <summary>
+        /// Control lblDash1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDash1;
+        
+        /// <summary>
         /// Control lnkRegisterCreditCard.
         /// </summary>
         /// <remarks>
@@ -146,24 +173,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularCreditNumberValidator2;
-        
-        /// <summary>
-        /// Control lblNumberError.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNumberError;
-        
-        /// <summary>
-        /// Control lblUserError.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserError;
         
         /// <summary>
         /// Control lclAddress.

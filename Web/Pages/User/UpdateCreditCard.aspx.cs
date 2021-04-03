@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
-    public partial class UpdateCreditCard : System.Web.UI.Page
+    public partial class UpdateCreditCard : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,6 +27,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 if (card.defaultCard == 1)
                 {
                     checkDefault.Checked = true;
+                    checkDefault.Enabled = false;
                 }
 
                 Locale locale = SessionManager.GetLocale(Context);

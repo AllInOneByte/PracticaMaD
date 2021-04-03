@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 {
-    public partial class ListDeliveries : System.Web.UI.Page
+    public partial class ListDeliveries : SpecificCulturePage
     {
         private ObjectDataSource pbpDataSource = new ObjectDataSource();
 

@@ -22,6 +22,7 @@
                 <asp:Label ID="lblCommentEdited" meta:resourcekey="lblCommentEdited" runat="server" Visible="false"
                     ForeColor="Green"></asp:Label>
                 <br />
+                <br />
                 <asp:HyperLink ID="hlReturnToDetails" meta:resourcekey="hlReturnToDetails" runat="server" Visible="false"></asp:HyperLink>
             </p>
             <asp:TextBox ID="tagBox" runat="server" meta:resourcekey="commentTagBox"

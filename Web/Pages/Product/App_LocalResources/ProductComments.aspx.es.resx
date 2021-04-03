@@ -129,4 +129,7 @@
   <data name="lblNoComments.Text" xml:space="preserve">
     <value>No se encontraron comentarios</value>
   </data>
+  <data name="lnkBack.Text" xml:space="preserve">
+    <value>Volver</value>
+  </data>
 </root>

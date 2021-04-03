@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 {
-    public partial class Buy : System.Web.UI.Page
+    public partial class Buy : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,13 +45,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
                     if (ex is UnmatchingUserAndCardException)
                     {
                         lblUserError.Visible = true;
+                        lblNumberError.Visible = false;
+                        lblDash1.Visible = false;
+                        lnkRegisterCreditCard.Visible = false;
+                        lblAmountError.Visible = false;
 
                         return;
                     }
                     if (ex is InstanceNotFoundException)
                     {
+                        lnkRegisterCreditCard.NavigateUrl = "~/Pages/User/RegisterCreditCard.aspx?number="
+                            + txtCreditNumber.Text;
+
                         lblNumberError.Visible = true;
+                        lblDash1.Visible = true;
                         lnkRegisterCreditCard.Visible = true;
+                        lblUserError.Visible = false;
+                        lblAmountError.Visible = false;
 
                         return;
                     }
@@ -59,6 +69,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
                     {
                         int index = ex.Message.LastIndexOf('|');
                         string men = ex.Message.Substring(index + 14);
+
+                        lblNumberError.Visible = false;
+                        lblDash1.Visible = false;
+                        lnkRegisterCreditCard.Visible = false;
+                        lblUserError.Visible = false;
 
                         lblAmountError.Visible = true;
                         lblAmountError.Text += men;

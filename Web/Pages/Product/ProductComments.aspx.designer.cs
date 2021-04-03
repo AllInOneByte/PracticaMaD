@@ -31,13 +31,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product {
         protected global::System.Web.UI.HtmlControls.HtmlForm ProductCommentForm;
         
         /// <summary>
-        /// Control lblNoComments.
+        /// Control lnkBack.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNoComments;
+        protected global::System.Web.UI.WebControls.HyperLink lnkBack;
         
         /// <summary>
         /// Control ownComment.
@@ -76,6 +76,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product {
         protected global::System.Web.UI.WebControls.TableHeaderCell cellCaptionOwnCommentDate;
         
         /// <summary>
+        /// Control cellCaptionOwnCommentTags.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableHeaderCell cellCaptionOwnCommentTags;
+        
+        /// <summary>
         /// Control cellOwnCommentId.
         /// </summary>
         /// <remarks>
@@ -112,6 +121,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product {
         protected global::System.Web.UI.WebControls.TableCell cellOwnCommentDate;
         
         /// <summary>
+        /// Control cellOwnCommentTags.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell cellOwnCommentTags;
+        
+        /// <summary>
         /// Control btnDelete.
         /// </summary>
         /// <remarks>
@@ -128,6 +146,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnModify;
+        
+        /// <summary>
+        /// Control lblNoComments.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNoComments;
         
         /// <summary>
         /// Control gvProducts.

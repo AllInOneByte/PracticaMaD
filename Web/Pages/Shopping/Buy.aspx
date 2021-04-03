@@ -13,8 +13,12 @@
     <div id="form">
         <form id="BuyForm" method="POST" runat="server">
             <div class="field">
+                <asp:Label ID="lblNumberError" runat="server" ForeColor="Red" Style="position: relative"
+                            Visible="False" meta:resourcekey="lblNumberError"></asp:Label>
+                <asp:Label ID="lblUserError" runat="server" ForeColor="Red" Style="position: relative"
+                    Visible="False" meta:resourcekey="lblUserError"></asp:Label>
+                <asp:Label ID="lblDash1" runat="server" Visible="false" Text=" - "></asp:Label>
                 <asp:HyperLink ID="lnkRegisterCreditCard" runat="server" 
-                    NavigateUrl="~/Pages/User/RegisterCreditCard.aspx"
                     meta:resourcekey="lnkRegisterCreditCard" Visible="false"/>
                 <div class="field">
                 <br />
@@ -49,11 +53,7 @@
                             ValidationExpression="\d+" meta:resourcekey="revNumberError"></asp:RegularExpressionValidator>
                         <asp:RegularExpressionValidator ID="RegularCreditNumberValidator2"
                             ControlToValidate="txtCreditNumber" runat="server"
-                            ValidationExpression="^[\s\S]{12,19}$" meta:resourcekey="revNumberTamError"></asp:RegularExpressionValidator>
-                        <asp:Label ID="lblNumberError" runat="server" ForeColor="Red" Style="position: relative"
-                            Visible="False" meta:resourcekey="lblNumberError"></asp:Label>
-                        <asp:Label ID="lblUserError" runat="server" ForeColor="Red" Style="position: relative"
-                            Visible="False" meta:resourcekey="lblUserError"></asp:Label></span>
+                            ValidationExpression="^[\s\S]{12,19}$" meta:resourcekey="revNumberTamError"></asp:RegularExpressionValidator></span>
             </div>
             <br />
             <div class="field">

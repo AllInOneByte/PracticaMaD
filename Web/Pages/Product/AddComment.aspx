@@ -19,10 +19,11 @@
                 <asp:Label ID="lblUnlogedUser" meta:resourcekey="lblUnlogedUser" runat="server" Visible="false"
                     ForeColor="Red"></asp:Label>
                 <br />
-                <asp:Label ID="lblCommentAdded" meta:resourcekey="lblCommentAdded" runat="server" Visible="false"
-                    ForeColor="Green"></asp:Label>
+                <asp:Label ID="lblCommented" meta:resourcekey="lblCommented" runat="server" Visible="false"></asp:Label>
                 <br />
                 <asp:HyperLink ID="hlReturnToDetails" meta:resourcekey="hlReturnToDetails" runat="server" Visible="false"></asp:HyperLink>
+                <br />
+                <asp:HyperLink ID="lnkBack" runat="server" meta:resourcekey="lnkBack"></asp:HyperLink>
             </p>
             <asp:TextBox ID="tagBox" runat="server" meta:resourcekey="commentTagBox"
                 Width="50%" TextMode="SingleLine"></asp:TextBox>

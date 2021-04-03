@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
-    public partial class ProductComments : System.Web.UI.Page
+    public partial class ProductComments : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,8 +33,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             catch (ArgumentNullException)
             {
                 lblNoComments.Visible = true;
+                lnkBack.NavigateUrl = "~/Pages/Product/ProductSearch.aspx";
                 return;
             }
+
+            lnkBack.NavigateUrl = "~/Pages/Product/ProductDetails.aspx?product=" + productId.ToString();
 
             /* Get Start Index */
             try
@@ -105,9 +108,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                         SessionManager.GetUserSession(Context).UserProfileId);
 
                     cellOwnCommentId.Text = comment.commentId.ToString();
-                    cellOwnCommentProfileName.Text = comment.UserProfile.firstName;
+                    cellOwnCommentProfileName.Text = comment.UserProfile.loginName;
                     cellOwnCommentBody.Text = comment.comment1;
                     cellOwnCommentDate.Text = comment.commentDate.ToString("d/M/yyyy");
+                    cellOwnCommentTags.Text = "";
+                    foreach (Tag tag in comment.Tags)
+                    {
+                        cellOwnCommentTags.Text += tag.tagName + " <br/>";
+                    }
 
                     ownComment.Visible = true;
                     btnDelete.Visible = true;
@@ -135,13 +143,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 Comment comment = productService.FindCommentById(long.Parse(e.Row.Cells[0].Text));
 
                 // Find ListBox
-                ListBox lst = (ListBox)e.Row.FindControl("tagList");
+                TextBox box = (TextBox)e.Row.FindControl("TextTags");
 
+                box.Text = "";
                 foreach (Tag tag in comment.Tags)
                 {
-                    lst.Items.Add(new ListItem(tag.tagName));
+                    box.Text += tag.tagName + "\n";
                 }
             }
+        }
+
+        protected void gvProducts_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[0].Visible = false;
         }
 
         protected void BtnDelete_Click(object sender, EventArgs e)

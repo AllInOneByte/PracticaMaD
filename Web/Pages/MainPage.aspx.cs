@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using Es.Udc.DotNet.ModelUtil.IoC;
+using System;
+
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 {
-    public partial class MainPage : System.Web.UI.Page
+    public partial class MainPage : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

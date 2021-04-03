@@ -132,10 +132,16 @@
   <data name="lblCommentAdded.Text" xml:space="preserve">
     <value>The comment has been published</value>
   </data>
+  <data name="lblCommented.Text" xml:space="preserve">
+    <value>You have already posted a review for this product.</value>
+  </data>
   <data name="lblNoProduct.Text" xml:space="preserve">
     <value>No product specified</value>
   </data>
   <data name="lblUnlogedUser.Text" xml:space="preserve">
     <value>User not identified</value>
+  </data>
+  <data name="lnkBack.Text" xml:space="preserve">
+    <value>Back</value>
   </data>
 </root>

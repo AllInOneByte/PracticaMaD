@@ -133,7 +133,7 @@
     <value>Credit Card Type</value>
   </data>
   <data name="lclExpirationDate.Text" xml:space="preserve">
-    <value>Credit Card Expiration Date (dd/MM/YYYY)</value>
+    <value>Credit Card Expiration Date (MM/YY)</value>
   </data>
   <data name="lclVerificationCode.Text" xml:space="preserve">
     <value>Credit Card Verification Code</value>

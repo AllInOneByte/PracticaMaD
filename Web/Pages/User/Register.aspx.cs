@@ -131,7 +131,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                         System.DateTime date = DateTime.ParseExact(txtExpirationDate.Text, "MM/yy", null);
 
                         SessionManager.RegisterCreditCard(Context, comboCreditType.SelectedValue,
-                          number, verification, checkDefault.Checked, date);
+                          number, verification, true, date);
 
                         Response.Redirect(Response.
                             ApplyAppPathModifier("~/Pages/MainPage.aspx"));

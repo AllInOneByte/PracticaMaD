@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
-    public partial class ModifyComment : System.Web.UI.Page
+    public partial class ModifyComment : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -122,7 +122,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 btnEditComment.Visible = false;
                 lblCommentEdited.Visible = true;
 
-                hlReturnToDetails.NavigateUrl = "/Pages/Product/ProductDetails.aspx?product=" + productId;
+                hlReturnToDetails.NavigateUrl = "/Pages/Product/ProductComments.aspx?product=" + productId;
                 hlReturnToDetails.Visible = true;
             }
         }

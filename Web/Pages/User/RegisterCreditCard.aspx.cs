@@ -16,6 +16,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             {
                 Locale locale = SessionManager.GetLocale(Context);
                 UpdateComboCreditType(locale.Language);
+
+                string number = Request.Params.Get("number");
+                if(number != null)
+                {
+                    txtCreditNumber.Text = number;
+                }
             }
         }
 

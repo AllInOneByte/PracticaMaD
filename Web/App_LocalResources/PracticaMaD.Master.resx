@@ -144,9 +144,6 @@
   <data name="lnkProducts.Text" xml:space="preserve">
     <value>Products</value>
   </data>
-  <data name="lnkRegisterTag.Text" xml:space="preserve">
-    <value>Register Tag</value>
-  </data>
   <data name="lnkUpdate.Text" xml:space="preserve">
     <value>Update Profile</value>
   </data>

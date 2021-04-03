@@ -10,7 +10,7 @@ using System.Web;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
-    public partial class ProductDetails : System.Web.UI.Page
+    public partial class ProductDetails : SpecificCulturePage
     {
 
         protected void Page_Load(object sender, EventArgs e)
@@ -67,6 +67,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 {
                     productService.FindCommentByProductAndUser(productId,
                         SessionManager.GetUserSession(Context).UserProfileId);
+
+                    lblDash1.Visible = false;
                 }
                 catch (InstanceNotFoundException)
                 {

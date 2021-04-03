@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
-    public partial class ListCreditCards : System.Web.UI.Page
+    public partial class ListCreditCards : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 {
-    public partial class DeliveryDetails : System.Web.UI.Page
+    public partial class DeliveryDetails : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

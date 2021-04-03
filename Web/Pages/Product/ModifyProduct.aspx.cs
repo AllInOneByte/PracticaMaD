@@ -9,7 +9,7 @@ using System.Globalization;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
-    public partial class ModifyProduct : System.Web.UI.Page
+    public partial class ModifyProduct : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

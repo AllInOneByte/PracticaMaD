@@ -49,13 +49,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product {
         protected global::System.Web.UI.WebControls.Label lblUnlogedUser;
         
         /// <summary>
-        /// Control lblCommentAdded.
+        /// Control lblCommented.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCommentAdded;
+        protected global::System.Web.UI.WebControls.Label lblCommented;
         
         /// <summary>
         /// Control hlReturnToDetails.
@@ -65,6 +65,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlReturnToDetails;
+        
+        /// <summary>
+        /// Control lnkBack.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkBack;
         
         /// <summary>
         /// Control tagBox.

@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
-    public partial class AddComment : System.Web.UI.Page
+    public partial class AddComment : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,13 +18,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             {
                 long productId = long.Parse(Request.Params.Get("product"));
 
+                tagBox.Visible = false;
+                commentBody.Visible = false;
+                btnAddComment.Visible = false;
+
+                lnkBack.NavigateUrl = "~/Pages/Product/ProductDetails.aspx?product=" + productId.ToString();
+
                 if (!SessionManager.IsUserAuthenticated(Context))
                 {
                     lblUnlogedUser.Visible = true;
                     tagBox.Visible = false;
                     commentBody.Visible = false;
                     btnAddComment.Visible = false;
+                    return;
                 }
+                /* Get the Service */
+                IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+                IProductService productService = iocManager.Resolve<IProductService>();
+
+                productService.FindCommentByProductAndUser(productId,
+                        SessionManager.GetUserSession(Context).UserProfileId);
+
+                lblCommented.Visible = true;
             }
             catch (ArgumentNullException)
             {
@@ -32,6 +47,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 tagBox.Visible = false;
                 commentBody.Visible = false;
                 btnAddComment.Visible = false;
+                lnkBack.NavigateUrl = "~/Pages/Product/ProductSearch.aspx";
+            }
+            catch (InstanceNotFoundException)
+            {
+                tagBox.Visible = true;
+                commentBody.Visible = true;
+                btnAddComment.Visible = true;
             }
         }
 
@@ -76,13 +98,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                         commentBody.Text, tags);
                 }
 
-                tagBox.Visible = false;
-                commentBody.Visible = false;
-                btnAddComment.Visible = false;
-                lblCommentAdded.Visible = true;
+                Response.Redirect(
+                   Response.ApplyAppPathModifier("~/Pages/Product/ProductComments.aspx?product=" + productId.ToString()));
 
-                hlReturnToDetails.NavigateUrl = "/Pages/Product/ProductDetails.aspx?product=" + productId;
-                hlReturnToDetails.Visible = true;
             }
         }
     }

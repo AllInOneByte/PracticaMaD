@@ -172,12 +172,6 @@
                             Display="Dynamic" ValidationExpression="\d+\d+/\d+\d+"
                             meta:resourcekey="revExpirationDate"></asp:RegularExpressionValidator></span>
             </div>
-            <div class="field">
-                <span class="label">
-                    <asp:Localize ID="lclCheckDefault" runat="server" meta:resourcekey="lclCheckDefault" /></span><span
-                        class="entry">
-                    <asp:CheckBox ID="checkDefault" runat="server" Checked="true" AutoPostBack="false"/></span>
-            </div>
             <div class="button">
                 <asp:Button ID="btnRegister" runat="server" OnClick="BtnRegisterClick" meta:resourcekey="btnRegister" />
             </div>
