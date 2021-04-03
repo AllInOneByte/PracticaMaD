@@ -72,7 +72,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
             TableRow row;
             TableCell cell;
             
-            int count = Settings.Default.PracticaMaD_defaultCount;
+            int count = 10;
             int start = 0;
 
             TagBlock block;

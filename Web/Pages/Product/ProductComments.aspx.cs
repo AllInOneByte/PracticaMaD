@@ -29,6 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             try
             {
                 productId = long.Parse(Request.Params.Get("product"));
+                btnDelete.Attributes["name"] = productId.ToString();
             }
             catch (ArgumentNullException)
             {
@@ -163,7 +164,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
             IProductService productService = iocManager.Resolve<IProductService>();
 
-            long productId = long.Parse(Request.Params.Get("product"));
+            long productId = long.Parse(btnDelete.Attributes["name"]);
 
             long id =  Convert.ToInt64(cellOwnCommentId.Text);
             productService.DeleteComment(id);

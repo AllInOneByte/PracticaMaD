@@ -25,7 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
         public int PracticaMaD_defaultCount {
             get {
                 return ((int)(this["PracticaMaD_defaultCount"]));
