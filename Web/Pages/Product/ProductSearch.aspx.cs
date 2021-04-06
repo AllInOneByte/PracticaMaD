@@ -1,6 +1,7 @@
 ﻿using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using System;
@@ -281,6 +282,40 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                     Response.Redirect("/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword);
                 }
             }
+        }
+
+        protected void BtnAddCartClick(object sender, EventArgs e)
+        {
+            try
+            {
+                Button button = (Button)sender;
+                long id = long.Parse(button.Attributes["pId"]);
+
+                SessionManager.AddToShoppingCart(Context, id, 1, false);
+
+                Response.Redirect(
+                   Response.ApplyAppPathModifier("~/Pages/Shopping/Cart.aspx"));
+
+            }
+            catch (StockEmptyException ex)
+            {
+                int index = ex.Message.LastIndexOf('|');
+                string men = ex.Message.Substring(index + 15);
+            }
+        }
+
+        protected void gvProducts_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Button btn = (Button)e.Row.FindControl("btnAddCart");
+                btn.Attributes["pId"] = e.Row.Cells[0].Text;
+            }
+        }
+
+        protected void gvProducts_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[0].Visible = false;
         }
     }
 }

@@ -35,9 +35,10 @@
                 <p>
                     <asp:Label ID="lblNoProducts" meta:resourcekey="lblNoProducts" runat="server"></asp:Label>
                 </p>
-                <asp:GridView ID="gvProducts" runat="server" GridLines="None" AutoGenerateColumns="False" Width="100%" ViewStateMode="Disabled">
+                <asp:GridView ID="gvProducts" runat="server" GridLines="None" AutoGenerateColumns="False" Width="100%"
+                    OnRowDataBound="gvProducts_RowDataBound" OnRowCreated="gvProducts_RowCreated" ViewStateMode="Disabled">
                     <Columns>
-                        <asp:BoundField DataField="productId" Visible="false" />
+                        <asp:BoundField DataField="productId" ItemStyle-CssClass="hiddencol" />
                         <asp:HyperLinkField DataTextField="productName"
                             HeaderText="<%$ Resources:Common, productName %>"
                             DataNavigateUrlFields="productId"
@@ -48,7 +49,11 @@
                             DataFormatString="{0:d/M/yyyy}" />
                         <asp:BoundField DataField="productPrice" HeaderText="<%$ Resources:Common, productPrice %>"
                             DataFormatString="{0:C}" />
-                        <asp:HyperLinkField Text="lclAdd" DataNavigateUrlFields="productId, productQuantity" DataNavigateUrlFormatString="~/Pages/Shopping/AddProductCart.aspx?productId={0}&productQuantity={1}"  meta:resourcekey="lclAdd" />
+                        <asp:TemplateField ShowHeader="false">
+                            <ItemTemplate>
+                                <asp:Button ID="btnAddCart" runat="server" OnClick="BtnAddCartClick" meta:resourcekey="btnAddCart"/>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
             </div>
