@@ -81,7 +81,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             if ((startIndex - count) >= 0)
             {
                 string url =
-                    "/Pages/Product/ProductComments.aspx" + "?product=" + productId +
+                    "~/Pages/Product/ProductComments.aspx" + "?product=" + productId +
                     "&startIndex=" + (startIndex - count) + "&count=" + count;
 
                 lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
@@ -92,7 +92,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             if (commentBlock.ExistMoreComments)
             {
                 string url =
-                    "/Pages/Product/ProductComments.aspx" + "?product=" + productId +
+                    "~/Pages/Product/ProductComments.aspx" + "?product=" + productId +
                     "&startIndex=" + (startIndex + count) + "&count=" + count;
 
                 lnkNext.NavigateUrl = Response.ApplyAppPathModifier(url);
@@ -171,12 +171,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
             
             Response.Redirect(Response.
-                        ApplyAppPathModifier("/Pages/Product/ProductComments.aspx" + "?product=" + productId));
+                        ApplyAppPathModifier("~/Pages/Product/ProductComments.aspx" + "?product=" + productId));
         }
 
         protected void BtnModify_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/Pages/Product/ModifyComment.aspx?comment=" + cellOwnCommentId.Text);
+            Response.Redirect("~/Pages/Product/ModifyComment.aspx?comment=" + cellOwnCommentId.Text);
         }
     }
 }

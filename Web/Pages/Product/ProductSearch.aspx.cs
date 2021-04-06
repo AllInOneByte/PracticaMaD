@@ -78,7 +78,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                         if ((startIndex - count) >= 0)
                         {
                             string url =
-                                "/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword + "&category=" + catId +
+                                "~/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword + "&category=" + catId +
                                 "&startIndex=" + (startIndex - count) + "&count=" + count;
 
                             lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
@@ -89,7 +89,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                         if (productBlock.ExistMoreProducts)
                         {
                             string url =
-                                "/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword + "&category=" + catId +
+                                "~/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword + "&category=" + catId +
                                 "&startIndex=" + (startIndex + count) + "&count=" + count;
 
                             lnkNext.NavigateUrl = Response.ApplyAppPathModifier(url);
@@ -115,7 +115,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                         if ((startIndex - count) >= 0)
                         {
                             string url =
-                                "/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword +
+                                "~/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword +
                                 "&startIndex=" + (startIndex - count) + "&count=" + count;
 
                             lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
@@ -126,7 +126,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                         if (productBlock.ExistMoreProducts)
                         {
                             string url =
-                                "/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword +
+                                "~/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword +
                                 "&startIndex=" + (startIndex + count) + "&count=" + count;
 
                             lnkNext.NavigateUrl = Response.ApplyAppPathModifier(url);
@@ -158,7 +158,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                         if ((startIndex - count) >= 0)
                         {
                             string url =
-                                "/Pages/Product/ProductSearch.aspx" + "?tagId=" + tagId + "startIndex=" + (startIndex - count) +
+                                "~/Pages/Product/ProductSearch.aspx" + "?tagId=" + tagId + "startIndex=" + (startIndex - count) +
                                 "&count=" + count;
 
                             lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
@@ -169,7 +169,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                         if (productBlock.ExistMoreProducts)
                         {
                             string url =
-                                "/Pages/Product/ProductSearch.aspx" + "?tagId=" + tagId + "startIndex=" + (startIndex + count) +
+                                "~/Pages/Product/ProductSearch.aspx" + "?tagId=" + tagId + "startIndex=" + (startIndex + count) +
                                 "&count=" + count;
 
                             lnkNext.NavigateUrl = Response.ApplyAppPathModifier(url);
@@ -195,7 +195,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                         if ((startIndex - count) >= 0)
                         {
                             string url =
-                                "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex - count) +
+                                "~/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex - count) +
                                 "&count=" + count;
 
                             lnkPrevious.NavigateUrl = Response.ApplyAppPathModifier(url);
@@ -206,7 +206,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                         if (productBlock.ExistMoreProducts)
                         {
                             string url =
-                                "/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex + count) +
+                                "~/Pages/Product/ProductSearch.aspx" + "?startIndex=" + (startIndex + count) +
                                 "&count=" + count;
 
                             lnkNext.NavigateUrl = Response.ApplyAppPathModifier(url);
@@ -276,11 +276,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
                 if (catId > 0)
                 {
-                    Response.Redirect("/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword + "&category=" + catId);
+                    Response.Redirect("~/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword + "&category=" + catId);
                 }
                 else
                 {
-                    Response.Redirect("/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword);
+                    Response.Redirect("~/Pages/Product/ProductSearch.aspx" + "?keyword=" + keyword);
                 }
             }
         }

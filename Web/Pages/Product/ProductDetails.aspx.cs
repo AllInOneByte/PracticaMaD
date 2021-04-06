@@ -50,7 +50,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             cellProductQuantity.Text = product.productQuantity.ToString();
 
             hlComments.NavigateUrl =
-                "/Pages/Product/ProductComments.aspx" +
+                "~/Pages/Product/ProductComments.aspx" +
                 "?product=" + product.productId;
 
             
@@ -80,7 +80,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 hlAddComment.Visible = true;
             }
 
-            hlAddComment.NavigateUrl = "/Pages/Product/AddComment.aspx" +
+            hlAddComment.NavigateUrl = "~/Pages/Product/AddComment.aspx" +
                     "?product=" + productId;
 
             if (product.Comments.Count == 0)
