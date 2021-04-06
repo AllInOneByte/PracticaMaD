@@ -18,7 +18,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!SessionManager.IsUserAuthenticated(Context))
             {
                 
@@ -39,8 +38,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
             else
             {
                 if (SessionManager.IsAdminAuthenticated(Context))
-                {
-
+                {     
                     if (lblDash2 != null)
                         lblDash2.Visible = false;
                     if (lnkUpdate != null)
