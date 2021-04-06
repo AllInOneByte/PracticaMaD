@@ -22,6 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             lnkPrevious.Visible = false;
             lnkNext.Visible = false;
             lblNoProducts.Visible = false;
+            lblAmountError.Visible = false;
 
             /* Get the Service */
             IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
@@ -301,6 +302,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             {
                 int index = ex.Message.LastIndexOf('|');
                 string men = ex.Message.Substring(index + 15);
+
+                lblAmountError.Text += men;
+                lblAmountError.Visible = true;
             }
         }
 

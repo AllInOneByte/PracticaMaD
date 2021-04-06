@@ -123,6 +123,9 @@
   <data name="btnSearch.Text" xml:space="preserve">
     <value>Buscar</value>
   </data>
+  <data name="lblAmountError.Text" xml:space="preserve">
+    <value>Cantidad insuficiente en stock de</value>
+  </data>
   <data name="lblNoProducts.Text" xml:space="preserve">
     <value>No se encontraron productos</value>
   </data>

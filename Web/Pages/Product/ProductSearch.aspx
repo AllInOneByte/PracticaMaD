@@ -26,11 +26,13 @@
             </div>
             <br />
             <br />
-             <asp:HyperLink ID="lnkBack" runat="server" 
-                    NavigateUrl="~/Pages/MainPage.aspx"
-                    meta:resourcekey="lnkBack"/>
+            <asp:HyperLink ID="lnkBack" runat="server"
+                NavigateUrl="~/Pages/MainPage.aspx"
+                meta:resourcekey="lnkBack" />
             <br />
             <br />
+            <asp:Label ID="lblAmountError" runat="server" ForeColor="Red" Style="position: relative"
+                Visible="False" meta:resourcekey="lblAmountError"></asp:Label>
             <div>
                 <p>
                     <asp:Label ID="lblNoProducts" meta:resourcekey="lblNoProducts" runat="server"></asp:Label>
@@ -51,7 +53,7 @@
                             DataFormatString="{0:C}" />
                         <asp:TemplateField ShowHeader="false">
                             <ItemTemplate>
-                                <asp:Button ID="btnAddCart" runat="server" OnClick="BtnAddCartClick" meta:resourcekey="btnAddCart"/>
+                                <asp:Button ID="btnAddCart" runat="server" OnClick="BtnAddCartClick" meta:resourcekey="btnAddCart" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
