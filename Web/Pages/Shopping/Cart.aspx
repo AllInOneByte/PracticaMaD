@@ -19,13 +19,27 @@
             <asp:Table ID="lclCart" runat="server" Visible="true" meta:resourcekey="lclCart">
                 <asp:TableHeaderRow ID="ShoppingCartHeader" runat="server">
                     <asp:TableHeaderCell ID="lclProductName" meta:resourceKey="lclProductName"></asp:TableHeaderCell>
+                    <asp:TableHeaderCell ID="lclProductPrice" meta:resourceKey="lclProductPrice"></asp:TableHeaderCell>
                     <asp:TableHeaderCell ID="lclRest" Text=""></asp:TableHeaderCell>
                     <asp:TableHeaderCell ID="lclAmount" meta:resourceKey="lclAmount"></asp:TableHeaderCell>
                     <asp:TableHeaderCell ID="lclSum" Text=""></asp:TableHeaderCell>
+                    <asp:TableHeaderCell ID="lclAmountPrice" meta:resourceKey="lclAmountPrice"></asp:TableHeaderCell>
                     <asp:TableHeaderCell ID="lclGift" meta:resourceKey="lclGift"></asp:TableHeaderCell>
                     <asp:TableHeaderCell ID="lclRemove" Text=""></asp:TableHeaderCell>
                 </asp:TableHeaderRow>
             </asp:Table>
+            <br />
+            <div id="TotalPrice"  style="float:left;">
+                <span class='highlight'>
+                    <asp:Label ID="lclTotalCartPrice" meta:resourcekey="lclTotalCartPrice" runat="server" Visible="true"></asp:Label>
+                 </span>
+                 <span class='highlight'>
+                    <asp:Label ID="lblDash2" Text=" : " runat="server" Visible="true"></asp:Label>
+                 </span>
+                <span class='highlight'>
+                    <asp:Label ID="lclTotalPrice" runat="server" Visible="true"></asp:Label>
+                 </span>
+            </div>
             <br />
             <br />
             <div class="button">

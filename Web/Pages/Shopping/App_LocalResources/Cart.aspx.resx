@@ -153,4 +153,13 @@
   <data name="lnkMain.Text" xml:space="preserve">
     <value>Menu</value>
   </data>
+  <data name="lclAmountPrice.Text" xml:space="preserve">
+    <value>Total price</value>
+  </data>
+  <data name="lclProductPrice.Text" xml:space="preserve">
+    <value>Unit price</value>
+  </data>
+  <data name="lclTotalCartPrice.Text" xml:space="preserve">
+    <value>Cart total price </value>
+  </data>
 </root>

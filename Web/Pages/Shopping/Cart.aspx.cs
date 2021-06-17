@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 {
-    public partial class Cart : System.Web.UI.Page
+    public partial class Cart : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,13 +22,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
             {
                 lblEmpty.Visible = true;
                 lclCart.Visible = false;
+                lclTotalCartPrice.Visible = false;
+                lblDash2.Visible = false;
+                lclTotalPrice.Visible = false;
                 btnBuy.Visible = false;
                 return;
             }
+            decimal totalPrice = 0;
+            decimal total = 0;
 
             TableRow row;
 
-            TableCell product, amount, gitf, sum, rest, delete;
+            TableCell product, unitPrice, amount, price, gitf, sum, rest, delete;
 
             CheckBox checkGift;
 
@@ -43,9 +48,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
                 product.Text = line.Product.productName;
                 row.Cells.Add(product);
 
+                unitPrice = new TableCell();
+                unitPrice.Text = line.Product.productPrice.ToString();
+                row.Cells.Add(unitPrice);
+
                 rest = new TableCell();
                 brest = new LinkButton();
                 brest.CommandArgument = line.Product.productId.ToString();
+                brest.Attributes.Add("min", line.Amount.ToString());
                 brest.Click += new EventHandler(this.OnClickRest);
                 brest.Text = "-";
                 rest.Controls.Add(brest);
@@ -62,6 +72,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
                 bsum.Text = "+";
                 sum.Controls.Add(bsum);
                 row.Cells.Add(sum);
+
+                price = new TableCell();
+                totalPrice = line.Product.productPrice * line.Amount;
+                price.Text = totalPrice.ToString();
+                total += totalPrice;
+                row.Cells.Add(price);
 
                 gitf = new TableCell();
                 checkGift = new CheckBox();
@@ -82,6 +98,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 
                 lclCart.Rows.Add(row);
             }
+
+            lclTotalPrice.Text = total.ToString();
             
         }
 
@@ -118,13 +136,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
             try
             {
                 LinkButton button = (LinkButton)sender;
+                 
+                if (Convert.ToInt32(button.Attributes["min"]) != 1)
+                {
+                    long productId = Convert.ToInt64(button.CommandArgument);
 
-                long productId = Convert.ToInt64(button.CommandArgument);
+                    SessionManager.ModifyAmount(Context, productId, -1);
 
-                SessionManager.ModifyAmount(Context, productId, -1);
-
-                Response.Redirect(Response.
-                         ApplyAppPathModifier("~/Pages/Shopping/Cart.aspx"));
+                    Response.Redirect(Response.
+                             ApplyAppPathModifier("~/Pages/Shopping/Cart.aspx"));
+                }
             }
             catch (StockEmptyException)
             {

@@ -153,4 +153,13 @@
   <data name="lnkMain.Text" xml:space="preserve">
     <value>Inicio</value>
   </data>
+  <data name="lclAmountPrice.Text" xml:space="preserve">
+    <value>Prezo total</value>
+  </data>
+  <data name="lclProductPrice.Text" xml:space="preserve">
+    <value>Prezo unitario</value>
+  </data>
+  <data name="lclTotalCartPrice.Text" xml:space="preserve">
+    <value>Prezo total do carrito</value>
+  </data>
 </root>

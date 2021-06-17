@@ -76,6 +76,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping {
         protected global::System.Web.UI.WebControls.TableHeaderCell lclProductName;
         
         /// <summary>
+        /// Control lclProductPrice.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableHeaderCell lclProductPrice;
+        
+        /// <summary>
         /// Control lclRest.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping {
         protected global::System.Web.UI.WebControls.TableHeaderCell lclSum;
         
         /// <summary>
+        /// Control lclAmountPrice.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableHeaderCell lclAmountPrice;
+        
+        /// <summary>
         /// Control lclGift.
         /// </summary>
         /// <remarks>
@@ -119,6 +137,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableHeaderCell lclRemove;
+        
+        /// <summary>
+        /// Control lclTotalCartPrice.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lclTotalCartPrice;
+        
+        /// <summary>
+        /// Control lblDash2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDash2;
+        
+        /// <summary>
+        /// Control lclTotalPrice.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lclTotalPrice;
         
         /// <summary>
         /// Control btnBuy.

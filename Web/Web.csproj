@@ -537,15 +537,6 @@
     <Content Include="Pages\Product\App_LocalResources\AddComment.aspx.gl.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Shopping\App_LocalResources\AddProductCart.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Pages\Shopping\App_LocalResources\AddProductCart.aspx.gl.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Pages\Shopping\App_LocalResources\AddProductCart.aspx.es.resx" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Pages\Product\App_LocalResources\ModifyComment.aspx.resx" />
   </ItemGroup>
   <ItemGroup>

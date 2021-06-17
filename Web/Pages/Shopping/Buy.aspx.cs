@@ -16,6 +16,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
         {
             if (!IsPostBack)
             {
+                if (SessionManager.IsAdminAuthenticated(Context))
+                {
+                    btnBuy.Enabled = false;
+                }
+
                 txtAddress.Text = SessionManager.GetAddress(Context);
                 long creditCard = SessionManager.GetCreditCardNumber(Context);
                 if (creditCard != 0)
